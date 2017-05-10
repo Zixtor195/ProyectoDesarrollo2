@@ -1,27 +1,18 @@
 /*
-    Universidad del Valle
-    Asignatura: Desarrollo de Software II 750092M
-    Tema: Entrega 4 proyecto
-    Archivo: GuiPrincipal.java
-    Version: 1.0
-    Fecha de creacion: 25 abril 2017
-    Autores:   
-                Monica Marcela Llano
-                Sebastian Balante Salazar
-                Cristian Camilo Jurado Arboleda
-                Juan Felipe Orozco Escobar               
-
-    Responsabilidad: Interfaz principal Restaurante Lenos y Carbon
-
-    Colaboracion: GuiModuloPersonal, GuiModuloPedidos, GuiModuloMenu
-*/
-
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package GuiPrincipal;
 
 import GuiModuloPersonal.Personal;
 import GuiModuloMenu.Menu;
+import GuiModuloPedidos.Pedidos;
 
-
+/**
+ *
+ * @author Moni
+ */
 public class GuiPrincipal extends javax.swing.JFrame {
 
     /**
@@ -85,6 +76,11 @@ public class GuiPrincipal extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(255, 153, 51));
         jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jButton3.setText("IR");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jPanelPrincipal.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 650, 90, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 153, 51));
@@ -176,6 +172,11 @@ public class GuiPrincipal extends javax.swing.JFrame {
         Personal personal = new Personal();
         personal.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        Pedidos o = new Pedidos();
+        o.setVisible(true);
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments

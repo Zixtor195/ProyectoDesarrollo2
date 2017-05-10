@@ -143,7 +143,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(379, 379, 379)
+                        .addGap(297, 297, 297)
                         .addComponent(jLabel11)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
