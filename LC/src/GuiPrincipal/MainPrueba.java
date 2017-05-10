@@ -32,6 +32,7 @@ public class MainPrueba {
      */
     public static void main(String[] args) throws Exception {
         
+        //la calavera de troski;
         
         // Crear un empleado
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");//PruebaJPAPU es el nombre de nuestra unidad de persistencia
