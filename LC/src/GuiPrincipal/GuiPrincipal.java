@@ -45,8 +45,8 @@ public class GuiPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,21 +121,15 @@ public class GuiPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(92, 23, 23));
 
-        jButton7.setBackground(new java.awt.Color(102, 0, 0));
-        jButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jButton7.setText("SALIR");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 850, Short.MAX_VALUE)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 940, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
         jPanelPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 30));
@@ -143,6 +137,11 @@ public class GuiPrincipal extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(255, 153, 51));
         jButton6.setText("IR");
         jPanelPrincipal.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, 90, -1));
+
+        jButton7.setBackground(new java.awt.Color(255, 102, 0));
+        jButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jButton7.setText("SALIR");
+        jPanelPrincipal.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 90, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
