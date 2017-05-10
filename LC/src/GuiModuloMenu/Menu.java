@@ -1,14 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    Universidad del Valle
+    Asignatura: Desarrollo de Software II 750092M
+    Tema: Proyecto final - Entrega 3
+    Archivo: Menu.java
+    Version: 1.0
+    Fecha de creacion: 28 abril 2017
+    Autores:   
+                Monica Marcela Llano
+                Sebastian Balante Salazar
+                Cristian Camilo Jurado Arboleda
+                Juan Felipe Orozco Escobar
+    
+    Responsabilidad: Interfaz Personal Restaurante Lenos y Carbon
+       
+    Colaboracion: PanelConsultarItem, PanelEliminarItem, PanelModificarItem, PanelRegistrarItem
+                    PanelRealizarModificacionItem, PanelResultadosConsultaItem
+*/
+
 package GuiModuloMenu;
 
-/**
- *
- * @author Moni
- */
+
 public class Menu extends javax.swing.JFrame {
 
     /**
@@ -16,6 +27,9 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        //setResizable(false);
     }
 
     /**
@@ -158,7 +172,6 @@ public class Menu extends javax.swing.JFrame {
         PanelRegistrarItem ri = new PanelRegistrarItem();
         ri.setSize(752,686);
         
-        
         jPanel2.removeAll();
         jPanel2.add(ri);
         jPanel2.revalidate();
@@ -169,7 +182,6 @@ public class Menu extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         PanelModificarItem mi = new PanelModificarItem();
         mi.setSize(752,686);
-        
         
         jPanel2.removeAll();
         jPanel2.add(mi);

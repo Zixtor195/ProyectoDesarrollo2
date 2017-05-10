@@ -1,14 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    Universidad del Valle
+    Asignatura: Desarrollo de Software II 750092M
+    Tema: Proyecto final - Entrega 3
+    Archivo: Personal.java
+    Version: 1.0
+    Fecha de creacion: 28 abril 2017
+    Autores:   
+                Monica Marcela Llano
+                Sebastian Balante Salazar
+                Cristian Camilo Jurado Arboleda
+                Juan Felipe Orozco Escobar
+    
+    Responsabilidad: Interfaz Personal Restaurante Lenos y Carbon
+       
+    Colaboracion: PanelConsultar, PanelEliminar, PanelModificar, PanelResultadosConsulta
+                    PanelRealizarModificacion, PanelRegistrarEmpleado
+*/
+
 package GuiModuloPersonal;
 
-/**
- *
- * @author Moni
- */
+
 public class Personal extends javax.swing.JFrame {
 
     /**
@@ -16,6 +27,9 @@ public class Personal extends javax.swing.JFrame {
      */
     public Personal() {
         initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        //setResizable(false);
     }
 
     /**

@@ -1,18 +1,29 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    Universidad del Valle
+    Asignatura: Desarrollo de Software II 750092M
+    Tema: Proyecto final - Entrega 3
+    Archivo: GuiPrincipal.java
+    Version: 1.0
+    Fecha de creacion: 28 abril 2017
+    Autores:   
+                Monica Marcela Llano
+                Sebastian Balante Salazar
+                Cristian Camilo Jurado Arboleda
+                Juan Felipe Orozco Escobar
+    
+    Responsabilidad: Interfaz principal Restaurante Lenos y Carbon
+       
+    Colaboracion: GuiModuloMenu, GuiModuloPersonal, GuiModuloPedidos
+                    GuiModuloFacturasReportes, GuiModuloReportes
+*/
+
 package GuiPrincipal;
 
 import GuiModuloPersonal.Personal;
 import GuiModuloMenu.Menu;
 import GuiModuloPedidos.Pedidos;
 
-/**
- *
- * @author Moni
- */
+
 public class GuiPrincipal extends javax.swing.JFrame {
 
     /**
@@ -20,6 +31,8 @@ public class GuiPrincipal extends javax.swing.JFrame {
      */
     public GuiPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -32,11 +45,11 @@ public class GuiPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelPrincipal = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jbMenu = new javax.swing.JButton();
+        jbPersonal = new javax.swing.JButton();
+        jbPedidos = new javax.swing.JButton();
+        jbReportes = new javax.swing.JButton();
+        jbFacturasPagos = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,57 +59,57 @@ public class GuiPrincipal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 51));
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jButton1.setText("IR");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbMenu.setBackground(new java.awt.Color(255, 153, 51));
+        jbMenu.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbMenu.setText("IR");
+        jbMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jbMenuMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 650, 90, -1));
+        jPanelPrincipal.add(jbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 650, 90, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 51));
-        jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jButton2.setText("IR");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbPersonal.setBackground(new java.awt.Color(255, 153, 51));
+        jbPersonal.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbPersonal.setText("IR");
+        jbPersonal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                jbPersonalMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 650, 90, -1));
+        jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 650, 90, -1));
 
-        jButton3.setBackground(new java.awt.Color(255, 153, 51));
-        jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jButton3.setText("IR");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbPedidos.setBackground(new java.awt.Color(255, 153, 51));
+        jbPedidos.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbPedidos.setText("IR");
+        jbPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                jbPedidosMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 650, 90, -1));
+        jPanelPrincipal.add(jbPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 650, 90, -1));
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 51));
-        jButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jButton4.setText("IR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbReportes.setBackground(new java.awt.Color(255, 153, 51));
+        jbReportes.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbReportes.setText("IR");
+        jbReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbReportesActionPerformed(evt);
             }
         });
-        jPanelPrincipal.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 650, 90, -1));
+        jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 650, 90, -1));
 
-        jButton5.setBackground(new java.awt.Color(255, 153, 51));
-        jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jButton5.setText("IR");
-        jPanelPrincipal.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 650, 90, -1));
+        jbFacturasPagos.setBackground(new java.awt.Color(255, 153, 51));
+        jbFacturasPagos.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbFacturasPagos.setText("IR");
+        jPanelPrincipal.add(jbFacturasPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 650, 90, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.jpg"))); // NOI18N
         jPanelPrincipal.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, -1, -1));
@@ -138,10 +151,15 @@ public class GuiPrincipal extends javax.swing.JFrame {
         jButton6.setText("IR");
         jPanelPrincipal.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, 90, -1));
 
-        jButton7.setBackground(new java.awt.Color(255, 102, 0));
-        jButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jButton7.setText("SALIR");
-        jPanelPrincipal.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 90, 30));
+        jbSalir.setBackground(new java.awt.Color(255, 102, 0));
+        jbSalir.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbSalir.setText("SALIR");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
+        jPanelPrincipal.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 90, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,25 +175,28 @@ public class GuiPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jbReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReportesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jbReportesActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jbMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbMenuMouseClicked
         Menu menu = new Menu();
         menu.setVisible(true);
-        
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jbMenuMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void jbPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPersonalMouseClicked
         Personal personal = new Personal();
         personal.setVisible(true);
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_jbPersonalMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void jbPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPedidosMouseClicked
         Pedidos o = new Pedidos();
         o.setVisible(true);
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_jbPedidosMouseClicked
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jbSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,13 +235,7 @@ public class GuiPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -230,5 +245,11 @@ public class GuiPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelPrincipal;
+    private javax.swing.JButton jbFacturasPagos;
+    private javax.swing.JButton jbMenu;
+    private javax.swing.JButton jbPedidos;
+    private javax.swing.JButton jbPersonal;
+    private javax.swing.JButton jbReportes;
+    private javax.swing.JButton jbSalir;
     // End of variables declaration//GEN-END:variables
 }
