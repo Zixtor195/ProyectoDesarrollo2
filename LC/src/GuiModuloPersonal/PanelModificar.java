@@ -34,13 +34,13 @@ public class PanelModificar extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jtModificarEmpleado = new javax.swing.JTable();
+        jlContinuar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtModificarEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -95,12 +95,12 @@ public class PanelModificar extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtModificarEmpleado);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlContinuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
+        jlContinuar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jlContinuarMouseClicked(evt);
             }
         });
 
@@ -112,7 +112,7 @@ public class PanelModificar extends javax.swing.JPanel {
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jlContinuar)
                         .addGap(378, 378, 378))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,16 +124,16 @@ public class PanelModificar extends javax.swing.JPanel {
                 .addContainerGap(57, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jLabel1)
+                .addComponent(jlContinuar)
                 .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void jlContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContinuarMouseClicked
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-        int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),3)));
+        int a = Integer.parseInt(String.valueOf(jtModificarEmpleado.getValueAt(jtModificarEmpleado.getSelectedRow(),3)));
               
         this.removeAll();
         this.revalidate();
@@ -143,26 +143,27 @@ public class PanelModificar extends javax.swing.JPanel {
         rm.setSize(752, 686);
         
         Empleado persona = dao.findEmpleado(a);
-        rm.jTextField6.setText(persona.getNombres());      
-        rm.jTextField8.setText(persona.getApellidos());
-        rm.jComboBox1.setSelectedItem(persona.getTipoDocumento());
-        rm.jTextField1.setText(persona.getIdEmpleado().toString());
-        rm.jComboBox2.setSelectedItem(persona.getCargo());
-        rm.jTextField10.setText(persona.getContraseña());
-        rm.jTextField3.setText(persona.getDireccion());
-        rm.jTextField9.setText(persona.getEmail());
-        rm.jTextField2.setText(persona.getTelCel());
-        rm.jTextField4.setText(persona.getTelFijo());
+        rm.jtfNumeroID.setEnabled(false);
+        rm.jtfNombre.setText(persona.getNombres());      
+        rm.jtfApellidos.setText(persona.getApellidos());
+        rm.jcbTipoDocumento.setSelectedItem(persona.getTipoDocumento());
+        rm.jtfNumeroID.setText(persona.getIdEmpleado().toString());
+        rm.jcbCargo.setSelectedItem(persona.getCargo());
+        rm.jtfContrasena.setText(persona.getContraseña());
+        rm.jtfDireccion.setText(persona.getDireccion());
+        rm.jtfEmail.setText(persona.getEmail());
+        rm.jtfCelular.setText(persona.getTelCel());
+        rm.jtfTelefono.setText(persona.getTelFijo());
         
-        this.add(rm);
         emf.close();
+        this.add(rm);
         
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_jlContinuarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel jLabel1;
     public javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JLabel jlContinuar;
+    public javax.swing.JTable jtModificarEmpleado;
     // End of variables declaration//GEN-END:variables
 }

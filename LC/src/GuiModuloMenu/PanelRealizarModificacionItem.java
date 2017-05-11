@@ -64,6 +64,8 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Descripcion:");
 
+        jtfID.setEditable(false);
+
         jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jtaDescripcion.setColumns(20);
@@ -167,7 +169,7 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         
         Item item = dao.findItem(Integer.parseInt(jtfID.getText()));
         
-        item.setIdItem(Integer.parseInt(jtfID.getText()));
+        //item.setIdItem(Integer.parseInt(jtfID.getText()));
         item.setNombre(jtfNombre.getText());
         item.setPrecio(Integer.parseInt(jtfPrecio.getText()));
         item.setCategoria(jcbCategoria.getSelectedItem().toString());

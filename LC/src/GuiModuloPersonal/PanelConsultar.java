@@ -33,13 +33,13 @@ public class PanelConsultar extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jtConsultar = new javax.swing.JTable();
+        jlConsultarBoton = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtConsultar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -94,12 +94,12 @@ public class PanelConsultar extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtConsultar);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlConsultarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
+        jlConsultarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jlConsultarBotonMouseClicked(evt);
             }
         });
 
@@ -113,7 +113,7 @@ public class PanelConsultar extends javax.swing.JPanel {
                 .addGap(83, 83, 83))
             .addGroup(layout.createSequentialGroup()
                 .addGap(297, 297, 297)
-                .addComponent(jLabel1)
+                .addComponent(jlConsultarBoton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -122,42 +122,43 @@ public class PanelConsultar extends javax.swing.JPanel {
                 .addContainerGap(57, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addComponent(jlConsultarBoton)
                 .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void jlConsultarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarBotonMouseClicked
         this.removeAll();
         this.revalidate();
         this.repaint();
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-        int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),3)));
+        int a = Integer.parseInt(String.valueOf(jtConsultar.getValueAt(jtConsultar.getSelectedRow(),3)));
         
         PanelResultadosConsulta rc = new PanelResultadosConsulta();
         rc.setSize(752, 686);
         
         Empleado persona = dao.findEmpleado(a);
-        rc.jTextField6.setText(persona.getNombres());      
-        rc.jTextField8.setText(persona.getApellidos());
-        rc.jComboBox1.setSelectedItem(persona.getTipoDocumento());
-        rc.jTextField1.setText(persona.getIdEmpleado().toString());
-        rc.jComboBox2.setSelectedItem(persona.getCargo());
-        rc.jTextField10.setText(persona.getContraseña());
-        rc.jTextField3.setText(persona.getDireccion());
-        rc.jTextField9.setText(persona.getEmail());
-        rc.jTextField2.setText(persona.getTelCel());
-        rc.jTextField4.setText(persona.getTelFijo());
-        
+        rc.jtfNombre.setText(persona.getNombres());      
+        rc.jtfApellidos.setText(persona.getApellidos());
+        rc.jcbTipoDocumento.setSelectedItem(persona.getTipoDocumento());
+        rc.jtfNumeroID.setText(persona.getIdEmpleado().toString());
+        rc.jcbCargo.setSelectedItem(persona.getCargo());
+        rc.jtfContrasena.setText(persona.getContraseña());
+        rc.jftDireccion.setText(persona.getDireccion());
+        rc.jtfEmail.setText(persona.getEmail());
+        rc.jtfCelular.setText(persona.getTelCel());
+        rc.jtfTelefono.setText(persona.getTelFijo());
+        emf.close();
         this.add(rc);
-    }//GEN-LAST:event_jLabel1MouseClicked
+        
+    }//GEN-LAST:event_jlConsultarBotonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    private javax.swing.JLabel jlConsultarBoton;
+    public javax.swing.JTable jtConsultar;
     // End of variables declaration//GEN-END:variables
 }

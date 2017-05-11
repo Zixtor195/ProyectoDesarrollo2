@@ -158,16 +158,15 @@ public class Personal extends javax.swing.JFrame {
 
         PanelRegistrarEmpleado re = new PanelRegistrarEmpleado();
         re.setSize(940,686);
-                       
         
         jPanel2.removeAll();
         jPanel2.add(re);
         jPanel2.revalidate();
         jPanel2.repaint();
-
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        
         PanelModificar me = new PanelModificar();
         me.setSize(752,686);
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
@@ -186,7 +185,7 @@ public class Personal extends javax.swing.JFrame {
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        me.jTable1.setModel(Modelo);        
+        me.jtModificarEmpleado.setModel(Modelo);        
         jPanel2.removeAll();
         jPanel2.add(me);
         jPanel2.revalidate();
@@ -194,6 +193,7 @@ public class Personal extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        
         PanelConsultar ce = new PanelConsultar();
         ce.setSize(752,686);
         
@@ -213,7 +213,7 @@ public class Personal extends javax.swing.JFrame {
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        ce.jTable1.setModel(Modelo); 
+        ce.jtConsultar.setModel(Modelo); 
         
         jPanel2.removeAll();
         jPanel2.add(ce);
@@ -223,6 +223,7 @@ public class Personal extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        
         PanelEliminar Eemp = new PanelEliminar();
         Eemp.setSize(752,686);
         
@@ -242,7 +243,7 @@ public class Personal extends javax.swing.JFrame {
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        Eemp.jTable1.setModel(Modelo); 
+        Eemp.jtEliminar.setModel(Modelo); 
         
         jPanel2.removeAll();
         jPanel2.add(Eemp);

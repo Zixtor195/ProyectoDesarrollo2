@@ -94,7 +94,6 @@ public class PanelModificarItem extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jtTablaModificarItem.setEnabled(false);
         jScrollPane1.setViewportView(jtTablaModificarItem);
 
         jlContinuarModificarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
