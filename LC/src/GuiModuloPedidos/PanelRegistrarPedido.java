@@ -11,9 +11,12 @@ import ClasesTablas.Item;
 import ClasesTablas.ItemPedido;
 import ClasesTablas.Pedido;
 import ControladorClasesTablas.EmpleadoJpaController;
+import ControladorClasesTablas.FacturaJpaController;
 import ControladorClasesTablas.ItemJpaController;
 import ControladorClasesTablas.ItemPedidoJpaController;
 import ControladorClasesTablas.PedidoJpaController;
+import ControladorClasesTablas.exceptions.IllegalOrphanException;
+import ControladorClasesTablas.exceptions.NonexistentEntityException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -42,10 +45,10 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Sebas
  */
-public class PanelRegistrarPedido extends javax.swing.JPanel {
+public final class PanelRegistrarPedido extends javax.swing.JPanel {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-    Pedido pedido = null;
+    Pedido pedido = new Pedido();
     
     public PanelRegistrarPedido() {
         initComponents();
@@ -53,11 +56,12 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
         listitemp.setModel(new listaItemsModel());
         cbo_mesero.setModel(listadoMeserosModel());
         cbo_tipo.setModel(listadoTipoPedidoModel());
-        table.setModel(new tableModelPedido());
         btnagregarapedido.addActionListener(new agregar());
         btnaceptarpedido.addActionListener(new aceptarPedido());
-//        numeroRegistros();
-//        crearPedidoBd();
+        btnanular.addActionListener(new anular());
+        btncancelar.addActionListener(new quitar());
+        numeroRegistros();
+        crearPedidoBd();
     }
 
     @SuppressWarnings("unchecked")
@@ -72,7 +76,7 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
         cbo_mesero = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         btnaceptarpedido = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnanular = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listitemp = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
@@ -80,7 +84,7 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
         txtmesa = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        btncancelar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -154,8 +158,8 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
         btnaceptarpedido.setBackground(new java.awt.Color(153, 153, 255));
         btnaceptarpedido.setText("Aceptar Pedido");
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 51));
-        jButton2.setText("Anular");
+        btnanular.setBackground(new java.awt.Color(255, 255, 51));
+        btnanular.setText("Anular");
 
         listitemp.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -233,7 +237,7 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(table);
 
-        jButton3.setText("Cancelar Producto");
+        btncancelar.setText("Cancelar Producto");
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel6.setText("Detalles del Pedido");
@@ -298,22 +302,23 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(50, 50, 50)
-                                        .addComponent(btnagregarapedido))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(btnagregarapedido)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btncancelar))))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnaceptarpedido)
                         .addGap(41, 41, 41)
-                        .addComponent(jButton2)
-                        .addGap(127, 127, 127)
-                        .addComponent(jButton3)
-                        .addGap(159, 159, 159)))
+                        .addComponent(btnanular)
+                        .addGap(407, 407, 407)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -335,20 +340,16 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtcantidad)
-                            .addComponent(btnagregarapedido))
+                            .addComponent(btnagregarapedido)
+                            .addComponent(btncancelar))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnaceptarpedido)
-                            .addComponent(jButton2))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnaceptarpedido)
+                    .addComponent(btnanular))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -361,10 +362,10 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnaceptarpedido;
     private javax.swing.JButton btnagregarapedido;
+    private javax.swing.JButton btnanular;
+    private javax.swing.JButton btncancelar;
     private javax.swing.JComboBox cbo_mesero;
     private javax.swing.JComboBox cbo_tipo;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -391,7 +392,7 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            txtmesa.setEnabled(false);
+            
             //controlador item
             ItemJpaController ijc = new ItemJpaController(emf);
             List<Item> listaitem = ijc.findItemEntities();
@@ -401,6 +402,8 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
             ItemPedido ip = new ItemPedido();
             List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
             
+            
+            
             if(!txtcantidad.getText().trim().equals("")&&!listitemp.isSelectionEmpty()&&!txtmesa.getText().trim().equals("")){
                
                 ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
@@ -408,7 +411,7 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
                 ip.setPedido(pedido);
                 try {
                     tjc.create(ip);
-                    table.setModel(new tableModelPedido());
+                    table.setModel(new tableModel());
                 } catch (Exception ex) {
                     Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -422,6 +425,7 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            
             crearLocalPedido();
             PedidoJpaController pjc = new PedidoJpaController(emf);
             ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
@@ -430,7 +434,7 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
             
             if(!listaitempedido.isEmpty()){
                 for (ItemPedido itemp : listaitempedido) {
-                    if(Objects.equals(itemp.getPedido().getIdPedido(), pedido.getIdPedido())){
+                    if(itemp.getPedido().getIdPedido().intValue() == pedido.getIdPedido().intValue()){
                         pedido.getItemPedidoSet().add(itemp);
                     }
                 }
@@ -445,10 +449,86 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
         }
     }
     
+    private class quitar implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            //controlador itempedido
+            ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
+            ItemPedido ip = new ItemPedido();
+            List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
+            
+            if(table.getSelectedRow() != -1){
+               
+                try {
+                    ip = listaitempedido.get(table.getSelectedRow());
+                    tjc.destroy(ip.getItemPedidoPK());
+                    table.setModel(new tableModel());
+                    
+                } catch (Exception ex) {
+                    Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Seleccione un plato de su lista de pedidos");
+            }
+        }
+    }
+    
+    public class anular implements ActionListener{
+        PedidoJpaController pjc = new PedidoJpaController(emf);
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            cbo_mesero.setSelectedIndex(0);
+            cbo_tipo.setSelectedIndex(0);
+            txtcantidad.setText("");
+            txtmesa.setText("");
+            
+            PedidoJpaController pjc = new PedidoJpaController(emf);
+            ItemPedidoJpaController ijc = new ItemPedidoJpaController(emf);
+            FacturaJpaController fjc = new FacturaJpaController(emf);
+            
+            List<Pedido> listapedido = pjc.findPedidoEntities();   
+            List<ItemPedido> listapedidos = ijc.findItemPedidoEntities();
+            List<Factura> listafactura = fjc.findFacturaEntities();
+                
+                for(ItemPedido item : listapedidos){
+                    if(item.getPedido().getIdPedido().intValue() == pedido.getIdPedido().intValue()){
+                        try {
+                            ijc.destroy(item.getItemPedidoPK());
+                        } catch (NonexistentEntityException ex) {
+                            Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                
+                for(Factura fact : listafactura){
+                    if(fact.getIdPedido().equals(pedido)){
+                        try {
+                            fjc.destroy(fact.getIdFactura());
+                        } catch (NonexistentEntityException ex) {
+                            Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+ 
+                    }
+                }
+            try {
+                pjc.destroy(pedido.getIdPedido());
+            } catch (IllegalOrphanException ex) {
+                Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NonexistentEntityException ex) {
+                Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }   
+    }
+    
     public void numeroRegistros(){
         PedidoJpaController pjc = new PedidoJpaController(emf);
-//        pedido.setIdPedido(pjc.findPedidoEntities().size());
-        
+        if(!pjc.findPedidoEntities().isEmpty()){
+            pedido.setIdPedido(pjc.findPedidoEntities().size());
+        }
     }
     
     public Pedido crearLocalPedido(){
@@ -464,7 +544,7 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
     public void crearPedidoBd(){
        
         PedidoJpaController pjc = new PedidoJpaController(emf);
-        pedido.setIdPedido();
+        pedido.setIdPedidoAumentado();
         pedido.setHoraInicio(getHora());
         try {
             pjc.create(pedido);
@@ -531,15 +611,19 @@ public class PanelRegistrarPedido extends javax.swing.JPanel {
         return combo;
     }
     
-    private class tableModelPedido extends AbstractTableModel{
+    private class tableModel extends AbstractTableModel{
         
         //ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
         List<ItemPedido> listItems = pedido.getItemPedidoSet();
         
+        
         @Override
         public int getRowCount() {
+            if(listItems.isEmpty()){
+                return 0;
+            }else{
                 return listItems.size();
-            
+            }
         }
 
         @Override

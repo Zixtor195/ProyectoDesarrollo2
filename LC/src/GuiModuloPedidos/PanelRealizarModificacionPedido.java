@@ -396,7 +396,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
                 try {
                     tjc.create(ip);
                     table.setModel(new tableModelPedido());
-                    table.updateUI();
+                    
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Ya realizo este pedido");
                 }
@@ -422,7 +422,6 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
                     ip = listaitempedido.get(table.getSelectedRow());
                     tjc.destroy(ip.getItemPedidoPK());
                     table.setModel(new tableModelPedido());
-                    table.updateUI();
                     
                 } catch (Exception ex) {
                     Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);

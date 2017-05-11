@@ -33,6 +33,7 @@ import javax.swing.table.AbstractTableModel;
 public class PanelEliminarPedido extends javax.swing.JPanel {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    
     public PanelEliminarPedido() {
         initComponents();
         

@@ -81,11 +81,11 @@ public class Pedido implements Serializable {
         return idPedido;
     }
     
-//    public void setIdPedido(int idpedido) {
-//        this.idPedido = idpedido ;
-//    }
+    public void setIdPedido(int idpedido) {
+        this.idPedido = idpedido ;
+    }
     
-    public void setIdPedido() {
+    public void setIdPedidoAumentado() {
         this.idPedido++ ;
     }
 
