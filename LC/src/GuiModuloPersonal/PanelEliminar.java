@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -133,6 +134,7 @@ public class PanelEliminar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlEliminarMouseClicked
+        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
         int a = Integer.parseInt(String.valueOf(jtEliminar.getValueAt(jtEliminar.getSelectedRow(),3)));
@@ -140,6 +142,7 @@ public class PanelEliminar extends javax.swing.JPanel {
         Empleado persona = dao.findEmpleado(a);
         try {
             dao.destroy(persona.getIdEmpleado());
+            JOptionPane.showMessageDialog(null, "Empleado eliminado exitosamente.");
         } catch (IllegalOrphanException ex) {
             Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NonexistentEntityException ex) {
@@ -147,7 +150,6 @@ public class PanelEliminar extends javax.swing.JPanel {
         }finally{
             emf.close();
         }
-        
     }//GEN-LAST:event_jlEliminarMouseClicked
 
 

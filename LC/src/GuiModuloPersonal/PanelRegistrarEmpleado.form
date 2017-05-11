@@ -54,7 +54,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jftApellido" max="32767" attributes="0"/>
+                                  <Component id="jtfApellido" max="32767" attributes="0"/>
                                   <Component id="jcbTipoDocumento" pref="280" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -99,7 +99,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jftApellido" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="jtfApellido" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -241,9 +241,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtfNombre">
     </Component>
-    <Component class="javax.swing.JTextField" name="jftApellido">
+    <Component class="javax.swing.JTextField" name="jtfApellido">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jftApellidoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfApellidoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfEmail">

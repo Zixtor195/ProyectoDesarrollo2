@@ -77,12 +77,6 @@ public class PanelRealizarModificacion extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Contraseña:");
 
-        jtfNumeroID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNumeroIDActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Nombre:");
 
@@ -97,12 +91,6 @@ public class PanelRealizarModificacion extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Foto:");
-
-        jtfApellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfApellidosActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Dirrecciòn:");
@@ -224,6 +212,7 @@ public class PanelRealizarModificacion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModificarMouseClicked
+        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");//PruebaJPAPU es el nombre de nuestra unidad de persistencia
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
         Empleado persona = dao.findEmpleado(Integer.parseInt(jtfNumeroID.getText()));
@@ -238,14 +227,10 @@ public class PanelRealizarModificacion extends javax.swing.JPanel {
         persona.setEmail(jtfEmail.getText());
         persona.setTelCel(jtfCelular.getText());
         persona.setTelFijo(jtfTelefono.getText());
-      
-       /* Set<TurnosSemanales> turno =  new HashSet<TurnosSemanales>();
-        TurnosSemanales turnos = new TurnosSemanales(persona.getIdEmpleado(),"Jueves-Nocturno");
-        turno.add(turnos);
-        persona.setTurnosSemanalesSet(turno);*/
         
         try {
             dao.edit(persona);
+            JOptionPane.showMessageDialog(null, "Empleado modificado exitosamente.");
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(PanelRealizarModificacion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -253,16 +238,7 @@ public class PanelRealizarModificacion extends javax.swing.JPanel {
         }finally{
             emf.close();
         }
-        
     }//GEN-LAST:event_jlModificarMouseClicked
-
-    private void jtfNumeroIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNumeroIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNumeroIDActionPerformed
-
-    private void jtfApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfApellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfApellidosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -64,8 +64,13 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Descripcion:");
 
+        jtfID.setEditable(false);
+
+        jtfPrecio.setEditable(false);
+
         jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jtaDescripcion.setEditable(false);
         jtaDescripcion.setColumns(20);
         jtaDescripcion.setRows(5);
         jspDescripcion.setViewportView(jtaDescripcion);
@@ -74,6 +79,8 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
         jLabel5.setText("Foto:");
 
         jLabel6.setText("ID:");
+
+        jtfNombre.setEditable(false);
 
         jlAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton aceptar.jpg"))); // NOI18N
         jlAceptar.addMouseListener(new java.awt.event.MouseAdapter() {

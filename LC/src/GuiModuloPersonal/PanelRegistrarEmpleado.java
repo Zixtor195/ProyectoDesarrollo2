@@ -48,7 +48,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jtfDireccion = new javax.swing.JTextField();
         jtfTelefono = new javax.swing.JTextField();
         jtfNombre = new javax.swing.JTextField();
-        jftApellido = new javax.swing.JTextField();
+        jtfApellido = new javax.swing.JTextField();
         jtfEmail = new javax.swing.JTextField();
         jcbTipoDocumento = new javax.swing.JComboBox();
         jtfContrasena = new javax.swing.JTextField();
@@ -94,9 +94,9 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
             }
         });
 
-        jftApellido.addActionListener(new java.awt.event.ActionListener() {
+        jtfApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jftApellidoActionPerformed(evt);
+                jtfApellidoActionPerformed(evt);
             }
         });
 
@@ -146,7 +146,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                                     .addComponent(jLabel3))
                                 .addGap(58, 58, 58)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jftApellido)
+                                    .addComponent(jtfApellido)
                                     .addComponent(jcbTipoDocumento, 0, 280, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -178,7 +178,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jftApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -223,7 +223,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         
         Empleado persona = new Empleado();
         persona.setNombres(jtfNombre.getText());
-        persona.setApellidos(jftApellido.getText());
+        persona.setApellidos(jtfApellido.getText());
         persona.setTipoDocumento(jcbTipoDocumento.getSelectedItem().toString());
         persona.setIdEmpleado(Integer.parseInt(jtfNumeroID.getText()));
         persona.setCargo(jcbCargo.getSelectedItem().toString());
@@ -234,6 +234,17 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         persona.setTelFijo(jtfTelefono.getText());
         try {
             dao.create(persona);
+            JOptionPane.showMessageDialog(null, "Empleado creado exitosamente.");
+            jtfNombre.setText("");
+            jtfApellido.setText("");
+            jcbTipoDocumento.setSelectedIndex(0);
+            jtfNumeroID.setText("");
+            jcbCargo.setSelectedIndex(0);
+            jtfDireccion.setText("");
+            jtfTelefono.setText("");
+            jtfCelular.setText("");
+            jtfEmail.setText("");
+            jtfContrasena.setText("");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ya existe Esta Persona");
         }finally{
@@ -242,9 +253,9 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jlCrearEmpleadoMouseClicked
 
-    private void jftApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftApellidoActionPerformed
+    private void jtfApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfApellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jftApellidoActionPerformed
+    }//GEN-LAST:event_jtfApellidoActionPerformed
 
     private void jtfNumeroIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNumeroIDActionPerformed
         // TODO add your handling code here:
@@ -265,8 +276,8 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox jcbCargo;
     private javax.swing.JComboBox jcbTipoDocumento;
-    private javax.swing.JTextField jftApellido;
     private javax.swing.JLabel jlCrearEmpleado;
+    private javax.swing.JTextField jtfApellido;
     private javax.swing.JTextField jtfCelular;
     private javax.swing.JTextField jtfContrasena;
     private javax.swing.JTextField jtfDireccion;
