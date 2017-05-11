@@ -5,6 +5,16 @@
  */
 package GuiFacturasPagos;
 
+import ClasesTablas.ItemPedido;
+import ClasesTablas.Pedido;
+import ControladorClasesTablas.ItemPedidoJpaController;
+import ControladorClasesTablas.PedidoJpaController;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author LLano
@@ -77,7 +87,7 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "id", "Mesero", "Hora", "No.Mesa"
+                "id", "Mesero", "Hora", "Tipo"
             }
         ) {
             Class[] types = new Class [] {
@@ -122,12 +132,44 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        FacturarPedidos rm = new FacturarPedidos();
+        rm.setSize(900, 1000); 
+        
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        PedidoJpaController dao = new PedidoJpaController(emf);
+        ItemPedidoJpaController daoi = new ItemPedidoJpaController(emf);
+        int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
+        Pedido pedido = dao.findPedido(a);
+        int totalPrecio;
+        
+        List<ItemPedido> Ip = daoi.findItemPedidoEntities();
+        List<ItemPedido> PedidoItems = new ArrayList<ItemPedido>(); 
+                
+        for (int i = 0; i < Ip.size(); i++) {
+            if (Ip.get(i).getPedido().getIdPedido() == a){                
+            PedidoItems.add(Ip.get(i));
+                    }
+        }
+        
+        Object fila[][]=new Object[PedidoItems.size()][3];        
+        for (int i = 0; i < PedidoItems.size(); i++) {
+            
+            
+            fila[i][0]=PedidoItems.get(i).getCantidad();
+            fila[i][1]=PedidoItems.get(i).getItem().getNombre();           
+            fila[i][2]=PedidoItems.get(i).getItem().getPrecio();
+            }
+        
+        String columna[]=new String[]{"Cantidad","Producto","Precio"};        
+        emf.close();
+        
+        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
+        rm.jTable1.setModel(Modelo);
+        
         this.removeAll();
         this.revalidate();
-        this.repaint();
-        
-        FacturarPedidos rm = new FacturarPedidos();
-        rm.setSize(900, 1000);
+        this.repaint();                 
         this.add(rm);
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -135,6 +177,6 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
