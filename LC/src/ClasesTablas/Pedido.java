@@ -6,12 +6,15 @@
 package ClasesTablas;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Moni
+ * @author Sebas
  */
 @Entity
 @Table(name = "pedido")
@@ -39,9 +42,10 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "id_pedido")
-    private Integer idPedido;
+    private Integer idPedido = 0;
     @Basic(optional = false)
     @Column(name = "hora_inicio")
     private String horaInicio;
@@ -53,9 +57,9 @@ public class Pedido implements Serializable {
     @Column(name = "num_mesa")
     private Integer numMesa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
-    private Set<ItemPedido> itemPedidoSet;
+    private List<ItemPedido> itemPedidoSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPedido", fetch = FetchType.LAZY)
-    private Set<Factura> facturaSet;
+    private List<Factura> facturaSet;
     @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado")
     @ManyToOne(fetch = FetchType.LAZY)
     private Empleado idEmpleado;
@@ -76,9 +80,13 @@ public class Pedido implements Serializable {
     public Integer getIdPedido() {
         return idPedido;
     }
-
-    public void setIdPedido(Integer idPedido) {
-        this.idPedido = idPedido;
+    
+//    public void setIdPedido(int idpedido) {
+//        this.idPedido = idpedido ;
+//    }
+    
+    public void setIdPedido() {
+        this.idPedido++ ;
     }
 
     public String getHoraInicio() {
@@ -114,20 +122,20 @@ public class Pedido implements Serializable {
     }
 
     @XmlTransient
-    public Set<ItemPedido> getItemPedidoSet() {
+    public List<ItemPedido> getItemPedidoSet() {
         return itemPedidoSet;
     }
 
-    public void setItemPedidoSet(Set<ItemPedido> itemPedidoSet) {
+    public void setItemPedidoSet(List<ItemPedido> itemPedidoSet) {
         this.itemPedidoSet = itemPedidoSet;
     }
 
     @XmlTransient
-    public Set<Factura> getFacturaSet() {
+    public List<Factura> getFacturaSet() {
         return facturaSet;
     }
 
-    public void setFacturaSet(Set<Factura> facturaSet) {
+    public void setFacturaSet(List<Factura> facturaSet) {
         this.facturaSet = facturaSet;
     }
 

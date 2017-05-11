@@ -6,7 +6,25 @@
 package GuiModuloPedidos;
 
 
+import ClasesTablas.Factura;
+import ClasesTablas.ItemPedido;
+import ClasesTablas.Pedido;
+import ControladorClasesTablas.FacturaJpaController;
+import ControladorClasesTablas.ItemPedidoJpaController;
+import ControladorClasesTablas.PedidoJpaController;
+import ControladorClasesTablas.exceptions.IllegalOrphanException;
+import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
@@ -14,11 +32,12 @@ import javax.swing.JOptionPane;
  */
 public class PanelEliminarPedido extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanellModificar
-     */
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
     public PanelEliminarPedido() {
         initComponents();
+        
+        table.setModel(new tableModel());
+        lbleliminar.addMouseListener(new Eliminar());
     }
 
     /**
@@ -31,13 +50,13 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        table = new javax.swing.JTable();
+        lbleliminar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -92,12 +111,12 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botoneliminar.jpg"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbleliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botoneliminar.jpg"))); // NOI18N
+        lbleliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                lbleliminarMouseClicked(evt);
             }
         });
 
@@ -109,7 +128,7 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lbleliminar)
                         .addGap(378, 378, 378))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,28 +140,130 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
                 .addContainerGap(54, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jLabel1)
+                .addComponent(lbleliminar)
                 .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-     
-        this.removeAll();
-        this.revalidate();
-        this.repaint();
-        
-        PanelRealizarModificacionPedido rm = new PanelRealizarModificacionPedido();
-        rm.setSize(752, 686);
-        this.add(rm);
-        
-        
-    }//GEN-LAST:event_jLabel1MouseClicked
+    private void lbleliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleliminarMouseClicked
 
+    }//GEN-LAST:event_lbleliminarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel jLabel1;
     public javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JLabel lbleliminar;
+    public javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
+
+    
+    private class Eliminar implements MouseListener{
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            PedidoJpaController pjc = new PedidoJpaController(emf);
+            List<Pedido> listapedido = pjc.findPedidoEntities();
+            ItemPedidoJpaController ijc = new ItemPedidoJpaController(emf);
+            FacturaJpaController fjc = new FacturaJpaController(emf);
+            
+            
+            if(table.getSelectedRow()!=-1){
+                
+                Pedido pedido = listapedido.get(table.getSelectedRow());
+                List<ItemPedido> listapedidos = ijc.findItemPedidoEntities();
+                List<Factura> listafactura = fjc.findFacturaEntities();
+                
+                for(ItemPedido item : listapedidos){
+                    if(item.getPedido().getIdPedido().intValue() == pedido.getIdPedido().intValue()){
+                        try {
+                            ijc.destroy(item.getItemPedidoPK());
+                        } catch (NonexistentEntityException ex) {
+                            Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                
+                for(Factura fact : listafactura){
+                    if(fact.getIdPedido().equals(pedido)){
+                        try {
+                            fjc.destroy(fact.getIdFactura());
+                        } catch (NonexistentEntityException ex) {
+                            Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+ 
+                    }
+                }
+                
+                //pedido.getItemPedidoSet().r;
+                try {
+                    pjc.destroy(pedido.getIdPedido());
+                    table.setModel(new tableModel());
+                } catch (IllegalOrphanException ex) {
+                    Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NonexistentEntityException ex) {
+                    Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(null,"Por favor seleccione un pedido para eliminarlo");
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+    
+     private class tableModel extends AbstractTableModel{
+         
+        PedidoJpaController pjc = new PedidoJpaController(emf);
+        List<Pedido> listapedido = pjc.findPedidoEntities();
+        
+        @Override
+        public int getRowCount() {
+            return listapedido.size();
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 4;
+        }
+
+        @Override
+        public String getColumnName(int column) {
+            switch(column){
+                case 0: return "ID"; 
+                case 1: return "Mesero";
+                case 2: return "Hora";
+                case 3: return "No. Mesa";
+            }
+            return "";
+        }
+        
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            
+            Pedido pedid = listapedido.get(rowIndex);
+            switch(columnIndex){
+                case 0: return pedid.getIdPedido();
+                case 1: return pedid.getIdEmpleado().getNombres();
+                case 2: return pedid.getHoraInicio();
+                case 3: return pedid.getNumMesa();
+            }
+            return "";
+        }
+        
+    }
+    
 }

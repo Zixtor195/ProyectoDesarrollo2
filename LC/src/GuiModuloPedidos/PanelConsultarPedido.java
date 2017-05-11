@@ -5,20 +5,30 @@
  */
 package GuiModuloPedidos;
 
+import ClasesTablas.Pedido;
+import ControladorClasesTablas.PedidoJpaController;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.table.AbstractTableModel;
+
 
 
 
 /**
  *
- * @author Moni
+ * @author Sebas
  */
 public class PanelConsultarPedido extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanellModificar
-     */
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    Pedido pedido = null;
+    
     public PanelConsultarPedido() {
         initComponents();
+        
+        table.setModel(new tableModel());
+        
     }
 
     /**
@@ -31,13 +41,13 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -92,7 +102,7 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -127,10 +137,13 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-    
         
-        PanelRealizarModificacionPedido rm = new PanelRealizarModificacionPedido();
-        rm.setSize(1000,900);
+        PedidoJpaController pjc = new PedidoJpaController(emf);
+        List<Pedido> listapedido = pjc.findPedidoEntities();
+        pedido = listapedido.get(table.getSelectedRow());
+        
+        PanelResulConsultaPedido rm = new PanelResulConsultaPedido(pedido);
+        rm.setSize(936, 749);
          
         this.removeAll();
         this.revalidate();
@@ -144,6 +157,49 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel jLabel1;
     public javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
+
+    
+     private class tableModel extends AbstractTableModel{
+         
+        PedidoJpaController pjc = new PedidoJpaController(emf);
+        List<Pedido> listapedido = pjc.findPedidoEntities();
+        
+        @Override
+        public int getRowCount() {
+            return listapedido.size();
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 4;
+        }
+
+        @Override
+        public String getColumnName(int column) {
+            switch(column){
+                case 0: return "ID"; 
+                case 1: return "Mesero";
+                case 2: return "Hora";
+                case 3: return "No. Mesa";
+            }
+            return "";
+        }
+        
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            
+            Pedido pedid = listapedido.get(rowIndex);
+            switch(columnIndex){
+                case 0: return pedid.getIdPedido();
+                case 1: return pedid.getIdEmpleado().getNombres();
+                case 2: return pedid.getHoraInicio();
+                case 3: return pedid.getNumMesa();
+            }
+            return "";
+        }
+        
+    }
+    
 }

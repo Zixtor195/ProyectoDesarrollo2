@@ -6,12 +6,15 @@
 package ClasesTablas;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Moni
+ * @author Sebas
  */
 @Entity
 @Table(name = "item")
@@ -38,6 +41,7 @@ public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_item")
     private Integer idItem;
     @Basic(optional = false)
@@ -53,7 +57,7 @@ public class Item implements Serializable {
     @Column(name = "precio")
     private int precio;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.LAZY)
-    private Set<ItemPedido> itemPedidoSet;
+    private List<ItemPedido> itemPedidoSet;
 
     public Item() {
     }
@@ -111,11 +115,11 @@ public class Item implements Serializable {
     }
 
     @XmlTransient
-    public Set<ItemPedido> getItemPedidoSet() {
+    public List<ItemPedido> getItemPedidoSet() {
         return itemPedidoSet;
     }
 
-    public void setItemPedidoSet(Set<ItemPedido> itemPedidoSet) {
+    public void setItemPedidoSet(List<ItemPedido> itemPedidoSet) {
         this.itemPedidoSet = itemPedidoSet;
     }
 

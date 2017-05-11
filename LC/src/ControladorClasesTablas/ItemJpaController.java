@@ -14,9 +14,6 @@ import javax.persistence.criteria.Root;
 import ClasesTablas.ItemPedido;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
-import ControladorClasesTablas.exceptions.PreexistingEntityException;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -24,7 +21,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Moni
+ * @author familia BS
  */
 public class ItemJpaController implements Serializable {
 
@@ -37,15 +34,15 @@ public class ItemJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Item item) throws PreexistingEntityException, Exception {
+    public void create(Item item) {
         if (item.getItemPedidoSet() == null) {
-            item.setItemPedidoSet(new HashSet<ItemPedido>());
+            item.setItemPedidoSet(new ArrayList<ItemPedido>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Set<ItemPedido> attachedItemPedidoSet = new HashSet<ItemPedido>();
+            List<ItemPedido> attachedItemPedidoSet = new ArrayList<ItemPedido>();
             for (ItemPedido itemPedidoSetItemPedidoToAttach : item.getItemPedidoSet()) {
                 itemPedidoSetItemPedidoToAttach = em.getReference(itemPedidoSetItemPedidoToAttach.getClass(), itemPedidoSetItemPedidoToAttach.getItemPedidoPK());
                 attachedItemPedidoSet.add(itemPedidoSetItemPedidoToAttach);
@@ -62,11 +59,6 @@ public class ItemJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findItem(item.getIdItem()) != null) {
-                throw new PreexistingEntityException("Item " + item + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -80,8 +72,8 @@ public class ItemJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Item persistentItem = em.find(Item.class, item.getIdItem());
-            Set<ItemPedido> itemPedidoSetOld = persistentItem.getItemPedidoSet();
-            Set<ItemPedido> itemPedidoSetNew = item.getItemPedidoSet();
+            List<ItemPedido> itemPedidoSetOld = persistentItem.getItemPedidoSet();
+            List<ItemPedido> itemPedidoSetNew = item.getItemPedidoSet();
             List<String> illegalOrphanMessages = null;
             for (ItemPedido itemPedidoSetOldItemPedido : itemPedidoSetOld) {
                 if (!itemPedidoSetNew.contains(itemPedidoSetOldItemPedido)) {
@@ -94,7 +86,7 @@ public class ItemJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            Set<ItemPedido> attachedItemPedidoSetNew = new HashSet<ItemPedido>();
+            List<ItemPedido> attachedItemPedidoSetNew = new ArrayList<ItemPedido>();
             for (ItemPedido itemPedidoSetNewItemPedidoToAttach : itemPedidoSetNew) {
                 itemPedidoSetNewItemPedidoToAttach = em.getReference(itemPedidoSetNewItemPedidoToAttach.getClass(), itemPedidoSetNewItemPedidoToAttach.getItemPedidoPK());
                 attachedItemPedidoSetNew.add(itemPedidoSetNewItemPedidoToAttach);
@@ -143,7 +135,7 @@ public class ItemJpaController implements Serializable {
                 throw new NonexistentEntityException("The item with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Set<ItemPedido> itemPedidoSetOrphanCheck = item.getItemPedidoSet();
+            List<ItemPedido> itemPedidoSetOrphanCheck = item.getItemPedidoSet();
             for (ItemPedido itemPedidoSetOrphanCheckItemPedido : itemPedidoSetOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();

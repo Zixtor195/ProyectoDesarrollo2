@@ -107,8 +107,9 @@ INSERT INTO item(id_item ,descripcion ,nombre ,categoria ,precio) VALUES(300,'ri
 
 
 INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado) VALUES(1,'10:25','11:25','mesa','10',111);
-INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,id_empleado) VALUES(2,'16:25','17:25','llevar',111);
+INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado) VALUES(2,'16:25','17:25','llevar','6','3',111);
 INSERT INTO pedido(id_pedido ,hora_inicio ,tipo ,num_mesa ,id_empleado) VALUES(3,'14:25','mesa','11',111);
+INSERT INTO pedido(id_pedido ,hora_inicio ,tipo ,num_mesa ,id_empleado) VALUES(4,'14:25','llevar','11',222);
 
 
 INSERT INTO item_pedido(id_pedido ,id_item ,cantidad) VALUES(1,100,4);

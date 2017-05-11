@@ -12,21 +12,18 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import ClasesTablas.Empleado;
 import ClasesTablas.ItemPedido;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import ClasesTablas.Factura;
 import ClasesTablas.Pedido;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
-import ControladorClasesTablas.exceptions.PreexistingEntityException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Moni
+ * @author familia BS
  */
 public class PedidoJpaController implements Serializable {
 
@@ -39,12 +36,12 @@ public class PedidoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Pedido pedido) throws PreexistingEntityException, Exception {
+    public void create(Pedido pedido) {
         if (pedido.getItemPedidoSet() == null) {
-            pedido.setItemPedidoSet(new HashSet<ItemPedido>());
+            pedido.setItemPedidoSet(new ArrayList<ItemPedido>());
         }
         if (pedido.getFacturaSet() == null) {
-            pedido.setFacturaSet(new HashSet<Factura>());
+            pedido.setFacturaSet(new ArrayList<Factura>());
         }
         EntityManager em = null;
         try {
@@ -55,13 +52,13 @@ public class PedidoJpaController implements Serializable {
                 idEmpleado = em.getReference(idEmpleado.getClass(), idEmpleado.getIdEmpleado());
                 pedido.setIdEmpleado(idEmpleado);
             }
-            Set<ItemPedido> attachedItemPedidoSet = new HashSet<ItemPedido>();
+            List<ItemPedido> attachedItemPedidoSet = new ArrayList<ItemPedido>();
             for (ItemPedido itemPedidoSetItemPedidoToAttach : pedido.getItemPedidoSet()) {
                 itemPedidoSetItemPedidoToAttach = em.getReference(itemPedidoSetItemPedidoToAttach.getClass(), itemPedidoSetItemPedidoToAttach.getItemPedidoPK());
                 attachedItemPedidoSet.add(itemPedidoSetItemPedidoToAttach);
             }
             pedido.setItemPedidoSet(attachedItemPedidoSet);
-            Set<Factura> attachedFacturaSet = new HashSet<Factura>();
+            List<Factura> attachedFacturaSet = new ArrayList<Factura>();
             for (Factura facturaSetFacturaToAttach : pedido.getFacturaSet()) {
                 facturaSetFacturaToAttach = em.getReference(facturaSetFacturaToAttach.getClass(), facturaSetFacturaToAttach.getIdFactura());
                 attachedFacturaSet.add(facturaSetFacturaToAttach);
@@ -91,11 +88,6 @@ public class PedidoJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findPedido(pedido.getIdPedido()) != null) {
-                throw new PreexistingEntityException("Pedido " + pedido + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -111,10 +103,10 @@ public class PedidoJpaController implements Serializable {
             Pedido persistentPedido = em.find(Pedido.class, pedido.getIdPedido());
             Empleado idEmpleadoOld = persistentPedido.getIdEmpleado();
             Empleado idEmpleadoNew = pedido.getIdEmpleado();
-            Set<ItemPedido> itemPedidoSetOld = persistentPedido.getItemPedidoSet();
-            Set<ItemPedido> itemPedidoSetNew = pedido.getItemPedidoSet();
-            Set<Factura> facturaSetOld = persistentPedido.getFacturaSet();
-            Set<Factura> facturaSetNew = pedido.getFacturaSet();
+            List<ItemPedido> itemPedidoSetOld = persistentPedido.getItemPedidoSet();
+            List<ItemPedido> itemPedidoSetNew = pedido.getItemPedidoSet();
+            List<Factura> facturaSetOld = persistentPedido.getFacturaSet();
+            List<Factura> facturaSetNew = pedido.getFacturaSet();
             List<String> illegalOrphanMessages = null;
             for (ItemPedido itemPedidoSetOldItemPedido : itemPedidoSetOld) {
                 if (!itemPedidoSetNew.contains(itemPedidoSetOldItemPedido)) {
@@ -139,14 +131,14 @@ public class PedidoJpaController implements Serializable {
                 idEmpleadoNew = em.getReference(idEmpleadoNew.getClass(), idEmpleadoNew.getIdEmpleado());
                 pedido.setIdEmpleado(idEmpleadoNew);
             }
-            Set<ItemPedido> attachedItemPedidoSetNew = new HashSet<ItemPedido>();
+            List<ItemPedido> attachedItemPedidoSetNew = new ArrayList<ItemPedido>();
             for (ItemPedido itemPedidoSetNewItemPedidoToAttach : itemPedidoSetNew) {
                 itemPedidoSetNewItemPedidoToAttach = em.getReference(itemPedidoSetNewItemPedidoToAttach.getClass(), itemPedidoSetNewItemPedidoToAttach.getItemPedidoPK());
                 attachedItemPedidoSetNew.add(itemPedidoSetNewItemPedidoToAttach);
             }
             itemPedidoSetNew = attachedItemPedidoSetNew;
             pedido.setItemPedidoSet(itemPedidoSetNew);
-            Set<Factura> attachedFacturaSetNew = new HashSet<Factura>();
+            List<Factura> attachedFacturaSetNew = new ArrayList<Factura>();
             for (Factura facturaSetNewFacturaToAttach : facturaSetNew) {
                 facturaSetNewFacturaToAttach = em.getReference(facturaSetNewFacturaToAttach.getClass(), facturaSetNewFacturaToAttach.getIdFactura());
                 attachedFacturaSetNew.add(facturaSetNewFacturaToAttach);
@@ -214,14 +206,14 @@ public class PedidoJpaController implements Serializable {
                 throw new NonexistentEntityException("The pedido with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Set<ItemPedido> itemPedidoSetOrphanCheck = pedido.getItemPedidoSet();
+            List<ItemPedido> itemPedidoSetOrphanCheck = pedido.getItemPedidoSet();
             for (ItemPedido itemPedidoSetOrphanCheckItemPedido : itemPedidoSetOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
                 illegalOrphanMessages.add("This Pedido (" + pedido + ") cannot be destroyed since the ItemPedido " + itemPedidoSetOrphanCheckItemPedido + " in its itemPedidoSet field has a non-nullable pedido field.");
             }
-            Set<Factura> facturaSetOrphanCheck = pedido.getFacturaSet();
+            List<Factura> facturaSetOrphanCheck = pedido.getFacturaSet();
             for (Factura facturaSetOrphanCheckFactura : facturaSetOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
