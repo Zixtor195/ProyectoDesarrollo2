@@ -460,9 +460,9 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
             List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
             
             if(table.getSelectedRow() != -1){
+               ip = listaitempedido.get(table.getSelectedRow());
                
                 try {
-                    ip = listaitempedido.get(table.getSelectedRow());
                     tjc.destroy(ip.getItemPedidoPK());
                     table.setModel(new tableModel());
                     
@@ -527,7 +527,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
     public void numeroRegistros(){
         PedidoJpaController pjc = new PedidoJpaController(emf);
         if(!pjc.findPedidoEntities().isEmpty()){
-            pedido.setIdPedido(pjc.findPedidoEntities().size());
+            pedido.setIdPedido(pjc.findPedidoEntities().get(pjc.findPedidoEntities().size()-1).getIdPedido());
         }
     }
     
@@ -552,6 +552,20 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
             Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public LinkedList<ItemPedido> listaItempedido(){
+        
+        ItemPedidoJpaController ijc = new ItemPedidoJpaController(emf);
+        List<ItemPedido> listaip = ijc.findItemPedidoEntities();
+        LinkedList<ItemPedido> lista = new LinkedList<>();
+        
+        for (ItemPedido itemPedido : listaip) {
+            if(itemPedido.getPedido().getIdPedido().intValue()== pedido.getIdPedido().intValue()){
+                lista.add(itemPedido);
+            }
+        }
+        return lista;
     }
     
     public Empleado getEmpleadoPedido(){
@@ -614,7 +628,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
     private class tableModel extends AbstractTableModel{
         
         //ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
-        List<ItemPedido> listItems = pedido.getItemPedidoSet();
+        List<ItemPedido> listItems = listaItempedido();
         
         
         @Override

@@ -16,6 +16,7 @@ import ControladorClasesTablas.PedidoJpaController;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -462,6 +463,19 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
         }
     }
     
+    public LinkedList<ItemPedido> listaItempedido(){
+        
+        ItemPedidoJpaController ijc = new ItemPedidoJpaController(emf);
+        List<ItemPedido> listaip = ijc.findItemPedidoEntities();
+        LinkedList<ItemPedido> lista = new LinkedList<>();
+        
+        for (ItemPedido itemPedido : listaip) {
+            if(itemPedido.getPedido().getIdPedido().intValue()== pedido.getIdPedido().intValue()){
+                lista.add(itemPedido);
+            }
+        }
+        return lista;
+    }
     
     public Empleado getEmpleadoPedido() {
         Empleado empleado = null;
@@ -536,7 +550,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
     
     private class tableModelPedido extends AbstractTableModel{
         
-        List<ItemPedido> listaitem = pedido.getItemPedidoSet();
+        List<ItemPedido> listaitem = listaItempedido();
         
         @Override
         public int getRowCount() {

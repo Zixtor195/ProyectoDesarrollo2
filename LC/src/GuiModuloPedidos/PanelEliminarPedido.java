@@ -226,6 +226,7 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
         }
     }
     
+    
      private class tableModel extends AbstractTableModel{
          
         PedidoJpaController pjc = new PedidoJpaController(emf);
