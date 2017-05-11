@@ -259,3 +259,4 @@ public class EmpleadoJpaController implements Serializable {
     }
     
 }
+

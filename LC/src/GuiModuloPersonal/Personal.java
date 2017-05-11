@@ -19,6 +19,13 @@
 
 package GuiModuloPersonal;
 
+import ClasesTablas.Empleado;
+import ControladorClasesTablas.EmpleadoJpaController;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.table.DefaultTableModel;
+
 
 public class Personal extends javax.swing.JFrame {
 
@@ -151,7 +158,7 @@ public class Personal extends javax.swing.JFrame {
 
         PanelRegistrarEmpleado re = new PanelRegistrarEmpleado();
         re.setSize(940,686);
-        
+                       
         
         jPanel2.removeAll();
         jPanel2.add(re);
@@ -163,8 +170,23 @@ public class Personal extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         PanelModificar me = new PanelModificar();
         me.setSize(752,686);
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
+        List<Empleado> Empleados = dao.findEmpleadoEntities();
         
+        Object fila[][]=new Object[dao.findEmpleadoEntities().size()][4];        
+        for (int i = 0; i < dao.findEmpleadoEntities().size(); i++) {
+            fila[i][0]=dao.findEmpleadoEntities().get(i).getNombres();
+            fila[i][1]=dao.findEmpleadoEntities().get(i).getApellidos();            
+            fila[i][2]=dao.findEmpleadoEntities().get(i).getTipoDocumento();
+            fila[i][3]=dao.findEmpleadoEntities().get(i).getIdEmpleado();
+        }
         
+        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
+        emf.close();
+        
+        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
+        me.jTable1.setModel(Modelo);        
         jPanel2.removeAll();
         jPanel2.add(me);
         jPanel2.revalidate();
@@ -174,6 +196,24 @@ public class Personal extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         PanelConsultar ce = new PanelConsultar();
         ce.setSize(752,686);
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
+        List<Empleado> Empleados = dao.findEmpleadoEntities();
+        
+        Object fila[][]=new Object[dao.findEmpleadoEntities().size()][4];        
+        for (int i = 0; i < dao.findEmpleadoEntities().size(); i++) {
+            fila[i][0]=dao.findEmpleadoEntities().get(i).getNombres();
+            fila[i][1]=dao.findEmpleadoEntities().get(i).getApellidos();            
+            fila[i][2]=dao.findEmpleadoEntities().get(i).getTipoDocumento();
+            fila[i][3]=dao.findEmpleadoEntities().get(i).getIdEmpleado();
+        }
+        
+        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
+        emf.close();
+        
+        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
+        ce.jTable1.setModel(Modelo); 
         
         jPanel2.removeAll();
         jPanel2.add(ce);
@@ -185,6 +225,24 @@ public class Personal extends javax.swing.JFrame {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         PanelEliminar Eemp = new PanelEliminar();
         Eemp.setSize(752,686);
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
+        List<Empleado> Empleados = dao.findEmpleadoEntities();
+        
+        Object fila[][]=new Object[dao.findEmpleadoEntities().size()][4];        
+        for (int i = 0; i < dao.findEmpleadoEntities().size(); i++) {
+            fila[i][0]=dao.findEmpleadoEntities().get(i).getNombres();
+            fila[i][1]=dao.findEmpleadoEntities().get(i).getApellidos();            
+            fila[i][2]=dao.findEmpleadoEntities().get(i).getTipoDocumento();
+            fila[i][3]=dao.findEmpleadoEntities().get(i).getIdEmpleado();
+        }
+        
+        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
+        emf.close();
+        
+        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
+        Eemp.jTable1.setModel(Modelo); 
         
         jPanel2.removeAll();
         jPanel2.add(Eemp);

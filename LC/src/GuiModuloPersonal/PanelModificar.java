@@ -5,6 +5,10 @@
  */
 package GuiModuloPersonal;
 
+import ClasesTablas.Empleado;
+import ControladorClasesTablas.EmpleadoJpaController;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 /**
@@ -126,15 +130,32 @@ public class PanelModificar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-     
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
+        int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),3)));
+              
         this.removeAll();
         this.revalidate();
         this.repaint();
         
         PanelRealizarModificacion rm = new PanelRealizarModificacion();
         rm.setSize(752, 686);
-        this.add(rm);
         
+        Empleado persona = dao.findEmpleado(a);
+        rm.jTextField6.setText(persona.getNombres());      
+        rm.jTextField8.setText(persona.getApellidos());
+        rm.jComboBox1.setSelectedItem(persona.getTipoDocumento());
+        rm.jTextField1.setText(persona.getIdEmpleado().toString());
+        rm.jComboBox2.setSelectedItem(persona.getCargo());
+        rm.jTextField10.setText(persona.getContraseña());
+        rm.jTextField3.setText(persona.getDireccion());
+        rm.jTextField9.setText(persona.getEmail());
+        rm.jTextField2.setText(persona.getTelCel());
+        rm.jTextField4.setText(persona.getTelFijo());
+        
+        this.add(rm);
+        emf.close();
         
     }//GEN-LAST:event_jLabel1MouseClicked
 

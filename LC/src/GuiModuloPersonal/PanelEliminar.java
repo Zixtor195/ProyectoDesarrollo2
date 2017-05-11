@@ -5,6 +5,15 @@
  */
 package GuiModuloPersonal;
 
+import ClasesTablas.Empleado;
+import ControladorClasesTablas.EmpleadoJpaController;
+import ControladorClasesTablas.exceptions.IllegalOrphanException;
+import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 /**
  *
  * @author Moni
@@ -124,13 +133,26 @@ public class PanelEliminar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
+        int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),3)));
         
+        Empleado persona = dao.findEmpleado(a);
+        try {
+            dao.destroy(persona.getIdEmpleado());
+        } catch (IllegalOrphanException ex) {
+            Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        emf.close();
     }//GEN-LAST:event_jLabel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

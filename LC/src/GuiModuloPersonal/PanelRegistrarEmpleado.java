@@ -238,6 +238,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ya existe Esta Persona");
         }
+        emf.close();
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed

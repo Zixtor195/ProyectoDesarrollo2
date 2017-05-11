@@ -5,6 +5,11 @@
  */
 package GuiModuloPersonal;
 
+import ClasesTablas.Empleado;
+import ControladorClasesTablas.EmpleadoJpaController;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 /**
  *
  * @author Moni
@@ -127,8 +132,25 @@ public class PanelConsultar extends javax.swing.JPanel {
         this.revalidate();
         this.repaint();
         
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
+        int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),3)));
+        
         PanelResultadosConsulta rc = new PanelResultadosConsulta();
         rc.setSize(752, 686);
+        
+        Empleado persona = dao.findEmpleado(a);
+        rc.jTextField6.setText(persona.getNombres());      
+        rc.jTextField8.setText(persona.getApellidos());
+        rc.jComboBox1.setSelectedItem(persona.getTipoDocumento());
+        rc.jTextField1.setText(persona.getIdEmpleado().toString());
+        rc.jComboBox2.setSelectedItem(persona.getCargo());
+        rc.jTextField10.setText(persona.getContraseña());
+        rc.jTextField3.setText(persona.getDireccion());
+        rc.jTextField9.setText(persona.getEmail());
+        rc.jTextField2.setText(persona.getTelCel());
+        rc.jTextField4.setText(persona.getTelFijo());
+        
         this.add(rc);
     }//GEN-LAST:event_jLabel1MouseClicked
 
@@ -136,6 +158,6 @@ public class PanelConsultar extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
