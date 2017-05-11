@@ -12,11 +12,11 @@
     <!--Conexion con la base de datos mediante la API JDBC (Java Data Base Connectivity) -->
     <properties>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/project_desarrollo?zeroDateTimeBehavior=convertToNull"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/BDLC"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <!--<property name="javax.persistence.jdbc.password" value="mmllano"/> -->
-      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="javax.persistence.jdbc.password" value="postgrespass"/>
     </properties>
   </persistence-unit>
 </persistence>

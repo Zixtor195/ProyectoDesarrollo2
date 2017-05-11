@@ -34,6 +34,8 @@ public class Pedidos extends javax.swing.JFrame {
     public Pedidos() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         btnregistrar.addActionListener(new Crear());
         btnmodificar.addActionListener(new Modificar());

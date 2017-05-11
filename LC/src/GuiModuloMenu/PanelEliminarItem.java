@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class PanelEliminarItem extends javax.swing.JPanel {
 
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
     /**
      * Creates new form JPanellModificar
      */
@@ -139,7 +140,7 @@ public class PanelEliminarItem extends javax.swing.JPanel {
         this.revalidate();
         this.repaint();*/
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
         ItemJpaController dao = new ItemJpaController(emf);
         
         int idItem = Integer.parseInt(String.valueOf(jtEliminarItem.getValueAt(jtEliminarItem.getSelectedRow(), 0)));

@@ -16,6 +16,7 @@ import javax.persistence.Persistence;
  */
 public class PanelModificarItem extends javax.swing.JPanel {
 
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
     /**
      * Creates new form JPanellModificar
      */
@@ -38,6 +39,7 @@ public class PanelModificarItem extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
+        setPreferredSize(new java.awt.Dimension(752, 662));
 
         jtTablaModificarItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,22 +110,22 @@ public class PanelModificarItem extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(297, 297, 297)
+                .addGap(298, 298, 298)
                 .addComponent(jlContinuarModificarItem)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(18, 18, 18)
                 .addComponent(jlContinuarModificarItem)
-                .addGap(24, 24, 24))
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -133,7 +135,7 @@ public class PanelModificarItem extends javax.swing.JPanel {
         this.revalidate();
         this.repaint();
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
         ItemJpaController dao = new ItemJpaController(emf);
         
         PanelRealizarModificacionItem rm = new PanelRealizarModificacionItem();

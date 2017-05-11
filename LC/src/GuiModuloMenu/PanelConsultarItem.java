@@ -16,6 +16,7 @@ import javax.persistence.Persistence;
  */
 public class PanelConsultarItem extends javax.swing.JPanel {
 
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
     /**
      * Creates new form JPanellModificar
      */
@@ -38,6 +39,7 @@ public class PanelConsultarItem extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
+        setPreferredSize(new java.awt.Dimension(752, 662));
 
         jtConsultarItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,21 +112,21 @@ public class PanelConsultarItem extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGap(54, 54, 54)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
+                        .addGap(298, 298, 298)
                         .addComponent(jlConsultarItem)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jlConsultarItem)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,7 +136,7 @@ public class PanelConsultarItem extends javax.swing.JPanel {
         this.revalidate();
         this.repaint();
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
         ItemJpaController dao = new ItemJpaController(emf);
         
         PanelResultadosConsultaItem rc = new PanelResultadosConsultaItem();
