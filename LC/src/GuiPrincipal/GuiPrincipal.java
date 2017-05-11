@@ -19,6 +19,7 @@
 
 package GuiPrincipal;
 
+import GuiFacturasPagos.FacturasPagos;
 import GuiModuloPersonal.Personal;
 import GuiModuloMenu.Menu;
 import GuiModuloPedidos.Pedidos;
@@ -109,6 +110,11 @@ public class GuiPrincipal extends javax.swing.JFrame {
         jbFacturasPagos.setBackground(new java.awt.Color(255, 153, 51));
         jbFacturasPagos.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jbFacturasPagos.setText("IR");
+        jbFacturasPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbFacturasPagosActionPerformed(evt);
+            }
+        });
         jPanelPrincipal.add(jbFacturasPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 650, 90, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.jpg"))); // NOI18N
@@ -197,6 +203,11 @@ public class GuiPrincipal extends javax.swing.JFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbFacturasPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFacturasPagosActionPerformed
+       FacturasPagos o = new FacturasPagos();
+       o.setVisible(true);
+    }//GEN-LAST:event_jbFacturasPagosActionPerformed
 
     /**
      * @param args the command line arguments
