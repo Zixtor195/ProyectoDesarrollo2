@@ -5,7 +5,15 @@
  */
 package GuiModuloMenu;
 
-import GuiModuloPersonal.PanelResultadosConsulta;
+import ClasesTablas.Item;
+import ControladorClasesTablas.ItemJpaController;
+import ControladorClasesTablas.exceptions.IllegalOrphanException;
+import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,14 +37,21 @@ public class PanelEliminarItem extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jlEliminarItem = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jtEliminarItem = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jlEliminarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botoneliminar.jpg"))); // NOI18N
+        jlEliminarItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlEliminarItemMouseClicked(evt);
+            }
+        });
+
+        jtEliminarItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -91,53 +106,61 @@ public class PanelEliminarItem extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botoneliminar.jpg"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jtEliminarItem);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(297, 297, 297)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(298, 298, 298)
+                        .addComponent(jlEliminarItem))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
-                .addGap(24, 24, 24))
+                .addGap(18, 18, 18)
+                .addComponent(jlEliminarItem)
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        this.removeAll();
-        this.revalidate();
-        this.repaint();
+    private void jlEliminarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlEliminarItemMouseClicked
         
-        PanelResultadosConsulta rc = new PanelResultadosConsulta();
-        rc.setSize(752, 686);
-        this.add(rc);
-    }//GEN-LAST:event_jLabel1MouseClicked
+        /*this.removeAll();
+        this.revalidate();
+        this.repaint();*/
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
+        ItemJpaController dao = new ItemJpaController(emf);
+        
+        int idItem = Integer.parseInt(String.valueOf(jtEliminarItem.getValueAt(jtEliminarItem.getSelectedRow(), 0)));
+        
+        try {
+            dao.destroy(idItem);
+            JOptionPane.showMessageDialog(null, "Item borrado exitosamente.");
+        } catch (IllegalOrphanException ex) {
+            Logger.getLogger(PanelEliminarItem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NonexistentEntityException ex) {
+            JOptionPane.showMessageDialog(null, "Item no existe.");
+        }finally{
+            emf.close();
+        }
+
+    }//GEN-LAST:event_jlEliminarItemMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jlEliminarItem;
+    public javax.swing.JTable jtEliminarItem;
     // End of variables declaration//GEN-END:variables
 }

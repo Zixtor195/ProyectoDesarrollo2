@@ -5,6 +5,11 @@
  */
 package GuiModuloMenu;
 
+import ClasesTablas.Item;
+import ControladorClasesTablas.ItemJpaController;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 /**
  *
  * @author Moni
@@ -28,73 +33,74 @@ public class PanelModificarItem extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jtTablaModificarItem = new javax.swing.JTable();
+        jlContinuarModificarItem = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaModificarItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Precio", "Categoria", "No.Identificacion"
+                "No.Identificacion", "Nombre", "Precio", "Categoria", "Descripcion"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jtTablaModificarItem.setEnabled(false);
+        jScrollPane1.setViewportView(jtTablaModificarItem);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlContinuarModificarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
+        jlContinuarModificarItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jlContinuarModificarItemMouseClicked(evt);
             }
         });
 
@@ -103,12 +109,12 @@ public class PanelModificarItem extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addGap(77, 77, 77))
             .addGroup(layout.createSequentialGroup()
                 .addGap(297, 297, 297)
-                .addComponent(jLabel1)
+                .addComponent(jlContinuarModificarItem)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,25 +123,41 @@ public class PanelModificarItem extends javax.swing.JPanel {
                 .addContainerGap(57, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addComponent(jlContinuarModificarItem)
                 .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void jlContinuarModificarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContinuarModificarItemMouseClicked
+        
         this.removeAll();
         this.revalidate();
         this.repaint();
         
-        PanelRealizarModificacionItem rc = new PanelRealizarModificacionItem();
-        rc.setSize(752, 686);
-        this.add(rc);
-    }//GEN-LAST:event_jLabel1MouseClicked
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
+        ItemJpaController dao = new ItemJpaController(emf);
+        
+        PanelRealizarModificacionItem rm = new PanelRealizarModificacionItem();
+        
+        int idItem = Integer.parseInt(String.valueOf(jtTablaModificarItem.getValueAt(jtTablaModificarItem.getSelectedRow(), 0)));
+        
+        Item item = dao.findItem(idItem);
+        
+        rm.jtfID.setText(item.getIdItem().toString());
+        rm.jtfNombre.setText(item.getNombre());
+        rm.jtfPrecio.setText(Integer.toString(item.getPrecio()));
+        rm.jcbCategoria.setSelectedItem(item.getCategoria());
+        rm.jtaDescripcion.setText(item.getDescripcion());
+        
+        rm.setSize(752, 686);
+        this.add(rm);
+        emf.close();
+    }//GEN-LAST:event_jlContinuarModificarItemMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jlContinuarModificarItem;
+    public javax.swing.JTable jtTablaModificarItem;
     // End of variables declaration//GEN-END:variables
 }

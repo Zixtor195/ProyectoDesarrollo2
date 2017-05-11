@@ -5,6 +5,11 @@
  */
 package GuiModuloMenu;
 
+import ClasesTablas.Item;
+import ControladorClasesTablas.ItemJpaController;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 /**
  *
  * @author Moni
@@ -28,13 +33,13 @@ public class PanelConsultarItem extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jtConsultarItem = new javax.swing.JTable();
+        jlConsultarItem = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtConsultarItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -89,12 +94,12 @@ public class PanelConsultarItem extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtConsultarItem);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlConsultarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
+        jlConsultarItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jlConsultarItemMouseClicked(evt);
             }
         });
 
@@ -103,39 +108,56 @@ public class PanelConsultarItem extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(297, 297, 297)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(281, 281, 281)
+                        .addComponent(jlConsultarItem)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
-                .addGap(24, 24, 24))
+                .addGap(18, 18, 18)
+                .addComponent(jlConsultarItem)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void jlConsultarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarItemMouseClicked
+        
         this.removeAll();
         this.revalidate();
         this.repaint();
         
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
+        ItemJpaController dao = new ItemJpaController(emf);
+        
         PanelResultadosConsultaItem rc = new PanelResultadosConsultaItem();
+        
+        int idItem = Integer.parseInt(String.valueOf(jtConsultarItem.getValueAt(jtConsultarItem.getSelectedRow(), 0)));
+        
+        Item item = dao.findItem(idItem);
+        
+        rc.jtfID.setText(item.getIdItem().toString());
+        rc.jtfNombre.setText(item.getNombre());
+        rc.jtfPrecio.setText(Integer.toString(item.getPrecio()));
+        rc.jcbCategoria.setSelectedItem(item.getCategoria());
+        rc.jtaDescripcion.setText(item.getDescripcion());
+        
         rc.setSize(752, 686);
         this.add(rc);
-    }//GEN-LAST:event_jLabel1MouseClicked
+        emf.close();// TODO add your handling code here:
+    }//GEN-LAST:event_jlConsultarItemMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jlConsultarItem;
+    public javax.swing.JTable jtConsultarItem;
     // End of variables declaration//GEN-END:variables
 }
