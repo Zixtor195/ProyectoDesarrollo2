@@ -111,23 +111,24 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
             .addGroup(layout.createSequentialGroup()
-                .addGap(331, 331, 331)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(334, 334, 334))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(121, 121, 121)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addGap(66, 66, 66))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -141,7 +142,7 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
         ItemPedidoJpaController daoi = new ItemPedidoJpaController(emf);
         int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
         Pedido pedido = dao.findPedido(a);
-        int totalPrecio;
+        int totalPrecio = 0;
         
         List<ItemPedido> Ip = daoi.findItemPedidoEntities();
         List<ItemPedido> PedidoItems = new ArrayList<ItemPedido>(); 
@@ -153,19 +154,27 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
         }
         
         Object fila[][]=new Object[PedidoItems.size()][3];        
-        for (int i = 0; i < PedidoItems.size(); i++) {
-            
-            
+        for (int i = 0; i < PedidoItems.size(); i++) {         
             fila[i][0]=PedidoItems.get(i).getCantidad();
             fila[i][1]=PedidoItems.get(i).getItem().getNombre();           
             fila[i][2]=PedidoItems.get(i).getItem().getPrecio();
+            
+            totalPrecio = totalPrecio + (PedidoItems.get(i).getCantidad() * 
+                                         PedidoItems.get(i).getItem().getPrecio());
             }
+        
+        double iva = totalPrecio*0.19;
+        double total = iva + totalPrecio;
+        
         
         String columna[]=new String[]{"Cantidad","Producto","Precio"};        
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
         rm.jTable1.setModel(Modelo);
+        rm.jTextField5.setText(String.valueOf(iva));
+        rm.jTextField1.setText(String.valueOf(totalPrecio));
+        rm.jTextField2.setText(String.valueOf(a));
         
         this.removeAll();
         this.revalidate();
