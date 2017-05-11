@@ -273,15 +273,15 @@ public class FacturarPedidos extends javax.swing.JPanel {
         FacturaJpaController dao = new FacturaJpaController(emf);   
         PedidoJpaController daop = new PedidoJpaController(emf); 
         Factura factura = new Factura();  
-        int a = Integer.parseInt(jTextField1.getText()) + Integer.parseInt(jTextField5.getText());
         
+       
         factura.setCedulaCliente(Integer.parseInt(jTextField7.getText()));
         factura.setEstado("Sin Pagar");
         factura.setFormaPago(jComboBox1.getSelectedItem().toString());
         factura.setHoraPago(jTextField6.getText());
         factura.setIdFactura(Integer.parseInt(jTextField3.getText()));
         factura.setIdPedido(daop.findPedido(Integer.parseInt(jTextField2.getText())));
-        factura.setValorTotal(a);
+        factura.setValorTotal(Integer.parseInt(jTextField1.getText()));
         try {
             dao.create(factura);
             JOptionPane.showMessageDialog(null, "Factura creado exitosamente.");
