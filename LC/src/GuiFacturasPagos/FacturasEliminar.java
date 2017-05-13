@@ -5,6 +5,15 @@
  */
 package GuiFacturasPagos;
 
+import ClasesTablas.Factura;
+import ControladorClasesTablas.FacturaJpaController;
+import ControladorClasesTablas.ItemPedidoJpaController;
+import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 /**
  *
  * @author LLano
@@ -91,6 +100,11 @@ public class FacturasEliminar extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botoneliminar.jpg"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -116,6 +130,22 @@ public class FacturasEliminar extends javax.swing.JPanel {
                 .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        FacturaJpaController daof = new FacturaJpaController(emf);
+        
+        int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
+        Factura factura = daof.findFactura(a); 
+        
+        try {
+            daof.destroy(a);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+    }//GEN-LAST:event_jLabel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
