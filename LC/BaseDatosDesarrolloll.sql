@@ -29,7 +29,7 @@ CREATE TABLE empleado
 	 /* la foto varchar(100),*/
 	direccion varchar(100)NOT NULL,
 	tipo_documento varchar(100) NOT NULL,
-	contraseña varchar(100) NOT NULL
+	contraseÃ±a varchar(100) NOT NULL
 );
 
 
@@ -90,9 +90,9 @@ CREATE TABLE factura
 
 -- Insercion de datos
 
-INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contraseña) VALUES(111,'Pepito','Perez','mesero','1234','4567','mesero@quehambre.com','cll5','cedula','111');
-INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contraseña) VALUES(222,'Armando','Casas','cajero','1234','4567','cajero@quehambre.com','cll6','cedula','222');
-INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contraseña) VALUES(333,'Pepa','Pig','gerente','1234','4567','gerenteo@quehambre.com','cll7','cedula','333');
+INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contraseÃ±a) VALUES(111,'Pepito','Perez','mesero','1234','4567','mesero@quehambre.com','cll5','cedula','111');
+INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contraseÃ±a) VALUES(222,'Armando','Casas','cajero','1234','4567','cajero@quehambre.com','cll6','cedula','222');
+INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contraseÃ±a) VALUES(333,'Pepa','Pig','gerente','1234','4567','gerenteo@quehambre.com','cll7','cedula','333');
 
 
 INSERT INTO turnos_semanales (id_empleado ,turno) VALUES(111,'diurno-lunes');
@@ -107,7 +107,7 @@ INSERT INTO item(id_item ,descripcion ,nombre ,categoria ,precio) VALUES(300,'ri
 
 
 INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado) VALUES(1,'10:25','11:25','mesa','10',111);
-INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado) VALUES(2,'16:25','17:25','llevar','6','3',111);
+INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado) VALUES(2,'16:25','17:25','llevar','6',111);
 INSERT INTO pedido(id_pedido ,hora_inicio ,tipo ,num_mesa ,id_empleado) VALUES(3,'14:25','mesa','11',111);
 INSERT INTO pedido(id_pedido ,hora_inicio ,tipo ,num_mesa ,id_empleado) VALUES(4,'14:25','llevar','11',222);
 
