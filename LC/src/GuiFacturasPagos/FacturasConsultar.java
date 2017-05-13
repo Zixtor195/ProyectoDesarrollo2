@@ -5,6 +5,18 @@
  */
 package GuiFacturasPagos;
 
+import ClasesTablas.Factura;
+import ClasesTablas.ItemPedido;
+import ClasesTablas.Pedido;
+import ControladorClasesTablas.FacturaJpaController;
+import ControladorClasesTablas.ItemPedidoJpaController;
+import ControladorClasesTablas.PedidoJpaController;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author LLano
@@ -123,13 +135,66 @@ public class FacturasConsultar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+            
+       
+        FacturarResultadosConsulta rm = new FacturarResultadosConsulta();
+        rm.setSize(752, 1000);  
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        FacturaJpaController daof = new FacturaJpaController(emf);
+        ItemPedidoJpaController daoi = new ItemPedidoJpaController(emf);
+        int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
+        Factura factura = daof.findFactura(a);
+        
+        Pedido pedido = factura.getIdPedido();
+        int totalPrecio = 0;
+        
+        List<ItemPedido> Ip = daoi.findItemPedidoEntities();
+        List<ItemPedido> PedidoItems = new ArrayList<ItemPedido>(); 
+                
+        for (int i = 0; i < Ip.size(); i++) {
+            if (Ip.get(i).getPedido().getIdPedido() == a){                
+            PedidoItems.add(Ip.get(i));
+                    }
+        }
+        
+        Object fila[][]=new Object[PedidoItems.size()][3];        
+        for (int i = 0; i < PedidoItems.size(); i++) {         
+            fila[i][0]=PedidoItems.get(i).getCantidad();
+            fila[i][1]=PedidoItems.get(i).getItem().getNombre();           
+            fila[i][2]=PedidoItems.get(i).getItem().getPrecio();
+            
+            totalPrecio = totalPrecio + (PedidoItems.get(i).getCantidad() * 
+                                         PedidoItems.get(i).getItem().getPrecio());
+            }
+        
+        double iva = totalPrecio*0.19;
+        double total = iva + totalPrecio;
+        
+        
+        String columna[]=new String[]{"Cantidad","Producto","Precio"};        
+        emf.close();
+        
+        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
+        rm.jTable1.setModel(Modelo);
+        rm.jTextField5.setText(String.valueOf(iva));
+        rm.jTextField1.setText(String.valueOf(totalPrecio));
+        rm.jTextField2.setText(String.valueOf(a));
+        rm.jTextField7.setText(String.valueOf(factura.getCedulaCliente()));
+        rm.jComboBox1.setSelectedItem(factura.getFormaPago());
+        rm.jTextField6.setText(factura.getHoraPago());
+        rm.jTextField3.setText(factura.getIdFactura().toString());
+        
         this.removeAll();
         this.revalidate();
         this.repaint();
         
-        FacturarResultadosConsulta rm = new FacturarResultadosConsulta();
-        rm.setSize(752, 1000);
+       
+            
+       
+        
         this.add(rm);
+        
     }//GEN-LAST:event_jLabel1MouseClicked
 
 
