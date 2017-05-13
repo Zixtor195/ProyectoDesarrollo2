@@ -559,8 +559,8 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
         List<ItemPedido> listaip = ijc.findItemPedidoEntities();
         LinkedList<ItemPedido> lista = new LinkedList<>();
         
-        for (ItemPedido itemPedido : listaip) {
-
+        for(ItemPedido itemPedido : listaip) {
+            
             if(itemPedido.getPedido().getIdPedido().intValue()== pedido.getIdPedido().intValue()){
                 lista.add(itemPedido);
             }
@@ -628,6 +628,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
     private class tableModel extends AbstractTableModel{
         
         //ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
+
         List<ItemPedido> listItems = listaItempedido();
         
         
