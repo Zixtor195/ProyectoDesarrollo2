@@ -401,11 +401,8 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
             ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
             ItemPedido ip = new ItemPedido();
             List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
-            
-            
-            
+
             if(!txtcantidad.getText().trim().equals("")&&!listitemp.isSelectionEmpty()&&!txtmesa.getText().trim().equals("")){
-               
                 ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
                 ip.setItem(listaitem.get(listitemp.getSelectedIndex()));
                 ip.setPedido(pedido);
@@ -547,6 +544,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
         pedido.setIdPedidoAumentado();
         System.out.println(pedido.getIdPedido());
         pedido.setHoraInicio(getHora());
+        pedido.setTipo(cbo_tipo.getSelectedItem().toString());
         try {
             pjc.create(pedido);
         } catch (Exception ex) {
@@ -562,6 +560,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
         LinkedList<ItemPedido> lista = new LinkedList<>();
         
         for (ItemPedido itemPedido : listaip) {
+
             if(itemPedido.getPedido().getIdPedido().intValue()== pedido.getIdPedido().intValue()){
                 lista.add(itemPedido);
             }

@@ -42,19 +42,19 @@ public class Item implements Serializable {
     @Id
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_item")
+    @Column(name = "id_item", nullable = false)
     private Integer idItem;
     @Basic(optional = false)
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "categoria")
+    @Column(name = "categoria", nullable = false)
     private String categoria;
     @Basic(optional = false)
-    @Column(name = "precio")
+    @Column(name = "precio", nullable = false)
     private int precio;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.LAZY)
     private List<ItemPedido> itemPedidoSet;

@@ -40,22 +40,22 @@ public class Factura implements Serializable {
     @Id
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_factura")
+    @Column(name = "id_factura", nullable = false)
     private Integer idFactura;
     @Basic(optional = false)
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false)
     private String estado;
     @Basic(optional = false)
-    @Column(name = "forma_pago")
+    @Column(name = "forma_pago", nullable = false)
     private String formaPago;
     @Basic(optional = false)
-    @Column(name = "hora_pago")
+    @Column(name = "hora_pago", nullable = false)
     private String horaPago;
     @Basic(optional = false)
-    @Column(name = "valor_total")
+    @Column(name = "valor_total", nullable = false)
     private int valorTotal;
     @Basic(optional = false)
-    @Column(name = "cedula_cliente")
+    @Column(name = "cedula_cliente", nullable = false)
     private int cedulaCliente;
     @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

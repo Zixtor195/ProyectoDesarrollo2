@@ -35,7 +35,7 @@ public class ItemPedido implements Serializable {
     @EmbeddedId
     protected ItemPedidoPK itemPedidoPK;
     @Basic(optional = false)
-    @Column(name = "cantidad")
+    @Column(name = "cantidad", nullable = false)
     private int cantidad;
     @JoinColumn(name = "id_item", referencedColumnName = "id_item", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

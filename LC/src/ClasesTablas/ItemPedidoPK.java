@@ -17,10 +17,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ItemPedidoPK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "id_pedido")
+    @Column(name = "id_pedido", nullable = false)
     private int idPedido;
     @Basic(optional = false)
-    @Column(name = "id_item")
+    @Column(name = "id_item", nullable = false)
     private int idItem;
 
     public ItemPedidoPK() {

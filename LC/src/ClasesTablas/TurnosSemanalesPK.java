@@ -17,10 +17,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class TurnosSemanalesPK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "id_empleado")
+    @Column(name = "id_empleado", nullable = false)
     private int idEmpleado;
     @Basic(optional = false)
-    @Column(name = "turno")
+    @Column(name = "turno", nullable = false)
     private String turno;
 
     public TurnosSemanalesPK() {

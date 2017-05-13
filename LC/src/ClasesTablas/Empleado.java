@@ -49,31 +49,31 @@ public class Empleado implements Serializable {
     @Column(name = "id_empleado")
     private Integer idEmpleado;
     @Basic(optional = false)
-    @Column(name = "nombres")
+    @Column(name = "nombres", nullable = false)
     private String nombres;
     @Basic(optional = false)
-    @Column(name = "apellidos")
+    @Column(name = "apellidos", nullable = false)
     private String apellidos;
     @Basic(optional = false)
-    @Column(name = "cargo")
+    @Column(name = "cargo", nullable = false)
     private String cargo;
     @Basic(optional = false)
-    @Column(name = "tel_fijo")
+    @Column(name = "tel_fijo", nullable = false)
     private String telFijo;
     @Basic(optional = false)
-    @Column(name = "tel_cel")
+    @Column(name = "tel_cel", nullable = false)
     private String telCel;
     @Basic(optional = false)
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
     @Basic(optional = false)
-    @Column(name = "direccion")
+    @Column(name = "direccion", nullable = false)
     private String direccion;
     @Basic(optional = false)
-    @Column(name = "tipo_documento")
+    @Column(name = "tipo_documento", nullable = false)
     private String tipoDocumento;
     @Basic(optional = false)
-    @Column(name = "contrase\u00f1a")
+    @Column(name = "contrase\u00f1a", nullable = false)
     private String contraseña;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado", fetch = FetchType.LAZY)
     private Set<TurnosSemanales> turnosSemanalesSet;

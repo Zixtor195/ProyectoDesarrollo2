@@ -42,19 +42,19 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
-    @Column(name = "id_pedido")
+    @Column(name = "id_pedido", nullable = false)
     private Integer idPedido = 0;
     @Basic(optional = false)
-    @Column(name = "hora_inicio")
+    @Column(name = "hora_inicio", nullable = false)
     private String horaInicio;
-    @Column(name = "hora_ultimo_item")
+    @Column(name = "hora_ultimo_item", nullable = true)
     private String horaUltimoItem;
     @Basic(optional = false)
-    @Column(name = "tipo")
+    @Column(name = "tipo", nullable = false)
     private String tipo;
-    @Column(name = "num_mesa")
+    @Column(name = "num_mesa", nullable = true)
     private Integer numMesa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
     private List<ItemPedido> itemPedidoSet;
