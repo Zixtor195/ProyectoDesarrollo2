@@ -545,6 +545,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
        
         PedidoJpaController pjc = new PedidoJpaController(emf);
         pedido.setIdPedidoAumentado();
+        System.out.println(pedido.getIdPedido());
         pedido.setHoraInicio(getHora());
         try {
             pjc.create(pedido);
