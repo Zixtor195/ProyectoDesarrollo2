@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Empleado.findByEmail", query = "SELECT e FROM Empleado e WHERE e.email = :email"),
     @NamedQuery(name = "Empleado.findByDireccion", query = "SELECT e FROM Empleado e WHERE e.direccion = :direccion"),
     @NamedQuery(name = "Empleado.findByTipoDocumento", query = "SELECT e FROM Empleado e WHERE e.tipoDocumento = :tipoDocumento"),
-    @NamedQuery(name = "Empleado.findByContrase\u00f1a", query = "SELECT e FROM Empleado e WHERE e.contrase\u00f1a = :contrase\u00f1a")})
+    @NamedQuery(name = "Empleado.findByContrase", query = "SELECT e FROM Empleado e WHERE e.contrase = :contrase\u00f1a")})
 public class Empleado implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -73,8 +73,8 @@ public class Empleado implements Serializable {
     @Column(name = "tipo_documento", nullable = false)
     private String tipoDocumento;
     @Basic(optional = false)
-    @Column(name = "contrase\u00f1a", nullable = false)
-    private String contraseña;
+    @Column(name = "contrase", nullable = false)
+    private String contrase;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado", fetch = FetchType.LAZY)
     private Set<TurnosSemanales> turnosSemanalesSet;
     @OneToMany(mappedBy = "idEmpleado", fetch = FetchType.LAZY)
@@ -87,7 +87,7 @@ public class Empleado implements Serializable {
         this.idEmpleado = idEmpleado;
     }
 
-    public Empleado(Integer idEmpleado, String nombres, String apellidos, String cargo, String telFijo, String telCel, String email, String direccion, String tipoDocumento, String contraseña) {
+    public Empleado(Integer idEmpleado, String nombres, String apellidos, String cargo, String telFijo, String telCel, String email, String direccion, String tipoDocumento, String contrase) {
         this.idEmpleado = idEmpleado;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -97,7 +97,7 @@ public class Empleado implements Serializable {
         this.email = email;
         this.direccion = direccion;
         this.tipoDocumento = tipoDocumento;
-        this.contraseña = contraseña;
+        this.contrase = contrase;
     }
 
     public Integer getIdEmpleado() {
@@ -173,11 +173,11 @@ public class Empleado implements Serializable {
     }
 
     public String getContraseña() {
-        return contraseña;
+        return contrase;
     }
 
     public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+        this.contrase = contraseña;
     }
 
     @XmlTransient

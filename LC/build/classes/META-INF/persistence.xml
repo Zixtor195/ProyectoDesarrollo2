@@ -16,7 +16,7 @@
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <!--<property name="javax.persistence.jdbc.password" value="mmllano"/> -->
-      <property name="javax.persistence.jdbc.password" value="camiloja"/>
+      <property name="javax.persistence.jdbc.password" value="mmllano"/>
     </properties>
   </persistence-unit>
 </persistence>
