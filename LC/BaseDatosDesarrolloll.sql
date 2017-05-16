@@ -45,10 +45,10 @@ CREATE TABLE item
 (
 	id_item integer PRIMARY KEY,
 	descripcion varchar(100) NOT NULL,
-      /* la foto varchar(100),*/
 	nombre varchar(20) NOT NULL,
 	categoria varchar(100) NOT NULL,
- 	precio integer NOT NULL
+ 	precio integer NOT NULL,
+	foto varchar
 );
 
 
