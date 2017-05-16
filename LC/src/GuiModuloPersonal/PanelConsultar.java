@@ -9,6 +9,7 @@ import ClasesTablas.Empleado;
 import ControladorClasesTablas.EmpleadoJpaController;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -140,6 +141,8 @@ public class PanelConsultar extends javax.swing.JPanel {
         rc.setSize(752, 686);
         
         Empleado persona = dao.findEmpleado(a);
+        ImageIcon fotografia = new ImageIcon(persona.getArchivo());
+        rc.foto.setIcon(fotografia);
         rc.jtfNombre.setText(persona.getNombres());      
         rc.jtfApellidos.setText(persona.getApellidos());
         rc.jcbTipoDocumento.setSelectedItem(persona.getTipoDocumento());

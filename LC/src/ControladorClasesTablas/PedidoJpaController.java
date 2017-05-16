@@ -23,7 +23,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author familia BS
+ * @author Usuario
  */
 public class PedidoJpaController implements Serializable {
 

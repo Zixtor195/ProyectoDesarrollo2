@@ -46,16 +46,6 @@ public class PanelModificar extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     
-    private Image ConvertirImagen(byte[] bytes) throws IOException {
-    ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-    Iterator readers = ImageIO.getImageReadersByFormatName("jpeg");    
-    ImageReader reader = (ImageReader) readers.next();
-    Object source = bis;
-    ImageInputStream iis = ImageIO.createImageInputStream(source);
-    reader.setInput(iis, true);
-    ImageReadParam param = reader.getDefaultReadParam();
-    return reader.read(0, param);
- }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

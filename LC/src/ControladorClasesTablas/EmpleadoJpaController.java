@@ -17,7 +17,6 @@ import java.util.Set;
 import ClasesTablas.Pedido;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
-import ControladorClasesTablas.exceptions.PreexistingEntityException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -25,7 +24,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Moni
+ * @author Usuario
  */
 public class EmpleadoJpaController implements Serializable {
 
@@ -38,7 +37,7 @@ public class EmpleadoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Empleado empleado) throws PreexistingEntityException, Exception {
+    public void create(Empleado empleado) {
         if (empleado.getTurnosSemanalesSet() == null) {
             empleado.setTurnosSemanalesSet(new HashSet<TurnosSemanales>());
         }
@@ -81,11 +80,6 @@ public class EmpleadoJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findEmpleado(empleado.getIdEmpleado()) != null) {
-                throw new PreexistingEntityException("Empleado " + empleado + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -259,4 +253,3 @@ public class EmpleadoJpaController implements Serializable {
     }
     
 }
-

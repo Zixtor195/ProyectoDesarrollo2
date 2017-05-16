@@ -6,26 +6,18 @@
 package ClasesTablas;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Sebas
+ * @author Usuario
  */
 @Entity
 @Table(name = "item")
@@ -36,28 +28,28 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Item.findByDescripcion", query = "SELECT i FROM Item i WHERE i.descripcion = :descripcion"),
     @NamedQuery(name = "Item.findByNombre", query = "SELECT i FROM Item i WHERE i.nombre = :nombre"),
     @NamedQuery(name = "Item.findByCategoria", query = "SELECT i FROM Item i WHERE i.categoria = :categoria"),
-    @NamedQuery(name = "Item.findByPrecio", query = "SELECT i FROM Item i WHERE i.precio = :precio")})
+    @NamedQuery(name = "Item.findByPrecio", query = "SELECT i FROM Item i WHERE i.precio = :precio"),
+    @NamedQuery(name = "Item.findByFoto", query = "SELECT i FROM Item i WHERE i.foto = :foto")})
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_item", nullable = false)
     private Integer idItem;
     @Basic(optional = false)
-    @Column(name = "descripcion", nullable = false)
+    @Column(name = "descripcion", nullable = false, length = 100)
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, length = 20)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "categoria", nullable = false)
+    @Column(name = "categoria", nullable = false, length = 100)
     private String categoria;
     @Basic(optional = false)
     @Column(name = "precio", nullable = false)
     private int precio;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.LAZY)
-    private List<ItemPedido> itemPedidoSet;
+    @Column(name = "foto", length = 2147483647)
+    private String foto;
 
     public Item() {
     }
@@ -114,13 +106,12 @@ public class Item implements Serializable {
         this.precio = precio;
     }
 
-    @XmlTransient
-    public List<ItemPedido> getItemPedidoSet() {
-        return itemPedidoSet;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setItemPedidoSet(List<ItemPedido> itemPedidoSet) {
-        this.itemPedidoSet = itemPedidoSet;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     @Override

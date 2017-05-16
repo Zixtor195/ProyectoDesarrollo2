@@ -9,6 +9,7 @@ import ClasesTablas.Item;
 import ControladorClasesTablas.ItemJpaController;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -143,12 +144,13 @@ public class PanelModificarItem extends javax.swing.JPanel {
         int idItem = Integer.parseInt(String.valueOf(jtTablaModificarItem.getValueAt(jtTablaModificarItem.getSelectedRow(), 0)));
         
         Item item = dao.findItem(idItem);
-        
-        rm.jtfID.setText(item.getIdItem().toString());
-        rm.jtfNombre.setText(item.getNombre());
-        rm.jtfPrecio.setText(Integer.toString(item.getPrecio()));
-        rm.jcbCategoria.setSelectedItem(item.getCategoria());
-        rm.jtaDescripcion.setText(item.getDescripcion());
+        ImageIcon fotografia = new ImageIcon(item.getFoto());
+        rm.foto.setIcon(fotografia);
+        rm.jtfID1.setText(item.getIdItem().toString());
+        rm.jtfNombre1.setText(item.getNombre());
+        rm.jtfPrecio1.setText(Integer.toString(item.getPrecio()));
+        rm.jcbCategoria1.setSelectedItem(item.getCategoria());
+        rm.jtaDescripcion1.setText(item.getDescripcion());
         
         rm.setSize(752, 686);
         this.add(rm);
