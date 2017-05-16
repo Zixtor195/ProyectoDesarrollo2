@@ -10,7 +10,6 @@
                 Monica Marcela Llano
                 Sebastian Balante Salazar
                 Juan Felipe Orozco Escobar               
-
     Responsabilidad: Base de datos Restaurante Lenos Y carbon, creacion de tablas e insercion de datos
 */
 
@@ -90,9 +89,9 @@ CREATE TABLE factura
 
 -- Insercion de datos
 
-INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contraseña) VALUES(111,'Pepito','Perez','mesero','1234','4567','mesero@quehambre.com','cll5','cedula','111');
-INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contraseña) VALUES(222,'Armando','Casas','cajero','1234','4567','cajero@quehambre.com','cll6','cedula','222');
-INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contraseña) VALUES(333,'Pepa','Pig','gerente','1234','4567','gerenteo@quehambre.com','cll7','cedula','333');
+INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase) VALUES(111,'Pepito','Perez','mesero','1234','4567','mesero@quehambre.com','cll5','cedula','111');
+INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase) VALUES(222,'Armando','Casas','cajero','1234','4567','cajero@quehambre.com','cll6','cedula','222');
+INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase) VALUES(333,'Pepa','Pig','gerente','1234','4567','gerenteo@quehambre.com','cll7','cedula','333');
 
 
 INSERT INTO turnos_semanales (id_empleado ,turno) VALUES(111,'diurno-lunes');
