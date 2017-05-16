@@ -26,10 +26,10 @@ CREATE TABLE empleado
 	tel_fijo varchar(100) NOT NULL,
  	tel_cel varchar(100) NOT NULL,
 	Email varchar(100) NOT NULL,
-	 /* la foto varchar(100),*/
 	direccion varchar(100)NOT NULL,
 	tipo_documento varchar(100) NOT NULL,
-	contraseña varchar(100) NOT NULL
+	contrase varchar(100) NOT NULL,
+	archivo varchar
 );
 
 
