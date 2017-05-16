@@ -7,8 +7,18 @@ package GuiModuloPersonal;
 
 import ClasesTablas.Empleado;
 import ControladorClasesTablas.EmpleadoJpaController;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,9 +27,9 @@ import javax.swing.JOptionPane;
  */
 public class PanelRegistrarEmpleado extends javax.swing.JPanel {
 
-    /**
-     * Creates new form RegistrarEmpleado
-     */
+     String ruta = "";
+    
+    
     public PanelRegistrarEmpleado() {
         initComponents();
     }
@@ -55,6 +65,8 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jlCrearEmpleado = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jcbCargo = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        foto = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -114,6 +126,16 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
 
         jcbCargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gerente", "Secretaria", "Cajero", "Mesero" }));
 
+        jButton1.setText("CargarFoto");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        foto.setText("               Foto");
+        foto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,11 +145,6 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(131, 131, 131)
-                                .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
@@ -160,7 +177,19 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addGap(76, 76, 76)
-                                    .addComponent(jtfNumeroID, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jtfNumeroID, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel5))
+                                .addGap(131, 131, 131)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton1)
+                                        .addGap(24, 24, 24))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(297, 297, 297)
                         .addComponent(jlCrearEmpleado)))
@@ -169,9 +198,16 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(75, 75, 75)
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(75, 75, 75))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
+                        .addGap(12, 12, 12)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -216,6 +252,19 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+       public byte[] extractBytes(String ImageName) throws IOException {
+        // open image
+        File imgPath = new File(ImageName);
+        BufferedImage bufferedImage = ImageIO.read(imgPath);
+
+        // get DataBufferBytes from Raster
+        WritableRaster raster = bufferedImage.getRaster();
+        DataBufferByte data = (DataBufferByte) raster.getDataBuffer();
+
+        return (data.getData());
+    }
+    
+    
     private void jlCrearEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlCrearEmpleadoMouseClicked
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");//PruebaJPAPU es el nombre de nuestra unidad de persistencia
@@ -232,6 +281,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         persona.setEmail(jtfEmail.getText());
         persona.setTelCel(jtfCelular.getText());
         persona.setTelFijo(jtfTelefono.getText());
+        persona.setArchivo(ruta);
         try {
             dao.create(persona);
             JOptionPane.showMessageDialog(null, "Empleado creado exitosamente.");
@@ -261,8 +311,22 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfNumeroIDActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+       
+        JFileChooser myFileChooser = new JFileChooser();
+        myFileChooser.showOpenDialog(this);
+      
+
+        ruta = myFileChooser.getSelectedFile().getAbsolutePath();
+        ImageIcon fotografia = new ImageIcon(ruta);
+        foto.setIcon(fotografia);
+       
+    }//GEN-LAST:event_jButton1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel foto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -42,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Empleado.findByTipoDocumento", query = "SELECT e FROM Empleado e WHERE e.tipoDocumento = :tipoDocumento"),
     @NamedQuery(name = "Empleado.findByContrase", query = "SELECT e FROM Empleado e WHERE e.contrase = :contrase\u00f1a")})
 public class Empleado implements Serializable {
+    @Lob
+    @Column(name = "archivo")
+    private String archivo;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -221,6 +225,14 @@ public class Empleado implements Serializable {
     @Override
     public String toString() {
         return "ClasesTablas.Empleado[ idEmpleado=" + idEmpleado + " ]";
+    }
+
+    public String getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(String archivo) {
+        this.archivo = archivo;
     }
     
 }
