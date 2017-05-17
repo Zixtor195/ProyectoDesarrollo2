@@ -506,6 +506,8 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
                             fjc.destroy(fact.getIdFactura());
                         } catch (NonexistentEntityException ex) {
                             Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IllegalOrphanException ex) {
+                            Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
                         }
  
                     }

@@ -171,5 +171,9 @@ public class Pedido implements Serializable {
     public String toString() {
         return "ClasesTablas.Pedido[ idPedido=" + idPedido + " ]";
     }
+
+    public Object getFacturaCollection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

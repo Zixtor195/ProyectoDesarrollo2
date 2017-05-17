@@ -6,23 +6,25 @@
 package ClasesTablas;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Sebas
+ * @author Moni
  */
 @Entity
 @Table(name = "factura")
@@ -30,36 +32,31 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
     @NamedQuery(name = "Factura.findByIdFactura", query = "SELECT f FROM Factura f WHERE f.idFactura = :idFactura"),
-    @NamedQuery(name = "Factura.findByEstado", query = "SELECT f FROM Factura f WHERE f.estado = :estado"),
-    @NamedQuery(name = "Factura.findByFormaPago", query = "SELECT f FROM Factura f WHERE f.formaPago = :formaPago"),
     @NamedQuery(name = "Factura.findByHoraPago", query = "SELECT f FROM Factura f WHERE f.horaPago = :horaPago"),
-    @NamedQuery(name = "Factura.findByValorTotal", query = "SELECT f FROM Factura f WHERE f.valorTotal = :valorTotal"),
-    @NamedQuery(name = "Factura.findByCedulaCliente", query = "SELECT f FROM Factura f WHERE f.cedulaCliente = :cedulaCliente")})
+    @NamedQuery(name = "Factura.findByValorTotal", query = "SELECT f FROM Factura f WHERE f.valorTotal = :valorTotal")})
 public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_factura", nullable = false)
     private Integer idFactura;
     @Basic(optional = false)
+    @Lob
     @Column(name = "estado", nullable = false)
-    private String estado;
+    private Object estado;
     @Basic(optional = false)
-    @Column(name = "forma_pago", nullable = false)
-    private String formaPago;
-    @Basic(optional = false)
-    @Column(name = "hora_pago", nullable = false)
+    @Column(name = "hora_pago", nullable = false, length = 100)
     private String horaPago;
     @Basic(optional = false)
     @Column(name = "valor_total", nullable = false)
     private int valorTotal;
-    @Basic(optional = false)
-    @Column(name = "cedula_cliente", nullable = false)
-    private int cedulaCliente;
-    @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido", nullable = false)
+    @ManyToOne(optional = false)
     private Pedido idPedido;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura")
+    private Collection<ItemsDeFactura> itemsDeFacturaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura")
+    private Collection<Pagos> pagosCollection;
 
     public Factura() {
     }
@@ -68,13 +65,11 @@ public class Factura implements Serializable {
         this.idFactura = idFactura;
     }
 
-    public Factura(Integer idFactura, String estado, String formaPago, String horaPago, int valorTotal, int cedulaCliente) {
+    public Factura(Integer idFactura, Object estado, String horaPago, int valorTotal) {
         this.idFactura = idFactura;
         this.estado = estado;
-        this.formaPago = formaPago;
         this.horaPago = horaPago;
         this.valorTotal = valorTotal;
-        this.cedulaCliente = cedulaCliente;
     }
 
     public Integer getIdFactura() {
@@ -85,20 +80,12 @@ public class Factura implements Serializable {
         this.idFactura = idFactura;
     }
 
-    public String getEstado() {
+    public Object getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Object estado) {
         this.estado = estado;
-    }
-
-    public String getFormaPago() {
-        return formaPago;
-    }
-
-    public void setFormaPago(String formaPago) {
-        this.formaPago = formaPago;
     }
 
     public String getHoraPago() {
@@ -117,20 +104,30 @@ public class Factura implements Serializable {
         this.valorTotal = valorTotal;
     }
 
-    public int getCedulaCliente() {
-        return cedulaCliente;
-    }
-
-    public void setCedulaCliente(int cedulaCliente) {
-        this.cedulaCliente = cedulaCliente;
-    }
-
     public Pedido getIdPedido() {
         return idPedido;
     }
 
     public void setIdPedido(Pedido idPedido) {
         this.idPedido = idPedido;
+    }
+
+    @XmlTransient
+    public Collection<ItemsDeFactura> getItemsDeFacturaCollection() {
+        return itemsDeFacturaCollection;
+    }
+
+    public void setItemsDeFacturaCollection(Collection<ItemsDeFactura> itemsDeFacturaCollection) {
+        this.itemsDeFacturaCollection = itemsDeFacturaCollection;
+    }
+
+    @XmlTransient
+    public Collection<Pagos> getPagosCollection() {
+        return pagosCollection;
+    }
+
+    public void setPagosCollection(Collection<Pagos> pagosCollection) {
+        this.pagosCollection = pagosCollection;
     }
 
     @Override

@@ -16,6 +16,13 @@
 
 -- Creacion de tablas
 
+DROP TYPE CARGO CASCADE;
+DROP TYPE CATEGORIA CASCADE;
+DROP TYPE TIPO_PEDIDO CASCADE;
+DROP TYPE ESTADO CASCADE;
+DROP TYPE TIPO_PAGO CASCADE;
+
+
 CREATE TYPE CARGO AS ENUM ('Mesero','Cajero','Gerente');
 CREATE TYPE CATEGORIA AS ENUM ('Res','Cerdo','Pollo','Pescado','Adicione','Postre','Bebida');
 CREATE TYPE TIPO_PEDIDO AS ENUM('Mesa','Llevar');
@@ -27,7 +34,7 @@ CREATE TABLE empleado
 	id_empleado integer PRIMARY KEY,
 	nombres varchar(100) NOT NULL,
 	apellidos varchar(100) NOT NULL,
-	cargo CARGO,
+	cargo varchar(100),
 	tel_fijo varchar(100) NOT NULL,
  	tel_cel varchar(100) NOT NULL,
 	Email varchar(100) NOT NULL,
@@ -52,7 +59,7 @@ CREATE TABLE item
 	id_item integer PRIMARY KEY,
 	descripcion varchar(100) NOT NULL,
 	nombre varchar(20) NOT NULL,
-	categoria CATEGORIA NOT NULL,
+	categoria varchar(100),
  	precio integer NOT NULL,
 	foto varchar   
 );
@@ -135,13 +142,3 @@ INSERT INTO item_pedido(id_pedido ,id_item ,cantidad) VALUES(1,300,4);
 INSERT INTO item_pedido(id_pedido ,id_item ,cantidad) VALUES(2,300,1);
 INSERT INTO item_pedido(id_pedido ,id_item ,cantidad) VALUES(3,200,2);
 
-INSERT INTO factura(id_factura ,estado ,hora_pago ,valor_total ,id_pedido) VALUES(1,'Sin Pagar','1050',25000,1);
-INSERT INTO factura(id_factura ,estado ,hora_pago ,valor_total ,id_pedido) VALUES(2,'Pagado','2350',9000,2);
-
-INSERT INTO items_de_factura(nombre ,cantidad ,precio ,id_factura) VALUES('chuleton',1,20000,1);
-INSERT INTO items_de_factura(nombre ,cantidad ,precio ,id_factura) VALUES('juguito',1,5000,1);
-INSERT INTO items_de_factura(nombre ,cantidad ,precio ,id_factura) VALUES('jugo-uva',1,9000,2);
-
-INSERT INTO pagos(id_pago ,tipo ,valor ,cedula_cliente, id_factura) VALUES(1,'Debito',3000,1515,2);
-INSERT INTO pagos(id_pago ,tipo ,valor ,cedula_cliente, id_factura) VALUES(2,'Credito',3000,1656,2);
-INSERT INTO pagos(id_pago ,tipo ,valor ,cedula_cliente, id_factura) VALUES(3,'Efectivo',3000,5587,2);

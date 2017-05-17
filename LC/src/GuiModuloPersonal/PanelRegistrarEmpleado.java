@@ -263,7 +263,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         persona.setApellidos(jtfApellido.getText());
         persona.setTipoDocumento(jcbTipoDocumento.getSelectedItem().toString());
         persona.setIdEmpleado(Integer.parseInt(jtfNumeroID.getText()));
-        persona.setCargo(jcbCargo.getSelectedItem().toString());
+        persona.setCargo((String) jcbCargo.getSelectedItem());
         persona.setContraseña(jtfContrasena.getText());
         persona.setDireccion(jtfDireccion.getText());
         persona.setEmail(jtfEmail.getText());
