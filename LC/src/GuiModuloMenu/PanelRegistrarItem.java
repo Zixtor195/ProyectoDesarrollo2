@@ -185,6 +185,7 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
         item.setPrecio(Integer.parseInt(jtfPrecio.getText()));
         item.setCategoria(jcbCategoria.getSelectedItem().toString());
         item.setDescripcion(jtaDescripcion.getText());
+        item.setEstado("Activo");
         item.setFoto(ruta);
 
         try {

@@ -36,7 +36,7 @@ public class Pagos implements Serializable {
     @EmbeddedId
     protected PagosPK pagosPK;
     @Basic(optional = false)
-    @Column(name = "tipo", nullable = false, length = 2147483647)
+    @Column(name = "tipo", nullable = false, length = 100)
     private String tipo;
     @Basic(optional = false)
     @Column(name = "valor", nullable = false)

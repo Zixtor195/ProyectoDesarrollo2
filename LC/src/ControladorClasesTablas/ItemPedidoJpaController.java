@@ -39,8 +39,8 @@ public class ItemPedidoJpaController implements Serializable {
         if (itemPedido.getItemPedidoPK() == null) {
             itemPedido.setItemPedidoPK(new ItemPedidoPK());
         }
-        itemPedido.getItemPedidoPK().setIdItem(itemPedido.getItem().getIdItem());
         itemPedido.getItemPedidoPK().setIdPedido(itemPedido.getPedido().getIdPedido());
+        itemPedido.getItemPedidoPK().setIdItem(itemPedido.getItem().getIdItem());
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -78,8 +78,8 @@ public class ItemPedidoJpaController implements Serializable {
     }
 
     public void edit(ItemPedido itemPedido) throws NonexistentEntityException, Exception {
-        itemPedido.getItemPedidoPK().setIdItem(itemPedido.getItem().getIdItem());
         itemPedido.getItemPedidoPK().setIdPedido(itemPedido.getPedido().getIdPedido());
+        itemPedido.getItemPedidoPK().setIdItem(itemPedido.getItem().getIdItem());
         EntityManager em = null;
         try {
             em = getEntityManager();

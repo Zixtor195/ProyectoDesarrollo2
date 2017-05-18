@@ -41,7 +41,7 @@ public class Factura implements Serializable {
     @Column(name = "id_factura", nullable = false)
     private Integer idFactura;
     @Basic(optional = false)
-    @Column(name = "estado", nullable = false, length = 2147483647)
+    @Column(name = "estado", nullable = false, length = 100)
     private String estado;
     @Basic(optional = false)
     @Column(name = "hora_pago", nullable = false, length = 100)

@@ -173,12 +173,18 @@ public class Personal extends javax.swing.JFrame {
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
         List<Empleado> Empleados = dao.findEmpleadoEntities();
         
-        Object fila[][]=new Object[dao.findEmpleadoEntities().size()][4];        
-        for (int i = 0; i < dao.findEmpleadoEntities().size(); i++) {
-            fila[i][0]=dao.findEmpleadoEntities().get(i).getNombres();
-            fila[i][1]=dao.findEmpleadoEntities().get(i).getApellidos();            
-            fila[i][2]=dao.findEmpleadoEntities().get(i).getTipoDocumento();
-            fila[i][3]=dao.findEmpleadoEntities().get(i).getIdEmpleado();
+        for (int i = 0; i < Empleados.size(); i++) {
+            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
+                Empleados.remove(i);
+            }
+        }
+        
+        Object fila[][]=new Object[Empleados.size()][4];        
+        for (int i = 0; i < Empleados.size(); i++) {
+            fila[i][0]=Empleados.get(i).getNombres();
+            fila[i][1]=Empleados.get(i).getApellidos();            
+            fila[i][2]=Empleados.get(i).getTipoDocumento();
+            fila[i][3]=Empleados.get(i).getIdEmpleado();
         }
         
         String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
@@ -201,12 +207,18 @@ public class Personal extends javax.swing.JFrame {
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
         List<Empleado> Empleados = dao.findEmpleadoEntities();
         
-        Object fila[][]=new Object[dao.findEmpleadoEntities().size()][4];        
-        for (int i = 0; i < dao.findEmpleadoEntities().size(); i++) {
-            fila[i][0]=dao.findEmpleadoEntities().get(i).getNombres();
-            fila[i][1]=dao.findEmpleadoEntities().get(i).getApellidos();            
-            fila[i][2]=dao.findEmpleadoEntities().get(i).getTipoDocumento();
-            fila[i][3]=dao.findEmpleadoEntities().get(i).getIdEmpleado();
+        for (int i = 0; i < Empleados.size(); i++) {
+            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
+                Empleados.remove(i);
+            }
+        }
+        
+        Object fila[][]=new Object[Empleados.size()][4];        
+        for (int i = 0; i < Empleados.size(); i++) {
+            fila[i][0]=Empleados.get(i).getNombres();
+            fila[i][1]=Empleados.get(i).getApellidos();            
+            fila[i][2]=Empleados.get(i).getTipoDocumento();
+            fila[i][3]=Empleados.get(i).getIdEmpleado();
         }
         
         String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
@@ -231,12 +243,18 @@ public class Personal extends javax.swing.JFrame {
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
         List<Empleado> Empleados = dao.findEmpleadoEntities();
         
-        Object fila[][]=new Object[dao.findEmpleadoEntities().size()][4];        
-        for (int i = 0; i < dao.findEmpleadoEntities().size(); i++) {
-            fila[i][0]=dao.findEmpleadoEntities().get(i).getNombres();
-            fila[i][1]=dao.findEmpleadoEntities().get(i).getApellidos();            
-            fila[i][2]=dao.findEmpleadoEntities().get(i).getTipoDocumento();
-            fila[i][3]=dao.findEmpleadoEntities().get(i).getIdEmpleado();
+        for (int i = 0; i < Empleados.size(); i++) {
+            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
+                Empleados.remove(i);
+            }
+        }
+        
+        Object fila[][]=new Object[Empleados.size()][4];        
+        for (int i = 0; i < Empleados.size(); i++) {
+            fila[i][0]=Empleados.get(i).getNombres();
+            fila[i][1]=Empleados.get(i).getApellidos();            
+            fila[i][2]=Empleados.get(i).getTipoDocumento();
+            fila[i][3]=Empleados.get(i).getIdEmpleado();
         }
         
         String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        

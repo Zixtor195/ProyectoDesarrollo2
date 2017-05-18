@@ -270,6 +270,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         persona.setTelCel(jtfCelular.getText());
         persona.setTelFijo(jtfTelefono.getText());
         persona.setArchivo(ruta);
+        persona.setEstado("Activo");
         try {
             dao.create(persona);
             JOptionPane.showMessageDialog(null, "Empleado creado exitosamente.");

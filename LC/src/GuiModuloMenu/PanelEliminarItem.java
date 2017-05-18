@@ -145,16 +145,19 @@ public class PanelEliminarItem extends javax.swing.JPanel {
         
         int idItem = Integer.parseInt(String.valueOf(jtEliminarItem.getValueAt(jtEliminarItem.getSelectedRow(), 0)));
         
+        Item item = dao.findItem(idItem);
+        item.setEstado("Inactivo");
+        
         try {
-            dao.destroy(idItem);
+            dao.edit(item);
             JOptionPane.showMessageDialog(null, "Item borrado exitosamente.");
         } catch (NonexistentEntityException ex) {
-            JOptionPane.showMessageDialog(null, "Item no existe.");
-        } catch (IllegalOrphanException ex) {
             Logger.getLogger(PanelEliminarItem.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            emf.close();
+        } catch (Exception ex) {
+            Logger.getLogger(PanelEliminarItem.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
+        
 
     }//GEN-LAST:event_jlEliminarItemMouseClicked
 
