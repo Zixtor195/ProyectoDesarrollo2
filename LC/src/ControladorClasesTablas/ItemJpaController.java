@@ -6,16 +6,21 @@
 package ControladorClasesTablas;
 
 import ClasesTablas.Item;
-import ControladorClasesTablas.exceptions.NonexistentEntityException;
-import ControladorClasesTablas.exceptions.PreexistingEntityException;
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import ClasesTablas.ItemPedido;
+import ControladorClasesTablas.exceptions.IllegalOrphanException;
+import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import ControladorClasesTablas.exceptions.PreexistingEntityException;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -33,11 +38,29 @@ public class ItemJpaController implements Serializable {
     }
 
     public void create(Item item) throws PreexistingEntityException, Exception {
+        if (item.getItemPedidoSet() == null) {
+            item.setItemPedidoSet(new HashSet<ItemPedido>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Set<ItemPedido> attachedItemPedidoSet = new HashSet<ItemPedido>();
+            for (ItemPedido itemPedidoSetItemPedidoToAttach : item.getItemPedidoSet()) {
+                itemPedidoSetItemPedidoToAttach = em.getReference(itemPedidoSetItemPedidoToAttach.getClass(), itemPedidoSetItemPedidoToAttach.getItemPedidoPK());
+                attachedItemPedidoSet.add(itemPedidoSetItemPedidoToAttach);
+            }
+            item.setItemPedidoSet(attachedItemPedidoSet);
             em.persist(item);
+            for (ItemPedido itemPedidoSetItemPedido : item.getItemPedidoSet()) {
+                Item oldItemOfItemPedidoSetItemPedido = itemPedidoSetItemPedido.getItem();
+                itemPedidoSetItemPedido.setItem(item);
+                itemPedidoSetItemPedido = em.merge(itemPedidoSetItemPedido);
+                if (oldItemOfItemPedidoSetItemPedido != null) {
+                    oldItemOfItemPedidoSetItemPedido.getItemPedidoSet().remove(itemPedidoSetItemPedido);
+                    oldItemOfItemPedidoSetItemPedido = em.merge(oldItemOfItemPedidoSetItemPedido);
+                }
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findItem(item.getIdItem()) != null) {
@@ -51,12 +74,45 @@ public class ItemJpaController implements Serializable {
         }
     }
 
-    public void edit(Item item) throws NonexistentEntityException, Exception {
+    public void edit(Item item) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Item persistentItem = em.find(Item.class, item.getIdItem());
+            Set<ItemPedido> itemPedidoSetOld = persistentItem.getItemPedidoSet();
+            Set<ItemPedido> itemPedidoSetNew = item.getItemPedidoSet();
+            List<String> illegalOrphanMessages = null;
+            for (ItemPedido itemPedidoSetOldItemPedido : itemPedidoSetOld) {
+                if (!itemPedidoSetNew.contains(itemPedidoSetOldItemPedido)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain ItemPedido " + itemPedidoSetOldItemPedido + " since its item field is not nullable.");
+                }
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
+            }
+            Set<ItemPedido> attachedItemPedidoSetNew = new HashSet<ItemPedido>();
+            for (ItemPedido itemPedidoSetNewItemPedidoToAttach : itemPedidoSetNew) {
+                itemPedidoSetNewItemPedidoToAttach = em.getReference(itemPedidoSetNewItemPedidoToAttach.getClass(), itemPedidoSetNewItemPedidoToAttach.getItemPedidoPK());
+                attachedItemPedidoSetNew.add(itemPedidoSetNewItemPedidoToAttach);
+            }
+            itemPedidoSetNew = attachedItemPedidoSetNew;
+            item.setItemPedidoSet(itemPedidoSetNew);
             item = em.merge(item);
+            for (ItemPedido itemPedidoSetNewItemPedido : itemPedidoSetNew) {
+                if (!itemPedidoSetOld.contains(itemPedidoSetNewItemPedido)) {
+                    Item oldItemOfItemPedidoSetNewItemPedido = itemPedidoSetNewItemPedido.getItem();
+                    itemPedidoSetNewItemPedido.setItem(item);
+                    itemPedidoSetNewItemPedido = em.merge(itemPedidoSetNewItemPedido);
+                    if (oldItemOfItemPedidoSetNewItemPedido != null && !oldItemOfItemPedidoSetNewItemPedido.equals(item)) {
+                        oldItemOfItemPedidoSetNewItemPedido.getItemPedidoSet().remove(itemPedidoSetNewItemPedido);
+                        oldItemOfItemPedidoSetNewItemPedido = em.merge(oldItemOfItemPedidoSetNewItemPedido);
+                    }
+                }
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -74,7 +130,7 @@ public class ItemJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws NonexistentEntityException {
+    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -85,6 +141,17 @@ public class ItemJpaController implements Serializable {
                 item.getIdItem();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The item with id " + id + " no longer exists.", enfe);
+            }
+            List<String> illegalOrphanMessages = null;
+            Set<ItemPedido> itemPedidoSetOrphanCheck = item.getItemPedidoSet();
+            for (ItemPedido itemPedidoSetOrphanCheckItemPedido : itemPedidoSetOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Item (" + item + ") cannot be destroyed since the ItemPedido " + itemPedidoSetOrphanCheckItemPedido + " in its itemPedidoSet field has a non-nullable item field.");
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(item);
             em.getTransaction().commit();

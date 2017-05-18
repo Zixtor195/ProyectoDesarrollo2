@@ -11,7 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Moni
+ * @author Usuario
  */
 @Entity
 @Table(name = "pagos")
@@ -28,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Pagos.findAll", query = "SELECT p FROM Pagos p"),
     @NamedQuery(name = "Pagos.findByIdPago", query = "SELECT p FROM Pagos p WHERE p.pagosPK.idPago = :idPago"),
+    @NamedQuery(name = "Pagos.findByTipo", query = "SELECT p FROM Pagos p WHERE p.tipo = :tipo"),
     @NamedQuery(name = "Pagos.findByValor", query = "SELECT p FROM Pagos p WHERE p.valor = :valor"),
     @NamedQuery(name = "Pagos.findByCedulaCliente", query = "SELECT p FROM Pagos p WHERE p.cedulaCliente = :cedulaCliente"),
     @NamedQuery(name = "Pagos.findByIdFactura", query = "SELECT p FROM Pagos p WHERE p.pagosPK.idFactura = :idFactura")})
@@ -36,9 +36,8 @@ public class Pagos implements Serializable {
     @EmbeddedId
     protected PagosPK pagosPK;
     @Basic(optional = false)
-    @Lob
-    @Column(name = "tipo", nullable = false)
-    private Object tipo;
+    @Column(name = "tipo", nullable = false, length = 2147483647)
+    private String tipo;
     @Basic(optional = false)
     @Column(name = "valor", nullable = false)
     private int valor;
@@ -56,7 +55,7 @@ public class Pagos implements Serializable {
         this.pagosPK = pagosPK;
     }
 
-    public Pagos(PagosPK pagosPK, Object tipo, int valor, int cedulaCliente) {
+    public Pagos(PagosPK pagosPK, String tipo, int valor, int cedulaCliente) {
         this.pagosPK = pagosPK;
         this.tipo = tipo;
         this.valor = valor;
@@ -75,11 +74,11 @@ public class Pagos implements Serializable {
         this.pagosPK = pagosPK;
     }
 
-    public Object getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Object tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

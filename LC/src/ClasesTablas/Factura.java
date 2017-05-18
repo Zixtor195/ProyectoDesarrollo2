@@ -6,14 +6,13 @@
 package ClasesTablas;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Moni
+ * @author Usuario
  */
 @Entity
 @Table(name = "factura")
@@ -32,6 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
     @NamedQuery(name = "Factura.findByIdFactura", query = "SELECT f FROM Factura f WHERE f.idFactura = :idFactura"),
+    @NamedQuery(name = "Factura.findByEstado", query = "SELECT f FROM Factura f WHERE f.estado = :estado"),
     @NamedQuery(name = "Factura.findByHoraPago", query = "SELECT f FROM Factura f WHERE f.horaPago = :horaPago"),
     @NamedQuery(name = "Factura.findByValorTotal", query = "SELECT f FROM Factura f WHERE f.valorTotal = :valorTotal")})
 public class Factura implements Serializable {
@@ -41,22 +41,21 @@ public class Factura implements Serializable {
     @Column(name = "id_factura", nullable = false)
     private Integer idFactura;
     @Basic(optional = false)
-    @Lob
-    @Column(name = "estado", nullable = false)
-    private Object estado;
+    @Column(name = "estado", nullable = false, length = 2147483647)
+    private String estado;
     @Basic(optional = false)
     @Column(name = "hora_pago", nullable = false, length = 100)
     private String horaPago;
     @Basic(optional = false)
     @Column(name = "valor_total", nullable = false)
     private int valorTotal;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura")
+    private Set<ItemsDeFactura> itemsDeFacturaSet;
     @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido", nullable = false)
     @ManyToOne(optional = false)
     private Pedido idPedido;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura")
-    private Collection<ItemsDeFactura> itemsDeFacturaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura")
-    private Collection<Pagos> pagosCollection;
+    private Set<Pagos> pagosSet;
 
     public Factura() {
     }
@@ -65,7 +64,7 @@ public class Factura implements Serializable {
         this.idFactura = idFactura;
     }
 
-    public Factura(Integer idFactura, Object estado, String horaPago, int valorTotal) {
+    public Factura(Integer idFactura, String estado, String horaPago, int valorTotal) {
         this.idFactura = idFactura;
         this.estado = estado;
         this.horaPago = horaPago;
@@ -80,11 +79,11 @@ public class Factura implements Serializable {
         this.idFactura = idFactura;
     }
 
-    public Object getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(Object estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
@@ -104,6 +103,15 @@ public class Factura implements Serializable {
         this.valorTotal = valorTotal;
     }
 
+    @XmlTransient
+    public Set<ItemsDeFactura> getItemsDeFacturaSet() {
+        return itemsDeFacturaSet;
+    }
+
+    public void setItemsDeFacturaSet(Set<ItemsDeFactura> itemsDeFacturaSet) {
+        this.itemsDeFacturaSet = itemsDeFacturaSet;
+    }
+
     public Pedido getIdPedido() {
         return idPedido;
     }
@@ -113,21 +121,12 @@ public class Factura implements Serializable {
     }
 
     @XmlTransient
-    public Collection<ItemsDeFactura> getItemsDeFacturaCollection() {
-        return itemsDeFacturaCollection;
+    public Set<Pagos> getPagosSet() {
+        return pagosSet;
     }
 
-    public void setItemsDeFacturaCollection(Collection<ItemsDeFactura> itemsDeFacturaCollection) {
-        this.itemsDeFacturaCollection = itemsDeFacturaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Pagos> getPagosCollection() {
-        return pagosCollection;
-    }
-
-    public void setPagosCollection(Collection<Pagos> pagosCollection) {
-        this.pagosCollection = pagosCollection;
+    public void setPagosSet(Set<Pagos> pagosSet) {
+        this.pagosSet = pagosSet;
     }
 
     @Override

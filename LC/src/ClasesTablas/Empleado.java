@@ -11,11 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,7 +21,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Sebas
+ * @author Usuario
  */
 @Entity
 @Table(name = "empleado")
@@ -41,48 +37,46 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Empleado.findByEmail", query = "SELECT e FROM Empleado e WHERE e.email = :email"),
     @NamedQuery(name = "Empleado.findByDireccion", query = "SELECT e FROM Empleado e WHERE e.direccion = :direccion"),
     @NamedQuery(name = "Empleado.findByTipoDocumento", query = "SELECT e FROM Empleado e WHERE e.tipoDocumento = :tipoDocumento"),
-    @NamedQuery(name = "Empleado.findByContrase", query = "SELECT e FROM Empleado e WHERE e.contrase = :contrase\u00f1a")})
+    @NamedQuery(name = "Empleado.findByContrase", query = "SELECT e FROM Empleado e WHERE e.contrase = :contrase"),
+    @NamedQuery(name = "Empleado.findByArchivo", query = "SELECT e FROM Empleado e WHERE e.archivo = :archivo")})
 public class Empleado implements Serializable {
-    @Lob
-    @Column(name = "archivo")
-    private String archivo;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_empleado")
+    @Column(name = "id_empleado", nullable = false)
     private Integer idEmpleado;
     @Basic(optional = false)
-    @Column(name = "nombres", nullable = false)
+    @Column(name = "nombres", nullable = false, length = 100)
     private String nombres;
     @Basic(optional = false)
-    @Column(name = "apellidos", nullable = false)
+    @Column(name = "apellidos", nullable = false, length = 100)
     private String apellidos;
-    @Basic(optional = false)
-    @Column(name = "cargo", nullable = false)
+    @Column(name = "cargo", length = 100)
     private String cargo;
     @Basic(optional = false)
-    @Column(name = "tel_fijo", nullable = false)
+    @Column(name = "tel_fijo", nullable = false, length = 100)
     private String telFijo;
     @Basic(optional = false)
-    @Column(name = "tel_cel", nullable = false)
+    @Column(name = "tel_cel", nullable = false, length = 100)
     private String telCel;
     @Basic(optional = false)
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, length = 100)
     private String email;
     @Basic(optional = false)
-    @Column(name = "direccion", nullable = false)
+    @Column(name = "direccion", nullable = false, length = 100)
     private String direccion;
     @Basic(optional = false)
-    @Column(name = "tipo_documento", nullable = false)
+    @Column(name = "tipo_documento", nullable = false, length = 100)
     private String tipoDocumento;
     @Basic(optional = false)
-    @Column(name = "contrase", nullable = false)
+    @Column(name = "contrase", nullable = false, length = 100)
     private String contrase;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado", fetch = FetchType.LAZY)
-    private Set<TurnosSemanales> turnosSemanalesSet;
-    @OneToMany(mappedBy = "idEmpleado", fetch = FetchType.LAZY)
+    @Column(name = "archivo", length = 2147483647)
+    private String archivo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado")
     private Set<Pedido> pedidoSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado")
+    private Set<TurnosSemanales> turnosSemanalesSet;
 
     public Empleado() {
     }
@@ -91,11 +85,10 @@ public class Empleado implements Serializable {
         this.idEmpleado = idEmpleado;
     }
 
-    public Empleado(Integer idEmpleado, String nombres, String apellidos, String cargo, String telFijo, String telCel, String email, String direccion, String tipoDocumento, String contrase) {
+    public Empleado(Integer idEmpleado, String nombres, String apellidos, String telFijo, String telCel, String email, String direccion, String tipoDocumento, String contrase) {
         this.idEmpleado = idEmpleado;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.cargo = cargo;
         this.telFijo = telFijo;
         this.telCel = telCel;
         this.email = email;
@@ -176,21 +169,20 @@ public class Empleado implements Serializable {
         this.tipoDocumento = tipoDocumento;
     }
 
-    public String getContraseña() {
+    public String getContrase() {
         return contrase;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contrase = contraseña;
+    public void setContrase(String contrase) {
+        this.contrase = contrase;
     }
 
-    @XmlTransient
-    public Set<TurnosSemanales> getTurnosSemanalesSet() {
-        return turnosSemanalesSet;
+    public String getArchivo() {
+        return archivo;
     }
 
-    public void setTurnosSemanalesSet(Set<TurnosSemanales> turnosSemanalesSet) {
-        this.turnosSemanalesSet = turnosSemanalesSet;
+    public void setArchivo(String archivo) {
+        this.archivo = archivo;
     }
 
     @XmlTransient
@@ -200,6 +192,15 @@ public class Empleado implements Serializable {
 
     public void setPedidoSet(Set<Pedido> pedidoSet) {
         this.pedidoSet = pedidoSet;
+    }
+
+    @XmlTransient
+    public Set<TurnosSemanales> getTurnosSemanalesSet() {
+        return turnosSemanalesSet;
+    }
+
+    public void setTurnosSemanalesSet(Set<TurnosSemanales> turnosSemanalesSet) {
+        this.turnosSemanalesSet = turnosSemanalesSet;
     }
 
     @Override
@@ -225,14 +226,6 @@ public class Empleado implements Serializable {
     @Override
     public String toString() {
         return "ClasesTablas.Empleado[ idEmpleado=" + idEmpleado + " ]";
-    }
-
-    public String getArchivo() {
-        return archivo;
-    }
-
-    public void setArchivo(String archivo) {
-        this.archivo = archivo;
     }
     
 }

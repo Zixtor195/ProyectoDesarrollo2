@@ -8,7 +8,6 @@ package ClasesTablas;
 import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -18,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Moni
+ * @author Usuario
  */
 @Entity
 @Table(name = "turnos_semanales")
@@ -31,8 +30,8 @@ public class TurnosSemanales implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected TurnosSemanalesPK turnosSemanalesPK;
-    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false)
     private Empleado empleado;
 
     public TurnosSemanales() {

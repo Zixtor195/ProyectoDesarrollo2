@@ -200,9 +200,9 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
                 try {
                     pjc.destroy(pedido.getIdPedido());
                     table.setModel(new tableModel());
-                } catch (IllegalOrphanException ex) {
-                    Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (NonexistentEntityException ex) {
+                    Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalOrphanException ex) {
                     Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 

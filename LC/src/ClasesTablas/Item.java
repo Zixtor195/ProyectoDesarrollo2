@@ -6,14 +6,18 @@
 package ClasesTablas;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -42,14 +46,15 @@ public class Item implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre", nullable = false, length = 20)
     private String nombre;
-    @Basic(optional = false)
-    @Column(name = "categoria", nullable = false, length = 100)
+    @Column(name = "categoria", length = 100)
     private String categoria;
     @Basic(optional = false)
     @Column(name = "precio", nullable = false)
     private int precio;
     @Column(name = "foto", length = 2147483647)
     private String foto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
+    private Set<ItemPedido> itemPedidoSet;
 
     public Item() {
     }
@@ -58,11 +63,10 @@ public class Item implements Serializable {
         this.idItem = idItem;
     }
 
-    public Item(Integer idItem, String descripcion, String nombre, String categoria, int precio) {
+    public Item(Integer idItem, String descripcion, String nombre, int precio) {
         this.idItem = idItem;
         this.descripcion = descripcion;
         this.nombre = nombre;
-        this.categoria = categoria;
         this.precio = precio;
     }
 
@@ -112,6 +116,15 @@ public class Item implements Serializable {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    @XmlTransient
+    public Set<ItemPedido> getItemPedidoSet() {
+        return itemPedidoSet;
+    }
+
+    public void setItemPedidoSet(Set<ItemPedido> itemPedidoSet) {
+        this.itemPedidoSet = itemPedidoSet;
     }
 
     @Override

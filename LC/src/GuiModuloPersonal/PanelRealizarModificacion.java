@@ -259,7 +259,7 @@ public class PanelRealizarModificacion extends javax.swing.JPanel {
         persona.setTipoDocumento(jcbTipoDocumento.getSelectedItem().toString());
         persona.setIdEmpleado(Integer.parseInt(jtfNumeroID.getText()));
         persona.setCargo(jcbCargo.getSelectedItem().toString());
-        persona.setContraseña(jtfContrasena.getText());
+        persona.setContrase(jtfContrasena.getText());
         persona.setDireccion(jtfDireccion.getText());
         persona.setEmail(jtfEmail.getText());
         persona.setTelCel(jtfCelular.getText());

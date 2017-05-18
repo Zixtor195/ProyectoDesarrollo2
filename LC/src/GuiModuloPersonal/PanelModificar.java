@@ -166,7 +166,7 @@ public class PanelModificar extends javax.swing.JPanel {
         rm.jcbTipoDocumento.setSelectedItem(persona.getTipoDocumento());
         rm.jtfNumeroID.setText(persona.getIdEmpleado().toString());
         rm.jcbCargo.setSelectedItem(persona.getCargo());
-        rm.jtfContrasena.setText(persona.getContraseña());
+        rm.jtfContrasena.setText(persona.getContrase());
         rm.jtfDireccion.setText(persona.getDireccion());
         rm.jtfEmail.setText(persona.getEmail());
         rm.jtfCelular.setText(persona.getTelCel());

@@ -13,19 +13,20 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import ClasesTablas.Pedido;
 import ClasesTablas.ItemsDeFactura;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import ClasesTablas.Pagos;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
 import ControladorClasesTablas.exceptions.PreexistingEntityException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Moni
+ * @author Usuario
  */
 public class FacturaJpaController implements Serializable {
 
@@ -39,11 +40,11 @@ public class FacturaJpaController implements Serializable {
     }
 
     public void create(Factura factura) throws PreexistingEntityException, Exception {
-        if (factura.getItemsDeFacturaCollection() == null) {
-            factura.setItemsDeFacturaCollection(new ArrayList<ItemsDeFactura>());
+        if (factura.getItemsDeFacturaSet() == null) {
+            factura.setItemsDeFacturaSet(new HashSet<ItemsDeFactura>());
         }
-        if (factura.getPagosCollection() == null) {
-            factura.setPagosCollection(new ArrayList<Pagos>());
+        if (factura.getPagosSet() == null) {
+            factura.setPagosSet(new HashSet<Pagos>());
         }
         EntityManager em = null;
         try {
@@ -54,39 +55,39 @@ public class FacturaJpaController implements Serializable {
                 idPedido = em.getReference(idPedido.getClass(), idPedido.getIdPedido());
                 factura.setIdPedido(idPedido);
             }
-            Collection<ItemsDeFactura> attachedItemsDeFacturaCollection = new ArrayList<ItemsDeFactura>();
-            for (ItemsDeFactura itemsDeFacturaCollectionItemsDeFacturaToAttach : factura.getItemsDeFacturaCollection()) {
-                itemsDeFacturaCollectionItemsDeFacturaToAttach = em.getReference(itemsDeFacturaCollectionItemsDeFacturaToAttach.getClass(), itemsDeFacturaCollectionItemsDeFacturaToAttach.getItemsDeFacturaPK());
-                attachedItemsDeFacturaCollection.add(itemsDeFacturaCollectionItemsDeFacturaToAttach);
+            Set<ItemsDeFactura> attachedItemsDeFacturaSet = new HashSet<ItemsDeFactura>();
+            for (ItemsDeFactura itemsDeFacturaSetItemsDeFacturaToAttach : factura.getItemsDeFacturaSet()) {
+                itemsDeFacturaSetItemsDeFacturaToAttach = em.getReference(itemsDeFacturaSetItemsDeFacturaToAttach.getClass(), itemsDeFacturaSetItemsDeFacturaToAttach.getItemsDeFacturaPK());
+                attachedItemsDeFacturaSet.add(itemsDeFacturaSetItemsDeFacturaToAttach);
             }
-            factura.setItemsDeFacturaCollection(attachedItemsDeFacturaCollection);
-            Collection<Pagos> attachedPagosCollection = new ArrayList<Pagos>();
-            for (Pagos pagosCollectionPagosToAttach : factura.getPagosCollection()) {
-                pagosCollectionPagosToAttach = em.getReference(pagosCollectionPagosToAttach.getClass(), pagosCollectionPagosToAttach.getPagosPK());
-                attachedPagosCollection.add(pagosCollectionPagosToAttach);
+            factura.setItemsDeFacturaSet(attachedItemsDeFacturaSet);
+            Set<Pagos> attachedPagosSet = new HashSet<Pagos>();
+            for (Pagos pagosSetPagosToAttach : factura.getPagosSet()) {
+                pagosSetPagosToAttach = em.getReference(pagosSetPagosToAttach.getClass(), pagosSetPagosToAttach.getPagosPK());
+                attachedPagosSet.add(pagosSetPagosToAttach);
             }
-            factura.setPagosCollection(attachedPagosCollection);
+            factura.setPagosSet(attachedPagosSet);
             em.persist(factura);
             if (idPedido != null) {
                 idPedido.getFacturaSet().add(factura);
                 idPedido = em.merge(idPedido);
             }
-            for (ItemsDeFactura itemsDeFacturaCollectionItemsDeFactura : factura.getItemsDeFacturaCollection()) {
-                Factura oldFacturaOfItemsDeFacturaCollectionItemsDeFactura = itemsDeFacturaCollectionItemsDeFactura.getFactura();
-                itemsDeFacturaCollectionItemsDeFactura.setFactura(factura);
-                itemsDeFacturaCollectionItemsDeFactura = em.merge(itemsDeFacturaCollectionItemsDeFactura);
-                if (oldFacturaOfItemsDeFacturaCollectionItemsDeFactura != null) {
-                    oldFacturaOfItemsDeFacturaCollectionItemsDeFactura.getItemsDeFacturaCollection().remove(itemsDeFacturaCollectionItemsDeFactura);
-                    oldFacturaOfItemsDeFacturaCollectionItemsDeFactura = em.merge(oldFacturaOfItemsDeFacturaCollectionItemsDeFactura);
+            for (ItemsDeFactura itemsDeFacturaSetItemsDeFactura : factura.getItemsDeFacturaSet()) {
+                Factura oldFacturaOfItemsDeFacturaSetItemsDeFactura = itemsDeFacturaSetItemsDeFactura.getFactura();
+                itemsDeFacturaSetItemsDeFactura.setFactura(factura);
+                itemsDeFacturaSetItemsDeFactura = em.merge(itemsDeFacturaSetItemsDeFactura);
+                if (oldFacturaOfItemsDeFacturaSetItemsDeFactura != null) {
+                    oldFacturaOfItemsDeFacturaSetItemsDeFactura.getItemsDeFacturaSet().remove(itemsDeFacturaSetItemsDeFactura);
+                    oldFacturaOfItemsDeFacturaSetItemsDeFactura = em.merge(oldFacturaOfItemsDeFacturaSetItemsDeFactura);
                 }
             }
-            for (Pagos pagosCollectionPagos : factura.getPagosCollection()) {
-                Factura oldFacturaOfPagosCollectionPagos = pagosCollectionPagos.getFactura();
-                pagosCollectionPagos.setFactura(factura);
-                pagosCollectionPagos = em.merge(pagosCollectionPagos);
-                if (oldFacturaOfPagosCollectionPagos != null) {
-                    oldFacturaOfPagosCollectionPagos.getPagosCollection().remove(pagosCollectionPagos);
-                    oldFacturaOfPagosCollectionPagos = em.merge(oldFacturaOfPagosCollectionPagos);
+            for (Pagos pagosSetPagos : factura.getPagosSet()) {
+                Factura oldFacturaOfPagosSetPagos = pagosSetPagos.getFactura();
+                pagosSetPagos.setFactura(factura);
+                pagosSetPagos = em.merge(pagosSetPagos);
+                if (oldFacturaOfPagosSetPagos != null) {
+                    oldFacturaOfPagosSetPagos.getPagosSet().remove(pagosSetPagos);
+                    oldFacturaOfPagosSetPagos = em.merge(oldFacturaOfPagosSetPagos);
                 }
             }
             em.getTransaction().commit();
@@ -110,25 +111,25 @@ public class FacturaJpaController implements Serializable {
             Factura persistentFactura = em.find(Factura.class, factura.getIdFactura());
             Pedido idPedidoOld = persistentFactura.getIdPedido();
             Pedido idPedidoNew = factura.getIdPedido();
-            Collection<ItemsDeFactura> itemsDeFacturaCollectionOld = persistentFactura.getItemsDeFacturaCollection();
-            Collection<ItemsDeFactura> itemsDeFacturaCollectionNew = factura.getItemsDeFacturaCollection();
-            Collection<Pagos> pagosCollectionOld = persistentFactura.getPagosCollection();
-            Collection<Pagos> pagosCollectionNew = factura.getPagosCollection();
+            Set<ItemsDeFactura> itemsDeFacturaSetOld = persistentFactura.getItemsDeFacturaSet();
+            Set<ItemsDeFactura> itemsDeFacturaSetNew = factura.getItemsDeFacturaSet();
+            Set<Pagos> pagosSetOld = persistentFactura.getPagosSet();
+            Set<Pagos> pagosSetNew = factura.getPagosSet();
             List<String> illegalOrphanMessages = null;
-            for (ItemsDeFactura itemsDeFacturaCollectionOldItemsDeFactura : itemsDeFacturaCollectionOld) {
-                if (!itemsDeFacturaCollectionNew.contains(itemsDeFacturaCollectionOldItemsDeFactura)) {
+            for (ItemsDeFactura itemsDeFacturaSetOldItemsDeFactura : itemsDeFacturaSetOld) {
+                if (!itemsDeFacturaSetNew.contains(itemsDeFacturaSetOldItemsDeFactura)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain ItemsDeFactura " + itemsDeFacturaCollectionOldItemsDeFactura + " since its factura field is not nullable.");
+                    illegalOrphanMessages.add("You must retain ItemsDeFactura " + itemsDeFacturaSetOldItemsDeFactura + " since its factura field is not nullable.");
                 }
             }
-            for (Pagos pagosCollectionOldPagos : pagosCollectionOld) {
-                if (!pagosCollectionNew.contains(pagosCollectionOldPagos)) {
+            for (Pagos pagosSetOldPagos : pagosSetOld) {
+                if (!pagosSetNew.contains(pagosSetOldPagos)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Pagos " + pagosCollectionOldPagos + " since its factura field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Pagos " + pagosSetOldPagos + " since its factura field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -138,20 +139,20 @@ public class FacturaJpaController implements Serializable {
                 idPedidoNew = em.getReference(idPedidoNew.getClass(), idPedidoNew.getIdPedido());
                 factura.setIdPedido(idPedidoNew);
             }
-            Collection<ItemsDeFactura> attachedItemsDeFacturaCollectionNew = new ArrayList<ItemsDeFactura>();
-            for (ItemsDeFactura itemsDeFacturaCollectionNewItemsDeFacturaToAttach : itemsDeFacturaCollectionNew) {
-                itemsDeFacturaCollectionNewItemsDeFacturaToAttach = em.getReference(itemsDeFacturaCollectionNewItemsDeFacturaToAttach.getClass(), itemsDeFacturaCollectionNewItemsDeFacturaToAttach.getItemsDeFacturaPK());
-                attachedItemsDeFacturaCollectionNew.add(itemsDeFacturaCollectionNewItemsDeFacturaToAttach);
+            Set<ItemsDeFactura> attachedItemsDeFacturaSetNew = new HashSet<ItemsDeFactura>();
+            for (ItemsDeFactura itemsDeFacturaSetNewItemsDeFacturaToAttach : itemsDeFacturaSetNew) {
+                itemsDeFacturaSetNewItemsDeFacturaToAttach = em.getReference(itemsDeFacturaSetNewItemsDeFacturaToAttach.getClass(), itemsDeFacturaSetNewItemsDeFacturaToAttach.getItemsDeFacturaPK());
+                attachedItemsDeFacturaSetNew.add(itemsDeFacturaSetNewItemsDeFacturaToAttach);
             }
-            itemsDeFacturaCollectionNew = attachedItemsDeFacturaCollectionNew;
-            factura.setItemsDeFacturaCollection(itemsDeFacturaCollectionNew);
-            Collection<Pagos> attachedPagosCollectionNew = new ArrayList<Pagos>();
-            for (Pagos pagosCollectionNewPagosToAttach : pagosCollectionNew) {
-                pagosCollectionNewPagosToAttach = em.getReference(pagosCollectionNewPagosToAttach.getClass(), pagosCollectionNewPagosToAttach.getPagosPK());
-                attachedPagosCollectionNew.add(pagosCollectionNewPagosToAttach);
+            itemsDeFacturaSetNew = attachedItemsDeFacturaSetNew;
+            factura.setItemsDeFacturaSet(itemsDeFacturaSetNew);
+            Set<Pagos> attachedPagosSetNew = new HashSet<Pagos>();
+            for (Pagos pagosSetNewPagosToAttach : pagosSetNew) {
+                pagosSetNewPagosToAttach = em.getReference(pagosSetNewPagosToAttach.getClass(), pagosSetNewPagosToAttach.getPagosPK());
+                attachedPagosSetNew.add(pagosSetNewPagosToAttach);
             }
-            pagosCollectionNew = attachedPagosCollectionNew;
-            factura.setPagosCollection(pagosCollectionNew);
+            pagosSetNew = attachedPagosSetNew;
+            factura.setPagosSet(pagosSetNew);
             factura = em.merge(factura);
             if (idPedidoOld != null && !idPedidoOld.equals(idPedidoNew)) {
                 idPedidoOld.getFacturaSet().remove(factura);
@@ -161,25 +162,25 @@ public class FacturaJpaController implements Serializable {
                 idPedidoNew.getFacturaSet().add(factura);
                 idPedidoNew = em.merge(idPedidoNew);
             }
-            for (ItemsDeFactura itemsDeFacturaCollectionNewItemsDeFactura : itemsDeFacturaCollectionNew) {
-                if (!itemsDeFacturaCollectionOld.contains(itemsDeFacturaCollectionNewItemsDeFactura)) {
-                    Factura oldFacturaOfItemsDeFacturaCollectionNewItemsDeFactura = itemsDeFacturaCollectionNewItemsDeFactura.getFactura();
-                    itemsDeFacturaCollectionNewItemsDeFactura.setFactura(factura);
-                    itemsDeFacturaCollectionNewItemsDeFactura = em.merge(itemsDeFacturaCollectionNewItemsDeFactura);
-                    if (oldFacturaOfItemsDeFacturaCollectionNewItemsDeFactura != null && !oldFacturaOfItemsDeFacturaCollectionNewItemsDeFactura.equals(factura)) {
-                        oldFacturaOfItemsDeFacturaCollectionNewItemsDeFactura.getItemsDeFacturaCollection().remove(itemsDeFacturaCollectionNewItemsDeFactura);
-                        oldFacturaOfItemsDeFacturaCollectionNewItemsDeFactura = em.merge(oldFacturaOfItemsDeFacturaCollectionNewItemsDeFactura);
+            for (ItemsDeFactura itemsDeFacturaSetNewItemsDeFactura : itemsDeFacturaSetNew) {
+                if (!itemsDeFacturaSetOld.contains(itemsDeFacturaSetNewItemsDeFactura)) {
+                    Factura oldFacturaOfItemsDeFacturaSetNewItemsDeFactura = itemsDeFacturaSetNewItemsDeFactura.getFactura();
+                    itemsDeFacturaSetNewItemsDeFactura.setFactura(factura);
+                    itemsDeFacturaSetNewItemsDeFactura = em.merge(itemsDeFacturaSetNewItemsDeFactura);
+                    if (oldFacturaOfItemsDeFacturaSetNewItemsDeFactura != null && !oldFacturaOfItemsDeFacturaSetNewItemsDeFactura.equals(factura)) {
+                        oldFacturaOfItemsDeFacturaSetNewItemsDeFactura.getItemsDeFacturaSet().remove(itemsDeFacturaSetNewItemsDeFactura);
+                        oldFacturaOfItemsDeFacturaSetNewItemsDeFactura = em.merge(oldFacturaOfItemsDeFacturaSetNewItemsDeFactura);
                     }
                 }
             }
-            for (Pagos pagosCollectionNewPagos : pagosCollectionNew) {
-                if (!pagosCollectionOld.contains(pagosCollectionNewPagos)) {
-                    Factura oldFacturaOfPagosCollectionNewPagos = pagosCollectionNewPagos.getFactura();
-                    pagosCollectionNewPagos.setFactura(factura);
-                    pagosCollectionNewPagos = em.merge(pagosCollectionNewPagos);
-                    if (oldFacturaOfPagosCollectionNewPagos != null && !oldFacturaOfPagosCollectionNewPagos.equals(factura)) {
-                        oldFacturaOfPagosCollectionNewPagos.getPagosCollection().remove(pagosCollectionNewPagos);
-                        oldFacturaOfPagosCollectionNewPagos = em.merge(oldFacturaOfPagosCollectionNewPagos);
+            for (Pagos pagosSetNewPagos : pagosSetNew) {
+                if (!pagosSetOld.contains(pagosSetNewPagos)) {
+                    Factura oldFacturaOfPagosSetNewPagos = pagosSetNewPagos.getFactura();
+                    pagosSetNewPagos.setFactura(factura);
+                    pagosSetNewPagos = em.merge(pagosSetNewPagos);
+                    if (oldFacturaOfPagosSetNewPagos != null && !oldFacturaOfPagosSetNewPagos.equals(factura)) {
+                        oldFacturaOfPagosSetNewPagos.getPagosSet().remove(pagosSetNewPagos);
+                        oldFacturaOfPagosSetNewPagos = em.merge(oldFacturaOfPagosSetNewPagos);
                     }
                 }
             }
@@ -213,19 +214,19 @@ public class FacturaJpaController implements Serializable {
                 throw new NonexistentEntityException("The factura with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Collection<ItemsDeFactura> itemsDeFacturaCollectionOrphanCheck = factura.getItemsDeFacturaCollection();
-            for (ItemsDeFactura itemsDeFacturaCollectionOrphanCheckItemsDeFactura : itemsDeFacturaCollectionOrphanCheck) {
+            Set<ItemsDeFactura> itemsDeFacturaSetOrphanCheck = factura.getItemsDeFacturaSet();
+            for (ItemsDeFactura itemsDeFacturaSetOrphanCheckItemsDeFactura : itemsDeFacturaSetOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Factura (" + factura + ") cannot be destroyed since the ItemsDeFactura " + itemsDeFacturaCollectionOrphanCheckItemsDeFactura + " in its itemsDeFacturaCollection field has a non-nullable factura field.");
+                illegalOrphanMessages.add("This Factura (" + factura + ") cannot be destroyed since the ItemsDeFactura " + itemsDeFacturaSetOrphanCheckItemsDeFactura + " in its itemsDeFacturaSet field has a non-nullable factura field.");
             }
-            Collection<Pagos> pagosCollectionOrphanCheck = factura.getPagosCollection();
-            for (Pagos pagosCollectionOrphanCheckPagos : pagosCollectionOrphanCheck) {
+            Set<Pagos> pagosSetOrphanCheck = factura.getPagosSet();
+            for (Pagos pagosSetOrphanCheckPagos : pagosSetOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Factura (" + factura + ") cannot be destroyed since the Pagos " + pagosCollectionOrphanCheckPagos + " in its pagosCollection field has a non-nullable factura field.");
+                illegalOrphanMessages.add("This Factura (" + factura + ") cannot be destroyed since the Pagos " + pagosSetOrphanCheckPagos + " in its pagosSet field has a non-nullable factura field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);

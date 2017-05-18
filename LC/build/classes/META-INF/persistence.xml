@@ -2,21 +2,20 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="LCPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <!--Tablas convertidas en clases-->
+    <class>ClasesTablas.ItemsDeFactura</class>
+    <class>ClasesTablas.Empleado</class>
+    <class>ClasesTablas.Factura</class>
+    <class>ClasesTablas.Pedido</class>
+    <class>ClasesTablas.Item</class>
+    <class>ClasesTablas.Pagos</class>
     <class>ClasesTablas.TurnosSemanales</class>
     <class>ClasesTablas.ItemPedido</class>
-    <class>ClasesTablas.Item</class>
-    <class>ClasesTablas.Factura</class>
-    <class>ClasesTablas.Empleado</class>
-    <class>ClasesTablas.Pedido</class>
-    <!--Conexion con la base de datos mediante la API JDBC (Java Data Base Connectivity) -->
     <properties>
-      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
-      <property name="javax.persistence.jdbc.user" value="postgres"/>
-      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <!--<property name="javax.persistence.jdbc.password" value="mmllano"/> -->
       <property name="javax.persistence.jdbc.password" value="mmllano"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>

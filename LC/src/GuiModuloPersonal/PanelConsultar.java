@@ -148,7 +148,7 @@ public class PanelConsultar extends javax.swing.JPanel {
         rc.jcbTipoDocumento.setSelectedItem(persona.getTipoDocumento());
         rc.jtfNumeroID.setText(persona.getIdEmpleado().toString());
         rc.jcbCargo.setSelectedItem(persona.getCargo());
-        rc.jtfContrasena.setText(persona.getContraseña());
+        rc.jtfContrasena.setText(persona.getContrase());
         rc.jftDireccion.setText(persona.getDireccion());
         rc.jtfEmail.setText(persona.getEmail());
         rc.jtfCelular.setText(persona.getTelCel());

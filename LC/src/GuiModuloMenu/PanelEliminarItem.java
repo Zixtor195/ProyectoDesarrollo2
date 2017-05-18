@@ -150,6 +150,8 @@ public class PanelEliminarItem extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Item borrado exitosamente.");
         } catch (NonexistentEntityException ex) {
             JOptionPane.showMessageDialog(null, "Item no existe.");
+        } catch (IllegalOrphanException ex) {
+            Logger.getLogger(PanelEliminarItem.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             emf.close();
         }

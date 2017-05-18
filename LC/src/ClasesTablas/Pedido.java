@@ -6,15 +6,11 @@
 package ClasesTablas;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Sebas
+ * @author Usuario
  */
 @Entity
 @Table(name = "pedido")
@@ -42,27 +38,26 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "id_pedido", nullable = false)
-    private Integer idPedido = 0;
+    private Integer idPedido;
     @Basic(optional = false)
-    @Column(name = "hora_inicio", nullable = false)
+    @Column(name = "hora_inicio", nullable = false, length = 100)
     private String horaInicio;
-    @Column(name = "hora_ultimo_item", nullable = true)
+    @Column(name = "hora_ultimo_item", length = 100)
     private String horaUltimoItem;
     @Basic(optional = false)
-    @Column(name = "tipo", nullable = false)
+    @Column(name = "tipo", nullable = false, length = 2147483647)
     private String tipo;
-    @Column(name = "num_mesa", nullable = true)
+    @Column(name = "num_mesa")
     private Integer numMesa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
-    private List<ItemPedido> itemPedidoSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPedido", fetch = FetchType.LAZY)
-    private List<Factura> facturaSet;
-    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPedido")
+    private Set<Factura> facturaSet;
+    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", nullable = false)
+    @ManyToOne(optional = false)
     private Empleado idEmpleado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
+    private Set<ItemPedido> itemPedidoSet;
 
     public Pedido() {
     }
@@ -80,13 +75,9 @@ public class Pedido implements Serializable {
     public Integer getIdPedido() {
         return idPedido;
     }
-    
-    public void setIdPedido(int idpedido) {
-        this.idPedido = idpedido ;
-    }
-    
-    public void setIdPedidoAumentado() {
-        this.idPedido++ ;
+
+    public void setIdPedido(Integer idPedido) {
+        this.idPedido = idPedido;
     }
 
     public String getHoraInicio() {
@@ -122,20 +113,11 @@ public class Pedido implements Serializable {
     }
 
     @XmlTransient
-    public List<ItemPedido> getItemPedidoSet() {
-        return itemPedidoSet;
-    }
-
-    public void setItemPedidoSet(List<ItemPedido> itemPedidoSet) {
-        this.itemPedidoSet = itemPedidoSet;
-    }
-
-    @XmlTransient
-    public List<Factura> getFacturaSet() {
+    public Set<Factura> getFacturaSet() {
         return facturaSet;
     }
 
-    public void setFacturaSet(List<Factura> facturaSet) {
+    public void setFacturaSet(Set<Factura> facturaSet) {
         this.facturaSet = facturaSet;
     }
 
@@ -145,6 +127,15 @@ public class Pedido implements Serializable {
 
     public void setIdEmpleado(Empleado idEmpleado) {
         this.idEmpleado = idEmpleado;
+    }
+
+    @XmlTransient
+    public Set<ItemPedido> getItemPedidoSet() {
+        return itemPedidoSet;
+    }
+
+    public void setItemPedidoSet(Set<ItemPedido> itemPedidoSet) {
+        this.itemPedidoSet = itemPedidoSet;
     }
 
     @Override
@@ -172,7 +163,7 @@ public class Pedido implements Serializable {
         return "ClasesTablas.Pedido[ idPedido=" + idPedido + " ]";
     }
 
-    public Object getFacturaCollection() {
+    public void setIdPedidoAumentado() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -21,7 +21,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Moni
+ * @author Usuario
  */
 public class TurnosSemanalesJpaController implements Serializable {
 

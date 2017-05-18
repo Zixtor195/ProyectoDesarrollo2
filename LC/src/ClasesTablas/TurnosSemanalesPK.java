@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Moni
+ * @author Usuario
  */
 @Embeddable
 public class TurnosSemanalesPK implements Serializable {
@@ -20,7 +20,7 @@ public class TurnosSemanalesPK implements Serializable {
     @Column(name = "id_empleado", nullable = false)
     private int idEmpleado;
     @Basic(optional = false)
-    @Column(name = "turno", nullable = false)
+    @Column(name = "turno", nullable = false, length = 100)
     private String turno;
 
     public TurnosSemanalesPK() {

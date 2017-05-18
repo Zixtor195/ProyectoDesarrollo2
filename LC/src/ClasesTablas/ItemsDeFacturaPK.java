@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Moni
+ * @author Usuario
  */
 @Embeddable
 public class ItemsDeFacturaPK implements Serializable {

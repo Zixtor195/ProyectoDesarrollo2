@@ -21,7 +21,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Moni
+ * @author Usuario
  */
 public class PagosJpaController implements Serializable {
 
@@ -50,7 +50,7 @@ public class PagosJpaController implements Serializable {
             }
             em.persist(pagos);
             if (factura != null) {
-                factura.getPagosCollection().add(pagos);
+                factura.getPagosSet().add(pagos);
                 factura = em.merge(factura);
             }
             em.getTransaction().commit();
@@ -81,11 +81,11 @@ public class PagosJpaController implements Serializable {
             }
             pagos = em.merge(pagos);
             if (facturaOld != null && !facturaOld.equals(facturaNew)) {
-                facturaOld.getPagosCollection().remove(pagos);
+                facturaOld.getPagosSet().remove(pagos);
                 facturaOld = em.merge(facturaOld);
             }
             if (facturaNew != null && !facturaNew.equals(facturaOld)) {
-                facturaNew.getPagosCollection().add(pagos);
+                facturaNew.getPagosSet().add(pagos);
                 facturaNew = em.merge(facturaNew);
             }
             em.getTransaction().commit();
@@ -119,7 +119,7 @@ public class PagosJpaController implements Serializable {
             }
             Factura factura = pagos.getFactura();
             if (factura != null) {
-                factura.getPagosCollection().remove(pagos);
+                factura.getPagosSet().remove(pagos);
                 factura = em.merge(factura);
             }
             em.remove(pagos);

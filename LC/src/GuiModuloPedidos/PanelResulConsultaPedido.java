@@ -395,7 +395,7 @@ public class PanelResulConsultaPedido extends javax.swing.JPanel {
     
     private class tableModel extends AbstractTableModel{
         
-        List<ItemPedido> listaitem = pedido.getItemPedidoSet();
+        List<ItemPedido> listaitem = (List<ItemPedido>) pedido.getItemPedidoSet();
         
         @Override
         public int getRowCount() {

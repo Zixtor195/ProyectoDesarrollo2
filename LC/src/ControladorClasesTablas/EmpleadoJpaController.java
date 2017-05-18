@@ -11,12 +11,13 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import ClasesTablas.TurnosSemanales;
+import ClasesTablas.Pedido;
 import java.util.HashSet;
 import java.util.Set;
-import ClasesTablas.Pedido;
+import ClasesTablas.TurnosSemanales;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import ControladorClasesTablas.exceptions.PreexistingEntityException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -37,39 +38,30 @@ public class EmpleadoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Empleado empleado) {
-        if (empleado.getTurnosSemanalesSet() == null) {
-            empleado.setTurnosSemanalesSet(new HashSet<TurnosSemanales>());
-        }
+    public void create(Empleado empleado) throws PreexistingEntityException, Exception {
         if (empleado.getPedidoSet() == null) {
             empleado.setPedidoSet(new HashSet<Pedido>());
+        }
+        if (empleado.getTurnosSemanalesSet() == null) {
+            empleado.setTurnosSemanalesSet(new HashSet<TurnosSemanales>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Set<TurnosSemanales> attachedTurnosSemanalesSet = new HashSet<TurnosSemanales>();
-            for (TurnosSemanales turnosSemanalesSetTurnosSemanalesToAttach : empleado.getTurnosSemanalesSet()) {
-                turnosSemanalesSetTurnosSemanalesToAttach = em.getReference(turnosSemanalesSetTurnosSemanalesToAttach.getClass(), turnosSemanalesSetTurnosSemanalesToAttach.getTurnosSemanalesPK());
-                attachedTurnosSemanalesSet.add(turnosSemanalesSetTurnosSemanalesToAttach);
-            }
-            empleado.setTurnosSemanalesSet(attachedTurnosSemanalesSet);
             Set<Pedido> attachedPedidoSet = new HashSet<Pedido>();
             for (Pedido pedidoSetPedidoToAttach : empleado.getPedidoSet()) {
                 pedidoSetPedidoToAttach = em.getReference(pedidoSetPedidoToAttach.getClass(), pedidoSetPedidoToAttach.getIdPedido());
                 attachedPedidoSet.add(pedidoSetPedidoToAttach);
             }
             empleado.setPedidoSet(attachedPedidoSet);
-            em.persist(empleado);
-            for (TurnosSemanales turnosSemanalesSetTurnosSemanales : empleado.getTurnosSemanalesSet()) {
-                Empleado oldEmpleadoOfTurnosSemanalesSetTurnosSemanales = turnosSemanalesSetTurnosSemanales.getEmpleado();
-                turnosSemanalesSetTurnosSemanales.setEmpleado(empleado);
-                turnosSemanalesSetTurnosSemanales = em.merge(turnosSemanalesSetTurnosSemanales);
-                if (oldEmpleadoOfTurnosSemanalesSetTurnosSemanales != null) {
-                    oldEmpleadoOfTurnosSemanalesSetTurnosSemanales.getTurnosSemanalesSet().remove(turnosSemanalesSetTurnosSemanales);
-                    oldEmpleadoOfTurnosSemanalesSetTurnosSemanales = em.merge(oldEmpleadoOfTurnosSemanalesSetTurnosSemanales);
-                }
+            Set<TurnosSemanales> attachedTurnosSemanalesSet = new HashSet<TurnosSemanales>();
+            for (TurnosSemanales turnosSemanalesSetTurnosSemanalesToAttach : empleado.getTurnosSemanalesSet()) {
+                turnosSemanalesSetTurnosSemanalesToAttach = em.getReference(turnosSemanalesSetTurnosSemanalesToAttach.getClass(), turnosSemanalesSetTurnosSemanalesToAttach.getTurnosSemanalesPK());
+                attachedTurnosSemanalesSet.add(turnosSemanalesSetTurnosSemanalesToAttach);
             }
+            empleado.setTurnosSemanalesSet(attachedTurnosSemanalesSet);
+            em.persist(empleado);
             for (Pedido pedidoSetPedido : empleado.getPedidoSet()) {
                 Empleado oldIdEmpleadoOfPedidoSetPedido = pedidoSetPedido.getIdEmpleado();
                 pedidoSetPedido.setIdEmpleado(empleado);
@@ -79,7 +71,21 @@ public class EmpleadoJpaController implements Serializable {
                     oldIdEmpleadoOfPedidoSetPedido = em.merge(oldIdEmpleadoOfPedidoSetPedido);
                 }
             }
+            for (TurnosSemanales turnosSemanalesSetTurnosSemanales : empleado.getTurnosSemanalesSet()) {
+                Empleado oldEmpleadoOfTurnosSemanalesSetTurnosSemanales = turnosSemanalesSetTurnosSemanales.getEmpleado();
+                turnosSemanalesSetTurnosSemanales.setEmpleado(empleado);
+                turnosSemanalesSetTurnosSemanales = em.merge(turnosSemanalesSetTurnosSemanales);
+                if (oldEmpleadoOfTurnosSemanalesSetTurnosSemanales != null) {
+                    oldEmpleadoOfTurnosSemanalesSetTurnosSemanales.getTurnosSemanalesSet().remove(turnosSemanalesSetTurnosSemanales);
+                    oldEmpleadoOfTurnosSemanalesSetTurnosSemanales = em.merge(oldEmpleadoOfTurnosSemanalesSetTurnosSemanales);
+                }
+            }
             em.getTransaction().commit();
+        } catch (Exception ex) {
+            if (findEmpleado(empleado.getIdEmpleado()) != null) {
+                throw new PreexistingEntityException("Empleado " + empleado + " already exists.", ex);
+            }
+            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -93,11 +99,19 @@ public class EmpleadoJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Empleado persistentEmpleado = em.find(Empleado.class, empleado.getIdEmpleado());
-            Set<TurnosSemanales> turnosSemanalesSetOld = persistentEmpleado.getTurnosSemanalesSet();
-            Set<TurnosSemanales> turnosSemanalesSetNew = empleado.getTurnosSemanalesSet();
             Set<Pedido> pedidoSetOld = persistentEmpleado.getPedidoSet();
             Set<Pedido> pedidoSetNew = empleado.getPedidoSet();
+            Set<TurnosSemanales> turnosSemanalesSetOld = persistentEmpleado.getTurnosSemanalesSet();
+            Set<TurnosSemanales> turnosSemanalesSetNew = empleado.getTurnosSemanalesSet();
             List<String> illegalOrphanMessages = null;
+            for (Pedido pedidoSetOldPedido : pedidoSetOld) {
+                if (!pedidoSetNew.contains(pedidoSetOldPedido)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain Pedido " + pedidoSetOldPedido + " since its idEmpleado field is not nullable.");
+                }
+            }
             for (TurnosSemanales turnosSemanalesSetOldTurnosSemanales : turnosSemanalesSetOld) {
                 if (!turnosSemanalesSetNew.contains(turnosSemanalesSetOldTurnosSemanales)) {
                     if (illegalOrphanMessages == null) {
@@ -109,13 +123,6 @@ public class EmpleadoJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            Set<TurnosSemanales> attachedTurnosSemanalesSetNew = new HashSet<TurnosSemanales>();
-            for (TurnosSemanales turnosSemanalesSetNewTurnosSemanalesToAttach : turnosSemanalesSetNew) {
-                turnosSemanalesSetNewTurnosSemanalesToAttach = em.getReference(turnosSemanalesSetNewTurnosSemanalesToAttach.getClass(), turnosSemanalesSetNewTurnosSemanalesToAttach.getTurnosSemanalesPK());
-                attachedTurnosSemanalesSetNew.add(turnosSemanalesSetNewTurnosSemanalesToAttach);
-            }
-            turnosSemanalesSetNew = attachedTurnosSemanalesSetNew;
-            empleado.setTurnosSemanalesSet(turnosSemanalesSetNew);
             Set<Pedido> attachedPedidoSetNew = new HashSet<Pedido>();
             for (Pedido pedidoSetNewPedidoToAttach : pedidoSetNew) {
                 pedidoSetNewPedidoToAttach = em.getReference(pedidoSetNewPedidoToAttach.getClass(), pedidoSetNewPedidoToAttach.getIdPedido());
@@ -123,24 +130,14 @@ public class EmpleadoJpaController implements Serializable {
             }
             pedidoSetNew = attachedPedidoSetNew;
             empleado.setPedidoSet(pedidoSetNew);
+            Set<TurnosSemanales> attachedTurnosSemanalesSetNew = new HashSet<TurnosSemanales>();
+            for (TurnosSemanales turnosSemanalesSetNewTurnosSemanalesToAttach : turnosSemanalesSetNew) {
+                turnosSemanalesSetNewTurnosSemanalesToAttach = em.getReference(turnosSemanalesSetNewTurnosSemanalesToAttach.getClass(), turnosSemanalesSetNewTurnosSemanalesToAttach.getTurnosSemanalesPK());
+                attachedTurnosSemanalesSetNew.add(turnosSemanalesSetNewTurnosSemanalesToAttach);
+            }
+            turnosSemanalesSetNew = attachedTurnosSemanalesSetNew;
+            empleado.setTurnosSemanalesSet(turnosSemanalesSetNew);
             empleado = em.merge(empleado);
-            for (TurnosSemanales turnosSemanalesSetNewTurnosSemanales : turnosSemanalesSetNew) {
-                if (!turnosSemanalesSetOld.contains(turnosSemanalesSetNewTurnosSemanales)) {
-                    Empleado oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales = turnosSemanalesSetNewTurnosSemanales.getEmpleado();
-                    turnosSemanalesSetNewTurnosSemanales.setEmpleado(empleado);
-                    turnosSemanalesSetNewTurnosSemanales = em.merge(turnosSemanalesSetNewTurnosSemanales);
-                    if (oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales != null && !oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales.equals(empleado)) {
-                        oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales.getTurnosSemanalesSet().remove(turnosSemanalesSetNewTurnosSemanales);
-                        oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales = em.merge(oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales);
-                    }
-                }
-            }
-            for (Pedido pedidoSetOldPedido : pedidoSetOld) {
-                if (!pedidoSetNew.contains(pedidoSetOldPedido)) {
-                    pedidoSetOldPedido.setIdEmpleado(null);
-                    pedidoSetOldPedido = em.merge(pedidoSetOldPedido);
-                }
-            }
             for (Pedido pedidoSetNewPedido : pedidoSetNew) {
                 if (!pedidoSetOld.contains(pedidoSetNewPedido)) {
                     Empleado oldIdEmpleadoOfPedidoSetNewPedido = pedidoSetNewPedido.getIdEmpleado();
@@ -149,6 +146,17 @@ public class EmpleadoJpaController implements Serializable {
                     if (oldIdEmpleadoOfPedidoSetNewPedido != null && !oldIdEmpleadoOfPedidoSetNewPedido.equals(empleado)) {
                         oldIdEmpleadoOfPedidoSetNewPedido.getPedidoSet().remove(pedidoSetNewPedido);
                         oldIdEmpleadoOfPedidoSetNewPedido = em.merge(oldIdEmpleadoOfPedidoSetNewPedido);
+                    }
+                }
+            }
+            for (TurnosSemanales turnosSemanalesSetNewTurnosSemanales : turnosSemanalesSetNew) {
+                if (!turnosSemanalesSetOld.contains(turnosSemanalesSetNewTurnosSemanales)) {
+                    Empleado oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales = turnosSemanalesSetNewTurnosSemanales.getEmpleado();
+                    turnosSemanalesSetNewTurnosSemanales.setEmpleado(empleado);
+                    turnosSemanalesSetNewTurnosSemanales = em.merge(turnosSemanalesSetNewTurnosSemanales);
+                    if (oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales != null && !oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales.equals(empleado)) {
+                        oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales.getTurnosSemanalesSet().remove(turnosSemanalesSetNewTurnosSemanales);
+                        oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales = em.merge(oldEmpleadoOfTurnosSemanalesSetNewTurnosSemanales);
                     }
                 }
             }
@@ -182,6 +190,13 @@ public class EmpleadoJpaController implements Serializable {
                 throw new NonexistentEntityException("The empleado with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
+            Set<Pedido> pedidoSetOrphanCheck = empleado.getPedidoSet();
+            for (Pedido pedidoSetOrphanCheckPedido : pedidoSetOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Empleado (" + empleado + ") cannot be destroyed since the Pedido " + pedidoSetOrphanCheckPedido + " in its pedidoSet field has a non-nullable idEmpleado field.");
+            }
             Set<TurnosSemanales> turnosSemanalesSetOrphanCheck = empleado.getTurnosSemanalesSet();
             for (TurnosSemanales turnosSemanalesSetOrphanCheckTurnosSemanales : turnosSemanalesSetOrphanCheck) {
                 if (illegalOrphanMessages == null) {
@@ -191,11 +206,6 @@ public class EmpleadoJpaController implements Serializable {
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            Set<Pedido> pedidoSet = empleado.getPedidoSet();
-            for (Pedido pedidoSetPedido : pedidoSet) {
-                pedidoSetPedido.setIdEmpleado(null);
-                pedidoSetPedido = em.merge(pedidoSetPedido);
             }
             em.remove(empleado);
             em.getTransaction().commit();

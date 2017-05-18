@@ -5,14 +5,15 @@
  */
 package ControladorClasesTablas;
 
-import ClasesTablas.ItemPedido;
-import ClasesTablas.ItemPedidoPK;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import ClasesTablas.Pedido;
+import ClasesTablas.Item;
+import ClasesTablas.ItemPedido;
+import ClasesTablas.ItemPedidoPK;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
 import ControladorClasesTablas.exceptions.PreexistingEntityException;
 import java.util.List;
@@ -49,10 +50,19 @@ public class ItemPedidoJpaController implements Serializable {
                 pedido = em.getReference(pedido.getClass(), pedido.getIdPedido());
                 itemPedido.setPedido(pedido);
             }
+            Item item = itemPedido.getItem();
+            if (item != null) {
+                item = em.getReference(item.getClass(), item.getIdItem());
+                itemPedido.setItem(item);
+            }
             em.persist(itemPedido);
             if (pedido != null) {
                 pedido.getItemPedidoSet().add(itemPedido);
                 pedido = em.merge(pedido);
+            }
+            if (item != null) {
+                item.getItemPedidoSet().add(itemPedido);
+                item = em.merge(item);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -77,9 +87,15 @@ public class ItemPedidoJpaController implements Serializable {
             ItemPedido persistentItemPedido = em.find(ItemPedido.class, itemPedido.getItemPedidoPK());
             Pedido pedidoOld = persistentItemPedido.getPedido();
             Pedido pedidoNew = itemPedido.getPedido();
+            Item itemOld = persistentItemPedido.getItem();
+            Item itemNew = itemPedido.getItem();
             if (pedidoNew != null) {
                 pedidoNew = em.getReference(pedidoNew.getClass(), pedidoNew.getIdPedido());
                 itemPedido.setPedido(pedidoNew);
+            }
+            if (itemNew != null) {
+                itemNew = em.getReference(itemNew.getClass(), itemNew.getIdItem());
+                itemPedido.setItem(itemNew);
             }
             itemPedido = em.merge(itemPedido);
             if (pedidoOld != null && !pedidoOld.equals(pedidoNew)) {
@@ -89,6 +105,14 @@ public class ItemPedidoJpaController implements Serializable {
             if (pedidoNew != null && !pedidoNew.equals(pedidoOld)) {
                 pedidoNew.getItemPedidoSet().add(itemPedido);
                 pedidoNew = em.merge(pedidoNew);
+            }
+            if (itemOld != null && !itemOld.equals(itemNew)) {
+                itemOld.getItemPedidoSet().remove(itemPedido);
+                itemOld = em.merge(itemOld);
+            }
+            if (itemNew != null && !itemNew.equals(itemOld)) {
+                itemNew.getItemPedidoSet().add(itemPedido);
+                itemNew = em.merge(itemNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -123,6 +147,11 @@ public class ItemPedidoJpaController implements Serializable {
             if (pedido != null) {
                 pedido.getItemPedidoSet().remove(itemPedido);
                 pedido = em.merge(pedido);
+            }
+            Item item = itemPedido.getItem();
+            if (item != null) {
+                item.getItemPedidoSet().remove(itemPedido);
+                item = em.merge(item);
             }
             em.remove(itemPedido);
             em.getTransaction().commit();

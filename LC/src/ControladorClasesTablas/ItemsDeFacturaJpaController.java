@@ -21,7 +21,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Moni
+ * @author Usuario
  */
 public class ItemsDeFacturaJpaController implements Serializable {
 
@@ -50,7 +50,7 @@ public class ItemsDeFacturaJpaController implements Serializable {
             }
             em.persist(itemsDeFactura);
             if (factura != null) {
-                factura.getItemsDeFacturaCollection().add(itemsDeFactura);
+                factura.getItemsDeFacturaSet().add(itemsDeFactura);
                 factura = em.merge(factura);
             }
             em.getTransaction().commit();
@@ -81,11 +81,11 @@ public class ItemsDeFacturaJpaController implements Serializable {
             }
             itemsDeFactura = em.merge(itemsDeFactura);
             if (facturaOld != null && !facturaOld.equals(facturaNew)) {
-                facturaOld.getItemsDeFacturaCollection().remove(itemsDeFactura);
+                facturaOld.getItemsDeFacturaSet().remove(itemsDeFactura);
                 facturaOld = em.merge(facturaOld);
             }
             if (facturaNew != null && !facturaNew.equals(facturaOld)) {
-                facturaNew.getItemsDeFacturaCollection().add(itemsDeFactura);
+                facturaNew.getItemsDeFacturaSet().add(itemsDeFactura);
                 facturaNew = em.merge(facturaNew);
             }
             em.getTransaction().commit();
@@ -119,7 +119,7 @@ public class ItemsDeFacturaJpaController implements Serializable {
             }
             Factura factura = itemsDeFactura.getFactura();
             if (factura != null) {
-                factura.getItemsDeFacturaCollection().remove(itemsDeFactura);
+                factura.getItemsDeFacturaSet().remove(itemsDeFactura);
                 factura = em.merge(factura);
             }
             em.remove(itemsDeFactura);
