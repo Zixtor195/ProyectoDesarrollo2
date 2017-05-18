@@ -5,10 +5,16 @@
         <group>
             <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelModificar.java</file>
             <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/META-INF/persistence.xml</file>
+            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPedidos/PanelEliminarPedido.java</file>
             <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/ClasesTablas/Factura.java</file>
+            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPedidos/PanelRegistrarPedido.java</file>
+            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiFacturasPagos/FacturarPedidos.java</file>
+            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelConsultar.java</file>
             <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelRealizarModificacion.java</file>
             <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/ClasesTablas/Empleado.java</file>
+            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelResultadosConsulta.java</file>
             <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelRegistrarEmpleado.java</file>
+            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/ControladorClasesTablas/FacturaJpaController.java</file>
         </group>
     </open-files>
 </project-private>
