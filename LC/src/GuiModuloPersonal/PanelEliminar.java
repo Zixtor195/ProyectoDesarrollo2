@@ -140,16 +140,21 @@ public class PanelEliminar extends javax.swing.JPanel {
         int a = Integer.parseInt(String.valueOf(jtEliminar.getValueAt(jtEliminar.getSelectedRow(),3)));
         
         Empleado persona = dao.findEmpleado(a);
+        persona.setEstado("Inactivo");
+        
+        
         try {
-            dao.destroy(persona.getIdEmpleado());
+            dao.edit(persona);
             JOptionPane.showMessageDialog(null, "Empleado eliminado exitosamente.");
-        } catch (IllegalOrphanException ex) {
-            Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            emf.close();
+        } catch (Exception ex) {
+            Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
+                  
+            
+      
     }//GEN-LAST:event_jlEliminarMouseClicked
 
 

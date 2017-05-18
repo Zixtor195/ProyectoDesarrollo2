@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Empleado.findByDireccion", query = "SELECT e FROM Empleado e WHERE e.direccion = :direccion"),
     @NamedQuery(name = "Empleado.findByTipoDocumento", query = "SELECT e FROM Empleado e WHERE e.tipoDocumento = :tipoDocumento"),
     @NamedQuery(name = "Empleado.findByContrase", query = "SELECT e FROM Empleado e WHERE e.contrase = :contrase"),
+    @NamedQuery(name = "Empleado.findByEstado", query = "SELECT e FROM Empleado e WHERE e.estado = :estado"),
     @NamedQuery(name = "Empleado.findByArchivo", query = "SELECT e FROM Empleado e WHERE e.archivo = :archivo")})
 public class Empleado implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -51,7 +52,8 @@ public class Empleado implements Serializable {
     @Basic(optional = false)
     @Column(name = "apellidos", nullable = false, length = 100)
     private String apellidos;
-    @Column(name = "cargo", length = 100)
+    @Basic(optional = false)
+    @Column(name = "cargo", nullable = false, length = 100)
     private String cargo;
     @Basic(optional = false)
     @Column(name = "tel_fijo", nullable = false, length = 100)
@@ -71,6 +73,9 @@ public class Empleado implements Serializable {
     @Basic(optional = false)
     @Column(name = "contrase", nullable = false, length = 100)
     private String contrase;
+    @Basic(optional = false)
+    @Column(name = "estado", nullable = false, length = 100)
+    private String estado;
     @Column(name = "archivo", length = 2147483647)
     private String archivo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado")
@@ -85,16 +90,18 @@ public class Empleado implements Serializable {
         this.idEmpleado = idEmpleado;
     }
 
-    public Empleado(Integer idEmpleado, String nombres, String apellidos, String telFijo, String telCel, String email, String direccion, String tipoDocumento, String contrase) {
+    public Empleado(Integer idEmpleado, String nombres, String apellidos, String cargo, String telFijo, String telCel, String email, String direccion, String tipoDocumento, String contrase, String estado) {
         this.idEmpleado = idEmpleado;
         this.nombres = nombres;
         this.apellidos = apellidos;
+        this.cargo = cargo;
         this.telFijo = telFijo;
         this.telCel = telCel;
         this.email = email;
         this.direccion = direccion;
         this.tipoDocumento = tipoDocumento;
         this.contrase = contrase;
+        this.estado = estado;
     }
 
     public Integer getIdEmpleado() {
@@ -175,6 +182,14 @@ public class Empleado implements Serializable {
 
     public void setContrase(String contrase) {
         this.contrase = contrase;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getArchivo() {

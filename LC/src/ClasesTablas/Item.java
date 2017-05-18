@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Item.findByNombre", query = "SELECT i FROM Item i WHERE i.nombre = :nombre"),
     @NamedQuery(name = "Item.findByCategoria", query = "SELECT i FROM Item i WHERE i.categoria = :categoria"),
     @NamedQuery(name = "Item.findByPrecio", query = "SELECT i FROM Item i WHERE i.precio = :precio"),
+    @NamedQuery(name = "Item.findByEstado", query = "SELECT i FROM Item i WHERE i.estado = :estado"),
     @NamedQuery(name = "Item.findByFoto", query = "SELECT i FROM Item i WHERE i.foto = :foto")})
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -51,6 +52,9 @@ public class Item implements Serializable {
     @Basic(optional = false)
     @Column(name = "precio", nullable = false)
     private int precio;
+    @Basic(optional = false)
+    @Column(name = "estado", nullable = false, length = 100)
+    private String estado;
     @Column(name = "foto", length = 2147483647)
     private String foto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
@@ -63,11 +67,12 @@ public class Item implements Serializable {
         this.idItem = idItem;
     }
 
-    public Item(Integer idItem, String descripcion, String nombre, int precio) {
+    public Item(Integer idItem, String descripcion, String nombre, int precio, String estado) {
         this.idItem = idItem;
         this.descripcion = descripcion;
         this.nombre = nombre;
         this.precio = precio;
+        this.estado = estado;
     }
 
     public Integer getIdItem() {
@@ -108,6 +113,14 @@ public class Item implements Serializable {
 
     public void setPrecio(int precio) {
         this.precio = precio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getFoto() {

@@ -34,7 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Pedido.findByHoraInicio", query = "SELECT p FROM Pedido p WHERE p.horaInicio = :horaInicio"),
     @NamedQuery(name = "Pedido.findByHoraUltimoItem", query = "SELECT p FROM Pedido p WHERE p.horaUltimoItem = :horaUltimoItem"),
     @NamedQuery(name = "Pedido.findByTipo", query = "SELECT p FROM Pedido p WHERE p.tipo = :tipo"),
-    @NamedQuery(name = "Pedido.findByNumMesa", query = "SELECT p FROM Pedido p WHERE p.numMesa = :numMesa")})
+    @NamedQuery(name = "Pedido.findByNumMesa", query = "SELECT p FROM Pedido p WHERE p.numMesa = :numMesa"),
+    @NamedQuery(name = "Pedido.findByEstado", query = "SELECT p FROM Pedido p WHERE p.estado = :estado")})
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,10 +48,13 @@ public class Pedido implements Serializable {
     @Column(name = "hora_ultimo_item", length = 100)
     private String horaUltimoItem;
     @Basic(optional = false)
-    @Column(name = "tipo", nullable = false, length = 2147483647)
+    @Column(name = "tipo", nullable = false, length = 100)
     private String tipo;
     @Column(name = "num_mesa")
     private Integer numMesa;
+    @Basic(optional = false)
+    @Column(name = "estado", nullable = false, length = 100)
+    private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPedido")
     private Set<Factura> facturaSet;
     @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", nullable = false)
@@ -66,10 +70,11 @@ public class Pedido implements Serializable {
         this.idPedido = idPedido;
     }
 
-    public Pedido(Integer idPedido, String horaInicio, String tipo) {
+    public Pedido(Integer idPedido, String horaInicio, String tipo, String estado) {
         this.idPedido = idPedido;
         this.horaInicio = horaInicio;
         this.tipo = tipo;
+        this.estado = estado;
     }
 
     public Integer getIdPedido() {
@@ -110,6 +115,14 @@ public class Pedido implements Serializable {
 
     public void setNumMesa(Integer numMesa) {
         this.numMesa = numMesa;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @XmlTransient
@@ -161,10 +174,6 @@ public class Pedido implements Serializable {
     @Override
     public String toString() {
         return "ClasesTablas.Pedido[ idPedido=" + idPedido + " ]";
-    }
-
-    public void setIdPedidoAumentado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
