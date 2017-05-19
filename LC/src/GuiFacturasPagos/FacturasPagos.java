@@ -41,8 +41,9 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelModificar = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,10 +66,10 @@ public class FacturasPagos extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarFactura.jpg"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarFactura.jpg"))); // NOI18N
+        labelModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                labelModificarMouseClicked(evt);
             }
         });
 
@@ -79,6 +80,13 @@ public class FacturasPagos extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pagos.jpg"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -86,24 +94,26 @@ public class FacturasPagos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel3)
+                    .addComponent(labelModificar)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addGap(50, 50, 50)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel2)
-                .addGap(50, 50, 50)
-                .addComponent(jLabel3)
-                .addGap(28, 28, 28)
+                .addGap(27, 27, 27)
+                .addComponent(labelModificar)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel4)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(25, 25, 25))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -197,7 +207,7 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel2.add(fc);
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void labelModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarMouseClicked
         FacturasModificar fm = new FacturasModificar();
         fm.setSize(752, 686);
         
@@ -223,7 +233,7 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel2.revalidate();
         jPanel2.repaint();
         jPanel2.add(fm);
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_labelModificarMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
          FacturasEliminar fe = new FacturasEliminar();
@@ -252,6 +262,36 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel2.repaint();
         jPanel2.add(fe);
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        FacturasAPagar fm = new FacturasAPagar();
+        fm.setSize(752, 686);
+        
+       /*
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        FacturaJpaController dao = new FacturaJpaController(emf);
+        List<Factura> Facturas = dao.findFacturaEntities();
+        
+        Object fila[][]=new Object[Facturas.size()][4];        
+        for (int i = 0; i < Facturas.size(); i++) {
+            fila[i][0]=dao.findFacturaEntities().get(i).getIdFactura();
+            fila[i][1]=dao.findFacturaEntities().get(i).getCedulaCliente();            
+            fila[i][2]=dao.findFacturaEntities().get(i).getHoraPago();
+            fila[i][3]=dao.findFacturaEntities().get(i).getValorTotal();
+        }
+        
+        String columna[]=new String[]{"N°Factura","Cedula Cliente","Hora Pago","Total"};        
+        emf.close();
+        
+        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
+        fm.jTable1.setModel(Modelo);
+        
+       */ 
+        jPanel2.removeAll();
+        jPanel2.revalidate();
+        jPanel2.repaint();
+        jPanel2.add(fm);
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -294,9 +334,10 @@ public class FacturasPagos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelModificar;
     // End of variables declaration//GEN-END:variables
 }
