@@ -268,6 +268,11 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
         jLabel7.setText("Cantidad:");
 
         btnagregarapedido.setText("Adicionar");
+        btnagregarapedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnagregarapedidoActionPerformed(evt);
+            }
+        });
 
         btnquitarpedido.setText("Eliminar");
 
@@ -346,6 +351,10 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
     private void txtcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcantidadActionPerformed
+
+    private void btnagregarapedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarapedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnagregarapedidoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

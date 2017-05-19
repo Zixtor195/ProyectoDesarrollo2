@@ -401,6 +401,8 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
             ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
             ItemPedido ip = new ItemPedido();
             List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
+            
+           
 
             if(!txtcantidad.getText().trim().equals("")&&!listitemp.isSelectionEmpty()&&!txtmesa.getText().trim().equals("")){
                 ip.setCantidad(Integer.parseInt(txtcantidad.getText()));

@@ -159,7 +159,7 @@ public class PanelModificar extends javax.swing.JPanel {
         
         Empleado persona = dao.findEmpleado(a);
         ImageIcon fotografia = new ImageIcon(persona.getArchivo());
-        rm.foto.setIcon(fotografia);
+        rm.foto1.setIcon(fotografia);
         rm.jtfNumeroID.setEnabled(false);
         rm.jtfNombre.setText(persona.getNombres());      
         rm.jtfApellidos.setText(persona.getApellidos());
