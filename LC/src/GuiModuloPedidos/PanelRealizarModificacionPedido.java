@@ -36,7 +36,7 @@ import javax.swing.table.AbstractTableModel;
 public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-    Pedido pedido = null;
+    Pedido pedido = new Pedido();
     
     public PanelRealizarModificacionPedido(Pedido pedido) {
         initComponents();

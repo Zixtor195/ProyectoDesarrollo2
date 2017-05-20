@@ -22,7 +22,7 @@ import javax.swing.table.AbstractTableModel;
 public class PanelConsultarPedido extends javax.swing.JPanel {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-    Pedido pedido = null;
+    Pedido pedido = new Pedido();
     
     public PanelConsultarPedido() {
         initComponents();
@@ -168,7 +168,12 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
         
         @Override
         public int getRowCount() {
-            return listapedido.size();
+            if(listapedido.isEmpty()){
+                return 0;
+            }else{
+                return listapedido.size();
+            }
+            
         }
 
         @Override
