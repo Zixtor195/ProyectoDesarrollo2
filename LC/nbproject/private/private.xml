@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPedidos/PanelResulConsultaPedido.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPedidos/PanelEliminarPedido.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPedidos/PanelRegistrarPedido.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloMenu/PanelEliminarItem.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/Personal.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelConsultar.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiFacturasPagos/FacturasPagos.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiFacturasPagos/FacturasPedidoFacturar.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiFacturasPagos/FacturarPedidos.java</file>
         </group>
     </open-files>
 </project-private>

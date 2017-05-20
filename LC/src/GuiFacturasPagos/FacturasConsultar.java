@@ -6,13 +6,12 @@
 package GuiFacturasPagos;
 
 import ClasesTablas.Factura;
-import ClasesTablas.ItemPedido;
-import ClasesTablas.Pedido;
+import ClasesTablas.ItemsDeFactura;
+import ClasesTablas.Pagos;
 import ControladorClasesTablas.FacturaJpaController;
-import ControladorClasesTablas.ItemPedidoJpaController;
-import ControladorClasesTablas.PedidoJpaController;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.table.DefaultTableModel;
@@ -89,15 +88,22 @@ public class FacturasConsultar extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "No.Factura", "Cedula Cliente", "Hora_pago", "Total"
+                "No.Factura", "Estado", "Hora_pago", "Total"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -141,49 +147,45 @@ public class FacturasConsultar extends javax.swing.JPanel {
         rm.setSize(752, 1000);  
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        FacturaJpaController daof = new FacturaJpaController(emf);
-        ItemPedidoJpaController daoi = new ItemPedidoJpaController(emf);
+        FacturaJpaController daof = new FacturaJpaController(emf);        
         int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
-        Factura factura = daof.findFactura(a);
+        Factura factura = daof.findFactura(a);  
         
-        Pedido pedido = factura.getIdPedido();
-        int totalPrecio = 0;
-        
-        List<ItemPedido> Ip = daoi.findItemPedidoEntities();
-        List<ItemPedido> PedidoItems = new ArrayList<ItemPedido>(); 
+        Set<ItemsDeFactura> SetItems = factura.getItemsDeFacturaSet();  
+        List<ItemsDeFactura> facturaDeItems = new ArrayList<>(SetItems);
                 
-        for (int i = 0; i < Ip.size(); i++) {
-            if (Ip.get(i).getPedido().getIdPedido() == a){                
-            PedidoItems.add(Ip.get(i));
-                    }
-        }
-        
-        Object fila[][]=new Object[PedidoItems.size()][3];        
-        for (int i = 0; i < PedidoItems.size(); i++) {         
-            fila[i][0]=PedidoItems.get(i).getCantidad();
-            fila[i][1]=PedidoItems.get(i).getItem().getNombre();           
-            fila[i][2]=PedidoItems.get(i).getItem().getPrecio();
-            
-            totalPrecio = totalPrecio + (PedidoItems.get(i).getCantidad() * 
-                                         PedidoItems.get(i).getItem().getPrecio());
+        Object fila[][]=new Object[facturaDeItems.size()][3];        
+        for (int i = 0; i < facturaDeItems.size(); i++) {         
+            fila[i][0]=facturaDeItems.get(i).getCantidad();
+            fila[i][1]=facturaDeItems.get(i).getItemsDeFacturaPK().getNombre();           
+            fila[i][2]=facturaDeItems.get(i).getPrecio();                  
             }
         
-        double iva = totalPrecio*0.19;
-        double total = iva + totalPrecio;
-        
-        
         String columna[]=new String[]{"Cantidad","Producto","Precio"};        
-        emf.close();
+       
         
-        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        rm.jTable1.setModel(Modelo);
-        rm.jTextField5.setText(String.valueOf(iva));
-        rm.jTextField1.setText(String.valueOf(totalPrecio));
-        rm.jTextField2.setText(String.valueOf(a));
-        rm.jTextField7.setText(String.valueOf(factura.getCedulaCliente()));
-        rm.jComboBox1.setSelectedItem(factura.getFormaPago());
-        rm.jTextField6.setText(factura.getHoraPago());
-        rm.jTextField3.setText(factura.getIdFactura().toString());
+        Set<Pagos> SetPagos = factura.getPagosSet();  
+        List<Pagos> PagosFactura = new ArrayList<>(SetPagos);
+        
+        Object fila2[][]=new Object[PagosFactura.size()][4];        
+        for (int i = 0; i < PagosFactura.size(); i++) {         
+            fila2[i][0]=PagosFactura.get(i).getPagosPK().getIdPago();
+            fila2[i][1]=PagosFactura.get(i).getTipo();           
+            fila2[i][2]=PagosFactura.get(i).getValor();
+            fila2[i][3]=PagosFactura.get(i).getCedulaCliente();
+            }
+        
+        String columna2[] = new String[]{"Id","Tipo","Valor","Cedula Cliente"};        
+        emf.close();        
+        
+        
+        DefaultTableModel ModeloItems = new DefaultTableModel(fila,columna);
+        DefaultTableModel ModeloPagos = new DefaultTableModel(fila2,columna2);
+        rm.jTable1.setModel(ModeloItems);
+        rm.jTable2.setModel(ModeloPagos);
+        rm.jTextField1.setText(String.valueOf(factura.getValorTotal()));
+        rm.jTextField2.setText(factura.getIdFactura().toString());                         
+        
         
         this.removeAll();
         this.revalidate();

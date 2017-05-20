@@ -7,10 +7,19 @@ package GuiFacturasPagos;
 
 import ClasesTablas.Empleado;
 import ClasesTablas.Factura;
+import ClasesTablas.ItemPedido;
+import ClasesTablas.ItemsDeFactura;
+import ClasesTablas.ItemsDeFacturaPK;
 import ClasesTablas.Pedido;
 import ControladorClasesTablas.EmpleadoJpaController;
 import ControladorClasesTablas.FacturaJpaController;
+import ControladorClasesTablas.ItemPedidoJpaController;
+import ControladorClasesTablas.ItemsDeFacturaJpaController;
 import ControladorClasesTablas.PedidoJpaController;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
@@ -239,18 +248,51 @@ public class FacturarPedidos extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");//PruebaJPAPU es el nombre de nuestra unidad de persistencia
         FacturaJpaController dao = new FacturaJpaController(emf);   
-        PedidoJpaController daop = new PedidoJpaController(emf); 
-        Factura factura = new Factura();  
+        PedidoJpaController daop = new PedidoJpaController(emf);          
+        ItemPedidoJpaController daoi = new ItemPedidoJpaController(emf);  
+        ItemsDeFacturaJpaController daocho = new ItemsDeFacturaJpaController(emf);
+        Factura factura = new Factura();         
+        int a = Integer.parseInt(jTextField2.getText());
         
+        
+        
+        Pedido pedido = daop.findPedido(Integer.parseInt(jTextField2.getText()));
+        
+       int total = (Integer.parseInt(jTextField1.getText())) + 
+               (Integer.parseInt(jTextField5.getText())) +
+               (Integer.parseInt(jTextField4.getText()));
        
-        
+        pedido.setEstado("Facturado");        
         factura.setEstado("Sin Pagar");
         factura.setHoraPago(jTextField6.getText());
         factura.setIdFactura(Integer.parseInt(jTextField3.getText()));
         factura.setIdPedido(daop.findPedido(Integer.parseInt(jTextField2.getText())));
-        factura.setValorTotal(Integer.parseInt(jTextField1.getText()));
+        factura.setValorTotal(total);
+        
         try {
+            daop.edit(pedido);
             dao.create(factura);
+            List<ItemPedido> Ip = daoi.findItemPedidoEntities();                
+            
+        
+            for (int i = 0; i < Ip.size(); i++) {
+            if (Ip.get(i).getPedido().getIdPedido() == a){               
+                                            
+                ItemsDeFactura itemfac = new ItemsDeFactura();
+                ItemsDeFacturaPK itemsPK = new ItemsDeFacturaPK();
+                itemsPK.setNombre(Ip.get(i).getItem().getNombre());
+                itemsPK.setIdFactura(dao.findFactura(factura.getIdFactura()).getIdFactura());
+                
+                itemfac.setItemsDeFacturaPK(itemsPK);
+                itemfac.setCantidad(Ip.get(i).getCantidad());
+                itemfac.setFactura(dao.findFactura(factura.getIdFactura()));
+                itemfac.setPrecio(Ip.get(i).getItem().getPrecio());
+                daocho.create(itemfac); 
+                      
+                    }
+            }           
+            
+            
             JOptionPane.showMessageDialog(null, "Factura creado exitosamente.");
             
         } catch (Exception ex) {

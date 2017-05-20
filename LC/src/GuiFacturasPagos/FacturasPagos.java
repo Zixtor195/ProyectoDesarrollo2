@@ -154,14 +154,21 @@ public class FacturasPagos extends javax.swing.JFrame {
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         PedidoJpaController dao = new PedidoJpaController(emf);
-        List<Pedido> Empleados = dao.findPedidoEntities();
+        List<Pedido> Pedidos = dao.findPedidoEntities();
         
-        Object fila[][]=new Object[Empleados.size()][4];        
-        for (int i = 0; i < Empleados.size(); i++) {
-            fila[i][0]=dao.findPedidoEntities().get(i).getIdPedido();
-            fila[i][1]=dao.findPedidoEntities().get(i).getIdEmpleado().getNombres();            
-            fila[i][2]=dao.findPedidoEntities().get(i).getHoraInicio();
-            fila[i][3]=dao.findPedidoEntities().get(i).getTipo();
+        for (int i = 0; i < Pedidos.size(); i++) {
+            String estado = Pedidos.get(i).getEstado();
+            if (estado.equalsIgnoreCase("Inactivo")||estado.equalsIgnoreCase("Facturado")){
+                Pedidos.remove(i);
+            }
+        }
+        
+        Object fila[][]=new Object[Pedidos.size()][4];        
+        for (int i = 0; i < Pedidos.size(); i++) {
+            fila[i][0]=Pedidos.get(i).getIdPedido();
+            fila[i][1]=Pedidos.get(i).getIdEmpleado().getNombres();            
+            fila[i][2]=Pedidos.get(i).getHoraInicio();
+            fila[i][3]=Pedidos.get(i).getTipo();
         }
         
         String columna[]=new String[]{"ID","Mesero","Hora","Tipo"};        
@@ -187,15 +194,21 @@ public class FacturasPagos extends javax.swing.JFrame {
         FacturaJpaController dao = new FacturaJpaController(emf);
         List<Factura> Facturas = dao.findFacturaEntities();
         
-        Object fila[][]=new Object[Facturas.size()][4];        
         for (int i = 0; i < Facturas.size(); i++) {
-            fila[i][0]=dao.findFacturaEntities().get(i).getIdFactura();
-            fila[i][1]=dao.findFacturaEntities().get(i).getCedulaCliente();            
-            fila[i][2]=dao.findFacturaEntities().get(i).getHoraPago();
-            fila[i][3]=dao.findFacturaEntities().get(i).getValorTotal();
+            if (Facturas.get(i).getEstado().equalsIgnoreCase("Inactivo")){
+                Facturas.remove(i);
+            }
         }
         
-        String columna[]=new String[]{"N°Factura","Cedula Cliente","Hora Pago","Total"};        
+        Object fila[][]=new Object[Facturas.size()][4];        
+        for (int i = 0; i < Facturas.size(); i++) {
+            fila[i][0]=Facturas.get(i).getIdFactura();
+            fila[i][1]=Facturas.get(i).getEstado();            
+            fila[i][2]=Facturas.get(i).getHoraPago();
+            fila[i][3]=Facturas.get(i).getValorTotal();
+        }
+        
+        String columna[]=new String[]{"N°Factura","Estado","Hora Pago","Total"};        
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
@@ -215,15 +228,21 @@ public class FacturasPagos extends javax.swing.JFrame {
         FacturaJpaController dao = new FacturaJpaController(emf);
         List<Factura> Facturas = dao.findFacturaEntities();
         
-        Object fila[][]=new Object[Facturas.size()][4];        
         for (int i = 0; i < Facturas.size(); i++) {
-            fila[i][0]=dao.findFacturaEntities().get(i).getIdFactura();
-            fila[i][1]=dao.findFacturaEntities().get(i).getCedulaCliente();            
-            fila[i][2]=dao.findFacturaEntities().get(i).getHoraPago();
-            fila[i][3]=dao.findFacturaEntities().get(i).getValorTotal();
+            if (Facturas.get(i).getEstado().equalsIgnoreCase("Inactivo")){
+                Facturas.remove(i);
+            }
         }
         
-        String columna[]=new String[]{"N°Factura","Cedula Cliente","Hora Pago","Total"};        
+        Object fila[][]=new Object[Facturas.size()][4];        
+        for (int i = 0; i < Facturas.size(); i++) {
+            fila[i][0]=Facturas.get(i).getIdFactura();
+            fila[i][1]=Facturas.get(i).getEstado();            
+            fila[i][2]=Facturas.get(i).getHoraPago();
+            fila[i][3]=Facturas.get(i).getValorTotal();
+        }
+        
+        String columna[]=new String[]{"N°Factura","Estado","Hora Pago","Total"};        
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
@@ -243,15 +262,21 @@ public class FacturasPagos extends javax.swing.JFrame {
         FacturaJpaController dao = new FacturaJpaController(emf);
         List<Factura> Facturas = dao.findFacturaEntities();
         
-        Object fila[][]=new Object[Facturas.size()][4];        
         for (int i = 0; i < Facturas.size(); i++) {
-            fila[i][0]=dao.findFacturaEntities().get(i).getIdFactura();
-            fila[i][1]=dao.findFacturaEntities().get(i).getCedulaCliente();            
-            fila[i][2]=dao.findFacturaEntities().get(i).getHoraPago();
-            fila[i][3]=dao.findFacturaEntities().get(i).getValorTotal();
+            if (Facturas.get(i).getEstado().equalsIgnoreCase("Inactivo")){
+                Facturas.remove(i);
+            }
         }
         
-        String columna[]=new String[]{"N°Factura","Cedula Cliente","Hora Pago","Total"};        
+        Object fila[][]=new Object[Facturas.size()][4];        
+        for (int i = 0; i < Facturas.size(); i++) {
+            fila[i][0]=Facturas.get(i).getIdFactura();
+            fila[i][1]=Facturas.get(i).getEstado();            
+            fila[i][2]=Facturas.get(i).getHoraPago();
+            fila[i][3]=Facturas.get(i).getValorTotal();
+        }
+        
+        String columna[]=new String[]{"N°Factura","Estado","Hora Pago","Total"};        
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);

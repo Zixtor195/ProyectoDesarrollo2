@@ -8,11 +8,13 @@ package GuiFacturasPagos;
 import ClasesTablas.Factura;
 import ControladorClasesTablas.FacturaJpaController;
 import ControladorClasesTablas.ItemPedidoJpaController;
+import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -86,7 +88,7 @@ public class FacturasEliminar extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "No.Factura", "Cedula Cliente", "Hora_pago", "Total"
+                "No.Factura", "Estado", "Hora_pago", "Total"
             }
         ) {
             Class[] types = new Class [] {
@@ -137,12 +139,20 @@ public class FacturasEliminar extends javax.swing.JPanel {
         
         int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
         Factura factura = daof.findFactura(a); 
-        
+        factura.setEstado("Inactivo");
+       
+       
         try {
-            daof.destroy(a);
+            daof.edit(factura);
+            JOptionPane.showMessageDialog(null, "Factura Eliminada exitosamente.");
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
+        
+        
         
 
     }//GEN-LAST:event_jLabel1MouseClicked

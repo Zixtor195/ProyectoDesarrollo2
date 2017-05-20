@@ -163,8 +163,10 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
                                          PedidoItems.get(i).getItem().getPrecio());
             }
         
-        double iva = totalPrecio*0.19;
-        double total = iva + totalPrecio;
+       
+        
+        int iva = (int) Math.round((totalPrecio*0.19));
+        int total = iva + totalPrecio;
         
         
         String columna[]=new String[]{"Cantidad","Producto","Precio"};        
