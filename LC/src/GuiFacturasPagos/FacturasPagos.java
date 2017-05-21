@@ -9,9 +9,11 @@ import ClasesTablas.Factura;
 import ClasesTablas.Pedido;
 import ControladorClasesTablas.FacturaJpaController;
 import ControladorClasesTablas.PedidoJpaController;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -292,26 +294,30 @@ public class FacturasPagos extends javax.swing.JFrame {
         FacturasAPagar fm = new FacturasAPagar();
         fm.setSize(752, 686);
         
-       /*
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         FacturaJpaController dao = new FacturaJpaController(emf);
-        List<Factura> Facturas = dao.findFacturaEntities();
+        List<Factura> FacturasP = dao.findFacturaEntities();
+        List<Factura> Facturas = new ArrayList<Factura>();
+       
+        for (int i = 0; i < FacturasP.size(); i++) {           
+            if (FacturasP.get(i).getEstado().equalsIgnoreCase("Sin Pagar")){
+                Facturas.add(FacturasP.get(i));               
+            }
+        }
         
         Object fila[][]=new Object[Facturas.size()][4];        
         for (int i = 0; i < Facturas.size(); i++) {
-            fila[i][0]=dao.findFacturaEntities().get(i).getIdFactura();
-            fila[i][1]=dao.findFacturaEntities().get(i).getCedulaCliente();            
-            fila[i][2]=dao.findFacturaEntities().get(i).getHoraPago();
-            fila[i][3]=dao.findFacturaEntities().get(i).getValorTotal();
+            fila[i][0]=Facturas.get(i).getIdFactura();
+            fila[i][1]=Facturas.get(i).getEstado();            
+            fila[i][2]=Facturas.get(i).getHoraPago();
+            fila[i][3]=Facturas.get(i).getValorTotal();
         }
         
-        String columna[]=new String[]{"N°Factura","Cedula Cliente","Hora Pago","Total"};        
+        String columna[]=new String[]{"N°Factura","Estado","Hora Pago","Total"};        
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
         fm.jTable1.setModel(Modelo);
-        
-       */ 
         jPanel2.removeAll();
         jPanel2.revalidate();
         jPanel2.repaint();

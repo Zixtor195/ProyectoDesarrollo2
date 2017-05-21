@@ -38,7 +38,7 @@ public class PagosJpaController implements Serializable {
         if (pagos.getPagosPK() == null) {
             pagos.setPagosPK(new PagosPK());
         }
-        pagos.getPagosPK().setIdFactura(pagos.getFactura().getIdFactura());
+       //pagos.getPagosPK().setIdFactura(pagos.getFactura().getIdFactura());
         EntityManager em = null;
         try {
             em = getEntityManager();

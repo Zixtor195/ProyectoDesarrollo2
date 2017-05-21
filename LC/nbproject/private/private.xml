@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/familia%20BS/Documents/NetBeansProjects/ProyectoDesarrollo2/ProyectoDesarrollo2/LC/src/GuiModuloPedidos/PanelRegistrarPedido.java</file>
-            <file>file:/C:/Users/familia%20BS/Documents/NetBeansProjects/ProyectoDesarrollo2/ProyectoDesarrollo2/LC/src/ClasesTablas/Item.java</file>
-            <file>file:/C:/Users/familia%20BS/Documents/NetBeansProjects/ProyectoDesarrollo2/ProyectoDesarrollo2/LC/src/ClasesTablas/ItemPedido.java</file>
-            <file>file:/C:/Users/familia%20BS/Documents/NetBeansProjects/ProyectoDesarrollo2/ProyectoDesarrollo2/LC/src/ClasesTablas/Pedido.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiFacturasPagos/FacturasPagos.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiFacturasPagos/PanelPagoEfectivo.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/ClasesTablas/Item.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiFacturasPagos/FacturasAPagar.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPedidos/PanelConsultarPedido.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/META-INF/persistence.xml</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/ClasesTablas/Empleado.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/ClasesTablas/ItemPedidoPK.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/ClasesTablas/PagosPK.java</file>
+            <file>file:/C:/Users/Cristian%20Jurado/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/ControladorClasesTablas/EmpleadoJpaController.java</file>
         </group>
     </open-files>
 </project-private>
