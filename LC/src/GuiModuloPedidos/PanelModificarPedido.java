@@ -157,7 +157,7 @@ public class PanelModificarPedido extends javax.swing.JPanel {
     public javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 
-    private class tableModel extends AbstractTableModel{
+     private class tableModel extends AbstractTableModel{
          
         PedidoJpaController pjc = new PedidoJpaController(emf);
         List<Pedido> listapedido = pjc.findPedidoEntities();

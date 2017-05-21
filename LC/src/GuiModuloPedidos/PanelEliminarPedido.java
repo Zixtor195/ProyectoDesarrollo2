@@ -157,7 +157,7 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     
-    private class Eliminar implements MouseListener{
+     private class Eliminar implements MouseListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {

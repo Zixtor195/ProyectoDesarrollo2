@@ -9,6 +9,7 @@ import ClasesTablas.ItemPedido;
 import ClasesTablas.Pedido;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.swing.table.AbstractTableModel;
@@ -395,11 +396,13 @@ public class PanelResulConsultaPedido extends javax.swing.JPanel {
     
     private class tableModel extends AbstractTableModel{
         
-        List<ItemPedido> listaitem = (List<ItemPedido>) pedido.getItemPedidoSet();
+        Set<ItemPedido> slistItemsP = pedido.getItemPedidoSet();  
+        LinkedList<ItemPedido> listaItemsP = new LinkedList<>(slistItemsP);
+        //List<ItemPedido> listaitem = (List<ItemPedido>) pedido.getItemPedidoSet();
         
         @Override
         public int getRowCount() {
-            return listaitem.size();
+            return listaItemsP.size();
         }
 
         @Override
@@ -420,7 +423,7 @@ public class PanelResulConsultaPedido extends javax.swing.JPanel {
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             
-            ItemPedido item = listaitem.get(rowIndex);
+            ItemPedido item = listaItemsP.get(rowIndex);
             switch(columnIndex){
                 case 0: return item.getItem().getNombre();
                 case 1: return item.getCantidad();
