@@ -31,6 +31,7 @@ CREATE TABLE empleado
 	tipo_documento varchar(100) NOT NULL,
 	contrase varchar(100) NOT NULL,
 	estado varchar(100) NOT NULL,
+        usuario varchar,
 	archivo varchar
 );
 

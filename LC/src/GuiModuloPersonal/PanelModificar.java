@@ -159,18 +159,18 @@ public class PanelModificar extends javax.swing.JPanel {
         
         Empleado persona = dao.findEmpleado(a);
         ImageIcon fotografia = new ImageIcon(persona.getArchivo());
-        rm.foto.setIcon(fotografia);
-        rm.jtfNumeroID.setEnabled(false);
-        rm.jtfNombre.setText(persona.getNombres());      
-        rm.jtfApellidos.setText(persona.getApellidos());
-        rm.jcbTipoDocumento.setSelectedItem(persona.getTipoDocumento());
-        rm.jtfNumeroID.setText(persona.getIdEmpleado().toString());
-        rm.jcbCargo.setSelectedItem(persona.getCargo());
-        rm.jtfContrasena.setText(persona.getContrase());
-        rm.jtfDireccion.setText(persona.getDireccion());
-        rm.jtfEmail.setText(persona.getEmail());
-        rm.jtfCelular.setText(persona.getTelCel());
-        rm.jtfTelefono.setText(persona.getTelFijo());
+        rm.foto1.setIcon(fotografia);
+        rm.jtfNumeroID1.setEnabled(false);
+        rm.jtfNombre1.setText(persona.getNombres());      
+        rm.jtfApellido1.setText(persona.getApellidos());
+        rm.jcbTipoDocumento1.setSelectedItem(persona.getTipoDocumento());
+        rm.jtfNumeroID1.setText(persona.getIdEmpleado().toString());
+        rm.jcbCargo1.setSelectedItem(persona.getCargo());
+        rm.jPasswordField1.setText(persona.getContrase());
+        rm.jtfDireccion1.setText(persona.getDireccion());
+        rm.jtfEmail1.setText(persona.getEmail());
+        rm.jtfCelular1.setText(persona.getTelCel());
+        rm.jtfTelefono1.setText(persona.getTelFijo());
         
         emf.close();
         this.add(rm);
