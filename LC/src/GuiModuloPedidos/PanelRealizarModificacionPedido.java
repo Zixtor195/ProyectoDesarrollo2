@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
@@ -389,7 +390,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
             ItemPedido ip = new ItemPedido();
             List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
             
-            if(!txtcantidad.getText().trim().equals("")&&!listaitemsp.isSelectionEmpty()&&!txtmesa.getText().trim().equals("")){
+            if(!txtcantidad.getText().trim().equals("")&&!listaitemsp.isSelectionEmpty()&&!txtmesa.getText().trim().equals("") && Integer.parseInt(txtcantidad.getText())>0){
                
                 ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
                 ip.setItem(listaitem.get(listaitemsp.getSelectedIndex()));
@@ -415,12 +416,14 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
             //controlador itempedido
             ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
             ItemPedido ip = new ItemPedido();
-            List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
+            Set<ItemPedido> listpedidoitem = pedido.getItemPedidoSet();
+            LinkedList<ItemPedido> listaitem = new LinkedList<ItemPedido>(listpedidoitem);
+            List<ItemPedido> listaitempedido = listaItempedido();
             
             if(table.getSelectedRow() != -1){
-               
                 try {
                     ip = listaitempedido.get(table.getSelectedRow());
+                    pedido.getItemPedidoSet().remove(ip);
                     tjc.destroy(ip.getItemPedidoPK());
                     table.setModel(new tableModelPedido());
                     
@@ -447,6 +450,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
                 pedido.setIdEmpleado(getEmpleadoPedido());
                 pedido.setTipo(cbo_tipo.getSelectedItem().toString());
                 pedido.setNumMesa(Integer.parseInt(txtmesa.getText()));
+                //pedido.setItemPedidoSet();
                 
                 try {
                     pjc.edit(pedido);
@@ -550,11 +554,13 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
     
     private class tableModelPedido extends AbstractTableModel{
         
-        List<ItemPedido> listaitem = listaItempedido();
+//        Set<ItemPedido> listpedidoitem = pedido.getItemPedidoSet();
+//        LinkedList<ItemPedido> listaitem = new LinkedList<ItemPedido>(listpedidoitem);
+        LinkedList<ItemPedido> listai = listaItempedido();
         
         @Override
         public int getRowCount() {
-            return listaitem.size();
+            return listai.size();
         }
 
         @Override
@@ -575,7 +581,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             
-            ItemPedido itemtable= listaitem.get(rowIndex);
+            ItemPedido itemtable= listai.get(rowIndex);
             switch(columnIndex){
                 case 0: return itemtable.getItem().getNombre();
                 case 1: return itemtable.getCantidad();

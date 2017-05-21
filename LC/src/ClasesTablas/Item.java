@@ -55,7 +55,7 @@ public class Item implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado", nullable = false, length = 100)
     private String estado;
-    @Column(name = "foto", length = 2147483647)
+    @Column(name = "foto", length = 10485760)
     private String foto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private Set<ItemPedido> itemPedidoSet;

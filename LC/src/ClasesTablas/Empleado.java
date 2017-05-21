@@ -76,7 +76,7 @@ public class Empleado implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado", nullable = false, length = 100)
     private String estado;
-    @Column(name = "archivo", length = 2147483647)
+    @Column(name = "archivo", length = 10485759)
     private String archivo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado")
     private Set<Pedido> pedidoSet;

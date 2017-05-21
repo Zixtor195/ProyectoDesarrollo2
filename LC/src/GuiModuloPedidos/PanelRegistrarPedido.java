@@ -530,13 +530,11 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
         }
     }
     
-    public Pedido crearLocalPedido(){
+    public void crearLocalPedido(){
         
         pedido.setIdEmpleado(getEmpleadoPedido());
         pedido.setTipo(cbo_tipo.getSelectedItem().toString());
         pedido.setNumMesa(Integer.parseInt(txtmesa.getText()));
-        
-        return pedido;
         
     }
     
@@ -544,9 +542,11 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
        
         PedidoJpaController pjc = new PedidoJpaController(emf);
         pedido.setIdPedidoAumentado();
-        System.out.println(pedido.getIdPedido());
+        //System.out.println(pedido.getIdPedido());
         pedido.setHoraInicio(getHora());
         pedido.setTipo(cbo_tipo.getSelectedItem().toString());
+        pedido.setEstado("Activo");
+        pedido.setIdEmpleado(getEmpleadoPedido());
         try {
             pjc.create(pedido);
         } catch (Exception ex) {
@@ -576,7 +576,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
         List<Empleado> listaEmpleado = ejc.findEmpleadoEntities();
         
         empleado = listaEmpleado.get(cbo_mesero.getSelectedIndex());
-        //System.out.println(cbo_mesero.getSelectedIndex());
+        System.out.println(cbo_mesero.getSelectedIndex());
         
         return empleado;
     }
