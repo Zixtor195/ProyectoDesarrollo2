@@ -39,7 +39,7 @@ import javax.swing.table.TableModel;
 public class PanelRegistrarEmpleado extends javax.swing.JPanel {
     
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-    Empleado empleado = new Empleado();
+    Empleado empleado = null;
     
     public PanelRegistrarEmpleado() {
         initComponents();
@@ -505,18 +505,22 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                     //Integer idEmpleado, String nombres, String apellidos, String cargo,
                     //String telFijo, String telCel, String email, String direccion,
                     //String tipoDocumento,String usuario, String contrase, String estado
-                    empleado = new Empleado(Integer.parseInt(txtnoidentidad.getText()),txtnombre.getText(),txtapellidos.getText(),
+                    if(empleado == null){
+                        empleado = new Empleado(Integer.parseInt(txtnoidentidad.getText()),txtnombre.getText(),txtapellidos.getText(),
                             cb_cargo.getSelectedItem().toString(),txttel.getText(),txtcelular.getText(),txtemail.getText(),
                             txtdireccion.getText(),cb_tipodocumento.getSelectedItem().toString(), txtusuario.getText(), txtcontrasena.getText(),
                             cb_estado.getSelectedItem().toString());
-                    turno = new TurnosSemanales(empleado,cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText());
+                            ejc.create(empleado);
+
+                    }
+                    
+                    turno = new TurnosSemanales(empleado,cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText() );
                     System.out.println("asd" + turno);
-                    ejc.create(empleado);
                     empleado.getTurnosSemanalesSet().add(turno);
-                    
-                    
-                    
+
                     tablemodel.setModel(new tabelModelHorario());
+                    
+                    
                 } catch (Exception ex) {
                     Logger.getLogger(PanelRegistrarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -592,7 +596,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                     empleado.setContrase(txtcontrasena.getText());
                     empleado.setEstado(cb_estado.getSelectedItem().toString());
                     
-                    ejc.create(empleado);
+                    ejc.edit(empleado);
                     
                     JOptionPane.showMessageDialog(null,"El empleado ha sido creado");
                     

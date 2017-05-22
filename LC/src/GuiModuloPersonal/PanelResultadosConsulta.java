@@ -42,7 +42,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         this.empleado = empleado;
         desactivarCampos();
         cargardatos();
-        
+        tableTurno.setModel(new tabelModel());
     }
 
     /**
@@ -540,10 +540,9 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         @Override
         public String getColumnName(int column) {
             switch(column){
-                case 0: return "Nombre"; 
-                case 1: return "Apellido";
-                case 2: return "Tipo Documento"; 
-                case 3: return "No. Identificación";
+                case 0: return "Dia"; 
+                case 1: return "Hora Inicio";
+                case 2: return "Hora Fin"; 
             }
             return "";
         }
