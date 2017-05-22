@@ -217,8 +217,5 @@ public class PanelModificar extends javax.swing.JPanel {
             }
             return "";
         }
-        
     }
-
-
 }

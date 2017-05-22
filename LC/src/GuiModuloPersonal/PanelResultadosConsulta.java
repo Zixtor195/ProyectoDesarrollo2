@@ -63,7 +63,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         jLabel21 = new javax.swing.JLabel();
         foto1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnfoto = new javax.swing.JButton();
         txtnombre = new javax.swing.JTextField();
         txtapellidos = new javax.swing.JTextField();
         cb_tipodocumento = new javax.swing.JComboBox();
@@ -76,13 +76,13 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         txtusuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        cb_dia = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txthoraini = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        txthorafin = new javax.swing.JTextField();
+        btnborrar = new javax.swing.JButton();
+        btnagregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableTurno = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
@@ -138,10 +138,10 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Empleado");
 
-        jButton3.setText("CargarFoto");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnfoto.setText("CargarFoto");
+        btnfoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                btnfotoMouseClicked(evt);
             }
         });
 
@@ -167,7 +167,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Seleccione un dia:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lunes", "Martes;Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
+        cb_dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lunes", "Martes;Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Hora Inicio:");
@@ -175,12 +175,12 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Hora Fin:");
 
-        jButton2.setText("Borrar");
+        btnborrar.setText("Borrar");
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnagregar.setText("Agregar");
+        btnagregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnagregarActionPerformed(evt);
             }
         });
 
@@ -251,7 +251,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                         .addGap(169, 169, 169)
                         .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3))
+                        .addComponent(btnfoto))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
@@ -283,9 +283,9 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(jButton1)
+                        .addComponent(btnagregar)
                         .addGap(88, 88, 88)
-                        .addComponent(jButton2)
+                        .addComponent(btnborrar)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
@@ -298,9 +298,9 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                                 .addGap(251, 251, 251))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txthoraini, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cb_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txthorafin, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(45, 45, 45))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,7 +323,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
                             .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3))
+                            .addComponent(btnfoto))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(103, 103, 103)
@@ -349,7 +349,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cb_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel23)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txthorafin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
@@ -383,11 +383,11 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                         .addGap(122, 122, 122)
                         .addComponent(jLabel2)
                         .addGap(27, 27, 27)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cb_dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(92, 92, 92)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txthoraini, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addComponent(jLabel4)))
@@ -395,8 +395,8 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                         .addComponent(jLabel5)
                         .addGap(98, 98, 98)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(btnagregar)
+                            .addComponent(btnborrar))))
                 .addGap(18, 18, 18)
                 .addComponent(jlCrearEmpleado1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -404,13 +404,13 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnagregarActionPerformed
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void btnfotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnfotoMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_btnfotoMouseClicked
 
     private void jlCrearEmpleado1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlCrearEmpleado1MouseClicked
         // TODO add your handling code here:
@@ -426,14 +426,14 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnagregar;
+    private javax.swing.JButton btnborrar;
+    private javax.swing.JButton btnfoto;
     private javax.swing.JComboBox cb_cargo;
+    private javax.swing.JComboBox cb_dia;
     private javax.swing.JComboBox cb_estado;
     private javax.swing.JComboBox cb_tipodocumento;
     private javax.swing.JLabel foto1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -453,14 +453,14 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel jlCrearEmpleado1;
     public javax.swing.JTable tableTurno;
     private javax.swing.JTextField txtapellidos;
     private javax.swing.JTextField txtcelular;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtemail;
+    private javax.swing.JTextField txthorafin;
+    private javax.swing.JTextField txthoraini;
     public javax.swing.JTextField txtidentificacion;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JPasswordField txtpass;
@@ -482,10 +482,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         txtpass.setText(empleado.getContrase());
         cb_tipodocumento.setSelectedItem(empleado.getTipoDocumento());
         cb_cargo.setSelectedItem(empleado.getCargo());
-        cb_estado.setSelectedItem(empleado.getEstado());
-        
-        
-        
+        cb_estado.setSelectedItem(empleado.getEstado()); 
     }
     
     public void desactivarCampos(){
@@ -501,5 +498,11 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         cb_cargo.setEnabled(false);
         cb_estado.setEnabled(false);
         cb_tipodocumento.setEnabled(false);
+        cb_dia.setEnabled(false);
+        txthoraini.setEnabled(false);
+        txthorafin.setEnabled(false);
+        btnfoto.setEnabled(false);
+        btnagregar.setEnabled(false);
+        btnborrar.setEnabled(false);
     }
 }

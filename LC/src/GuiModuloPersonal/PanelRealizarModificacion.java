@@ -7,7 +7,6 @@ package GuiModuloPersonal;
 
 
 import ClasesTablas.Empleado;
-import ClasesTablas.TurnosSemanalesJpaController;
 import ControladorClasesTablas.EmpleadoJpaController;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
@@ -412,33 +411,6 @@ public class PanelRealizarModificacion extends javax.swing.JPanel {
 
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       // TurnosSemanalesJpaController tjc = new TurnosSemanalesJpaController(emf);
-       //urnosSemanalesPK ts = new TurnosSemanalesPK();
-       //TurnosSemanales ls = new TurnosSemanales();
-       //count++;
-
-        if(!(jTextField1.getText().equalsIgnoreCase(""))&& !(jTextField2.getText().equalsIgnoreCase("")) &&
-            (jComboBox2.getItemCount() > 0))
-        {
-
-           // int id_empleado = Integer.parseInt(re.jtfNumeroID.getText().toString());
-            String turno = jComboBox2.getSelectedItem().toString() +"/"+ jTextField1.getText().toString() +"/"
-            + jTextField2.getText().toString();
-           // ts.setIdEmpleado(id_empleado);
-           // ts.setTurno(turno);
-            //tjc.create(ts);
-
-            //Object fila[][]=new Object[count][2];
-            //for (int i = 0; i < Empleados.size(); i++) {
-                //fila[i][0]=Empleados.get(i).getNombres();
-                //fila[i][1]=Empleados.get(i).getApellidos();
-            }
-
-            //String columna[]=new String[]{"Id Empleado","Turno"};
-
-            //DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-
-        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

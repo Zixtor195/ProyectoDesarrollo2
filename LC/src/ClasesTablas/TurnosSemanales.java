@@ -6,9 +6,11 @@
 package ClasesTablas;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,8 +32,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class TurnosSemanales implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected TurnosSemanalesPK turnosSemanalesPK;
+    
+    @Id
+    @Column(name = "Id", nullable = false)
+    @Basic(optional = false)
+    private int id;
+    @Column(name = "id_empleado")
+    private int idEmpleado;
+    @Basic(optional = false)
+    @Column(name = "dia")
+    private String dia;
     @Column(name = "hora_inicio")
     private String horaInicio;
     @Column(name = "hora_fin")
@@ -40,20 +50,36 @@ public class TurnosSemanales implements Serializable {
     public TurnosSemanales() {
     }
 
-    public TurnosSemanales(TurnosSemanalesPK turnosSemanalesPK) {
-        this.turnosSemanalesPK = turnosSemanalesPK;
+    public TurnosSemanales(int id, int idEmpleado, String dia, String horaInicio, String horaFin) {
+        this.id = id;
+        this.idEmpleado = idEmpleado;
+        this.dia = dia;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
     }
 
-    public TurnosSemanales(int idEmpleado, String dia) {
-        this.turnosSemanalesPK = new TurnosSemanalesPK(idEmpleado, dia);
+    public int getId() {
+        return id;
     }
 
-    public TurnosSemanalesPK getTurnosSemanalesPK() {
-        return turnosSemanalesPK;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setTurnosSemanalesPK(TurnosSemanalesPK turnosSemanalesPK) {
-        this.turnosSemanalesPK = turnosSemanalesPK;
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
     }
 
     public String getHoraInicio() {
@@ -74,19 +100,23 @@ public class TurnosSemanales implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (turnosSemanalesPK != null ? turnosSemanalesPK.hashCode() : 0);
+        int hash = 7;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TurnosSemanales)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        TurnosSemanales other = (TurnosSemanales) object;
-        if ((this.turnosSemanalesPK == null && other.turnosSemanalesPK != null) || (this.turnosSemanalesPK != null && !this.turnosSemanalesPK.equals(other.turnosSemanalesPK))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TurnosSemanales other = (TurnosSemanales) obj;
+        if (this.id != other.id) {
             return false;
         }
         return true;
@@ -94,7 +124,7 @@ public class TurnosSemanales implements Serializable {
 
     @Override
     public String toString() {
-        return "ClasesTablas.TurnosSemanales[ turnosSemanalesPK=" + turnosSemanalesPK + " ]";
+        return "TurnosSemanales " + "id=" + id + ", idEmpleado=" + idEmpleado + ", dia=" + dia + ", horaInicio=" + horaInicio + ", horaFin=" + horaFin + '}';
     }
-    
+
 }
