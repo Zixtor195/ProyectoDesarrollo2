@@ -1,4 +1,4 @@
-/*
+﻿/*
     Universidad del Valle
     Asignatura: Desarrollo de Software II 750092M
     Tema: Entrega 4 proyecto
@@ -39,10 +39,12 @@ CREATE TABLE empleado
 CREATE TABLE turnos_semanales
 (
 	id_empleado integer NOT NULL,
-	turno varchar(100) NOT NULL,
+	dia varchar(100) NOT NULL,
+	hora_inicio varchar(100) NOT NULL,
+	hora_fin varchar(100) NOT NULL,
  	FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado),
- 	PRIMARY KEY (id_empleado, turno)
-);
+ 	PRIMARY KEY (id_empleado)
+ 	);
 
 
 CREATE TABLE item
@@ -116,10 +118,10 @@ INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,
 INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase,estado) VALUES(222,'Armando','Casas','Cajero','1234','4567','cajero@quehambre.com','cll6','cedula','222','Activo');
 INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase,estado) VALUES(333,'Pepa','Pig','Gerente','1234','4567','gerenteo@quehambre.com','cll7','cedula','333','Activo');
 
-INSERT INTO turnos_semanales (dia , hora_fin, hora_inicio, id_empleado,id) VALUES('lunes','14:00','08:00',111,1);
+/*INSERT INTO turnos_semanales (dia , hora_fin, hora_inicio, id_empleado,id) VALUES('lunes','14:00','08:00',111,1);
 INSERT INTO turnos_semanales (id_empleado ,dia , hora_inicio, hora_fin,id) VALUES(2,111,'martes','10:00','15:00');
 INSERT INTO turnos_semanales (id_empleado ,dia , hora_inicio, hora_fin,id) VALUES(3,222,'jueves','12:00','18:00');
-INSERT INTO turnos_semanales (id_empleado ,dia , hora_inicio, hora_fin,id) VALUES(4,333,'viernes','16:00','22:00');
+INSERT INTO turnos_semanales (id_empleado ,dia , hora_inicio, hora_fin,id) VALUES(4,333,'viernes','16:00','22:00');*/
 
 INSERT INTO item(id_item ,descripcion ,nombre ,categoria ,precio,estado) VALUES(100,'rica-chuleta','chuleta-a-las-brasas','Res',25000,'Activo');
 INSERT INTO item(id_item ,descripcion ,nombre ,categoria ,precio,estado) VALUES(200,'rico-helado','helado-coco','Postre',15000,'Activo');

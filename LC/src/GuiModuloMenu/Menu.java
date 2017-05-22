@@ -182,29 +182,31 @@ public class Menu extends javax.swing.JFrame {
 
     private void jlModificarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModificarItemMouseClicked
         
-        PanelModificarItem mi = new PanelModificarItem();
+       PanelModificarItem mi = new PanelModificarItem();
         mi.setSize(752,686);
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         ItemJpaController dao = new ItemJpaController(emf);
+        
         List<Item> items = dao.findItemEntities();
         
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-                items.remove(i);
+          Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
+        for (int i = 0; i < dao.findItemEntities().size(); i++) {
+            
+            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
+            {
+                  dao.findItemEntities().remove(i);
+            
+            }
+            else
+            {    
+            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
+            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
+            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
+            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
+            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
             }
         }
-        
-        
-        Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
-        for (int i = 0; i < dao.findItemEntities().size(); i++) {
-            listaItems[i][0] = items.get(i).getIdItem();
-            listaItems[i][1] = items.get(i).getNombre();
-            listaItems[i][2] = items.get(i).getPrecio();
-            listaItems[i][4] = items.get(i).getCategoria();
-            listaItems[i][3] = items.get(i).getDescripcion();
-        }
-        
         String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
         emf.close();
         
@@ -224,23 +226,25 @@ public class Menu extends javax.swing.JFrame {
         ci.setSize(752,686);
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        ItemJpaController dao = new ItemJpaController(emf);        
-        List<Item> items = dao.findItemEntities();
+        ItemJpaController dao = new ItemJpaController(emf);
         
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-                items.remove(i);
-            }
-        }
-        
-        
+    
         Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
         for (int i = 0; i < dao.findItemEntities().size(); i++) {
-            listaItems[i][0] = items.get(i).getIdItem();
-            listaItems[i][1] = items.get(i).getNombre();
-            listaItems[i][2] = items.get(i).getPrecio();
-            listaItems[i][4] = items.get(i).getCategoria();
-            listaItems[i][3] = items.get(i).getDescripcion();
+            
+            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
+            {
+                  dao.findItemEntities().remove(i);
+            
+            }
+            else
+            {    
+            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
+            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
+            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
+            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
+            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
+            }
         }
         
         String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
@@ -267,22 +271,23 @@ public class Menu extends javax.swing.JFrame {
         
         List<Item> items = dao.findItemEntities();
         
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-                items.remove(i);
-            }
-        }
-        
-        
         Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
         for (int i = 0; i < dao.findItemEntities().size(); i++) {
-            listaItems[i][0] = items.get(i).getIdItem();
-            listaItems[i][1] = items.get(i).getNombre();
-            listaItems[i][2] = items.get(i).getPrecio();
-            listaItems[i][4] = items.get(i).getCategoria();
-            listaItems[i][3] = items.get(i).getDescripcion();
+            
+            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
+            {
+                  dao.findItemEntities().remove(i);
+            
+            }
+            else
+            {    
+            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
+            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
+            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
+            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
+            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
+            }
         }
-        
         String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
         emf.close();
         
