@@ -13,7 +13,7 @@
 
  */
 
-package GuiPrincipal;
+package VistasUsuario;
 
 import ClasesTablas.Empleado;
 import ControladorClasesTablas.EmpleadoJpaController;

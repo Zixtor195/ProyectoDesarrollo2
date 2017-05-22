@@ -17,7 +17,7 @@
                     GuiModuloFacturasReportes, GuiModuloReportes
 */
 
-package GuiPrincipal;
+package VistasUsuario;
 
 import GuiFacturasPagos.FacturasPagos;
 import GuiModuloPersonal.Personal;
