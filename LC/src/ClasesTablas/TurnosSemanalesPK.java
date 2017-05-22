@@ -12,23 +12,24 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Usuario
+ * @author familia BS
  */
 @Embeddable
 public class TurnosSemanalesPK implements Serializable {
+
     @Basic(optional = false)
-    @Column(name = "id_empleado", nullable = false)
+    @Column(name = "id_empleado")
     private int idEmpleado;
     @Basic(optional = false)
-    @Column(name = "turno", nullable = false, length = 100)
-    private String turno;
+    @Column(name = "dia")
+    private String dia;
 
     public TurnosSemanalesPK() {
     }
 
-    public TurnosSemanalesPK(int idEmpleado, String turno) {
+    public TurnosSemanalesPK(int idEmpleado, String dia) {
         this.idEmpleado = idEmpleado;
-        this.turno = turno;
+        this.dia = dia;
     }
 
     public int getIdEmpleado() {
@@ -39,19 +40,19 @@ public class TurnosSemanalesPK implements Serializable {
         this.idEmpleado = idEmpleado;
     }
 
-    public String getTurno() {
-        return turno;
+    public String getDia() {
+        return dia;
     }
 
-    public void setTurno(String turno) {
-        this.turno = turno;
+    public void setDia(String dia) {
+        this.dia = dia;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (int) idEmpleado;
-        hash += (turno != null ? turno.hashCode() : 0);
+        hash += (dia != null ? dia.hashCode() : 0);
         return hash;
     }
 
@@ -65,7 +66,7 @@ public class TurnosSemanalesPK implements Serializable {
         if (this.idEmpleado != other.idEmpleado) {
             return false;
         }
-        if ((this.turno == null && other.turno != null) || (this.turno != null && !this.turno.equals(other.turno))) {
+        if ((this.dia == null && other.dia != null) || (this.dia != null && !this.dia.equals(other.dia))) {
             return false;
         }
         return true;
@@ -73,7 +74,7 @@ public class TurnosSemanalesPK implements Serializable {
 
     @Override
     public String toString() {
-        return "ClasesTablas.TurnosSemanalesPK[ idEmpleado=" + idEmpleado + ", turno=" + turno + " ]";
+        return "ClasesTablas.TurnosSemanalesPK[ idEmpleado=" + idEmpleado + ", dia=" + dia + " ]";
     }
     
 }

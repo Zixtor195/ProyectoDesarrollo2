@@ -1,27 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package GuiModuloPersonal;
 
 import ClasesTablas.Empleado;
 import ControladorClasesTablas.EmpleadoJpaController;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Moni
+ * 
  */
 public class PanelConsultar extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanellModificar
-     */
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    
     public PanelConsultar() {
         initComponents();
+        table.setModel(new tabelModelc());
     }
 
     /**
@@ -34,13 +34,13 @@ public class PanelConsultar extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtConsultar = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jlConsultarBoton = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        jtConsultar.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -95,7 +95,7 @@ public class PanelConsultar extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jtConsultar);
+        jScrollPane1.setViewportView(table);
 
         jlConsultarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
         jlConsultarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -129,40 +129,87 @@ public class PanelConsultar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlConsultarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarBotonMouseClicked
+        
+        
+        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+        List<Empleado> listEmpelado = ejc.findEmpleadoEntities();
+        Empleado empleado = new Empleado();
+        
+        empleado = listEmpelado.get(table.getSelectedRow());
+        
+        PanelResultadosConsulta rc = new PanelResultadosConsulta(empleado);
+        rc.setSize(883, 1000);
+        
+        this.setSize(1500, 1204);
         this.removeAll();
         this.revalidate();
         this.repaint();
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-        int a = Integer.parseInt(String.valueOf(jtConsultar.getValueAt(jtConsultar.getSelectedRow(),3)));
-        
-        PanelResultadosConsulta rc = new PanelResultadosConsulta();
-        rc.setSize(752, 686);
-        
-        Empleado persona = dao.findEmpleado(a);
-        ImageIcon fotografia = new ImageIcon(persona.getArchivo());
-        rc.foto1.setIcon(fotografia);
-        rc.jtfNumeroID1.setEnabled(false);
-        rc.jtfNombre1.setText(persona.getNombres());      
-        rc.jtfApellido1.setText(persona.getApellidos());
-        rc.jcbTipoDocumento1.setSelectedItem(persona.getTipoDocumento());
-        rc.jtfNumeroID1.setText(persona.getIdEmpleado().toString());
-        rc.jcbCargo1.setSelectedItem(persona.getCargo());
-        rc.jPasswordField1.setText(persona.getContrase());
-        rc.jtfDireccion1.setText(persona.getDireccion());
-        rc.jtfEmail1.setText(persona.getEmail());
-        rc.jtfCelular1.setText(persona.getTelCel());
-        rc.jtfTelefono1.setText(persona.getTelFijo());
-        emf.close();
         this.add(rc);
-        
     }//GEN-LAST:event_jlConsultarBotonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlConsultarBoton;
-    public javax.swing.JTable jtConsultar;
+    public javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
+  
+    
+    private class tabelModelc extends AbstractTableModel{
+        
+        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+        List<Empleado> listaempleado = ejc.findEmpleadoEntities();
+        //List<Empleado> listaempleado = listaActivosEmpleado();
+        
+        @Override
+        public int getRowCount() {
+                return listaempleado.size();
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 4;
+        }
+
+        @Override
+        public String getColumnName(int column) {
+            switch(column){
+                case 0: return "Nombre"; 
+                case 1: return "Apellido";
+                case 2: return "Tipo Documento"; 
+                case 3: return "No. Identificación";
+            }
+            return "";
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            
+            Empleado empleado = listaempleado.get(rowIndex);
+            
+            switch(columnIndex){
+                case 0: return empleado.getNombres(); 
+                case 1: return empleado.getApellidos();
+                case 2: return empleado.getTipoDocumento(); 
+                case 3: return empleado.getIdEmpleado();
+            }
+            return "";
+        }
+        
+    }
+    
+//    public LinkedList<Empleado> listaActivosEmpleado(){
+//        
+//        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+//        List<Empleado> listaempleado = ejc.findEmpleadoEntities();
+//        LinkedList<Empleado> listaEmpladosA= new LinkedList<>();
+//        
+//        for (Empleado listaE : listaempleado) {
+//            
+//            if(listaE.getEstado().equals("Activo")){
+//                listaEmpladosA.add(listaE);
+//            }
+//        }
+//        return listaEmpladosA;
+//    }
 }

@@ -9,23 +9,29 @@ import ClasesTablas.Empleado;
 import ControladorClasesTablas.EmpleadoJpaController;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
- * @author Moni
+ * 
  */
 public class PanelEliminar extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanellModificar
-     */
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    
     public PanelEliminar() {
         initComponents();
+        
+        table.setModel(new tabelModel());
+        
     }
 
     /**
@@ -38,13 +44,13 @@ public class PanelEliminar extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtEliminar = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jlEliminar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        jtEliminar.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -99,7 +105,7 @@ public class PanelEliminar extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jtEliminar);
+        jScrollPane1.setViewportView(table);
 
         jlEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botoneliminar.jpg"))); // NOI18N
         jlEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,22 +141,26 @@ public class PanelEliminar extends javax.swing.JPanel {
 
     private void jlEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlEliminarMouseClicked
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-        int a = Integer.parseInt(String.valueOf(jtEliminar.getValueAt(jtEliminar.getSelectedRow(),3)));
+        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+        List<Empleado> listaempleado = ejc.findEmpleadoEntities();
         
-        Empleado persona = dao.findEmpleado(a);
-        persona.setEstado("Inactivo");
-        
-        
-        try {
-            dao.edit(persona);
-            JOptionPane.showMessageDialog(null, "Empleado eliminado exitosamente.");
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
+        if (table.getSelectedRow() != 1) {
+            Empleado persona = listaempleado.get(table.getSelectedRow());
+            persona.setEstado("Inactivo");
+
+            try {
+                ejc.edit(persona);
+                table.setModel(new tabelModel());
+                JOptionPane.showMessageDialog(null, "Empleado eliminado exitosamente.");
+            } catch (NonexistentEntityException ex) {
+                Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un empleado, por favor.");
         }
+        
             
                   
             
@@ -161,6 +171,71 @@ public class PanelEliminar extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlEliminar;
-    public javax.swing.JTable jtEliminar;
+    public javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
+
+    
+    private class tabelModel extends AbstractTableModel{
+        
+        //EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+        //List<Empleado> listaempleado = ejc.findEmpleadoEntities();
+        List<Empleado> listaempleado = listaActivosEmpleado();
+        
+        @Override
+        public int getRowCount() {
+            if(listaempleado.isEmpty()){
+                
+                return 0;
+            }else{
+                return listaempleado.size();
+            }
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 4;
+        }
+
+        @Override
+        public String getColumnName(int column) {
+            switch(column){
+                case 0: return "Nombre"; 
+                case 1: return "Apellido";
+                case 2: return "Tipo Documento"; 
+                case 3: return "No. Identificación";
+            }
+            return "";
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            
+            Empleado empleado = listaempleado.get(rowIndex);
+            
+            switch(columnIndex){
+                case 0: return empleado.getNombres(); 
+                case 1: return empleado.getApellidos();
+                case 2: return empleado.getTipoDocumento(); 
+                case 3: return empleado.getIdEmpleado();
+            }
+            return "";
+        }
+    }
+    
+    public LinkedList<Empleado> listaActivosEmpleado(){
+        
+        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+        List<Empleado> listaempleado = ejc.findEmpleadoEntities();
+        LinkedList<Empleado> listaEmpladosA= new LinkedList<>();
+        
+        for (Empleado listaE : listaempleado) {
+            
+            if(listaE.getEstado().equals("Activo")){
+                listaEmpladosA.add(listaE);
+            }
+        }
+        System.out.println("asd" + listaEmpladosA);
+        return listaEmpladosA;
+    }
+
 }

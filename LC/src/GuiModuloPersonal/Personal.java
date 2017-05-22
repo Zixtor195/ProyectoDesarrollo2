@@ -127,11 +127,11 @@ public class Personal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 832, Short.MAX_VALUE)
+            .addGap(0, 962, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+            .addGap(0, 749, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,7 +191,7 @@ public class Personal extends javax.swing.JFrame {
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        me.jtModificarEmpleado.setModel(Modelo);        
+        me.table.setModel(Modelo);        
         jPanel2.removeAll();
         jPanel2.add(me);
         jPanel2.revalidate();
@@ -225,7 +225,7 @@ public class Personal extends javax.swing.JFrame {
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        ce.jtConsultar.setModel(Modelo); 
+        ce.table.setModel(Modelo); 
         
         jPanel2.removeAll();
         jPanel2.add(ce);
@@ -261,7 +261,7 @@ public class Personal extends javax.swing.JFrame {
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        Eemp.jtEliminar.setModel(Modelo); 
+        Eemp.table.setModel(Modelo); 
         
         jPanel2.removeAll();
         jPanel2.add(Eemp);

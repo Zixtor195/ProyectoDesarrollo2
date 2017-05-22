@@ -71,6 +71,9 @@ public class Empleado implements Serializable {
     @Column(name = "tipo_documento", nullable = false, length = 100)
     private String tipoDocumento;
     @Basic(optional = false)
+    @Column(name = "usuario", nullable = false, length = 100)
+    private String usuario;
+    @Basic(optional = false)
     @Column(name = "contrase", nullable = false, length = 100)
     private String contrase;
     @Basic(optional = false)
@@ -90,7 +93,7 @@ public class Empleado implements Serializable {
         this.idEmpleado = idEmpleado;
     }
 
-    public Empleado(Integer idEmpleado, String nombres, String apellidos, String cargo, String telFijo, String telCel, String email, String direccion, String tipoDocumento, String contrase, String estado) {
+    public Empleado(Integer idEmpleado, String nombres, String apellidos, String cargo, String telFijo, String telCel, String email, String direccion, String tipoDocumento,String usuario, String contrase, String estado) {
         this.idEmpleado = idEmpleado;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -100,6 +103,7 @@ public class Empleado implements Serializable {
         this.email = email;
         this.direccion = direccion;
         this.tipoDocumento = tipoDocumento;
+        this.usuario = usuario;
         this.contrase = contrase;
         this.estado = estado;
     }
@@ -176,6 +180,14 @@ public class Empleado implements Serializable {
         this.tipoDocumento = tipoDocumento;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
     public String getContrase() {
         return contrase;
     }
@@ -240,7 +252,7 @@ public class Empleado implements Serializable {
 
     @Override
     public String toString() {
-        return "ClasesTablas.Empleado[ idEmpleado=" + idEmpleado + " ]";
+        return "ClasesTablas.Empleado[ idEmpleado=" + idEmpleado;
     }
     
 }

@@ -13,6 +13,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -24,19 +25,21 @@ import javax.persistence.Persistence;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
 import static sun.security.krb5.Confounder.bytes;
 
 /**
  *
- * @author Moni
+ * 
  */
 public class PanelModificar extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanellModificar
-     */
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    
     public PanelModificar() {
         initComponents();
+        
+        
     }
 
     /**
@@ -50,13 +53,13 @@ public class PanelModificar extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtModificarEmpleado = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jlContinuar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        jtModificarEmpleado.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -111,7 +114,7 @@ public class PanelModificar extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jtModificarEmpleado);
+        jScrollPane1.setViewportView(table);
 
         jlContinuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
         jlContinuar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,34 +148,21 @@ public class PanelModificar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContinuarMouseClicked
+
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-        int a = Integer.parseInt(String.valueOf(jtModificarEmpleado.getValueAt(jtModificarEmpleado.getSelectedRow(),3)));
-              
+        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+        List<Empleado> listEmpelado = ejc.findEmpleadoEntities();
+        Empleado empleado = new Empleado();
+        
+        empleado = listEmpelado.get(table.getSelectedRow());
+        
+        PanelRealizarModificacion rm = new PanelRealizarModificacion(empleado);
+        rm.setSize(883, 1000);
+        
+        this.setSize(1500, 1204);
         this.removeAll();
         this.revalidate();
         this.repaint();
-        
-        PanelRealizarModificacion rm = new PanelRealizarModificacion();
-        rm.setSize(752, 686);
-        
-        Empleado persona = dao.findEmpleado(a);
-        ImageIcon fotografia = new ImageIcon(persona.getArchivo());
-        rm.foto1.setIcon(fotografia);
-        rm.jtfNumeroID1.setEnabled(false);
-        rm.jtfNombre1.setText(persona.getNombres());      
-        rm.jtfApellido1.setText(persona.getApellidos());
-        rm.jcbTipoDocumento1.setSelectedItem(persona.getTipoDocumento());
-        rm.jtfNumeroID1.setText(persona.getIdEmpleado().toString());
-        rm.jcbCargo1.setSelectedItem(persona.getCargo());
-        rm.jPasswordField1.setText(persona.getContrase());
-        rm.jtfDireccion1.setText(persona.getDireccion());
-        rm.jtfEmail1.setText(persona.getEmail());
-        rm.jtfCelular1.setText(persona.getTelCel());
-        rm.jtfTelefono1.setText(persona.getTelFijo());
-        
-        emf.close();
         this.add(rm);
         
     }//GEN-LAST:event_jlContinuarMouseClicked
@@ -181,6 +171,54 @@ public class PanelModificar extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JLabel jlContinuar;
-    public javax.swing.JTable jtModificarEmpleado;
+    public javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
+
+
+    
+    private class tabelModel extends AbstractTableModel{
+        
+        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+        List<Empleado> listaempleado = ejc.findEmpleadoEntities();
+        //List<Empleado> listaempleado = listaActivosEmpleado();
+        
+        @Override
+        public int getRowCount() {
+                return listaempleado.size();
+
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 4;
+        }
+
+        @Override
+        public String getColumnName(int column) {
+            switch(column){
+                case 0: return "Nombre"; 
+                case 1: return "Apellido";
+                case 2: return "Tipo Documento"; 
+                case 3: return "No. Identificación";
+            }
+            return "";
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            
+            Empleado empleado = listaempleado.get(rowIndex);
+            
+            switch(columnIndex){
+                case 0: return empleado.getNombres(); 
+                case 1: return empleado.getApellidos();
+                case 2: return empleado.getTipoDocumento(); 
+                case 3: return empleado.getIdEmpleado();
+            }
+            return "";
+        }
+        
+    }
+
+
 }

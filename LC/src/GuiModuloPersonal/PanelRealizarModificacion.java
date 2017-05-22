@@ -26,15 +26,17 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Moni
+ * 
  */
 public class PanelRealizarModificacion extends javax.swing.JPanel {
 
-     String ruta = "";
+     private Empleado empleado = new Empleado();
     
-    
-    public PanelRealizarModificacion() {
+    public PanelRealizarModificacion(Empleado empleado) {
         initComponents();
+        
+        this.empleado = empleado;
+        
     }
 
     /**

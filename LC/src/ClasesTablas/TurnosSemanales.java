@@ -6,10 +6,9 @@
 package ClasesTablas;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -17,22 +16,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author familia BS
  */
 @Entity
 @Table(name = "turnos_semanales")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TurnosSemanales.findAll", query = "SELECT t FROM TurnosSemanales t"),
-    @NamedQuery(name = "TurnosSemanales.findByIdEmpleado", query = "SELECT t FROM TurnosSemanales t WHERE t.turnosSemanalesPK.idEmpleado = :idEmpleado"),
-    @NamedQuery(name = "TurnosSemanales.findByTurno", query = "SELECT t FROM TurnosSemanales t WHERE t.turnosSemanalesPK.turno = :turno")})
+    @NamedQuery(name = "TurnosSemanales.findAll", query = "SELECT t FROM TurnosSemanales t")
+    , @NamedQuery(name = "TurnosSemanales.findByIdEmpleado", query = "SELECT t FROM TurnosSemanales t WHERE t.turnosSemanalesPK.idEmpleado = :idEmpleado")
+    , @NamedQuery(name = "TurnosSemanales.findByDia", query = "SELECT t FROM TurnosSemanales t WHERE t.turnosSemanalesPK.dia = :dia")
+    , @NamedQuery(name = "TurnosSemanales.findByHoraInicio", query = "SELECT t FROM TurnosSemanales t WHERE t.horaInicio = :horaInicio")
+    , @NamedQuery(name = "TurnosSemanales.findByHoraFin", query = "SELECT t FROM TurnosSemanales t WHERE t.horaFin = :horaFin")})
 public class TurnosSemanales implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected TurnosSemanalesPK turnosSemanalesPK;
-    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Empleado empleado;
+    @Column(name = "hora_inicio")
+    private String horaInicio;
+    @Column(name = "hora_fin")
+    private String horaFin;
 
     public TurnosSemanales() {
     }
@@ -41,8 +44,8 @@ public class TurnosSemanales implements Serializable {
         this.turnosSemanalesPK = turnosSemanalesPK;
     }
 
-    public TurnosSemanales(int idEmpleado, String turno) {
-        this.turnosSemanalesPK = new TurnosSemanalesPK(idEmpleado, turno);
+    public TurnosSemanales(int idEmpleado, String dia) {
+        this.turnosSemanalesPK = new TurnosSemanalesPK(idEmpleado, dia);
     }
 
     public TurnosSemanalesPK getTurnosSemanalesPK() {
@@ -53,12 +56,20 @@ public class TurnosSemanales implements Serializable {
         this.turnosSemanalesPK = turnosSemanalesPK;
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
+    public String getHoraInicio() {
+        return horaInicio;
     }
 
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public String getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(String horaFin) {
+        this.horaFin = horaFin;
     }
 
     @Override
