@@ -21,9 +21,12 @@ package GuiModuloPersonal;
 
 import ClasesTablas.Empleado;
 import ControladorClasesTablas.EmpleadoJpaController;
+import java.awt.Dimension;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JScrollPane;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -103,7 +106,7 @@ public class Personal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jLabel6)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,16 +121,18 @@ public class Personal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setAutoscrolls(true);
+        jPanel2.setPreferredSize(new java.awt.Dimension(974, 850));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 962, Short.MAX_VALUE)
+            .addGap(0, 903, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,15 +145,13 @@ public class Personal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
         );
 
         pack();
@@ -157,41 +160,42 @@ public class Personal extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
 
         PanelRegistrarEmpleado re = new PanelRegistrarEmpleado();
-        re.setSize(940,686);
-        
+        re.setSize(900, 838);
         jPanel2.removeAll();
         jPanel2.add(re);
         jPanel2.revalidate();
         jPanel2.repaint();
+        
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         
         PanelModificar me = new PanelModificar();
-        me.setSize(752,686);
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-        List<Empleado> Empleados = dao.findEmpleadoEntities();
+        me.setSize(900, 838);
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+//        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
+//        List<Empleado> Empleados = dao.findEmpleadoEntities();
         
-        for (int i = 0; i < Empleados.size(); i++) {
-            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-                Empleados.remove(i);
-            }
-        }
-        
-        Object fila[][]=new Object[Empleados.size()][4];        
-        for (int i = 0; i < Empleados.size(); i++) {
-            fila[i][0]=Empleados.get(i).getNombres();
-            fila[i][1]=Empleados.get(i).getApellidos();            
-            fila[i][2]=Empleados.get(i).getTipoDocumento();
-            fila[i][3]=Empleados.get(i).getIdEmpleado();
-        }
-        
-        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
-        emf.close();
-        
-        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        me.table.setModel(Modelo);        
+//        for (int i = 0; i < Empleados.size(); i++) {
+//            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
+//                Empleados.remove(i);
+//            }
+//        }
+//        
+//        Object fila[][]=new Object[Empleados.size()][4];        
+//        for (int i = 0; i < Empleados.size(); i++) {
+//            fila[i][0]=Empleados.get(i).getNombres();
+//            fila[i][1]=Empleados.get(i).getApellidos();            
+//            fila[i][2]=Empleados.get(i).getTipoDocumento();
+//            fila[i][3]=Empleados.get(i).getIdEmpleado();
+//        }
+//        
+//        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
+//        emf.close();
+//        
+//        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
+//        me.table.setModel(Modelo);   
+
         jPanel2.removeAll();
         jPanel2.add(me);
         jPanel2.revalidate();
@@ -203,29 +207,29 @@ public class Personal extends javax.swing.JFrame {
         PanelConsultar ce = new PanelConsultar();
         ce.setSize(752,686);
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-        List<Empleado> Empleados = dao.findEmpleadoEntities();
-        
-        for (int i = 0; i < Empleados.size(); i++) {
-            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-                Empleados.remove(i);
-            }
-        }
-        
-        Object fila[][]=new Object[Empleados.size()][4];        
-        for (int i = 0; i < Empleados.size(); i++) {
-            fila[i][0]=Empleados.get(i).getNombres();
-            fila[i][1]=Empleados.get(i).getApellidos();            
-            fila[i][2]=Empleados.get(i).getTipoDocumento();
-            fila[i][3]=Empleados.get(i).getIdEmpleado();
-        }
-        
-        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
-        emf.close();
-        
-        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        ce.table.setModel(Modelo); 
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+//        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
+//        List<Empleado> Empleados = dao.findEmpleadoEntities();
+//        
+//        for (int i = 0; i < Empleados.size(); i++) {
+//            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
+//                Empleados.remove(i);
+//            }
+//        }
+//        
+//        Object fila[][]=new Object[Empleados.size()][4];        
+//        for (int i = 0; i < Empleados.size(); i++) {
+//            fila[i][0]=Empleados.get(i).getNombres();
+//            fila[i][1]=Empleados.get(i).getApellidos();            
+//            fila[i][2]=Empleados.get(i).getTipoDocumento();
+//            fila[i][3]=Empleados.get(i).getIdEmpleado();
+//        }
+//        
+//        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
+//        emf.close();
+//        
+//        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
+//        ce.table.setModel(Modelo); 
         
         jPanel2.removeAll();
         jPanel2.add(ce);
@@ -239,29 +243,29 @@ public class Personal extends javax.swing.JFrame {
         PanelEliminar Eemp = new PanelEliminar();
         Eemp.setSize(752,686);
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-        List<Empleado> Empleados = dao.findEmpleadoEntities();
-        
-        for (int i = 0; i < Empleados.size(); i++) {
-            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-                Empleados.remove(i);
-            }
-        }
-        
-        Object fila[][]=new Object[Empleados.size()][4];        
-        for (int i = 0; i < Empleados.size(); i++) {
-            fila[i][0]=Empleados.get(i).getNombres();
-            fila[i][1]=Empleados.get(i).getApellidos();            
-            fila[i][2]=Empleados.get(i).getTipoDocumento();
-            fila[i][3]=Empleados.get(i).getIdEmpleado();
-        }
-        
-        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
-        emf.close();
-        
-        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        Eemp.table.setModel(Modelo); 
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+//        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
+//        List<Empleado> Empleados = dao.findEmpleadoEntities();
+//        
+//        for (int i = 0; i < Empleados.size(); i++) {
+//            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
+//                Empleados.remove(i);
+//            }
+//        }
+//        
+//        Object fila[][]=new Object[Empleados.size()][4];        
+//        for (int i = 0; i < Empleados.size(); i++) {
+//            fila[i][0]=Empleados.get(i).getNombres();
+//            fila[i][1]=Empleados.get(i).getApellidos();            
+//            fila[i][2]=Empleados.get(i).getTipoDocumento();
+//            fila[i][3]=Empleados.get(i).getIdEmpleado();
+//        }
+//        
+//        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
+//        emf.close();
+//        
+//        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
+//        Eemp.table.setModel(Modelo); 
         
         jPanel2.removeAll();
         jPanel2.add(Eemp);

@@ -5,17 +5,17 @@
  */
 package ControladorClasesTablas;
 
-import ClasesTablas.TurnosSemanales;
-import ControladorClasesTablas.exceptions.NonexistentEntityException;
-import ControladorClasesTablas.exceptions.PreexistingEntityException;
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import ClasesTablas.Empleado;
+import ClasesTablas.TurnosSemanales;
+import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -32,18 +32,22 @@ public class TurnosSemanalesJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(TurnosSemanales turnosSemanales) throws PreexistingEntityException, Exception {
+    public void create(TurnosSemanales turnosSemanales) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(turnosSemanales);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findTurnosSemanales(turnosSemanales.getId()) != null) {
-                throw new PreexistingEntityException("TurnosSemanales " + turnosSemanales + " already exists.", ex);
+            Empleado idEmpleado = turnosSemanales.getIdEmpleado();
+            if (idEmpleado != null) {
+                idEmpleado = em.getReference(idEmpleado.getClass(), idEmpleado.getIdEmpleado());
+                turnosSemanales.setIdEmpleado(idEmpleado);
             }
-            throw ex;
+            em.persist(turnosSemanales);
+            if (idEmpleado != null) {
+                idEmpleado.getTurnosSemanalesSet().add(turnosSemanales);
+                idEmpleado = em.merge(idEmpleado);
+            }
+            em.getTransaction().commit();
         } finally {
             if (em != null) {
                 em.close();
@@ -56,7 +60,22 @@ public class TurnosSemanalesJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            TurnosSemanales persistentTurnosSemanales = em.find(TurnosSemanales.class, turnosSemanales.getId());
+            Empleado idEmpleadoOld = persistentTurnosSemanales.getIdEmpleado();
+            Empleado idEmpleadoNew = turnosSemanales.getIdEmpleado();
+            if (idEmpleadoNew != null) {
+                idEmpleadoNew = em.getReference(idEmpleadoNew.getClass(), idEmpleadoNew.getIdEmpleado());
+                turnosSemanales.setIdEmpleado(idEmpleadoNew);
+            }
             turnosSemanales = em.merge(turnosSemanales);
+            if (idEmpleadoOld != null && !idEmpleadoOld.equals(idEmpleadoNew)) {
+                idEmpleadoOld.getTurnosSemanalesSet().remove(turnosSemanales);
+                idEmpleadoOld = em.merge(idEmpleadoOld);
+            }
+            if (idEmpleadoNew != null && !idEmpleadoNew.equals(idEmpleadoOld)) {
+                idEmpleadoNew.getTurnosSemanalesSet().add(turnosSemanales);
+                idEmpleadoNew = em.merge(idEmpleadoNew);
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -85,6 +104,11 @@ public class TurnosSemanalesJpaController implements Serializable {
                 turnosSemanales.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The turnosSemanales with id " + id + " no longer exists.", enfe);
+            }
+            Empleado idEmpleado = turnosSemanales.getIdEmpleado();
+            if (idEmpleado != null) {
+                idEmpleado.getTurnosSemanalesSet().remove(turnosSemanales);
+                idEmpleado = em.merge(idEmpleado);
             }
             em.remove(turnosSemanales);
             em.getTransaction().commit();

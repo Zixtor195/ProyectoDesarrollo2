@@ -7,12 +7,18 @@ package ClasesTablas;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -25,8 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TurnosSemanales.findAll", query = "SELECT t FROM TurnosSemanales t")
-    , @NamedQuery(name = "TurnosSemanales.findByIdEmpleado", query = "SELECT t FROM TurnosSemanales t WHERE t.turnosSemanalesPK.idEmpleado = :idEmpleado")
-    , @NamedQuery(name = "TurnosSemanales.findByDia", query = "SELECT t FROM TurnosSemanales t WHERE t.turnosSemanalesPK.dia = :dia")
+    , @NamedQuery(name = "TurnosSemanales.findByIdEmpleado", query = "SELECT t FROM TurnosSemanales t WHERE t.idEmpleado = :idEmpleado")
+    , @NamedQuery(name = "TurnosSemanales.findByDia", query = "SELECT t FROM TurnosSemanales t WHERE t.dia = :dia")
     , @NamedQuery(name = "TurnosSemanales.findByHoraInicio", query = "SELECT t FROM TurnosSemanales t WHERE t.horaInicio = :horaInicio")
     , @NamedQuery(name = "TurnosSemanales.findByHoraFin", query = "SELECT t FROM TurnosSemanales t WHERE t.horaFin = :horaFin")})
 public class TurnosSemanales implements Serializable {
@@ -34,11 +40,13 @@ public class TurnosSemanales implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "Id", nullable = false)
     @Basic(optional = false)
     private int id;
-    @Column(name = "id_empleado")
-    private int idEmpleado;
+    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Empleado idEmpleado;
     @Basic(optional = false)
     @Column(name = "dia")
     private String dia;
@@ -50,8 +58,7 @@ public class TurnosSemanales implements Serializable {
     public TurnosSemanales() {
     }
 
-    public TurnosSemanales(int id, int idEmpleado, String dia, String horaInicio, String horaFin) {
-        this.id = id;
+    public TurnosSemanales(Empleado idEmpleado, String dia, String horaInicio, String horaFin) {
         this.idEmpleado = idEmpleado;
         this.dia = dia;
         this.horaInicio = horaInicio;
@@ -66,11 +73,11 @@ public class TurnosSemanales implements Serializable {
         this.id = id;
     }
 
-    public int getIdEmpleado() {
+    public Empleado getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado(int idEmpleado) {
+    public void setIdEmpleado(Empleado idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 

@@ -152,19 +152,21 @@ public class PanelModificar extends javax.swing.JPanel {
         
         EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
         List<Empleado> listEmpelado = ejc.findEmpleadoEntities();
-        Empleado empleado = new Empleado();
+        Empleado empleado = null;
         
-        empleado = listEmpelado.get(table.getSelectedRow());
-        
-        PanelRealizarModificacion rm = new PanelRealizarModificacion(empleado);
-        rm.setSize(883, 1000);
-        
-        this.setSize(1500, 1204);
-        this.removeAll();
-        this.revalidate();
-        this.repaint();
-        this.add(rm);
-        
+        if (table.getSelectedRow() != -1) {
+            empleado = listEmpelado.get(table.getSelectedRow());
+            PanelRealizarModificacion rm = new PanelRealizarModificacion(empleado);
+            rm.setSize(883, 1000);
+
+            this.setSize(1500, 1204);
+            this.removeAll();
+            this.revalidate();
+            this.repaint();
+            this.add(rm);
+        } else {
+            JOptionPane.showMessageDialog(null,"Por favor, seleccione el empleado a consultar");
+        }
     }//GEN-LAST:event_jlContinuarMouseClicked
 
 

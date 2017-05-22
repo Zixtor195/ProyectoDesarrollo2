@@ -7,12 +7,16 @@ package GuiModuloPersonal;
 
 
 import ClasesTablas.Empleado;
+import ClasesTablas.TurnosSemanales;
 import ControladorClasesTablas.EmpleadoJpaController;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -21,6 +25,7 @@ import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
 
 
 /**
@@ -91,6 +96,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         cb_estado = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setAutoscrolls(true);
 
         jlCrearEmpleado1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton aceptar.jpg"))); // NOI18N
         jlCrearEmpleado1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -233,6 +239,8 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Estado:");
 
+        cb_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -281,12 +289,6 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                             .addComponent(cb_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel6))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(btnagregar)
-                        .addGap(88, 88, 88)
-                        .addComponent(btnborrar)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,11 +306,18 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                                 .addGap(45, 45, 45))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlCrearEmpleado1)
-                .addGap(319, 319, 319))
+                                .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(btnagregar)
+                                .addGap(88, 88, 88)
+                                .addComponent(btnborrar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(144, 144, 144)
+                                .addComponent(jlCrearEmpleado1)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,9 +385,11 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                                             .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cb_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlCrearEmpleado1)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cb_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel7))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(122, 122, 122)
                         .addComponent(jLabel2)
@@ -397,9 +408,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnagregar)
                             .addComponent(btnborrar))))
-                .addGap(18, 18, 18)
-                .addComponent(jlCrearEmpleado1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -504,5 +513,53 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         btnfoto.setEnabled(false);
         btnagregar.setEnabled(false);
         btnborrar.setEnabled(false);
+        tableTurno.setEnabled(false);
     }
+    
+    private class tabelModel extends AbstractTableModel{
+        
+        //EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+        //List<Empleado> listaempleado = ejc.findEmpleadoEntities();
+        Set<TurnosSemanales> listaturnosset = empleado.getTurnosSemanalesSet();
+        LinkedList<TurnosSemanales> listaturnos = new LinkedList<>(listaturnosset);
+        
+        @Override
+        public int getRowCount() {
+            if(listaturnos.isEmpty()){
+                return 0;
+            }else{
+                return listaturnos.size();
+            }
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 4;
+        }
+
+        @Override
+        public String getColumnName(int column) {
+            switch(column){
+                case 0: return "Nombre"; 
+                case 1: return "Apellido";
+                case 2: return "Tipo Documento"; 
+                case 3: return "No. Identificación";
+            }
+            return "";
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            
+            TurnosSemanales turno = listaturnos.get(rowIndex);
+            
+            switch(columnIndex){
+                case 0: return turno.getDia(); 
+                case 1: return turno.getHoraInicio();
+                case 2: return turno.getHoraFin(); 
+            }
+            return "";
+        }
+    }
+    
 }

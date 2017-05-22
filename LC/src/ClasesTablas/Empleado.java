@@ -83,7 +83,7 @@ public class Empleado implements Serializable {
     private String archivo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado")
     private Set<Pedido> pedidoSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado")
     private Set<TurnosSemanales> turnosSemanalesSet;
 
     public Empleado() {

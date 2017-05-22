@@ -145,7 +145,7 @@ public class PanelEliminar extends javax.swing.JPanel {
         List<Empleado> listaempleado = ejc.findEmpleadoEntities();
         
         if (table.getSelectedRow() != 1) {
-            Empleado persona = listaempleado.get(table.getSelectedRow());
+            Empleado persona = ejc.findEmpleado( Integer.parseInt(table.getValueAt(table.getSelectedRow(),3).toString()) );
             persona.setEstado("Inactivo");
 
             try {
@@ -184,7 +184,6 @@ public class PanelEliminar extends javax.swing.JPanel {
         @Override
         public int getRowCount() {
             if(listaempleado.isEmpty()){
-                
                 return 0;
             }else{
                 return listaempleado.size();

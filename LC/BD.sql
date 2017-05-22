@@ -116,10 +116,10 @@ INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,
 INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase,estado) VALUES(222,'Armando','Casas','Cajero','1234','4567','cajero@quehambre.com','cll6','cedula','222','Activo');
 INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase,estado) VALUES(333,'Pepa','Pig','Gerente','1234','4567','gerenteo@quehambre.com','cll7','cedula','333','Activo');
 
-INSERT INTO turnos_semanales (id_empleado ,turno) VALUES(111,'diurno-lunes');
-INSERT INTO turnos_semanales (id_empleado ,turno) VALUES(111,'nocturno-martes');
-INSERT INTO turnos_semanales (id_empleado ,turno) VALUES(222,'nocturno-jueves');
-INSERT INTO turnos_semanales (id_empleado ,turno) VALUES(333,'diurno-viernes');
+INSERT INTO turnos_semanales (id_empleado ,turno) VALUES(111,'lunes','08:00','14:00');
+INSERT INTO turnos_semanales (id_empleado ,turno) VALUES(111,'martes','10:00','15:00');
+INSERT INTO turnos_semanales (id_empleado ,turno) VALUES(222,'jueves','12:00','18:00');
+INSERT INTO turnos_semanales (id_empleado ,turno) VALUES(333,'viernes','16:00','22:00');
 
 INSERT INTO item(id_item ,descripcion ,nombre ,categoria ,precio,estado) VALUES(100,'rica-chuleta','chuleta-a-las-brasas','Res',25000,'Activo');
 INSERT INTO item(id_item ,descripcion ,nombre ,categoria ,precio,estado) VALUES(200,'rico-helado','helado-coco','Postre',15000,'Activo');
