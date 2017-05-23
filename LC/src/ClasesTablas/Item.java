@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,43 +22,44 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author familia BS
  */
 @Entity
 @Table(name = "item")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i"),
-    @NamedQuery(name = "Item.findByIdItem", query = "SELECT i FROM Item i WHERE i.idItem = :idItem"),
-    @NamedQuery(name = "Item.findByDescripcion", query = "SELECT i FROM Item i WHERE i.descripcion = :descripcion"),
-    @NamedQuery(name = "Item.findByNombre", query = "SELECT i FROM Item i WHERE i.nombre = :nombre"),
-    @NamedQuery(name = "Item.findByCategoria", query = "SELECT i FROM Item i WHERE i.categoria = :categoria"),
-    @NamedQuery(name = "Item.findByPrecio", query = "SELECT i FROM Item i WHERE i.precio = :precio"),
-    @NamedQuery(name = "Item.findByEstado", query = "SELECT i FROM Item i WHERE i.estado = :estado"),
-    @NamedQuery(name = "Item.findByFoto", query = "SELECT i FROM Item i WHERE i.foto = :foto")})
+    @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i")
+    , @NamedQuery(name = "Item.findByIdItem", query = "SELECT i FROM Item i WHERE i.idItem = :idItem")
+    , @NamedQuery(name = "Item.findByDescripcion", query = "SELECT i FROM Item i WHERE i.descripcion = :descripcion")
+    , @NamedQuery(name = "Item.findByNombre", query = "SELECT i FROM Item i WHERE i.nombre = :nombre")
+    , @NamedQuery(name = "Item.findByCategoria", query = "SELECT i FROM Item i WHERE i.categoria = :categoria")
+    , @NamedQuery(name = "Item.findByPrecio", query = "SELECT i FROM Item i WHERE i.precio = :precio")
+    , @NamedQuery(name = "Item.findByEstado", query = "SELECT i FROM Item i WHERE i.estado = :estado")
+    , @NamedQuery(name = "Item.findByFoto", query = "SELECT i FROM Item i WHERE i.foto = :foto")})
 public class Item implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id_item", nullable = false)
+    @Column(name = "id_item")
     private Integer idItem;
     @Basic(optional = false)
-    @Column(name = "descripcion", nullable = false, length = 100)
+    @Column(name = "descripcion")
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 20)
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "categoria", length = 100)
+    @Column(name = "categoria")
     private String categoria;
     @Basic(optional = false)
-    @Column(name = "precio", nullable = false)
+    @Column(name = "precio")
     private int precio;
     @Basic(optional = false)
-    @Column(name = "estado", nullable = false, length = 100)
+    @Column(name = "estado")
     private String estado;
-    @Column(name = "foto", length = 2147483647)
+    @Column(name = "foto")
     private String foto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.LAZY)
     private Set<ItemPedido> itemPedidoSet;
 
     public Item() {

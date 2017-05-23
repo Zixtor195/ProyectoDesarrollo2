@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -19,29 +20,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author familia BS
  */
 @Entity
 @Table(name = "items_de_factura")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ItemsDeFactura.findAll", query = "SELECT i FROM ItemsDeFactura i"),
-    @NamedQuery(name = "ItemsDeFactura.findByNombre", query = "SELECT i FROM ItemsDeFactura i WHERE i.itemsDeFacturaPK.nombre = :nombre"),
-    @NamedQuery(name = "ItemsDeFactura.findByCantidad", query = "SELECT i FROM ItemsDeFactura i WHERE i.cantidad = :cantidad"),
-    @NamedQuery(name = "ItemsDeFactura.findByPrecio", query = "SELECT i FROM ItemsDeFactura i WHERE i.precio = :precio"),
-    @NamedQuery(name = "ItemsDeFactura.findByIdFactura", query = "SELECT i FROM ItemsDeFactura i WHERE i.itemsDeFacturaPK.idFactura = :idFactura")})
+    @NamedQuery(name = "ItemsDeFactura.findAll", query = "SELECT i FROM ItemsDeFactura i")
+    , @NamedQuery(name = "ItemsDeFactura.findByNombre", query = "SELECT i FROM ItemsDeFactura i WHERE i.itemsDeFacturaPK.nombre = :nombre")
+    , @NamedQuery(name = "ItemsDeFactura.findByCantidad", query = "SELECT i FROM ItemsDeFactura i WHERE i.cantidad = :cantidad")
+    , @NamedQuery(name = "ItemsDeFactura.findByPrecio", query = "SELECT i FROM ItemsDeFactura i WHERE i.precio = :precio")
+    , @NamedQuery(name = "ItemsDeFactura.findByIdFactura", query = "SELECT i FROM ItemsDeFactura i WHERE i.itemsDeFacturaPK.idFactura = :idFactura")})
 public class ItemsDeFactura implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ItemsDeFacturaPK itemsDeFacturaPK;
     @Basic(optional = false)
-    @Column(name = "cantidad", nullable = false)
+    @Column(name = "cantidad")
     private int cantidad;
     @Basic(optional = false)
-    @Column(name = "precio", nullable = false)
+    @Column(name = "precio")
     private int precio;
-    @JoinColumn(name = "id_factura", referencedColumnName = "id_factura", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_factura", referencedColumnName = "id_factura", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Factura factura;
 
     public ItemsDeFactura() {

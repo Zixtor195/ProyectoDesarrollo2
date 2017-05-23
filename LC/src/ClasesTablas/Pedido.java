@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,45 +24,46 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author familia BS
  */
 @Entity
 @Table(name = "pedido")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p"),
-    @NamedQuery(name = "Pedido.findByIdPedido", query = "SELECT p FROM Pedido p WHERE p.idPedido = :idPedido"),
-    @NamedQuery(name = "Pedido.findByHoraInicio", query = "SELECT p FROM Pedido p WHERE p.horaInicio = :horaInicio"),
-    @NamedQuery(name = "Pedido.findByHoraUltimoItem", query = "SELECT p FROM Pedido p WHERE p.horaUltimoItem = :horaUltimoItem"),
-    @NamedQuery(name = "Pedido.findByTipo", query = "SELECT p FROM Pedido p WHERE p.tipo = :tipo"),
-    @NamedQuery(name = "Pedido.findByNumMesa", query = "SELECT p FROM Pedido p WHERE p.numMesa = :numMesa"),
-    @NamedQuery(name = "Pedido.findByEstado", query = "SELECT p FROM Pedido p WHERE p.estado = :estado")})
+    @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p")
+    , @NamedQuery(name = "Pedido.findByIdPedido", query = "SELECT p FROM Pedido p WHERE p.idPedido = :idPedido")
+    , @NamedQuery(name = "Pedido.findByHoraInicio", query = "SELECT p FROM Pedido p WHERE p.horaInicio = :horaInicio")
+    , @NamedQuery(name = "Pedido.findByHoraUltimoItem", query = "SELECT p FROM Pedido p WHERE p.horaUltimoItem = :horaUltimoItem")
+    , @NamedQuery(name = "Pedido.findByTipo", query = "SELECT p FROM Pedido p WHERE p.tipo = :tipo")
+    , @NamedQuery(name = "Pedido.findByNumMesa", query = "SELECT p FROM Pedido p WHERE p.numMesa = :numMesa")
+    , @NamedQuery(name = "Pedido.findByEstado", query = "SELECT p FROM Pedido p WHERE p.estado = :estado")})
 public class Pedido implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id_pedido", nullable = false)
+    @Column(name = "id_pedido")
     private Integer idPedido;
     @Basic(optional = false)
-    @Column(name = "hora_inicio", nullable = false, length = 100)
+    @Column(name = "hora_inicio")
     private String horaInicio;
-    @Column(name = "hora_ultimo_item", length = 100)
+    @Column(name = "hora_ultimo_item")
     private String horaUltimoItem;
     @Basic(optional = false)
-    @Column(name = "tipo", nullable = false, length = 100)
+    @Column(name = "tipo")
     private String tipo;
     @Column(name = "num_mesa")
     private Integer numMesa;
     @Basic(optional = false)
-    @Column(name = "estado", nullable = false, length = 100)
+    @Column(name = "estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPedido")
-    private Set<Factura> facturaSet;
-    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", nullable = false)
-    @ManyToOne(optional = false)
-    private Empleado idEmpleado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
     private Set<ItemPedido> itemPedidoSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPedido", fetch = FetchType.LAZY)
+    private Set<Factura> facturaSet;
+    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Empleado idEmpleado;
 
     public Pedido() {
     }
@@ -80,13 +82,13 @@ public class Pedido implements Serializable {
     public Integer getIdPedido() {
         return idPedido;
     }
-    
-    public void setIdPedidoAumentado(){
-        this.idPedido++;
-    }
 
     public void setIdPedido(Integer idPedido) {
         this.idPedido = idPedido;
+    }
+    
+    public void setIdPedidoAumentado(){
+        this.idPedido++;
     }
 
     public String getHoraInicio() {
@@ -130,6 +132,15 @@ public class Pedido implements Serializable {
     }
 
     @XmlTransient
+    public Set<ItemPedido> getItemPedidoSet() {
+        return itemPedidoSet;
+    }
+
+    public void setItemPedidoSet(Set<ItemPedido> itemPedidoSet) {
+        this.itemPedidoSet = itemPedidoSet;
+    }
+
+    @XmlTransient
     public Set<Factura> getFacturaSet() {
         return facturaSet;
     }
@@ -144,15 +155,6 @@ public class Pedido implements Serializable {
 
     public void setIdEmpleado(Empleado idEmpleado) {
         this.idEmpleado = idEmpleado;
-    }
-
-    @XmlTransient
-    public Set<ItemPedido> getItemPedidoSet() {
-        return itemPedidoSet;
-    }
-
-    public void setItemPedidoSet(Set<ItemPedido> itemPedidoSet) {
-        this.itemPedidoSet = itemPedidoSet;
     }
 
     @Override

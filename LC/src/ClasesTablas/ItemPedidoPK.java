@@ -12,15 +12,16 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Usuario
+ * @author familia BS
  */
 @Embeddable
 public class ItemPedidoPK implements Serializable {
+
     @Basic(optional = false)
-    @Column(name = "id_pedido", nullable = false)
+    @Column(name = "id_pedido")
     private int idPedido;
     @Basic(optional = false)
-    @Column(name = "id_item", nullable = false)
+    @Column(name = "id_item")
     private int idItem;
 
     public ItemPedidoPK() {

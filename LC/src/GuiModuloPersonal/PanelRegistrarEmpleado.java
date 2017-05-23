@@ -514,7 +514,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
 
                     }
                     
-                    turno = new TurnosSemanales(empleado,cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText() );
+                    turno = new TurnosSemanales(empleado.getIdEmpleado(),cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText() );
                     System.out.println("asd" + turno);
                     System.out.println("turnos" + empleado.getTurnosSemanalesSet());
                     empleado.getTurnosSemanalesSet().add(turno);

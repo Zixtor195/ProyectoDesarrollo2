@@ -12,15 +12,16 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Usuario
+ * @author familia BS
  */
 @Embeddable
 public class ItemsDeFacturaPK implements Serializable {
+
     @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "id_factura", nullable = false)
+    @Column(name = "id_factura")
     private int idFactura;
 
     public ItemsDeFacturaPK() {

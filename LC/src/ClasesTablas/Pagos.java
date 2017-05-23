@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -19,33 +20,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author familia BS
  */
 @Entity
 @Table(name = "pagos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pagos.findAll", query = "SELECT p FROM Pagos p"),
-    @NamedQuery(name = "Pagos.findByIdPago", query = "SELECT p FROM Pagos p WHERE p.pagosPK.idPago = :idPago"),
-    @NamedQuery(name = "Pagos.findByTipo", query = "SELECT p FROM Pagos p WHERE p.tipo = :tipo"),
-    @NamedQuery(name = "Pagos.findByValor", query = "SELECT p FROM Pagos p WHERE p.valor = :valor"),
-    @NamedQuery(name = "Pagos.findByCedulaCliente", query = "SELECT p FROM Pagos p WHERE p.cedulaCliente = :cedulaCliente"),
-    @NamedQuery(name = "Pagos.findByIdFactura", query = "SELECT p FROM Pagos p WHERE p.pagosPK.idFactura = :idFactura")})
+    @NamedQuery(name = "Pagos.findAll", query = "SELECT p FROM Pagos p")
+    , @NamedQuery(name = "Pagos.findByIdPago", query = "SELECT p FROM Pagos p WHERE p.pagosPK.idPago = :idPago")
+    , @NamedQuery(name = "Pagos.findByTipo", query = "SELECT p FROM Pagos p WHERE p.tipo = :tipo")
+    , @NamedQuery(name = "Pagos.findByValor", query = "SELECT p FROM Pagos p WHERE p.valor = :valor")
+    , @NamedQuery(name = "Pagos.findByCedulaCliente", query = "SELECT p FROM Pagos p WHERE p.cedulaCliente = :cedulaCliente")
+    , @NamedQuery(name = "Pagos.findByIdFactura", query = "SELECT p FROM Pagos p WHERE p.pagosPK.idFactura = :idFactura")})
 public class Pagos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected PagosPK pagosPK;
     @Basic(optional = false)
-    @Column(name = "tipo", nullable = false, length = 100)
+    @Column(name = "tipo")
     private String tipo;
     @Basic(optional = false)
-    @Column(name = "valor", nullable = false)
+    @Column(name = "valor")
     private int valor;
     @Basic(optional = false)
-    @Column(name = "cedula_cliente", nullable = false)
+    @Column(name = "cedula_cliente")
     private int cedulaCliente;
-    @JoinColumn(name = "id_factura", referencedColumnName = "id_factura", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_factura", referencedColumnName = "id_factura", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Factura factura;
 
     public Pagos() {

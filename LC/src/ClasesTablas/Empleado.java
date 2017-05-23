@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,70 +22,71 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Usuario
+ * @author familia BS
  */
 @Entity
 @Table(name = "empleado")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"),
-    @NamedQuery(name = "Empleado.findByIdEmpleado", query = "SELECT e FROM Empleado e WHERE e.idEmpleado = :idEmpleado"),
-    @NamedQuery(name = "Empleado.findByNombres", query = "SELECT e FROM Empleado e WHERE e.nombres = :nombres"),
-    @NamedQuery(name = "Empleado.findByApellidos", query = "SELECT e FROM Empleado e WHERE e.apellidos = :apellidos"),
-    @NamedQuery(name = "Empleado.findByCargo", query = "SELECT e FROM Empleado e WHERE e.cargo = :cargo"),
-    @NamedQuery(name = "Empleado.findByTelFijo", query = "SELECT e FROM Empleado e WHERE e.telFijo = :telFijo"),
-    @NamedQuery(name = "Empleado.findByTelCel", query = "SELECT e FROM Empleado e WHERE e.telCel = :telCel"),
-    @NamedQuery(name = "Empleado.findByEmail", query = "SELECT e FROM Empleado e WHERE e.email = :email"),
-    @NamedQuery(name = "Empleado.findByDireccion", query = "SELECT e FROM Empleado e WHERE e.direccion = :direccion"),
-    @NamedQuery(name = "Empleado.findByTipoDocumento", query = "SELECT e FROM Empleado e WHERE e.tipoDocumento = :tipoDocumento"),
-    @NamedQuery(name = "Empleado.findByContrase", query = "SELECT e FROM Empleado e WHERE e.contrase = :contrase"),
-    @NamedQuery(name = "Empleado.findByEstado", query = "SELECT e FROM Empleado e WHERE e.estado = :estado"),
-    @NamedQuery(name = "Empleado.findByArchivo", query = "SELECT e FROM Empleado e WHERE e.archivo = :archivo")})
+    @NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e")
+    , @NamedQuery(name = "Empleado.findByIdEmpleado", query = "SELECT e FROM Empleado e WHERE e.idEmpleado = :idEmpleado")
+    , @NamedQuery(name = "Empleado.findByNombres", query = "SELECT e FROM Empleado e WHERE e.nombres = :nombres")
+    , @NamedQuery(name = "Empleado.findByApellidos", query = "SELECT e FROM Empleado e WHERE e.apellidos = :apellidos")
+    , @NamedQuery(name = "Empleado.findByCargo", query = "SELECT e FROM Empleado e WHERE e.cargo = :cargo")
+    , @NamedQuery(name = "Empleado.findByTelFijo", query = "SELECT e FROM Empleado e WHERE e.telFijo = :telFijo")
+    , @NamedQuery(name = "Empleado.findByTelCel", query = "SELECT e FROM Empleado e WHERE e.telCel = :telCel")
+    , @NamedQuery(name = "Empleado.findByEmail", query = "SELECT e FROM Empleado e WHERE e.email = :email")
+    , @NamedQuery(name = "Empleado.findByDireccion", query = "SELECT e FROM Empleado e WHERE e.direccion = :direccion")
+    , @NamedQuery(name = "Empleado.findByTipoDocumento", query = "SELECT e FROM Empleado e WHERE e.tipoDocumento = :tipoDocumento")
+    , @NamedQuery(name = "Empleado.findByContrase", query = "SELECT e FROM Empleado e WHERE e.contrase = :contrase")
+    , @NamedQuery(name = "Empleado.findByEstado", query = "SELECT e FROM Empleado e WHERE e.estado = :estado")
+    , @NamedQuery(name = "Empleado.findByUsuario", query = "SELECT e FROM Empleado e WHERE e.usuario = :usuario")
+    , @NamedQuery(name = "Empleado.findByArchivo", query = "SELECT e FROM Empleado e WHERE e.archivo = :archivo")})
 public class Empleado implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id_empleado", nullable = false)
+    @Column(name = "id_empleado")
     private Integer idEmpleado;
     @Basic(optional = false)
-    @Column(name = "nombres", nullable = false, length = 100)
+    @Column(name = "nombres")
     private String nombres;
     @Basic(optional = false)
-    @Column(name = "apellidos", nullable = false, length = 100)
+    @Column(name = "apellidos")
     private String apellidos;
     @Basic(optional = false)
-    @Column(name = "cargo", nullable = false, length = 100)
+    @Column(name = "cargo")
     private String cargo;
     @Basic(optional = false)
-    @Column(name = "tel_fijo", nullable = false, length = 100)
+    @Column(name = "tel_fijo")
     private String telFijo;
     @Basic(optional = false)
-    @Column(name = "tel_cel", nullable = false, length = 100)
+    @Column(name = "tel_cel")
     private String telCel;
     @Basic(optional = false)
-    @Column(name = "email", nullable = false, length = 100)
+    @Column(name = "email")
     private String email;
     @Basic(optional = false)
-    @Column(name = "direccion", nullable = false, length = 100)
+    @Column(name = "direccion")
     private String direccion;
     @Basic(optional = false)
-    @Column(name = "tipo_documento", nullable = false, length = 100)
+    @Column(name = "tipo_documento")
     private String tipoDocumento;
     @Basic(optional = false)
-    @Column(name = "usuario", nullable = false, length = 100)
-    private String usuario;
-    @Basic(optional = false)
-    @Column(name = "contrase", nullable = false, length = 100)
+    @Column(name = "contrase")
     private String contrase;
     @Basic(optional = false)
-    @Column(name = "estado", nullable = false, length = 100)
+    @Column(name = "estado")
     private String estado;
-    @Column(name = "archivo", length = 2147483647)
+    @Column(name = "usuario")
+    private String usuario;
+    @Column(name = "archivo")
     private String archivo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado")
-    private Set<Pedido> pedidoSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado", fetch = FetchType.LAZY)
     private Set<TurnosSemanales> turnosSemanalesSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpleado", fetch = FetchType.LAZY)
+    private Set<Pedido> pedidoSet;
 
     public Empleado() {
     }
@@ -106,7 +108,6 @@ public class Empleado implements Serializable {
         this.usuario = usuario;
         this.contrase = contrase;
         this.estado = estado;
-        //this.turnosSemanalesSet;
     }
 
     public Integer getIdEmpleado() {
@@ -181,14 +182,6 @@ public class Empleado implements Serializable {
         this.tipoDocumento = tipoDocumento;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
     public String getContrase() {
         return contrase;
     }
@@ -205,6 +198,14 @@ public class Empleado implements Serializable {
         this.estado = estado;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
     public String getArchivo() {
         return archivo;
     }
@@ -214,21 +215,21 @@ public class Empleado implements Serializable {
     }
 
     @XmlTransient
-    public Set<Pedido> getPedidoSet() {
-        return pedidoSet;
-    }
-
-    public void setPedidoSet(Set<Pedido> pedidoSet) {
-        this.pedidoSet = pedidoSet;
-    }
-
-    @XmlTransient
     public Set<TurnosSemanales> getTurnosSemanalesSet() {
         return turnosSemanalesSet;
     }
 
     public void setTurnosSemanalesSet(Set<TurnosSemanales> turnosSemanalesSet) {
         this.turnosSemanalesSet = turnosSemanalesSet;
+    }
+
+    @XmlTransient
+    public Set<Pedido> getPedidoSet() {
+        return pedidoSet;
+    }
+
+    public void setPedidoSet(Set<Pedido> pedidoSet) {
+        this.pedidoSet = pedidoSet;
     }
 
     @Override
@@ -253,7 +254,7 @@ public class Empleado implements Serializable {
 
     @Override
     public String toString() {
-        return "ClasesTablas.Empleado[ idEmpleado=" + idEmpleado;
+        return "ClasesTablas.Empleado[ idEmpleado=" + idEmpleado + " ]";
     }
     
 }

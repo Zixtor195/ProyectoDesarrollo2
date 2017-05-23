@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -19,29 +20,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author familia BS
  */
 @Entity
 @Table(name = "item_pedido")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ItemPedido.findAll", query = "SELECT i FROM ItemPedido i"),
-    @NamedQuery(name = "ItemPedido.findByIdPedido", query = "SELECT i FROM ItemPedido i WHERE i.itemPedidoPK.idPedido = :idPedido"),
-    @NamedQuery(name = "ItemPedido.findByIdItem", query = "SELECT i FROM ItemPedido i WHERE i.itemPedidoPK.idItem = :idItem"),
-    @NamedQuery(name = "ItemPedido.findByCantidad", query = "SELECT i FROM ItemPedido i WHERE i.cantidad = :cantidad")})
+    @NamedQuery(name = "ItemPedido.findAll", query = "SELECT i FROM ItemPedido i")
+    , @NamedQuery(name = "ItemPedido.findByIdPedido", query = "SELECT i FROM ItemPedido i WHERE i.itemPedidoPK.idPedido = :idPedido")
+    , @NamedQuery(name = "ItemPedido.findByIdItem", query = "SELECT i FROM ItemPedido i WHERE i.itemPedidoPK.idItem = :idItem")
+    , @NamedQuery(name = "ItemPedido.findByCantidad", query = "SELECT i FROM ItemPedido i WHERE i.cantidad = :cantidad")})
 public class ItemPedido implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ItemPedidoPK itemPedidoPK;
     @Basic(optional = false)
-    @Column(name = "cantidad", nullable = false)
+    @Column(name = "cantidad")
     private int cantidad;
-    @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Pedido pedido;
-    @JoinColumn(name = "id_item", referencedColumnName = "id_item", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_item", referencedColumnName = "id_item", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Item item;
+    @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Pedido pedido;
 
     public ItemPedido() {
     }
@@ -75,20 +77,20 @@ public class ItemPedido implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
     public Item getItem() {
         return item;
     }
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     @Override

@@ -29,21 +29,23 @@ CREATE TABLE empleado
 	Email varchar(100) NOT NULL,
 	direccion varchar(100)NOT NULL,
 	tipo_documento varchar(100) NOT NULL,
+	usuario varchar(100) NOT NULL,
 	contrase varchar(100) NOT NULL,
 	estado varchar(100) NOT NULL,
-        usuario varchar,
+    usuario varchar,
 	archivo varchar
 );
 
 
 CREATE TABLE turnos_semanales
 (
-	id integer PRIMARY KEY
+    id integer NOT NULL,
 	id_empleado integer NOT NULL,
 	dia varchar(100) NOT NULL,   
 	hora_inicio varchar(100) NOT NULL,
 	hora_fin varchar(100) NOT NULL,
  	FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado),
+    PRIMARY KEY (id)
 );
 
 
@@ -136,4 +138,5 @@ INSERT INTO item_pedido(id_pedido ,id_item ,cantidad) VALUES(1,100,4);
 INSERT INTO item_pedido(id_pedido ,id_item ,cantidad) VALUES(1,300,4);
 INSERT INTO item_pedido(id_pedido ,id_item ,cantidad) VALUES(2,300,1);
 INSERT INTO item_pedido(id_pedido ,id_item ,cantidad) VALUES(3,200,2);
+
 

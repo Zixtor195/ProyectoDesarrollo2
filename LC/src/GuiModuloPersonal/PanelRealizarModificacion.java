@@ -514,7 +514,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                             //ejc.create(empleado);
                     }
                     
-                    turno = new TurnosSemanales(empleado,cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText() );
+                    turno = new TurnosSemanales(empleado.getIdEmpleado(),cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText() );
                     System.out.println("asd" + turno);
                     empleado.getTurnosSemanalesSet().add(turno);
                     
