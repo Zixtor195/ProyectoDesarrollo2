@@ -38,7 +38,7 @@ public class PanelModificar extends javax.swing.JPanel {
     
     public PanelModificar() {
         initComponents();
-        
+        table.setModel(new tabelModel());
         
     }
 
@@ -157,7 +157,7 @@ public class PanelModificar extends javax.swing.JPanel {
         if (table.getSelectedRow() != -1) {
             empleado = listEmpelado.get(table.getSelectedRow());
             PanelRealizarModificacion rm = new PanelRealizarModificacion(empleado);
-            rm.setSize(883, 1000);
+            rm.setSize(900, 838);
 
             this.setSize(1500, 1204);
             this.removeAll();

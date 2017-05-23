@@ -342,7 +342,6 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                             .addComponent(jLabel17)
                             .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(103, 103, 103)
@@ -358,10 +357,11 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addGap(10, 10, 10)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel13))
-                                        .addGap(22, 22, 22)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(txtapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel14))
@@ -393,7 +393,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                                             .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 19, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(57, 57, 57)
                                         .addComponent(txthorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,7 +417,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_agregar)
                             .addComponent(btn_borrar))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -488,7 +488,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
 
     
     
-    public class agregar implements ActionListener{
+    private class agregar implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -510,13 +510,15 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                             cb_cargo.getSelectedItem().toString(),txttel.getText(),txtcelular.getText(),txtemail.getText(),
                             txtdireccion.getText(),cb_tipodocumento.getSelectedItem().toString(), txtusuario.getText(), txtcontrasena.getText(),
                             cb_estado.getSelectedItem().toString());
-                            ejc.create(empleado);
+                            //ejc.create(empleado);
 
                     }
                     
                     turno = new TurnosSemanales(empleado,cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText() );
                     System.out.println("asd" + turno);
+                    System.out.println("turnos" + empleado.getTurnosSemanalesSet());
                     empleado.getTurnosSemanalesSet().add(turno);
+                    
 
                     tablemodel.setModel(new tabelModelHorario());
                     
@@ -531,7 +533,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         } 
     }
     
-    public class quitar implements ActionListener{
+    private class quitar implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -568,7 +570,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         } 
     }
     
-    public class actualizar implements ActionListener{
+    private class actualizar implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {

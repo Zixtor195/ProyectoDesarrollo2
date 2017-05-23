@@ -106,6 +106,7 @@ public class Empleado implements Serializable {
         this.usuario = usuario;
         this.contrase = contrase;
         this.estado = estado;
+        this.turnosSemanalesSet = z;
     }
 
     public Integer getIdEmpleado() {

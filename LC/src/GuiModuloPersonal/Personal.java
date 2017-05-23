@@ -171,7 +171,7 @@ public class Personal extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         
         PanelModificar me = new PanelModificar();
-        me.setSize(900, 838);
+        me.setSize(752,686);
 //        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
 //        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
 //        List<Empleado> Empleados = dao.findEmpleadoEntities();
