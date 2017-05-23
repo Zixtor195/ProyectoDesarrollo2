@@ -5,10 +5,13 @@
  */
 package GuiModuloMenu;
 
+import ClasesTablas.Factura;
 import ClasesTablas.Item;
+import ControladorClasesTablas.FacturaJpaController;
 import ControladorClasesTablas.ItemJpaController;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import GuiFacturasPagos.FacturasEliminar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
@@ -135,29 +138,26 @@ public class PanelEliminarItem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlEliminarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlEliminarItemMouseClicked
-        
-        /*this.removeAll();
-        this.revalidate();
-        this.repaint();*/
-        
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
+       
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         ItemJpaController dao = new ItemJpaController(emf);
         
-        int idItem = Integer.parseInt(String.valueOf(jtEliminarItem.getValueAt(jtEliminarItem.getSelectedRow(), 0)));
+        int idItem = Integer.parseInt(String.valueOf(jtEliminarItem.getValueAt(jtEliminarItem.getSelectedRow(),0)));
         
-        Item item = dao.findItem(idItem);
+        Item item = dao.findItem(idItem);  
         item.setEstado("Inactivo");
-        
+       
+       
         try {
             dao.edit(item);
-            JOptionPane.showMessageDialog(null, "Item borrado exitosamente.");
+            JOptionPane.showMessageDialog(null, "Item Eliminada exitosamente.");
         } catch (NonexistentEntityException ex) {
-            Logger.getLogger(PanelEliminarItem.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(PanelEliminarItem.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-        
+        emf.close();
 
     }//GEN-LAST:event_jlEliminarItemMouseClicked
 

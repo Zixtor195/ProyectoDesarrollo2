@@ -7,7 +7,7 @@ package Login;
  */
 
 import ClasesTablas.Empleado;
-import GuiPrincipal.GuiPrincipal;
+import VistasUsuario.GuiPrincipal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import static java.util.Collections.list;
