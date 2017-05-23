@@ -37,7 +37,8 @@ public class ItemJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Item item) throws PreexistingEntityException, Exception {
+    public String create(Item item) throws PreexistingEntityException, Exception {
+        String resultado = "";
         if (item.getItemPedidoSet() == null) {
             item.setItemPedidoSet(new HashSet<ItemPedido>());
         }
@@ -60,10 +61,11 @@ public class ItemJpaController implements Serializable {
                     oldItemOfItemPedidoSetItemPedido.getItemPedidoSet().remove(itemPedidoSetItemPedido);
                     oldItemOfItemPedidoSetItemPedido = em.merge(oldItemOfItemPedidoSetItemPedido);
                 }
-            }
+            }            
             em.getTransaction().commit();
+            resultado = "creado exitosamente";
         } catch (Exception ex) {
-            if (findItem(item.getIdItem()) != null) {
+            if (findItem(item.getIdItem()) != null) {                
                 throw new PreexistingEntityException("Item " + item + " already exists.", ex);
             }
             throw ex;
@@ -72,9 +74,11 @@ public class ItemJpaController implements Serializable {
                 em.close();
             }
         }
+        return resultado;
     }
 
-    public void edit(Item item) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public String edit(Item item) throws IllegalOrphanException, NonexistentEntityException, Exception {
+        String resultado = "";
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -114,6 +118,7 @@ public class ItemJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
+             resultado = "modificado exitosamente";
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
@@ -128,6 +133,8 @@ public class ItemJpaController implements Serializable {
                 em.close();
             }
         }
+        
+      return resultado;  
     }
 
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
