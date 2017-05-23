@@ -13,6 +13,7 @@ import javax.persistence.criteria.Root;
 import ClasesTablas.Empleado;
 import ClasesTablas.TurnosSemanales;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import ControladorClasesTablas.exceptions.PreexistingEntityException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,7 +33,7 @@ public class TurnosSemanalesJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(TurnosSemanales turnosSemanales) {
+    public void create(TurnosSemanales turnosSemanales) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -48,6 +49,11 @@ public class TurnosSemanalesJpaController implements Serializable {
                 idEmpleado = em.merge(idEmpleado);
             }
             em.getTransaction().commit();
+        } catch (Exception ex) {
+            if (findTurnosSemanales(turnosSemanales.getId()) != null) {
+                throw new PreexistingEntityException("TurnosSemanales " + turnosSemanales + " already exists.", ex);
+            }
+            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -80,7 +86,7 @@ public class TurnosSemanalesJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = turnosSemanales.getId();
+                Integer id = turnosSemanales.getId();
                 if (findTurnosSemanales(id) == null) {
                     throw new NonexistentEntityException("The turnosSemanales with id " + id + " no longer exists.");
                 }
@@ -93,7 +99,7 @@ public class TurnosSemanalesJpaController implements Serializable {
         }
     }
 
-    public void destroy(int id) throws NonexistentEntityException {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -143,7 +149,7 @@ public class TurnosSemanalesJpaController implements Serializable {
         }
     }
 
-    public TurnosSemanales findTurnosSemanales(int id) {
+    public TurnosSemanales findTurnosSemanales(Integer id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(TurnosSemanales.class, id);

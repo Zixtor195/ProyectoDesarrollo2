@@ -11,12 +11,13 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import ClasesTablas.TurnosSemanales;
+import java.util.HashSet;
+import java.util.Set;
 import ClasesTablas.Pedido;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
 import ControladorClasesTablas.exceptions.PreexistingEntityException;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -38,6 +39,9 @@ public class EmpleadoJpaController implements Serializable {
     }
 
     public void create(Empleado empleado) throws PreexistingEntityException, Exception {
+        if (empleado.getTurnosSemanalesSet() == null) {
+            empleado.setTurnosSemanalesSet(new HashSet<TurnosSemanales>());
+        }
         if (empleado.getPedidoSet() == null) {
             empleado.setPedidoSet(new HashSet<Pedido>());
         }
@@ -45,6 +49,12 @@ public class EmpleadoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Set<TurnosSemanales> attachedTurnosSemanalesSet = new HashSet<TurnosSemanales>();
+            for (TurnosSemanales turnosSemanalesSetTurnosSemanalesToAttach : empleado.getTurnosSemanalesSet()) {
+                turnosSemanalesSetTurnosSemanalesToAttach = em.getReference(turnosSemanalesSetTurnosSemanalesToAttach.getClass(), turnosSemanalesSetTurnosSemanalesToAttach.getId());
+                attachedTurnosSemanalesSet.add(turnosSemanalesSetTurnosSemanalesToAttach);
+            }
+            empleado.setTurnosSemanalesSet(attachedTurnosSemanalesSet);
             Set<Pedido> attachedPedidoSet = new HashSet<Pedido>();
             for (Pedido pedidoSetPedidoToAttach : empleado.getPedidoSet()) {
                 pedidoSetPedidoToAttach = em.getReference(pedidoSetPedidoToAttach.getClass(), pedidoSetPedidoToAttach.getIdPedido());
@@ -52,6 +62,15 @@ public class EmpleadoJpaController implements Serializable {
             }
             empleado.setPedidoSet(attachedPedidoSet);
             em.persist(empleado);
+            for (TurnosSemanales turnosSemanalesSetTurnosSemanales : empleado.getTurnosSemanalesSet()) {
+                Empleado oldIdEmpleadoOfTurnosSemanalesSetTurnosSemanales = turnosSemanalesSetTurnosSemanales.getIdEmpleado();
+                turnosSemanalesSetTurnosSemanales.setIdEmpleado(empleado);
+                turnosSemanalesSetTurnosSemanales = em.merge(turnosSemanalesSetTurnosSemanales);
+                if (oldIdEmpleadoOfTurnosSemanalesSetTurnosSemanales != null) {
+                    oldIdEmpleadoOfTurnosSemanalesSetTurnosSemanales.getTurnosSemanalesSet().remove(turnosSemanalesSetTurnosSemanales);
+                    oldIdEmpleadoOfTurnosSemanalesSetTurnosSemanales = em.merge(oldIdEmpleadoOfTurnosSemanalesSetTurnosSemanales);
+                }
+            }
             for (Pedido pedidoSetPedido : empleado.getPedidoSet()) {
                 Empleado oldIdEmpleadoOfPedidoSetPedido = pedidoSetPedido.getIdEmpleado();
                 pedidoSetPedido.setIdEmpleado(empleado);
@@ -80,9 +99,19 @@ public class EmpleadoJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Empleado persistentEmpleado = em.find(Empleado.class, empleado.getIdEmpleado());
+            Set<TurnosSemanales> turnosSemanalesSetOld = persistentEmpleado.getTurnosSemanalesSet();
+            Set<TurnosSemanales> turnosSemanalesSetNew = empleado.getTurnosSemanalesSet();
             Set<Pedido> pedidoSetOld = persistentEmpleado.getPedidoSet();
             Set<Pedido> pedidoSetNew = empleado.getPedidoSet();
             List<String> illegalOrphanMessages = null;
+            for (TurnosSemanales turnosSemanalesSetOldTurnosSemanales : turnosSemanalesSetOld) {
+                if (!turnosSemanalesSetNew.contains(turnosSemanalesSetOldTurnosSemanales)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain TurnosSemanales " + turnosSemanalesSetOldTurnosSemanales + " since its idEmpleado field is not nullable.");
+                }
+            }
             for (Pedido pedidoSetOldPedido : pedidoSetOld) {
                 if (!pedidoSetNew.contains(pedidoSetOldPedido)) {
                     if (illegalOrphanMessages == null) {
@@ -94,6 +123,13 @@ public class EmpleadoJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
+            Set<TurnosSemanales> attachedTurnosSemanalesSetNew = new HashSet<TurnosSemanales>();
+            for (TurnosSemanales turnosSemanalesSetNewTurnosSemanalesToAttach : turnosSemanalesSetNew) {
+                turnosSemanalesSetNewTurnosSemanalesToAttach = em.getReference(turnosSemanalesSetNewTurnosSemanalesToAttach.getClass(), turnosSemanalesSetNewTurnosSemanalesToAttach.getId());
+                attachedTurnosSemanalesSetNew.add(turnosSemanalesSetNewTurnosSemanalesToAttach);
+            }
+            turnosSemanalesSetNew = attachedTurnosSemanalesSetNew;
+            empleado.setTurnosSemanalesSet(turnosSemanalesSetNew);
             Set<Pedido> attachedPedidoSetNew = new HashSet<Pedido>();
             for (Pedido pedidoSetNewPedidoToAttach : pedidoSetNew) {
                 pedidoSetNewPedidoToAttach = em.getReference(pedidoSetNewPedidoToAttach.getClass(), pedidoSetNewPedidoToAttach.getIdPedido());
@@ -102,6 +138,17 @@ public class EmpleadoJpaController implements Serializable {
             pedidoSetNew = attachedPedidoSetNew;
             empleado.setPedidoSet(pedidoSetNew);
             empleado = em.merge(empleado);
+            for (TurnosSemanales turnosSemanalesSetNewTurnosSemanales : turnosSemanalesSetNew) {
+                if (!turnosSemanalesSetOld.contains(turnosSemanalesSetNewTurnosSemanales)) {
+                    Empleado oldIdEmpleadoOfTurnosSemanalesSetNewTurnosSemanales = turnosSemanalesSetNewTurnosSemanales.getIdEmpleado();
+                    turnosSemanalesSetNewTurnosSemanales.setIdEmpleado(empleado);
+                    turnosSemanalesSetNewTurnosSemanales = em.merge(turnosSemanalesSetNewTurnosSemanales);
+                    if (oldIdEmpleadoOfTurnosSemanalesSetNewTurnosSemanales != null && !oldIdEmpleadoOfTurnosSemanalesSetNewTurnosSemanales.equals(empleado)) {
+                        oldIdEmpleadoOfTurnosSemanalesSetNewTurnosSemanales.getTurnosSemanalesSet().remove(turnosSemanalesSetNewTurnosSemanales);
+                        oldIdEmpleadoOfTurnosSemanalesSetNewTurnosSemanales = em.merge(oldIdEmpleadoOfTurnosSemanalesSetNewTurnosSemanales);
+                    }
+                }
+            }
             for (Pedido pedidoSetNewPedido : pedidoSetNew) {
                 if (!pedidoSetOld.contains(pedidoSetNewPedido)) {
                     Empleado oldIdEmpleadoOfPedidoSetNewPedido = pedidoSetNewPedido.getIdEmpleado();
@@ -143,6 +190,13 @@ public class EmpleadoJpaController implements Serializable {
                 throw new NonexistentEntityException("The empleado with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
+            Set<TurnosSemanales> turnosSemanalesSetOrphanCheck = empleado.getTurnosSemanalesSet();
+            for (TurnosSemanales turnosSemanalesSetOrphanCheckTurnosSemanales : turnosSemanalesSetOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Empleado (" + empleado + ") cannot be destroyed since the TurnosSemanales " + turnosSemanalesSetOrphanCheckTurnosSemanales + " in its turnosSemanalesSet field has a non-nullable idEmpleado field.");
+            }
             Set<Pedido> pedidoSetOrphanCheck = empleado.getPedidoSet();
             for (Pedido pedidoSetOrphanCheckPedido : pedidoSetOrphanCheck) {
                 if (illegalOrphanMessages == null) {
