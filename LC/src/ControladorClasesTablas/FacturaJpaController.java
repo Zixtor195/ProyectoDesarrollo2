@@ -39,7 +39,9 @@ public class FacturaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Factura factura) throws PreexistingEntityException, Exception {
+    public String create(Factura factura) throws PreexistingEntityException, Exception {
+        
+        String resultado =" ";
         if (factura.getItemsDeFacturaSet() == null) {
             factura.setItemsDeFacturaSet(new HashSet<ItemsDeFactura>());
         }
@@ -91,6 +93,7 @@ public class FacturaJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
+            resultado = "creado exitosamente";
         } catch (Exception ex) {
             if (findFactura(factura.getIdFactura()) != null) {
                 throw new PreexistingEntityException("Factura " + factura + " already exists.", ex);
@@ -101,9 +104,11 @@ public class FacturaJpaController implements Serializable {
                 em.close();
             }
         }
+        return resultado;
     }
 
-    public void edit(Factura factura) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public String edit(Factura factura) throws IllegalOrphanException, NonexistentEntityException, Exception {
+        String resultado = "";
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -185,6 +190,7 @@ public class FacturaJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
+            resultado = "modificado exitosamente";
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
@@ -199,6 +205,8 @@ public class FacturaJpaController implements Serializable {
                 em.close();
             }
         }
+        
+        return resultado;
     }
 
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {

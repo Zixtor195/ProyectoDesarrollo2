@@ -34,7 +34,8 @@ public class PagosJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Pagos pagos) throws PreexistingEntityException, Exception {
+    public String create(Pagos pagos) throws PreexistingEntityException, Exception {
+        String resultado = "";
         if (pagos.getPagosPK() == null) {
             pagos.setPagosPK(new PagosPK());
         }
@@ -54,6 +55,7 @@ public class PagosJpaController implements Serializable {
                 factura = em.merge(factura);
             }
             em.getTransaction().commit();
+            resultado = "creado exitosamente";
         } catch (Exception ex) {
             if (findPagos(pagos.getPagosPK()) != null) {
                 throw new PreexistingEntityException("Pagos " + pagos + " already exists.", ex);
@@ -64,6 +66,8 @@ public class PagosJpaController implements Serializable {
                 em.close();
             }
         }
+        
+        return resultado;
     }
 
     public void edit(Pagos pagos) throws NonexistentEntityException, Exception {

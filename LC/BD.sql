@@ -1,4 +1,4 @@
-/*
+﻿/*
     Universidad del Valle
     Asignatura: Desarrollo de Software II 750092M
     Tema: Entrega 4 proyecto
@@ -29,10 +29,9 @@ CREATE TABLE empleado
 	Email varchar(100) NOT NULL,
 	direccion varchar(100)NOT NULL,
 	tipo_documento varchar(100) NOT NULL,
-	usuario varchar(100) NOT NULL,
 	contrase varchar(100) NOT NULL,
 	estado varchar(100) NOT NULL,
-    usuario varchar,
+	usuario varchar,
 	archivo varchar
 );
 
