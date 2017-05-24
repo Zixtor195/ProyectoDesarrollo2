@@ -233,7 +233,7 @@ public class PanelEliminar extends javax.swing.JPanel {
                 listaEmpladosA.add(listaE);
             }
         }
-        System.out.println("asd" + listaEmpladosA);
+        //System.out.println("asd" + listaEmpladosA);
         return listaEmpladosA;
     }
 
