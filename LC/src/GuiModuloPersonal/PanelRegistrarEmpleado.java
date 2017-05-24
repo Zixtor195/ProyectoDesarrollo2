@@ -190,35 +190,35 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
 
         tablemodel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Id Empleado", "Turno"
+                "Dia", "Hora Inicio", "Hora Fin"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -393,7 +393,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                                             .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 19, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(57, 57, 57)
                                         .addComponent(txthorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -510,16 +510,14 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                             cb_cargo.getSelectedItem().toString(),txttel.getText(),txtcelular.getText(),txtemail.getText(),
                             txtdireccion.getText(),cb_tipodocumento.getSelectedItem().toString(), txtusuario.getText(), txtcontrasena.getText(),
                             cb_estado.getSelectedItem().toString());
-                            //ejc.create(empleado);
+                            ejc.create(empleado);
 
                     }
                     
-                    turno = new TurnosSemanales(empleado.getIdEmpleado(),cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText() );
-                    System.out.println("asd" + turno);
-                    System.out.println("turnos" + empleado.getTurnosSemanalesSet());
+                    turno = new TurnosSemanales(getNumListaTurno(),cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText(),empleado);
+                    tsc.create(turno);
                     empleado.getTurnosSemanalesSet().add(turno);
                     
-
                     tablemodel.setModel(new tabelModelHorario());
                     
                     
@@ -552,12 +550,12 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                     
                     if (tablemodel.getSelectedRow() != -1) {
                         turno = listaturnos.get(tablemodel.getSelectedRow());
-                        empleado.getTurnosSemanalesSet().remove(turno);
-                        ejc.create(empleado);
+                        tsc.destroy(turno.getId());
+                        //ejc.create(empleado);
                         
                         tablemodel.setModel(new tabelModelHorario());
                     }else{
-                        JOptionPane.showMessageDialog(null,"Por favor, seleccione una persona antes de quitar de la lista");
+                        JOptionPane.showMessageDialog(null,"Por favor, seleccione un turno antes de quitar de la lista");
                     }
                     
                 } catch (Exception ex) {
@@ -585,6 +583,11 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                     //Integer idEmpleado, String nombres, String apellidos, String cargo,
                     //String telFijo, String telCel, String email, String direccion,
                     //String tipoDocumento,String usuario, String contrase, String estado
+                    
+                    Empleado empleado1 = ejc.findEmpleado(empleado.getIdEmpleado());
+                    if(empleado1!=null){
+                        
+                    
                     empleado.setIdEmpleado(Integer.parseInt(txtnoidentidad.getText()));
                     empleado.setNombres(txtnombre.getText());
                     empleado.setApellidos(txtapellidos.getText());
@@ -601,6 +604,25 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                     ejc.edit(empleado);
                     
                     JOptionPane.showMessageDialog(null,"El empleado ha sido creado");
+                    }else{
+                        
+                    empleado.setIdEmpleado(Integer.parseInt(txtnoidentidad.getText()));
+                    empleado.setNombres(txtnombre.getText());
+                    empleado.setApellidos(txtapellidos.getText());
+                    empleado.setCargo(cb_cargo.getSelectedItem().toString());
+                    empleado.setTelFijo(txttel.getText());
+                    empleado.setTelCel(txtcelular.getText());
+                    empleado.setEmail(txtemail.getText());
+                    empleado.setDireccion(txtdireccion.getText());
+                    empleado.setTipoDocumento(cb_tipodocumento.getSelectedItem().toString());
+                    empleado.setUsuario(txtusuario.getText());
+                    empleado.setContrase(txtcontrasena.getText());
+                    empleado.setEstado(cb_estado.getSelectedItem().toString());
+                    
+                    ejc.create(empleado);
+                    
+                    JOptionPane.showMessageDialog(null,"El empleado ha sido creado");
+                    }
                     
                 } catch (Exception ex) {
                     Logger.getLogger(PanelRegistrarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
@@ -618,36 +640,61 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         TurnosSemanalesJpaController tsc = new TurnosSemanalesJpaController(emf);
         List<TurnosSemanales> listaturnos = tsc.findTurnosSemanalesEntities();
         a = listaturnos.get(listaturnos.size()).getId();
-        a++;
         return a;
+    }
+    
+    private LinkedList<TurnosSemanales> getListaTurno(){
+        
+        LinkedList<TurnosSemanales> listaturno = new LinkedList<TurnosSemanales>();
+        TurnosSemanalesJpaController tsj = new TurnosSemanalesJpaController(emf);
+        List<TurnosSemanales> listaturnos = tsj.findTurnosSemanalesEntities();
+       
+        
+        for (TurnosSemanales listaturno1 : listaturnos) {
+            
+            if(listaturno1.getIdEmpleado().getIdEmpleado() == empleado.getIdEmpleado()){
+                listaturno.add(listaturno1);
+            } 
+        }
+        return listaturno;
+    }
+    
+    private int getNumListaTurno(){
+        int a = 0;
+        TurnosSemanalesJpaController tsj = new TurnosSemanalesJpaController(emf);
+        List<TurnosSemanales> listaturnos = tsj.findTurnosSemanalesEntities();
+        a = listaturnos.get(listaturnos.size()-1).getId();
+        return a+1;
     }
     
      private class tabelModelHorario extends AbstractTableModel{
         
         //EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
         //List<Empleado> listaempleado = ejc.findEmpleadoEntities();
-
-        Set<TurnosSemanales> turnosemanalesset = empleado.getTurnosSemanalesSet();
-        List<TurnosSemanales> listaturnos = new LinkedList<>(turnosemanalesset);
+        //Set<TurnosSemanales> turnosemanalesset = empleado.getTurnosSemanalesSet();
+         
+        List<TurnosSemanales> listaturnos = getListaTurno();
         
         @Override
         public int getRowCount() {
+            if(listaturnos.isEmpty()){
+                return 0;
+            }else{
                 return listaturnos.size();
-
+            }
         }
 
         @Override
         public int getColumnCount() {
-            return 4;
+            return 3;
         }
 
         @Override
         public String getColumnName(int column) {
             switch(column){
-                case 0: return "Nombre"; 
-                case 1: return "Apellido";
-                case 2: return "Tipo Documento"; 
-                case 3: return "No. Identificación";
+                case 0: return "Dia"; 
+                case 1: return "Hora Inicio";
+                case 2: return "Hora Fin"; 
             }
             return "";
         }

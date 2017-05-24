@@ -70,7 +70,7 @@ public class Pedidos extends javax.swing.JFrame {
 
         btnregistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Crearpedido.jpg"))); // NOI18N
 
-        btnconsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarPedido.jpg"))); // NOI18N
+        btnconsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarPedido.jpg"))); // NOI18N
 
         btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarPedido.jpg"))); // NOI18N
 

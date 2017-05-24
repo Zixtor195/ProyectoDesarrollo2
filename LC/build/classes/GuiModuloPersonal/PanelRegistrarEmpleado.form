@@ -196,7 +196,7 @@
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="txtcontrasena" min="-2" pref="32" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" pref="19" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
@@ -472,9 +472,10 @@
         <Component class="javax.swing.JTable" name="tablemodel">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="2" rowCount="19">
-                <Column editable="false" title="Id Empleado" type="java.lang.String"/>
-                <Column editable="false" title="Turno" type="java.lang.String"/>
+              <Table columnCount="3" rowCount="19">
+                <Column editable="false" title="Dia" type="java.lang.String"/>
+                <Column editable="false" title="Hora Inicio" type="java.lang.String"/>
+                <Column editable="true" title="Hora Fin" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">

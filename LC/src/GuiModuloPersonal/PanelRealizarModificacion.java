@@ -172,7 +172,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Seleccione un dia:");
 
-        cb_dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lunes", "Martes;Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
+        cb_dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Hora Inicio:");
@@ -514,13 +514,11 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                             //ejc.create(empleado);
                     }
                     
-                    turno = new TurnosSemanales(empleado.getIdEmpleado(),cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText() );
-                    System.out.println("asd" + turno);
+                    turno = new TurnosSemanales(getNumListaTurno(),cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText(),empleado);
+                    tsc.create(turno);
                     empleado.getTurnosSemanalesSet().add(turno);
                     
-
                     table.setModel(new tabelModelHorario());
-                    
                     
                 } catch (Exception ex) {
                     Logger.getLogger(PanelRegistrarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
@@ -551,8 +549,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                     
                     if (table.getSelectedRow() != -1) {
                         turno = listaturnos.get(table.getSelectedRow());
-                        empleado.getTurnosSemanalesSet().remove(turno);
-                        ejc.create(empleado);
+                        tsc.destroy(turno.getId());
                         
                         table.setModel(new tabelModelHorario());
                     }else{
@@ -625,15 +622,40 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         cb_tipodocumento.setSelectedItem(empleado.getTipoDocumento());
         cb_cargo.setSelectedItem(empleado.getCargo());
         cb_estado.setSelectedItem(empleado.getEstado()); 
+        txtnodocumento.setEnabled(false);
+    }
+    
+    private LinkedList<TurnosSemanales> getListaTurno(){
+        
+        LinkedList<TurnosSemanales> listaturno = new LinkedList<TurnosSemanales>();
+        TurnosSemanalesJpaController tsj = new TurnosSemanalesJpaController(emf);
+        List<TurnosSemanales> listaturnos = tsj.findTurnosSemanalesEntities();
+       
+        
+        for (TurnosSemanales listaturno1 : listaturnos) {
+            
+            if(listaturno1.getIdEmpleado().getIdEmpleado() == empleado.getIdEmpleado()){
+                listaturno.add(listaturno1);
+            } 
+        }
+        return listaturno;
+    }
+    
+    private int getNumListaTurno(){
+        int a = 0;
+        TurnosSemanalesJpaController tsj = new TurnosSemanalesJpaController(emf);
+        List<TurnosSemanales> listaturnos = tsj.findTurnosSemanalesEntities();
+        a = listaturnos.get(listaturnos.size()-1).getId();
+        return a+1;
     }
     
      private class tabelModelHorario extends AbstractTableModel{
         
         //EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
         //List<Empleado> listaempleado = ejc.findEmpleadoEntities();
-
-        Set<TurnosSemanales> turnosemanalesset = empleado.getTurnosSemanalesSet();
-        List<TurnosSemanales> listaturnos = new LinkedList<>(turnosemanalesset);
+        //Set<TurnosSemanales> turnosemanalesset = empleado.getTurnosSemanalesSet();
+         
+        List<TurnosSemanales> listaturnos = getListaTurno();
         
         @Override
         public int getRowCount() {
@@ -643,16 +665,15 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
 
         @Override
         public int getColumnCount() {
-            return 4;
+            return 3;
         }
 
         @Override
         public String getColumnName(int column) {
             switch(column){
-                case 0: return "Nombre"; 
-                case 1: return "Apellido";
-                case 2: return "Tipo Documento"; 
-                case 3: return "No. Identificación";
+                case 0: return "Dia"; 
+                case 1: return "Hora Inicio";
+                case 2: return "Hora Fin";
             }
             return "";
         }

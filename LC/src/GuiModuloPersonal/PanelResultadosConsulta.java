@@ -173,7 +173,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Seleccione un dia:");
 
-        cb_dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lunes", "Martes;Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
+        cb_dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Hora Inicio:");
@@ -534,7 +534,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
 
         @Override
         public int getColumnCount() {
-            return 4;
+            return 3;
         }
 
         @Override

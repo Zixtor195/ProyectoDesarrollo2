@@ -58,11 +58,12 @@ public class TurnosSemanales implements Serializable {
         this.id = id;
     }
 
-    public TurnosSemanales(Integer id, String dia, String horaInicio, String horaFin) {
+    public TurnosSemanales(Integer id, String dia, String horaInicio, String horaFin,Empleado idEmpleado) {
         this.id = id;
         this.dia = dia;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
+        this.idEmpleado = idEmpleado;
     }
 
     public Integer getId() {
