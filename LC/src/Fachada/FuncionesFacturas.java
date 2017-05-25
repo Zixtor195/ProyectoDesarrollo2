@@ -36,7 +36,7 @@ public class FuncionesFacturas {
                                 String HoraPago, int idFactura, Pedido pedido, int total,
                                 EntityManagerFactory emf){  
         String resultado= "";
-       
+        if (!(emf == null)){
         
         FacturaJpaController dao = new FacturaJpaController(emf);   
         PedidoJpaController daop = new PedidoJpaController(emf);          
@@ -76,20 +76,23 @@ public class FuncionesFacturas {
             resultado= "1";
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ya existe Esta Factura");
-            resultado= "Error";
+            resultado= "2";
         }finally{
             emf.close();
         }
         emf.close(); 
+        }
         return resultado;
     }
     
     public String ModificarFactura (int idPedido, String estadoPedido, String estadoFactura,
                                 String HoraPago, int idFactura, Pedido pedido, int total,
                                 EntityManagerFactory emf){
+        
         String resultado= "";
-        FacturaJpaController dao = new FacturaJpaController(emf);
-                
+        if (!(emf == null)){
+        
+        FacturaJpaController dao = new FacturaJpaController(emf);                
         Factura factura = dao.findFactura(idFactura);
         factura.setEstado(estadoFactura);
         factura.setHoraPago(HoraPago);
@@ -104,29 +107,33 @@ public class FuncionesFacturas {
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error Al Modificar");
-            resultado= "Error";
+            resultado= "2";
         }finally{
             emf.close();
         }
-        emf.close(); 
+        emf.close();
+        }
         return resultado;            
     }
     
     public String EliminarFactura (Factura factura, EntityManagerFactory emf){
         String resultado = "";
-        FacturaJpaController daof = new FacturaJpaController(emf);
-        try {
-            daof.edit(factura);
-            JOptionPane.showMessageDialog(null, "Factura Eliminada exitosamente.");
-            resultado = "1";
-        } catch (NonexistentEntityException ex) {
-            JOptionPane.showMessageDialog(null, "la Factura no existe");
-            resultado = "2";
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar");
-            resultado = "3";
+        
+        if (!(emf == null)){
+            FacturaJpaController daof = new FacturaJpaController(emf);
+            try {
+                daof.edit(factura);
+                JOptionPane.showMessageDialog(null, "Factura Eliminada exitosamente.");
+                resultado = "1";
+            } catch (NonexistentEntityException ex) {
+                 JOptionPane.showMessageDialog(null, "la Factura no existe");
+                 resultado = "2";
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error al eliminar");
+                resultado = "3";
+            }
+            emf.close(); 
         }
-        emf.close(); 
         return resultado;       
     }
     
