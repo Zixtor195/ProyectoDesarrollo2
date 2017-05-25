@@ -30,12 +30,12 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Personal extends javax.swing.JFrame {
+public class GerentePersonal extends javax.swing.JFrame {
 
     /**
      * Creates new form Personal
      */
-    public Personal() {
+    public GerentePersonal() {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -51,28 +51,13 @@ public class Personal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setAutoscrolls(true);
-        jPanel2.setPreferredSize(new java.awt.Dimension(974, 850));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 939, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 766, Short.MAX_VALUE)
-        );
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,7 +121,22 @@ public class Personal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel5)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setAutoscrolls(true);
+        jPanel2.setPreferredSize(new java.awt.Dimension(974, 850));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 903, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 749, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,11 +145,13 @@ public class Personal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(952, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
         );
 
         pack();
@@ -170,29 +172,6 @@ public class Personal extends javax.swing.JFrame {
         
         PanelModificar me = new PanelModificar();
         me.setSize(752,686);
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-//        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-//        List<Empleado> Empleados = dao.findEmpleadoEntities();
-        
-//        for (int i = 0; i < Empleados.size(); i++) {
-//            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-//                Empleados.remove(i);
-//            }
-//        }
-//        
-//        Object fila[][]=new Object[Empleados.size()][4];        
-//        for (int i = 0; i < Empleados.size(); i++) {
-//            fila[i][0]=Empleados.get(i).getNombres();
-//            fila[i][1]=Empleados.get(i).getApellidos();            
-//            fila[i][2]=Empleados.get(i).getTipoDocumento();
-//            fila[i][3]=Empleados.get(i).getIdEmpleado();
-//        }
-//        
-//        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
-//        emf.close();
-//        
-//        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-//        me.table.setModel(Modelo);   
 
         jPanel2.removeAll();
         jPanel2.add(me);
@@ -205,30 +184,7 @@ public class Personal extends javax.swing.JFrame {
         PanelConsultar ce = new PanelConsultar();
         ce.setSize(752,686);
         
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-//        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-//        List<Empleado> Empleados = dao.findEmpleadoEntities();
-//        
-//        for (int i = 0; i < Empleados.size(); i++) {
-//            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-//                Empleados.remove(i);
-//            }
-//        }
-//        
-//        Object fila[][]=new Object[Empleados.size()][4];        
-//        for (int i = 0; i < Empleados.size(); i++) {
-//            fila[i][0]=Empleados.get(i).getNombres();
-//            fila[i][1]=Empleados.get(i).getApellidos();            
-//            fila[i][2]=Empleados.get(i).getTipoDocumento();
-//            fila[i][3]=Empleados.get(i).getIdEmpleado();
-//        }
-//        
-//        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
-//        emf.close();
-//        
-//        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-//        ce.table.setModel(Modelo); 
-        
+
         jPanel2.removeAll();
         jPanel2.add(ce);
         jPanel2.revalidate();
@@ -240,30 +196,7 @@ public class Personal extends javax.swing.JFrame {
         
         PanelEliminar Eemp = new PanelEliminar();
         Eemp.setSize(752,686);
-        
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-//        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-//        List<Empleado> Empleados = dao.findEmpleadoEntities();
-//        
-//        for (int i = 0; i < Empleados.size(); i++) {
-//            if (Empleados.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-//                Empleados.remove(i);
-//            }
-//        }
-//        
-//        Object fila[][]=new Object[Empleados.size()][4];        
-//        for (int i = 0; i < Empleados.size(); i++) {
-//            fila[i][0]=Empleados.get(i).getNombres();
-//            fila[i][1]=Empleados.get(i).getApellidos();            
-//            fila[i][2]=Empleados.get(i).getTipoDocumento();
-//            fila[i][3]=Empleados.get(i).getIdEmpleado();
-//        }
-//        
-//        String columna[]=new String[]{"Nombres","Apellidos","Tipo de Documento","N°.Identificacion"};        
-//        emf.close();
-//        
-//        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-//        Eemp.table.setModel(Modelo); 
+
         
         jPanel2.removeAll();
         jPanel2.add(Eemp);
@@ -271,7 +204,6 @@ public class Personal extends javax.swing.JFrame {
         jPanel2.repaint();
     }//GEN-LAST:event_jLabel5MouseClicked
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;

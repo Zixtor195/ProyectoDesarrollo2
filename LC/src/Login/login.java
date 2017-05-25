@@ -51,7 +51,6 @@ public ArrayList ValidarLogin(String usuario, String contrasena) throws SQLExcep
             } else {
                     
                 for (Object[] result : results) {
-                System.out.println("Country: " + result[0] + ", Capital: " + result[1]);
                 resulConsulta.add(result[0]);
                 resulConsulta.add(result[1]);
                 resulConsulta.add(result[2]);        

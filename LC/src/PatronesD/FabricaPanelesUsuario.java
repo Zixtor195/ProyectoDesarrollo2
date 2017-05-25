@@ -5,6 +5,9 @@
  */
 package PatronesD;
 
+import VistasUsuario.GuiCajero;
+import VistasUsuario.GuiGerente;
+import VistasUsuario.GuiMesero;
 import javax.swing.JPanel;
 
 /**
@@ -15,23 +18,25 @@ public class FabricaPanelesUsuario implements FactoryIF
 {
 
     @Override
-    public JPanel createProduct(String discriminador) {
+    public JPanel createProduct(String discriminador, int id) {
+        System.out.print(id);
         
         if(discriminador.equalsIgnoreCase("Gerente"))
         {
-        
+            return new GuiGerente();
         
         }    
         if(discriminador.equalsIgnoreCase("Cajero"))
         {
-        
+             return new GuiCajero(id);
         
         }  
         
         if(discriminador.equalsIgnoreCase("Mesero"))
         {
-        
-        
+             return new GuiMesero(id);
+            
+           
         } 
         return null;
         

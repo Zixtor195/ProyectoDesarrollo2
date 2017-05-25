@@ -365,7 +365,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
     private javax.swing.JButton btnagregarapedido;
     private javax.swing.JButton btnanular;
     private javax.swing.JButton btncancelar;
-    private javax.swing.JComboBox cbo_mesero;
+    public javax.swing.JComboBox cbo_mesero;
     private javax.swing.JComboBox cbo_tipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

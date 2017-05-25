@@ -19,6 +19,7 @@
 
 package GuiModuloPedidos;
 
+import ControladorClasesTablas.EmpleadoJpaController;
 import GuiModuloPersonal.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,14 +27,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
-public class Pedidos extends javax.swing.JFrame {
+public class MeseroPedidos extends javax.swing.JFrame {
 
     /**
      * Creates new form Personal
      */
-    public Pedidos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    
+    int id_mesero;
+    public MeseroPedidos(int id) {
+        
         initComponents();
+        this.id_mesero = id;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
@@ -42,6 +46,10 @@ public class Pedidos extends javax.swing.JFrame {
         btneliminar.addActionListener(new Eliminar());
         btnconsultar.addActionListener(new Consultar());
         
+    }
+
+    private MeseroPedidos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -154,7 +162,7 @@ public class Pedidos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel5MouseClicked
 
-
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnconsultar;
@@ -169,9 +177,14 @@ public class Pedidos extends javax.swing.JFrame {
     
     private class Crear implements ActionListener{
 
+     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");   
         @Override
         public void actionPerformed(ActionEvent e) {
             PanelRegistrarPedido prp = new PanelRegistrarPedido();
+            EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+            prp.cbo_mesero.setSelectedItem(ejc.findEmpleado(id_mesero).getNombres());
+            prp.cbo_mesero.setEnabled(false);
+            
             prp.setSize(936, 739);
             
             panel.removeAll();
@@ -186,7 +199,7 @@ public class Pedidos extends javax.swing.JFrame {
   
         @Override
         public void actionPerformed(ActionEvent e) {
-           PanelModificarPedido pmp = new PanelModificarPedido();
+           PanelModificarPedidoMesero pmp = new PanelModificarPedidoMesero(id_mesero);
             pmp.setSize(940,782);
             
             panel.removeAll();

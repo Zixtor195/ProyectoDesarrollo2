@@ -8,6 +8,7 @@ package Login;
 
 import ClasesTablas.Empleado;
 import VistasUsuario.GuiPrincipal;
+import PatronesD.FabricaPanelesUsuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import static java.util.Collections.list;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -147,10 +149,6 @@ public class GuiLogin extends javax.swing.JFrame {
        ArrayList log = null;
         login consultas = new login();
         
-        /*GuiABC menuprincipal2 = new GuiABC(login);
-        menuprincipal2.setVisible(true);
-            this.dispose();
-        /*/
         try {
             log = consultas.ValidarLogin(jtfUsuario.getText(), String.valueOf(jpfContrasena.getPassword()));
         } catch (NullPointerException e) {
@@ -166,9 +164,16 @@ public class GuiLogin extends javax.swing.JFrame {
 
         } else {
 
-            JOptionPane.showMessageDialog(null, "bienvenido " + log.get(1).toString(), "LOGIN ABC", JOptionPane.INFORMATION_MESSAGE);
-            GuiPrincipal menuprincipal = new GuiPrincipal();
-            menuprincipal.setVisible(true);
+            JOptionPane.showMessageDialog(null, "bienvenido " + log.get(1).toString(), "LOGIN LC", JOptionPane.INFORMATION_MESSAGE);
+            FabricaPanelesUsuario factoria = new FabricaPanelesUsuario();
+            GuiPrincipal gp = new GuiPrincipal();
+            JPanel panel = factoria.createProduct((String) log.get(2), (Integer)log.get(0));
+            panel.setSize(940,700);
+            gp.setVisible(true);
+            gp.jPanel1.removeAll();
+            gp.jPanel1.add(panel);
+            gp.jPanel1.revalidate();
+            gp.jPanel1.repaint();
             this.dispose();
             System.gc();
         }
@@ -195,7 +200,7 @@ public class GuiLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbIngresar;
     private javax.swing.JPasswordField jpfContrasena;
     private javax.swing.JTextField jtfUsuario;

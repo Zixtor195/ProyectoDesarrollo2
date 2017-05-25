@@ -5,6 +5,9 @@
  */
 package VistasUsuario;
 
+import GuiModuloPedidos.MeseroPedidos;
+import GuiModuloPersonal.MeseroPersonal;
+
 /**
  *
  * @author Sala
@@ -12,10 +15,12 @@ package VistasUsuario;
 public class GuiMesero extends javax.swing.JPanel {
 
     /**
-     * Creates new form GuiMesero
+     * Creates new form GuiCajero
      */
-    public GuiMesero() {
+    int id;
+    public GuiMesero(int id) {
         initComponents();
+        this.id = id;
     }
 
     /**
@@ -27,19 +32,133 @@ public class GuiMesero extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelPrincipal1 = new javax.swing.JPanel();
+        jbPersonal1 = new javax.swing.JButton();
+        jbPedidos1 = new javax.swing.JButton();
+        jbReportes1 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jbSalir1 = new javax.swing.JButton();
+
+        jPanelPrincipal1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelPrincipal1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jbPersonal1.setBackground(new java.awt.Color(255, 153, 51));
+        jbPersonal1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbPersonal1.setText("IR");
+        jbPersonal1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbPersonal1MouseClicked(evt);
+            }
+        });
+        jPanelPrincipal1.add(jbPersonal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 620, 90, -1));
+
+        jbPedidos1.setBackground(new java.awt.Color(255, 153, 51));
+        jbPedidos1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbPedidos1.setText("IR");
+        jbPedidos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbPedidos1MouseClicked(evt);
+            }
+        });
+        jPanelPrincipal1.add(jbPedidos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 620, 90, -1));
+
+        jbReportes1.setBackground(new java.awt.Color(255, 153, 51));
+        jbReportes1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbReportes1.setText("IR");
+        jbReportes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbReportes1ActionPerformed(evt);
+            }
+        });
+        jPanelPrincipal1.add(jbReportes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, 90, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/personal.jpg"))); // NOI18N
+        jPanelPrincipal1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedidos.jpg"))); // NOI18N
+        jPanelPrincipal1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.jpg"))); // NOI18N
+        jPanelPrincipal1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, -1, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.jpg"))); // NOI18N
+        jPanelPrincipal1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 120));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banner.jpg"))); // NOI18N
+        jPanelPrincipal1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, 400));
+
+        jPanel2.setBackground(new java.awt.Color(92, 23, 23));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 940, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        jPanelPrincipal1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 30));
+
+        jbSalir1.setBackground(new java.awt.Color(255, 102, 0));
+        jbSalir1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbSalir1.setText("SALIR");
+        jbSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalir1ActionPerformed(evt);
+            }
+        });
+        jPanelPrincipal1.add(jbSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 90, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbPersonal1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPersonal1MouseClicked
+        MeseroPersonal mp = new MeseroPersonal(id);
+        mp.setVisible(true);
+    }//GEN-LAST:event_jbPersonal1MouseClicked
+
+    private void jbPedidos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPedidos1MouseClicked
+        MeseroPedidos mp = new MeseroPedidos(id);
+        mp.setVisible(true);
+    }//GEN-LAST:event_jbPedidos1MouseClicked
+
+    private void jbReportes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReportes1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbReportes1ActionPerformed
+
+    private void jbSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbSalir1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelPrincipal1;
+    private javax.swing.JButton jbPedidos1;
+    private javax.swing.JButton jbPersonal1;
+    private javax.swing.JButton jbReportes1;
+    private javax.swing.JButton jbSalir1;
     // End of variables declaration//GEN-END:variables
 }

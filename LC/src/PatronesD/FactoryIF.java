@@ -13,6 +13,6 @@ import javax.swing.JPanel;
  */
 public interface FactoryIF 
 {
-     public JPanel createProduct(String discriminador);
+     public JPanel createProduct(String discriminador, int id);
     
 }
