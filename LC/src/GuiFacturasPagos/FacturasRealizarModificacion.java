@@ -5,12 +5,13 @@
  */
 package GuiFacturasPagos;
 
-import ClasesTablas.Factura;
-import ControladorClasesTablas.FacturaJpaController;
+
+import ClasesTablas.Pedido;
 import ControladorClasesTablas.PedidoJpaController;
+import Fachada.Fachada;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -231,32 +232,20 @@ public class FacturasRealizarModificacion extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");//PruebaJPAPU es el nombre de nuestra unidad de persistencia
-        FacturaJpaController dao = new FacturaJpaController(emf);
-        PedidoJpaController daop = new PedidoJpaController(emf);           
-        Factura factura = dao.findFactura(Integer.parseInt(jTextField3.getText()));
+        PedidoJpaController daop = new PedidoJpaController(emf);         
+       
+       int idFactura = Integer.parseInt(jTextField3.getText());
+       int idPedido = Integer.parseInt(jTextField2.getText());     
+       String estadoFactura = "Sin Pagar";
+       String HoraPago = jTextField6.getText();      
+       Pedido pedido = daop.findPedido(idPedido);       
+       int total = (Integer.parseInt(jTextField1.getText())) + 
+               (Integer.parseInt(jTextField7.getText())) +
+               (Integer.parseInt(jTextField4.getText()));        
+
+       Fachada fachada = new Fachada();
+       fachada.ModificarFactura(idPedido, estadoFactura, estadoFactura, HoraPago, idFactura, pedido, total, emf);
         
-        
-
-        int total = (Integer.parseInt(jTextField1.getText())) +
-        (Integer.parseInt(jTextField7.getText())) +
-        (Integer.parseInt(jTextField4.getText()));
-
-        
-        factura.setEstado("Sin Pagar");
-        factura.setHoraPago(jTextField6.getText());
-        factura.setIdFactura(Integer.parseInt(jTextField3.getText()));
-        factura.setIdPedido(daop.findPedido(Integer.parseInt(jTextField2.getText())));
-        factura.setValorTotal(total);
-
-        try {            
-            dao.edit(factura);            
-            JOptionPane.showMessageDialog(null, "Factura Modificada exitosamente.");
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error Al Modificar");
-        }finally{
-            emf.close();
-        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

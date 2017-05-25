@@ -10,6 +10,7 @@ import ControladorClasesTablas.FacturaJpaController;
 import ControladorClasesTablas.ItemPedidoJpaController;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import Fachada.Fachada;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
@@ -137,19 +138,15 @@ public class FacturasEliminar extends javax.swing.JPanel {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         FacturaJpaController daof = new FacturaJpaController(emf);
         
-        int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
-        Factura factura = daof.findFactura(a); 
+        int idFactura = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
+        Factura factura = daof.findFactura(idFactura); 
         factura.setEstado("Inactivo");
+        Fachada fachada = new Fachada();
+        fachada.EliminarFactura(factura, emf);
+        
        
        
-        try {
-            daof.edit(factura);
-            JOptionPane.showMessageDialog(null, "Factura Eliminada exitosamente.");
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
             
         
         

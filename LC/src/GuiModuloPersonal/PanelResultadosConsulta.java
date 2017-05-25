@@ -8,23 +8,8 @@ package GuiModuloPersonal;
 
 import ClasesTablas.Empleado;
 import ClasesTablas.TurnosSemanales;
-import ControladorClasesTablas.EmpleadoJpaController;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.WritableRaster;
-import java.io.File;
-import java.io.IOException;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 
@@ -518,8 +503,6 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
     
     private class tabelModel extends AbstractTableModel{
         
-        //EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
-        //List<Empleado> listaempleado = ejc.findEmpleadoEntities();
         Set<TurnosSemanales> listaturnosset = empleado.getTurnosSemanalesSet();
         LinkedList<TurnosSemanales> listaturnos = new LinkedList<>(listaturnosset);
         
