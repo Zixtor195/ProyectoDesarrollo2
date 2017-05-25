@@ -36,7 +36,8 @@ public class FuncionesFacturas {
                                 String HoraPago, int idFactura, Pedido pedido, int total,
                                 EntityManagerFactory emf){  
         String resultado= "";
-        if (!(emf == null)){
+        if (!(emf==null||idPedido==0 || estadoPedido==""||estadoFactura==""||
+                HoraPago==""||idFactura==0||pedido==null||total==0)){
         
         FacturaJpaController dao = new FacturaJpaController(emf);   
         PedidoJpaController daop = new PedidoJpaController(emf);          
@@ -90,7 +91,8 @@ public class FuncionesFacturas {
                                 EntityManagerFactory emf){
         
         String resultado= "";
-        if (!(emf == null)){
+        if (!(emf==null||idPedido==0 || estadoPedido==""||estadoFactura==""||
+                HoraPago==""||idFactura==0||pedido==null||total==0)){
         
         FacturaJpaController dao = new FacturaJpaController(emf);                
         Factura factura = dao.findFactura(idFactura);
@@ -119,7 +121,7 @@ public class FuncionesFacturas {
     public String EliminarFactura (Factura factura, EntityManagerFactory emf){
         String resultado = "";
         
-        if (!(emf == null)){
+        if (!(emf == null||factura==null)){
             FacturaJpaController daof = new FacturaJpaController(emf);
             try {
                 daof.edit(factura);
