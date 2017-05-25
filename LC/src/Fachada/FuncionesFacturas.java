@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import javax.swing.JOptionPane;
 
@@ -79,7 +80,7 @@ public class FuncionesFacturas {
         }finally{
             emf.close();
         }
-        
+        emf.close(); 
         return resultado;
     }
     
@@ -107,7 +108,7 @@ public class FuncionesFacturas {
         }finally{
             emf.close();
         }
-        
+        emf.close(); 
         return resultado;            
     }
     
@@ -121,8 +122,17 @@ public class FuncionesFacturas {
         } catch (Exception ex) {
             Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        emf.close(); 
         return null;       
     }
     
+    public Factura ConsultarFactura (int idFactura){
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        FacturaJpaController daof = new FacturaJpaController(emf);
+        Factura factura = daof.findFactura(idFactura);
+        emf.close(); 
+        return factura;
+        
+    }
 }

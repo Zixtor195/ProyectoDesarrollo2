@@ -103,9 +103,16 @@ public class FacturasRealizarModificacion extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -114,6 +121,7 @@ public class FacturasRealizarModificacion extends javax.swing.JPanel {
         jLabel2.setText("TOTAL:");
         jLabel2.setToolTipText("");
 
+        jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(255, 255, 102));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -135,6 +143,7 @@ public class FacturasRealizarModificacion extends javax.swing.JPanel {
 
         jTextField3.setEditable(false);
 
+        jTextField7.setEditable(false);
         jTextField7.setBackground(new java.awt.Color(153, 153, 153));
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

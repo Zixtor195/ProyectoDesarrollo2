@@ -9,6 +9,7 @@ import ClasesTablas.Factura;
 import ClasesTablas.ItemsDeFactura;
 import ClasesTablas.Pagos;
 import ControladorClasesTablas.FacturaJpaController;
+import Fachada.Fachada;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -146,10 +147,13 @@ public class FacturasConsultar extends javax.swing.JPanel {
         FacturarResultadosConsulta rm = new FacturarResultadosConsulta();
         rm.setSize(752, 1000);  
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        FacturaJpaController daof = new FacturaJpaController(emf);        
-        int a = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
-        Factura factura = daof.findFactura(a);  
+              
+        int idFactura = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
+        
+        Fachada fachada = new Fachada();
+        Factura factura = fachada.ConsultarFactura(idFactura); 
+        
+        
         
         Set<ItemsDeFactura> SetItems = factura.getItemsDeFacturaSet();  
         List<ItemsDeFactura> facturaDeItems = new ArrayList<>(SetItems);
@@ -176,7 +180,7 @@ public class FacturasConsultar extends javax.swing.JPanel {
             }
         
         String columna2[] = new String[]{"Id","Tipo","Valor","Cedula Cliente"};        
-        emf.close();        
+               
         
         
         DefaultTableModel ModeloItems = new DefaultTableModel(fila,columna);
