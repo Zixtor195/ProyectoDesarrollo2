@@ -6,6 +6,7 @@
 package Fachada;
 
 import ClasesTablas.Factura;
+import ClasesTablas.Item;
 import ClasesTablas.Pedido;
 import javax.persistence.EntityManagerFactory;
 
@@ -16,36 +17,64 @@ import javax.persistence.EntityManagerFactory;
 public class Fachada {
     
     FuncionesFacturas funcionesFacturas;
+    FuncionesItems funcionesItems;
     
     public Fachada(){        
-    funcionesFacturas = new FuncionesFacturas();               
+    funcionesFacturas = new FuncionesFacturas();
+    funcionesItems = new FuncionesItems();
     }
     
    //Este Metodo Nos Direccionara a la Clase Funciones Facturas en la funcion Crear Factura
-    public void CrearFactura(int idPedido, String estadoPedido, String estadoFactura,
+    public String CrearFactura(int idPedido, String estadoPedido, String estadoFactura,
                                 String HoraPago, int idFactura, Pedido pedido, int total,
                                 EntityManagerFactory emf){ 
         
-    funcionesFacturas.CrearFactura(idPedido, estadoPedido, estadoFactura,
-                                   HoraPago, idFactura, pedido, total, emf);              
+     String resultado = funcionesFacturas.CrearFactura(idPedido, estadoPedido, estadoFactura,
+                                   HoraPago, idFactura, pedido, total, emf);
+     return resultado;
     }
-    
     //Este Metodo Nos Direccionara a la Clase Funciones Facturas en la funcion ModificarFactura
-    public void ModificarFactura (int idPedido, String estadoPedido, String estadoFactura,
+    public String ModificarFactura (int idPedido, String estadoPedido, String estadoFactura,
                                 String HoraPago, int idFactura, Pedido pedido, int total,
                                 EntityManagerFactory emf){
-    funcionesFacturas.ModificarFactura(idPedido, estadoPedido, estadoFactura,
+     String resultado =funcionesFacturas.ModificarFactura(idPedido, estadoPedido, estadoFactura,
                                        HoraPago, idFactura, pedido, total, emf);
+     return resultado;
     }
-    
     //Este Metodo Nos Direccionara a la Clase Funciones Facturas en la funcion EliminarFactura
-    public void EliminarFactura (Factura factura, EntityManagerFactory emf){
-        funcionesFacturas.EliminarFactura(factura, emf);
+    public String EliminarFactura (Factura factura, EntityManagerFactory emf){
+         String resultado = funcionesFacturas.EliminarFactura(factura, emf);
+         return resultado;
     }
     
-    //Este Metodo Nos Direccionara a la Clase Funciones Facturas en la funcion ConsultarFactura
-    public Factura ConsultarFactura (int idFactura){
-        Factura factura = funcionesFacturas.ConsultarFactura(idFactura);
+    public Factura ConsultarFactura (int idFactura){        
+        Factura factura = funcionesFacturas.ConsultarFactura(idFactura);         
         return factura;
     }
+    
+    public String ModificarItem (int idItem, String nombre, int precio,
+                                String categoria,String descripcion,
+                                String Estado, String rut){
+       String resultado = funcionesItems.ModificarItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
+       return resultado;
+    }
+    
+    public String CrearItem (int idItem, String nombre, int precio,
+                                String categoria,String descripcion,
+                                String Estado, String rut){
+       String resultado = funcionesItems.CrearItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
+       return resultado;
+    }
+    
+    public Item ConsultarItem (int idFactura){        
+        Item item = funcionesItems.ConsultarItem(idFactura);         
+        return item;
+    }
+    
+    public String EliminarItem (Item item, EntityManagerFactory emf){
+        String resultado = funcionesItems.EliminarItem(item, emf);
+        return resultado;
+    }
+    
+    
 }

@@ -5,19 +5,13 @@
  */
 package GuiModuloMenu;
 
-import ClasesTablas.Empleado;
-import ClasesTablas.Item;
-import ControladorClasesTablas.EmpleadoJpaController;
-import ControladorClasesTablas.ItemJpaController;
-import ControladorClasesTablas.exceptions.NonexistentEntityException;
-import GuiModuloPersonal.PanelRealizarModificacion;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import Fachada.Fachada;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -25,7 +19,6 @@ import javax.swing.JOptionPane;
  */
 public class PanelRealizarModificacionItem extends javax.swing.JPanel {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); //LCPU es el nombre de nuestra unidad de persistencia
     /**
      * Creates new form RegistrarEmpleado
      */
@@ -189,36 +182,26 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jlModificar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModificar1MouseClicked
-     
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");//PruebaJPAPU es el nombre de nuestra unidad de persistencia
-        ItemJpaController dao = new ItemJpaController(emf);
-        Item item = dao.findItem(Integer.parseInt(jtfID1.getText()));
-              
-        //item.setIdItem(Integer.parseInt(jtfID1.getText()));
-        item.setNombre(jtfNombre1.getText());
-        item.setPrecio(Integer.parseInt(jtfPrecio1.getText()));
-        item.setCategoria(jcbCategoria1.getSelectedItem().toString());
-        item.setDescripcion(jtaDescripcion1.getText());
-        item.setEstado("Activo");
-        item.setFoto(ruta);
+                    
+        int idItem = Integer.parseInt(jtfID1.getText());
+        String nombre = jtfNombre1.getText();
+        int precio = Integer.parseInt(jtfPrecio1.getText());
+        String categoria = jcbCategoria1.getSelectedItem().toString();
+        String descripcion = jtaDescripcion1.getText();
+        String Estado = "Activo";
+        String rut = ruta;   
         
-       
-        try {
-            dao.edit(item);
-            JOptionPane.showMessageDialog(null, "Item modificado exitosamente.");
-            jtfID1.setText("");
-            jtfNombre1.setText("");
-            jtfPrecio1.setText("");
-            jcbCategoria1.setSelectedIndex(0);
-            jtaDescripcion1.setText("");
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(PanelRealizarModificacion.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(PanelRealizarModificacion.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            emf.close();
-        } 
+        Fachada fachada = new Fachada();
+        String res = fachada.ModificarItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
         
+        // res = "1" significa que se logro crear el item exitosamente
+        if (res == "1"){
+        jtfID1.setText("");
+        jtfNombre1.setText("");
+        jtfPrecio1.setText("");
+        jcbCategoria1.setSelectedIndex(0);
+        jtaDescripcion1.setText("");
+        }
     }//GEN-LAST:event_jlModificar1MouseClicked
 
 

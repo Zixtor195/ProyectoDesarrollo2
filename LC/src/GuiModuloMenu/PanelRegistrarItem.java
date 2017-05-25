@@ -7,6 +7,7 @@ package GuiModuloMenu;
 
 import ClasesTablas.Item;
 import ControladorClasesTablas.ItemJpaController;
+import Fachada.Fachada;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
@@ -19,7 +20,6 @@ import javax.swing.JOptionPane;
  */
 public class PanelRegistrarItem extends javax.swing.JPanel {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
     /**
      * Creates new form RegistrarEmpleado
      */
@@ -176,36 +176,25 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
     private void jlRegistrarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlRegistrarItemMouseClicked
 
         //EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
-        ItemJpaController dao = new ItemJpaController(emf);
-
-        Item item = new Item();
-
-        item.setIdItem(Integer.parseInt(jtfID.getText()));
-        item.setNombre(jtfNombre.getText());
-        item.setPrecio(Integer.parseInt(jtfPrecio.getText()));
-        item.setCategoria(jcbCategoria.getSelectedItem().toString());
-        item.setDescripcion(jtaDescripcion.getText());
-        item.setEstado("Activo");
-        item.setFoto(ruta);
-
-        try {
-
-            dao.create(item);
-            JOptionPane.showMessageDialog(null, "Item creado exitosamente.");
+        
+        
+        int idItem = Integer.parseInt(jtfID.getText());
+        String nombre = jtfNombre.getText();
+        int precio = Integer.parseInt(jtfPrecio.getText());
+        String categoria = jcbCategoria.getSelectedItem().toString();
+        String descripcion = jtaDescripcion.getText();
+        String Estado = "Activo";
+        String rut = ruta;
+        
+        Fachada fachada = new Fachada();
+        String res = fachada.CrearItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
+        
+        if (res == "1"||res =="2"){
             jtfID.setText("");
             jtfNombre.setText("");
             jtfPrecio.setText("");
             jcbCategoria.setSelectedIndex(0);
             jtaDescripcion.setText("");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Ya existe este Item.");
-            jtfID.setText("");
-            jtfNombre.setText("");
-            jtfPrecio.setText("");
-            jcbCategoria.setSelectedIndex(0);
-            jtaDescripcion.setText("");
-        }finally{
-            emf.close();
         }
     }//GEN-LAST:event_jlRegistrarItemMouseClicked
 

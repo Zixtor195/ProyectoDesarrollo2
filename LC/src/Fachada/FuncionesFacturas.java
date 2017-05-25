@@ -113,17 +113,21 @@ public class FuncionesFacturas {
     }
     
     public String EliminarFactura (Factura factura, EntityManagerFactory emf){
+        String resultado = "";
         FacturaJpaController daof = new FacturaJpaController(emf);
         try {
             daof.edit(factura);
             JOptionPane.showMessageDialog(null, "Factura Eliminada exitosamente.");
+            resultado = "1";
         } catch (NonexistentEntityException ex) {
-            Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "la Factura no existe");
+            resultado = "2";
         } catch (Exception ex) {
-            Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al eliminar");
+            resultado = "3";
         }
         emf.close(); 
-        return null;       
+        return resultado;       
     }
     
     public Factura ConsultarFactura (int idFactura){

@@ -11,6 +11,7 @@ import ControladorClasesTablas.FacturaJpaController;
 import ControladorClasesTablas.ItemJpaController;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import Fachada.Fachada;
 import GuiFacturasPagos.FacturasEliminar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,6 @@ import javax.swing.JOptionPane;
  */
 public class PanelEliminarItem extends javax.swing.JPanel {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
     /**
      * Creates new form JPanellModificar
      */
@@ -138,7 +138,7 @@ public class PanelEliminarItem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlEliminarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlEliminarItemMouseClicked
-       
+        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         ItemJpaController dao = new ItemJpaController(emf);
         
@@ -146,18 +146,9 @@ public class PanelEliminarItem extends javax.swing.JPanel {
         
         Item item = dao.findItem(idItem);  
         item.setEstado("Inactivo");
-       
-       
-        try {
-            dao.edit(item);
-            JOptionPane.showMessageDialog(null, "Item Eliminada exitosamente.");
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(FacturasEliminar.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-        emf.close();
+        Fachada fachada = new Fachada();
+        fachada.EliminarItem(item, emf);
+        
 
     }//GEN-LAST:event_jlEliminarItemMouseClicked
 

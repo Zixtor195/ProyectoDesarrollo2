@@ -7,6 +7,7 @@ package GuiModuloMenu;
 
 import ClasesTablas.Item;
 import ControladorClasesTablas.ItemJpaController;
+import Fachada.Fachada;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
@@ -17,8 +18,7 @@ import javax.swing.ImageIcon;
  */
 public class PanelConsultarItem extends javax.swing.JPanel {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
-    /**
+     /**
      * Creates new form JPanellModificar
      */
     public PanelConsultarItem() {
@@ -136,15 +136,13 @@ public class PanelConsultarItem extends javax.swing.JPanel {
         this.removeAll();
         this.revalidate();
         this.repaint();
-        
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
-        ItemJpaController dao = new ItemJpaController(emf);
-        
         PanelResultadosConsultaItem rc = new PanelResultadosConsultaItem();
         
-        int idItem = Integer.parseInt(String.valueOf(jtConsultarItem.getValueAt(jtConsultarItem.getSelectedRow(), 0)));
+        int idItem = Integer.parseInt(String.valueOf(jtConsultarItem.getValueAt(jtConsultarItem.getSelectedRow(), 0)));       
         
-        Item item = dao.findItem(idItem);
+        Fachada fachada = new Fachada();
+        Item item = fachada.ConsultarItem(idItem);
+        
         ImageIcon fotografia = new ImageIcon(item.getFoto());
         rc.foto.setIcon(fotografia);
         rc.jtfID.setText(item.getIdItem().toString());
@@ -155,7 +153,7 @@ public class PanelConsultarItem extends javax.swing.JPanel {
         
         rc.setSize(752, 686);
         this.add(rc);
-        emf.close();// TODO add your handling code here:
+        
     }//GEN-LAST:event_jlConsultarItemMouseClicked
 
 
