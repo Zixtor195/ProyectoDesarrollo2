@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 public class FabricaPanelesUsuario implements FactoryIF
 {
 
-    @Override
     public JPanel createProduct(String discriminador, int id) {
         System.out.print(id);
         
@@ -34,13 +33,18 @@ public class FabricaPanelesUsuario implements FactoryIF
         
         if(discriminador.equalsIgnoreCase("Mesero"))
         {
-             return new GuiMesero(id);
+             return new GuiMesero(id,discriminador);
             
            
         } 
         return null;
         
     }    
+
+    @Override
+    public JPanel createProduct(int id, String discriminador) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         
 }   
    

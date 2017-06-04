@@ -19,6 +19,8 @@
 
 package GuiModuloPedidos;
 
+import ControladorClasesTablas.EmpleadoJpaController;
+import ControladorClasesTablas.PedidoJpaController;
 import GuiModuloPersonal.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,16 +29,22 @@ import javax.persistence.Persistence;
 
 
 public class Pedidos extends javax.swing.JFrame {
-
+    
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    EmpleadoJpaController pjc = new EmpleadoJpaController(emf);
     /**
      * Creates new form Personal
      */
-    public Pedidos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    int id;
+    String cargo;        
+    public Pedidos(int id, String cargo) {
+        
+        
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+        this.id = id;
+        this.cargo = cargo;
         btnregistrar.addActionListener(new Crear());
         btnmodificar.addActionListener(new Modificar());
         btneliminar.addActionListener(new Eliminar());
@@ -69,8 +77,13 @@ public class Pedidos extends javax.swing.JFrame {
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarPedido.jpg"))); // NOI18N
 
         btnregistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Crearpedido.jpg"))); // NOI18N
+        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregistrarActionPerformed(evt);
+            }
+        });
 
-        btnconsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarPedido.jpg"))); // NOI18N
+        btnconsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarPedido.jpg"))); // NOI18N
 
         btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarPedido.jpg"))); // NOI18N
 
@@ -154,6 +167,10 @@ public class Pedidos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel5MouseClicked
 
+    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnregistrarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -172,6 +189,11 @@ public class Pedidos extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             PanelRegistrarPedido prp = new PanelRegistrarPedido();
+            if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
+           {
+               prp.cbo_mesero.setSelectedItem(pjc.findEmpleado(id).getNombres());
+               prp.cbo_mesero.setEnabled(false);
+            }    
             prp.setSize(936, 739);
             
             panel.removeAll();
@@ -186,7 +208,7 @@ public class Pedidos extends javax.swing.JFrame {
   
         @Override
         public void actionPerformed(ActionEvent e) {
-           PanelModificarPedido pmp = new PanelModificarPedido();
+           PanelModificarPedido pmp = new PanelModificarPedido(id,cargo);
             pmp.setSize(940,782);
             
             panel.removeAll();
@@ -200,7 +222,7 @@ public class Pedidos extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            PanelEliminarPedido pep = new PanelEliminarPedido();
+            PanelEliminarPedido pep = new PanelEliminarPedido(id,cargo);
             pep.setSize(940,686);
             
             panel.removeAll();
@@ -214,7 +236,7 @@ public class Pedidos extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            PanelConsultarPedido pcp = new PanelConsultarPedido();
+            PanelConsultarPedido pcp = new PanelConsultarPedido(id,cargo);
             pcp.setSize(940,686);
             
             panel.removeAll();

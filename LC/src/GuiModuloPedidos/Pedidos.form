@@ -104,11 +104,14 @@
               <Image iconType="3" name="/imagenes/Crearpedido.jpg"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnregistrarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnconsultar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/cancelarPedido.jpg"/>
+              <Image iconType="3" name="/imagenes/consultarPedido.jpg"/>
             </Property>
           </Properties>
         </Component>

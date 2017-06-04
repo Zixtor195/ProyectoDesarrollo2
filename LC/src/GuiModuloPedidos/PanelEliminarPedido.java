@@ -33,12 +33,33 @@ import javax.swing.table.AbstractTableModel;
 public class PanelEliminarPedido extends javax.swing.JPanel {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    PedidoJpaController pjc = new PedidoJpaController(emf);
+    List<Pedido> listapedido = pjc.findPedidoEntities();
     
-    public PanelEliminarPedido() {
+    int id;
+    String cargo;
+    public PanelEliminarPedido(int id, String cargo) {
+        this.id = id;
+        this.cargo = cargo;
         initComponents();
         
         table.setModel(new tableModel());
         lbleliminar.addMouseListener(new Eliminar());
+    }
+    
+    
+      public void removerMeseros(int id, String cargo) {
+      if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
+      {    
+        for (int i = 0; i < listapedido.size(); i++) {
+            if (listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) {
+                listapedido.remove(i);
+
+            }
+
+        }
+
+    }
     }
 
     /**
@@ -161,8 +182,7 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            PedidoJpaController pjc = new PedidoJpaController(emf);
-            List<Pedido> listapedido = pjc.findPedidoEntities();
+            
             ItemPedidoJpaController ijc = new ItemPedidoJpaController(emf);
             FacturaJpaController fjc = new FacturaJpaController(emf);
             
@@ -231,11 +251,11 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
     
      private class tableModel extends AbstractTableModel{
          
-        PedidoJpaController pjc = new PedidoJpaController(emf);
-        List<Pedido> listapedido = pjc.findPedidoEntities();
+        
         
         @Override
         public int getRowCount() {
+            removerMeseros(id,cargo);
             return listapedido.size();
         }
 

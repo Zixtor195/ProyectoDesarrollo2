@@ -20,10 +20,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Stamina
- */
+
 public class login 
 {
     private Connection conexion;

@@ -23,10 +23,18 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
     Pedido pedido = new Pedido();
+    PedidoJpaController pjc = new PedidoJpaController(emf);
+    List<Pedido> listapedido = pjc.findPedidoEntities();
     
-    public PanelConsultarPedido() {
+    
+    int id_empleado;
+    String cargo;
+    public PanelConsultarPedido(int id, String cargo)
+            
+    {
         initComponents();
-        
+        this.id_empleado = id;
+        this.cargo = cargo;
         table.setModel(new tableModel());
         
     }
@@ -138,8 +146,7 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         
-        PedidoJpaController pjc = new PedidoJpaController(emf);
-        List<Pedido> listapedido = pjc.findPedidoEntities();
+       
         pedido = listapedido.get(table.getSelectedRow());
         
         PanelResulConsultaPedido rm = new PanelResulConsultaPedido(pedido);
@@ -153,7 +160,20 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    public void removerMeseros(int id, String cargo) {
+      if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
+      {    
+        for (int i = 0; i < listapedido.size(); i++) {
+            if (listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) {
+                listapedido.remove(i);
 
+            }
+
+        }
+
+    }
+    }
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel jLabel1;
     public javax.swing.JScrollPane jScrollPane1;
@@ -163,11 +183,11 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
     
     private class tableModel extends AbstractTableModel{
          
-        PedidoJpaController pjc = new PedidoJpaController(emf);
-        List<Pedido> listapedido = pjc.findPedidoEntities();
+        ;
         
         @Override
         public int getRowCount() {
+            removerMeseros(id_empleado,cargo);
             if(listapedido.isEmpty()){
                 return 0;
             }else{

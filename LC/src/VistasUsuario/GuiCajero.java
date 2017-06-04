@@ -50,7 +50,7 @@ public class GuiCajero extends javax.swing.JPanel {
         jPanelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jbPersonal.setBackground(new java.awt.Color(255, 153, 51));
+        jbPersonal.setBackground(new java.awt.Color(153, 51, 0));
         jbPersonal.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jbPersonal.setText("IR");
         jbPersonal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -60,7 +60,7 @@ public class GuiCajero extends javax.swing.JPanel {
         });
         jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 630, 90, -1));
 
-        jbReportes.setBackground(new java.awt.Color(255, 153, 51));
+        jbReportes.setBackground(new java.awt.Color(153, 51, 0));
         jbReportes.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jbReportes.setText("IR");
         jbReportes.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +70,7 @@ public class GuiCajero extends javax.swing.JPanel {
         });
         jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 630, 90, -1));
 
-        jbFacturasPagos.setBackground(new java.awt.Color(255, 153, 51));
+        jbFacturasPagos.setBackground(new java.awt.Color(153, 51, 0));
         jbFacturasPagos.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jbFacturasPagos.setText("IR");
         jbFacturasPagos.addActionListener(new java.awt.event.ActionListener() {

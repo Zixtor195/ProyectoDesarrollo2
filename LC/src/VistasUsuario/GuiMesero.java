@@ -5,7 +5,7 @@
  */
 package VistasUsuario;
 
-import GuiModuloPedidos.MeseroPedidos;
+import GuiModuloPedidos.Pedidos;
 import GuiModuloPersonal.MeseroPersonal;
 
 /**
@@ -18,9 +18,11 @@ public class GuiMesero extends javax.swing.JPanel {
      * Creates new form GuiCajero
      */
     int id;
-    public GuiMesero(int id) {
+    String cargo;
+    public GuiMesero(int id, String cargo) {
         initComponents();
         this.id = id;
+        this.cargo = cargo;
     }
 
     /**
@@ -47,7 +49,7 @@ public class GuiMesero extends javax.swing.JPanel {
         jPanelPrincipal1.setBackground(new java.awt.Color(255, 255, 255));
         jPanelPrincipal1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jbPersonal1.setBackground(new java.awt.Color(255, 153, 51));
+        jbPersonal1.setBackground(new java.awt.Color(153, 51, 0));
         jbPersonal1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jbPersonal1.setText("IR");
         jbPersonal1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -57,7 +59,7 @@ public class GuiMesero extends javax.swing.JPanel {
         });
         jPanelPrincipal1.add(jbPersonal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 620, 90, -1));
 
-        jbPedidos1.setBackground(new java.awt.Color(255, 153, 51));
+        jbPedidos1.setBackground(new java.awt.Color(153, 51, 0));
         jbPedidos1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jbPedidos1.setText("IR");
         jbPedidos1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -67,7 +69,7 @@ public class GuiMesero extends javax.swing.JPanel {
         });
         jPanelPrincipal1.add(jbPedidos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 620, 90, -1));
 
-        jbReportes1.setBackground(new java.awt.Color(255, 153, 51));
+        jbReportes1.setBackground(new java.awt.Color(153, 51, 0));
         jbReportes1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jbReportes1.setText("IR");
         jbReportes1.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +117,7 @@ public class GuiMesero extends javax.swing.JPanel {
                 jbSalir1ActionPerformed(evt);
             }
         });
-        jPanelPrincipal1.add(jbSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 90, 30));
+        jPanelPrincipal1.add(jbSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 90, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -135,7 +137,7 @@ public class GuiMesero extends javax.swing.JPanel {
     }//GEN-LAST:event_jbPersonal1MouseClicked
 
     private void jbPedidos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPedidos1MouseClicked
-        MeseroPedidos mp = new MeseroPedidos(id);
+        Pedidos mp = new Pedidos(id, cargo);
         mp.setVisible(true);
     }//GEN-LAST:event_jbPedidos1MouseClicked
 
