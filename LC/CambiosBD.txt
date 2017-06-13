@@ -1,0 +1,7 @@
+#-------Cambios en la BD----------------
+
+Pedidos: fecha(Date)
+
+-se considera hora de pago como los minutos despues dle ultimo  item
+-mesero restringir que un geente pueda ser asigando a un pedido
+-mirar los registros que hice en la bd en las tabalas facturas y pagos para que sirvan los reportes(estan los pantallazos en la carpeta raiz)

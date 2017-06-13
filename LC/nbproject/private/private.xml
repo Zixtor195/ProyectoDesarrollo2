@@ -2,20 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPedidos/Pedidos.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/VistasUsuario/GuiMesero.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/VistasUsuario/GuiPrincipal.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/MeseroPersonal.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/Login/GuiLogin.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/Login/login.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/VistasUsuario/GuiGerente.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/VistasUsuario/GuiCajero.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/GerentePersonal.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/CajeroPersonal.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelRegistrarEmpleado.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelModificar.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelRealizarModificacion.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

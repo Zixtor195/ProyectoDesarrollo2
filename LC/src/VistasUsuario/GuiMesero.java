@@ -7,6 +7,7 @@ package VistasUsuario;
 
 import GuiModuloPedidos.Pedidos;
 import GuiModuloPersonal.MeseroPersonal;
+import GuiReportes.GuiReporte;
 
 /**
  *
@@ -86,6 +87,11 @@ public class GuiMesero extends javax.swing.JPanel {
         jPanelPrincipal1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.jpg"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
         jPanelPrincipal1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, -1, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.jpg"))); // NOI18N
@@ -142,12 +148,17 @@ public class GuiMesero extends javax.swing.JPanel {
     }//GEN-LAST:event_jbPedidos1MouseClicked
 
     private void jbReportes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReportes1ActionPerformed
-        // TODO add your handling code here:
+        GuiReporte r = new GuiReporte();
+        r.setVisible(true);
     }//GEN-LAST:event_jbReportes1ActionPerformed
 
     private void jbSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalir1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSalir1ActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+          
+    }//GEN-LAST:event_jLabel11MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

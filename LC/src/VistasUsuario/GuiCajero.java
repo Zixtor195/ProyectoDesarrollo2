@@ -8,6 +8,7 @@ package VistasUsuario;
 import GuiFacturasPagos.FacturasPagos;
 import GuiModuloPersonal.CajeroPersonal;
 import GuiModuloPersonal.GerentePersonal;
+import GuiReportes.GuiReporte;
 
 /**
  *
@@ -84,6 +85,11 @@ public class GuiCajero extends javax.swing.JPanel {
         jPanelPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.jpg"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
         jPanelPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/facuras y pagos.jpg"))); // NOI18N
@@ -138,7 +144,8 @@ public class GuiCajero extends javax.swing.JPanel {
     }//GEN-LAST:event_jbPersonalMouseClicked
 
     private void jbReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReportesActionPerformed
-        // TODO add your handling code here:
+          GuiReporte r = new GuiReporte();
+          r.setVisible(true);
     }//GEN-LAST:event_jbReportesActionPerformed
 
     private void jbFacturasPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFacturasPagosActionPerformed
@@ -149,6 +156,10 @@ public class GuiCajero extends javax.swing.JPanel {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+            
+    }//GEN-LAST:event_jLabel4MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
