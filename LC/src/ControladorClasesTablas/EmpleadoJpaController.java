@@ -38,7 +38,8 @@ public class EmpleadoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Empleado empleado) throws PreexistingEntityException, Exception {
+    public String create(Empleado empleado) throws PreexistingEntityException, Exception {
+        String resultado = "";
         if (empleado.getTurnosSemanalesSet() == null) {
             empleado.setTurnosSemanalesSet(new HashSet<TurnosSemanales>());
         }
@@ -81,16 +82,19 @@ public class EmpleadoJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
+            resultado = "creado exitosamente";
         } catch (Exception ex) {
             if (findEmpleado(empleado.getIdEmpleado()) != null) {
                 throw new PreexistingEntityException("Empleado " + empleado + " already exists.", ex);
             }
+            resultado = "ya existe";
             throw ex;
         } finally {
             if (em != null) {
                 em.close();
             }
         }
+        return resultado;
     }
 
     public void edit(Empleado empleado) throws IllegalOrphanException, NonexistentEntityException, Exception {

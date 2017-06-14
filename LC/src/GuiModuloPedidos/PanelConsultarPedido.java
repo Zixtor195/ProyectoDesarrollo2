@@ -7,6 +7,8 @@ package GuiModuloPedidos;
 
 import ClasesTablas.Pedido;
 import ControladorClasesTablas.PedidoJpaController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -183,7 +185,7 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
     
     private class tableModel extends AbstractTableModel{
          
-        ;
+        
         
         @Override
         public int getRowCount() {
@@ -219,7 +221,10 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
             switch(columnIndex){
                 case 0: return pedid.getIdPedido();
                 case 1: return pedid.getIdEmpleado().getNombres();
-                case 2: return pedid.getHoraInicio();
+                case 2: 
+                    Date date = pedid.getHoraInicio();
+                    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+                    return sdf.format(date);
                 case 3: return pedid.getNumMesa();
             }
             return "";

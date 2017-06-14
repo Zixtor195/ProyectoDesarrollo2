@@ -24,6 +24,9 @@ import ControladorClasesTablas.PedidoJpaController;
 import GuiModuloPersonal.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -188,18 +191,22 @@ public class Pedidos extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            PanelRegistrarPedido prp = new PanelRegistrarPedido();
-            if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
-           {
-               prp.cbo_mesero.setSelectedItem(pjc.findEmpleado(id).getNombres());
-               prp.cbo_mesero.setEnabled(false);
-            }    
-            prp.setSize(936, 739);
-            
-            panel.removeAll();
-            panel.add(prp);
-            panel.revalidate();
-            panel.repaint();
+            try {
+                PanelRegistrarPedido prp = new PanelRegistrarPedido();
+                if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
+                {
+                    prp.cbo_mesero.setSelectedItem(pjc.findEmpleado(id).getNombres());
+                    prp.cbo_mesero.setEnabled(false);
+                }
+                prp.setSize(936, 739);
+                
+                panel.removeAll();
+                panel.add(prp);
+                panel.revalidate();
+                panel.repaint();
+            } catch (ParseException ex) {
+                Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     

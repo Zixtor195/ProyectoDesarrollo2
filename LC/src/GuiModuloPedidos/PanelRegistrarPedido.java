@@ -21,7 +21,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -51,7 +54,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
     Pedido pedido = new Pedido();
     
-    public PanelRegistrarPedido() {
+    public PanelRegistrarPedido() throws ParseException {
         initComponents();
         
         listitemp.setModel(new listaItemsModel());
@@ -424,24 +427,30 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             
-            crearLocalPedido();
-            PedidoJpaController pjc = new PedidoJpaController(emf);
-            ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
-            List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
-            pedido.setHoraUltimoItem(getHora());
-            
-            if(!listaitempedido.isEmpty()){
-                for (ItemPedido itemp : listaitempedido) {
-                    if(itemp.getPedido().getIdPedido().intValue() == pedido.getIdPedido().intValue()){
-                        pedido.getItemPedidoSet().add(itemp);
+            try {
+                
+                crearLocalPedido();
+                PedidoJpaController pjc = new PedidoJpaController(emf);
+                ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
+                List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
+                pedido.setHoraUltimoItem(getHora());
+                
+                if(!listaitempedido.isEmpty()){
+                    for (ItemPedido itemp : listaitempedido) {
+                        if(itemp.getPedido().getIdPedido().intValue() == pedido.getIdPedido().intValue()){
+                            pedido.getItemPedidoSet().add(itemp);
+                        }
                     }
                 }
-            }
-            try {
-                pjc.edit(pedido);
-                JOptionPane.showMessageDialog(null, "Pedido realizado");
-            } catch (Exception ee) {
-                JOptionPane.showMessageDialog(null, "No se pudo realizar el pedido");
+                try {
+                    pjc.edit(pedido);
+                    JOptionPane.showMessageDialog(null, "Pedido realizado");
+                } catch (Exception ee) {
+                    JOptionPane.showMessageDialog(null, "No se pudo realizar el pedido");
+                }
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE,null, ex);
             }
             
         }
@@ -539,7 +548,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
         
     }
     
-    public void crearPedidoBd(){
+    public void crearPedidoBd() throws ParseException{
        
         PedidoJpaController pjc = new PedidoJpaController(emf);
         pedido.setIdPedidoAumentado();
@@ -548,6 +557,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
         pedido.setTipo(cbo_tipo.getSelectedItem().toString());
         pedido.setEstado("Activo");
         pedido.setIdEmpleado(getEmpleadoPedido());
+        pedido.setFechaPedido(getfecha());
         try {
             pjc.create(pedido);
         } catch (Exception ex) {
@@ -582,11 +592,21 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
         return empleado;
     }
     
-    public String getHora() {
+    public Date getHora() throws ParseException {
         
-        Date hora = new Date();
+        Date hora = Calendar.getInstance().getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
-        return sdf.format(hora);
+        String actual = sdf.format(hora);
+        Date actual1 = sdf.parse(actual);
+        return actual1;
+    }
+    
+    public Date getfecha() throws ParseException {
+        Date date = Calendar.getInstance().getTime();
+        DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); 
+        String actual = sdf.format(date);
+        Date actual1 = sdf.parse(actual);
+        return actual1;        
     }
     
     private class listaItemsModel extends AbstractListModel {

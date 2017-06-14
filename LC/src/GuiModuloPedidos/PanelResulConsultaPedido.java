@@ -384,8 +384,8 @@ public class PanelResulConsultaPedido extends javax.swing.JPanel {
 
     
     private void pasarDatos(Pedido pedido){
-        txthorainicio.setText(pedido.getHoraInicio());
-        txthorafinal.setText(pedido.getHoraUltimoItem());
+        txthorainicio.setText(pedido.getHoraInicio().toString());
+        txthorafinal.setText(pedido.getHoraUltimoItem().toString());
         if(pedido.getNumMesa()==0){
             txtmesa.setText("0");
         }

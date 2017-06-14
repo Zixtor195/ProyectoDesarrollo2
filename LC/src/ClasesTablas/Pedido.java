@@ -6,6 +6,7 @@
 package ClasesTablas;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -13,14 +14,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,7 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Pedido.findByHoraUltimoItem", query = "SELECT p FROM Pedido p WHERE p.horaUltimoItem = :horaUltimoItem")
     , @NamedQuery(name = "Pedido.findByTipo", query = "SELECT p FROM Pedido p WHERE p.tipo = :tipo")
     , @NamedQuery(name = "Pedido.findByNumMesa", query = "SELECT p FROM Pedido p WHERE p.numMesa = :numMesa")
-    , @NamedQuery(name = "Pedido.findByEstado", query = "SELECT p FROM Pedido p WHERE p.estado = :estado")})
+    , @NamedQuery(name = "Pedido.findByEstado", query = "SELECT p FROM Pedido p WHERE p.estado = :estado")
+    , @NamedQuery(name = "Pedido.findByFechaPedido", query = "SELECT p FROM Pedido p WHERE p.fechaPedido = :fechaPedido")})
 public class Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,9 +50,11 @@ public class Pedido implements Serializable {
     private Integer idPedido;
     @Basic(optional = false)
     @Column(name = "hora_inicio")
-    private String horaInicio;
+    @Temporal(TemporalType.TIME)
+    private Date horaInicio;
     @Column(name = "hora_ultimo_item")
-    private String horaUltimoItem;
+    @Temporal(TemporalType.TIME)
+    private Date horaUltimoItem;
     @Basic(optional = false)
     @Column(name = "tipo")
     private String tipo;
@@ -57,6 +63,10 @@ public class Pedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
+    @Basic(optional = false)
+    @Column(name = "fecha_pedido")
+    @Temporal(TemporalType.DATE)
+    private Date fechaPedido;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
     private Set<ItemPedido> itemPedidoSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPedido", fetch = FetchType.LAZY)
@@ -72,11 +82,12 @@ public class Pedido implements Serializable {
         this.idPedido = idPedido;
     }
 
-    public Pedido(Integer idPedido, String horaInicio, String tipo, String estado) {
+    public Pedido(Integer idPedido, Date horaInicio, String tipo, String estado, Date fechaPedido) {
         this.idPedido = idPedido;
         this.horaInicio = horaInicio;
         this.tipo = tipo;
         this.estado = estado;
+        this.fechaPedido = fechaPedido;
     }
 
     public Integer getIdPedido() {
@@ -87,23 +98,23 @@ public class Pedido implements Serializable {
         this.idPedido = idPedido;
     }
     
-    public void setIdPedidoAumentado(){
+    public void setIdPedidoAumentado() {
         this.idPedido++;
     }
 
-    public String getHoraInicio() {
+    public Date getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(String horaInicio) {
+    public void setHoraInicio(Date horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public String getHoraUltimoItem() {
+    public Date getHoraUltimoItem() {
         return horaUltimoItem;
     }
 
-    public void setHoraUltimoItem(String horaUltimoItem) {
+    public void setHoraUltimoItem(Date horaUltimoItem) {
         this.horaUltimoItem = horaUltimoItem;
     }
 
@@ -131,7 +142,14 @@ public class Pedido implements Serializable {
         this.estado = estado;
     }
 
-    @XmlTransient
+    public Date getFechaPedido() {
+        return fechaPedido;
+    }
+
+    public void setFechaPedido(Date fechaPedido) {
+        this.fechaPedido = fechaPedido;
+    }
+
     public Set<ItemPedido> getItemPedidoSet() {
         return itemPedidoSet;
     }
@@ -140,7 +158,6 @@ public class Pedido implements Serializable {
         this.itemPedidoSet = itemPedidoSet;
     }
 
-    @XmlTransient
     public Set<Factura> getFacturaSet() {
         return facturaSet;
     }
@@ -156,6 +173,8 @@ public class Pedido implements Serializable {
     public void setIdEmpleado(Empleado idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
+    
+    
 
     @Override
     public int hashCode() {

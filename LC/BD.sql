@@ -1,4 +1,4 @@
-﻿/*
+/*
     Universidad del Valle
     Asignatura: Desarrollo de Software II 750092M
     Tema: Entrega 4 proyecto
@@ -63,12 +63,13 @@ CREATE TABLE item
 CREATE TABLE pedido
 (
 	id_pedido integer PRIMARY KEY,
-	hora_inicio varchar(100) NOT NULL,
-	hora_ultimo_item varchar(100),
+	hora_inicio time (100) NOT NULL,
+	hora_ultimo_item time (100),
 	tipo varchar(100) NOT NULL, /*puede ser pedido mesa o para llevar*/
 	num_mesa integer,
 	id_empleado integer NOT NULL,
 	estado varchar(100) NOT NULL,
+    fecha_pedido date NOT NULL, /*Cambio realizado*/
 	FOREIGN KEY (id_empleado) REFERENCES empleado 	(id_empleado)
 );
 
@@ -111,27 +112,31 @@ CREATE TABLE pagos
 	PRIMARY KEY (id_pago , id_factura)
 );
 
-
+SET DATESTYLE TO 'European';
 
 -- Insercion de datos
 
 INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase,estado) VALUES(111,'Pepito','Perez','Mesero','1234','4567','mesero@quehambre.com','cll5','cedula','111','Activo');
 INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase,estado) VALUES(222,'Armando','Casas','Cajero','1234','4567','cajero@quehambre.com','cll6','cedula','222','Activo');
 INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase,estado) VALUES(333,'Pepa','Pig','Gerente','1234','4567','gerenteo@quehambre.com','cll7','cedula','333','Activo');
+INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase,estado,usuario) VALUES(444,'admin','admin1','Gerente','1234','4567','admin@quehambre.com','cll7','cedula','444','Activo', 'admin');
+INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase,estado,usuario) VALUES(555,'cajero','cajero1','Cajero','1234','4567','cajero@quehambre.com','cll7','cedula','555','Activo', 'cajero');
+INSERT INTO empleado(id_empleado ,nombres ,apellidos ,cargo ,tel_fijo ,tel_cel ,Email ,direccion,tipo_documento ,contrase,estado,usuario) VALUES(777,'mesero','mesero1','Mesero','1234','4567','cajero@quehambre.com','cll7','cedula','777','Activo', 'mesero');
 
-INSERT INTO turnos_semanales (dia , hora_fin, hora_inicio, id_empleado,id) VALUES('lunes','14:00','08:00',111,1);
-INSERT INTO turnos_semanales (dia , hora_fin, hora_inicio, id_empleado,id) VALUES('martes','10:00','15:00',111,2);
-INSERT INTO turnos_semanales (dia , hora_fin, hora_inicio, id_empleado,id) VALUES('jueves','12:00','18:00',222,3);
-INSERT INTO turnos_semanales (dia , hora_fin, hora_inicio, id_empleado,id) VALUES('viernes','16:00','22:00',333,4);
+
+INSERT INTO turnos_semanales (dia , hora_fin, hora_inicio, id_empleado,id) VALUES('lunes','14:00:00','08:00',111,1);
+INSERT INTO turnos_semanales (dia , hora_fin, hora_inicio, id_empleado,id) VALUES('martes','10:00:00','15:00',111,2);
+INSERT INTO turnos_semanales (dia , hora_fin, hora_inicio, id_empleado,id) VALUES('jueves','12:00:00','18:00',222,3);
+INSERT INTO turnos_semanales (dia , hora_fin, hora_inicio, id_empleado,id) VALUES('viernes','16:00:00','22:00',333,4);
 
 INSERT INTO item(id_item ,descripcion ,nombre ,categoria ,precio,estado) VALUES(100,'rica-chuleta','chuleta-a-las-brasas','Res',25000,'Activo');
 INSERT INTO item(id_item ,descripcion ,nombre ,categoria ,precio,estado) VALUES(200,'rico-helado','helado-coco','Postre',15000,'Activo');
 INSERT INTO item(id_item ,descripcion ,nombre ,categoria ,precio,estado) VALUES(300,'rico-jugo','jugo-uva','Bebida',9000,'Activo');
 
-INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado,estado) VALUES(1,'10:25','11:25','Mesa','10',111,'Activo');
-INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado,estado) VALUES(2,'16:25','17:25','Llevar','6',111,'Activo');
-INSERT INTO pedido(id_pedido ,hora_inicio ,tipo ,num_mesa ,id_empleado,estado) VALUES(3,'14:25','Mesa','11',111,'Activo');
-INSERT INTO pedido(id_pedido ,hora_inicio ,tipo ,num_mesa ,id_empleado,estado) VALUES(4,'14:25','Llevar','11',222,'Activo');
+INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado,estado, fecha_pedido) VALUES(1,'10:25','11:25','Mesa','10',111,'Activo','05/02/2016');
+INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado,estado, fecha_pedido) VALUES(2,'16:25','17:25','Llevar','6',111,'Activo','03/03/2016');
+INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado,estado, fecha_pedido) VALUES(3,'14:25','15:25','Mesa','11',111,'Activo','02/02/2016');
+INSERT INTO pedido(id_pedido ,hora_inicio ,hora_ultimo_item ,tipo ,num_mesa ,id_empleado,estado, fecha_pedido) VALUES(4,'14:25','16:25','Llevar','11',222,'Activo','13/05/2016');
 
 INSERT INTO item_pedido(id_pedido ,id_item ,cantidad) VALUES(1,100,4);
 INSERT INTO item_pedido(id_pedido ,id_item ,cantidad) VALUES(1,300,4);

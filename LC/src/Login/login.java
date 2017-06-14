@@ -28,7 +28,7 @@ public class login
     private ResultSet resultado;
     private Statement sentencia;
     
-public ArrayList ValidarLogin(String usuario, String contrasena) throws SQLException {
+ public ArrayList ValidarLogin(String usuario, String contrasena) throws SQLException {
 
         EntityManagerFactory emf = Persistence 
                 .createEntityManagerFactory("LCPU"); 

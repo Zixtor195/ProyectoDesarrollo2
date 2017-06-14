@@ -48,18 +48,17 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
     }
     
     
-      public void removerMeseros(int id, String cargo) {
-      if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
-      {    
-        for (int i = 0; i < listapedido.size(); i++) {
-            if (listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) {
-                listapedido.remove(i);
+    public void removerMeseros(int id, String cargo) {
+        if (cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero")) {
+            for (int i = 0; i < listapedido.size(); i++) {
+                if (listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) {
+                    listapedido.remove(i);
+
+                }
 
             }
 
         }
-
-    }
     }
 
     /**

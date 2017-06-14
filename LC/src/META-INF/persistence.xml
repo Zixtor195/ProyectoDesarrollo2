@@ -10,6 +10,7 @@
     <class>ClasesTablas.Pagos</class>
     <class>ClasesTablas.Pedido</class>
     <class>ClasesTablas.TurnosSemanales</class>
+    <class>ClasesTablas.Empleado_1</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/project_ds"/>
       <property name="javax.persistence.jdbc.password" value=""/>
