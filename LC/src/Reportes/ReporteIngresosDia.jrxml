@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteIngresosDia" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="507728df-c96d-4173-8b81-a3848f4636df">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#B88300">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFF8E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#FFFDF8"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="tabla_ingresos" uuid="f4c455f7-4a90-4813-a8de-5f8bfe3666a2">
+		<parameter name="ano" class="java.lang.Integer"/>
+		<parameter name="mes" class="java.lang.Integer" isForPrompting="false"/>
+		<queryString>
+			<![CDATA[select *
+from(select  extract(month from fecha_pedido) as Mes, extract(year from fecha_pedido) as año , extract(day from fecha_pedido) as dia,sum(valor_total) as ingresos
+     from(select id_empleado, valor_total,fecha_pedido
+           from (select *
+                  from factura as m
+                   join pedido as e
+                    on m.id_pedido = e.id_pedido) as tabla) as l
+GROUP BY extract(month from fecha_pedido), extract(year from fecha_pedido), extract(day from fecha_pedido)) as info
+where Mes = $P{mes} and año = $P{ano};]]>
+		</queryString>
+		<field name="mes" class="java.lang.Integer"/>
+		<field name="año" class="java.lang.Integer"/>
+		<field name="dia" class="java.lang.Integer"/>
+		<field name="ingresos" class="java.lang.Integer"/>
+	</subDataset>
+	<parameter name="Ano" class="java.lang.Integer"/>
+	<parameter name="Mes" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select *
+from(select  extract(month from fecha_pedido) as Mes, extract(year from fecha_pedido) as año , extract(day from fecha_pedido) as dia,sum(valor_total) as ingresos
+     from(select id_empleado, valor_total,fecha_pedido
+           from (select *
+                  from factura as m
+                   join pedido as e
+                    on m.id_pedido = e.id_pedido) as tabla) as l
+GROUP BY extract(month from fecha_pedido), extract(year from fecha_pedido), extract(day from fecha_pedido)) as info
+where Mes = $P{Mes} and año = $P{Ano};]]>
+	</queryString>
+	<field name="mes" class="java.lang.Double"/>
+	<field name="año" class="java.lang.Double"/>
+	<field name="dia" class="java.lang.Double"/>
+	<field name="ingresos" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="106" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="17" y="36" width="514" height="60" uuid="5e98dacf-87f9-42c1-b1d0-fadfbe22d3e1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="39" y="48" width="208" height="36" uuid="67beb4f4-124c-46d9-b50f-60d2f0f09976"/>
+				<text><![CDATA[Reportes]]></text>
+			</staticText>
+			<image>
+				<reportElement x="440" y="48" width="135" height="47" uuid="01c0ec8a-1c4f-48a1-8fe9-8117ff24f6a9"/>
+				<imageExpression><![CDATA["C:\\Users\\Moni\\Documents\\NetBeansProjects\\ProyectoDesarrollo2\\LC\\src\\imagenes\\logoLC.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="17" y="0" width="100" height="20" uuid="599bb081-f84e-4de7-8b14-39bc0b062090"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="158" y="11" width="229" height="25" uuid="bc3d8e80-bc97-484c-84a4-c20251f86f76"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INGRESOS DIARIOS MENSUALES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="371" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="17" y="35" width="514" height="301" uuid="5a3aabcb-d388-478b-a508-e2b3b1b51203"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="tabla_ingresos" uuid="c94a5a39-ace8-44b3-879c-8e170cbd381b">
+						<datasetParameter name="ano">
+							<datasetParameterExpression><![CDATA[$P{Ano}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes">
+							<datasetParameterExpression><![CDATA[$P{Mes}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="111" uuid="316f883e-8caf-454d-b189-31b1e36047dc">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="70dd1eee-37a7-4e63-9694-ee69f6b248c7"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[MES]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="43b0045a-ee08-44ca-9ade-ad5d1bb1a0c0"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="124" uuid="c46ae176-2896-408c-bd29-48918a4d0abd">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="18" y="0" width="90" height="30" uuid="4fbe0b97-9b8f-4f87-8048-0da57ff628b7"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[AÑO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="18" y="0" width="90" height="20" uuid="816a1e5f-04e5-4580-94e2-1c137d987ae2"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{año}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="148" uuid="0296fa32-dd6a-4ae9-bd1f-d8468b6391d1">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="32" y="0" width="90" height="30" uuid="00001fd4-8a54-4672-91a4-398a129a3209"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[DIA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="32" y="0" width="90" height="20" uuid="c9d2965d-55ea-40cb-9fdf-2ba7c182a0d2"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{dia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="137" uuid="04824476-6c44-4839-bbd5-1c53a7f982f6">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="112" height="30" uuid="efb333fe-d6f5-4684-b532-92ff1852c583"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[INGRESOS]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="15" y="0" width="112" height="20" uuid="cbe48be3-d9ea-4204-b1f2-104192047d5b"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{ingresos}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="247" y="34" width="100" height="20" uuid="e47ccaaa-f62c-4f2b-9ce8-6b0a1ffab99f"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

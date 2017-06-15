@@ -58,6 +58,11 @@ public class GuiReporte extends javax.swing.JFrame {
         });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/descarga - copia.jpg"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mas vendidos.jpg"))); // NOI18N
 
@@ -144,13 +149,22 @@ public class GuiReporte extends javax.swing.JFrame {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
       
         try {
-            r.generar_reporte();
+            r.reporteMeseroMes();
         } catch (SQLException ex) {
             Logger.getLogger(GuiReporte.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        try {
+            r.reporteIngresosDiarios();
+        } catch (SQLException ex) {
+            Logger.getLogger(GuiReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel6MouseClicked
 
  
     // Variables declaration - do not modify//GEN-BEGIN:variables

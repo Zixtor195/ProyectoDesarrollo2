@@ -8,6 +8,7 @@ package Reportes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -23,12 +24,15 @@ public class Reporte {
     private static JasperReport report;
     private static JasperPrint reportFilled;
     private static JasperViewer viewer;
+    
+     Connection con = null;
+      
   
-    public void  generar_reporte() throws SQLException
+    public void  reporteMeseroMes() throws SQLException
     {
+        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "mmllano");
         try
-        {   Connection con = null;
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "mmllano");
+        {  
            
             try
             {
@@ -40,18 +44,67 @@ public class Reporte {
             }
             
             Map parametros = new HashMap();
-            int ano = Integer.parseInt(JOptionPane.showInputDialog(null,"ingresar el año" ));
-            parametros.put("ano", ano);
+            
+            parametros.put("Ano", Integer.parseInt(JOptionPane.showInputDialog(null,"ingresar el año " )));
             reportFilled = JasperFillManager.fillReport(report, parametros, con);
             JasperViewer jViewer = new JasperViewer(reportFilled, false);
             jViewer.setVisible(true);
+            con.close();
         }
         catch(JRException e)
         {
             System.out.print("Error Generando Reporte" + e.getMessage());
         
         }
+        
+        
     }
+    
+    
+     public void  reporteIngresosDiarios() throws SQLException
+    {
+        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "mmllano");
+        try
+        {  
+           
+            try
+            {
+               report = (JasperReport) JRLoader.loadObject(getClass().getResource("ReporteIngresosDia.jasper"));
+            }
+            catch(JRException e)
+            {
+               System.out.print("Error Generando Reporte" + e.getMessage());
+            }
+            
+            Map<String, Object> parametros = new HashMap();
+            
+            
+            parametros.put("Ano", Integer.parseInt(JOptionPane.showInputDialog(null,"Por Favor ingrese un año " )));
+            parametros.put("Mes", Integer.parseInt(JOptionPane.showInputDialog(null,"Por Favor ingrese un mes: " )));
+            
+            
+            reportFilled = JasperFillManager.fillReport(report,parametros , con);
+            JasperViewer jViewer = new JasperViewer(reportFilled, false);
+            jViewer.setVisible(true);
+            con.close();
+        }
+        catch(JRException e)
+        {
+            System.out.print("Error Generando Reporte" + e.getMessage());
+        
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
    

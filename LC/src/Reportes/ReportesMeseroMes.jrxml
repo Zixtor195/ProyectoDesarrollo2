@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportesMeseroMes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85ca9f90-8cf4-416c-8d7b-8f213b76d1aa">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportesMeseroMes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0cab958e-bad3-4ad1-b3ab-2a437a0d2f1a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="21"/>
+	<property name="ireport.y" value="44"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
 		</box>
 	</style>
-	<style name="table_TH" mode="Opaque" backcolor="#D2691E">
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<style name="table_CH" mode="Opaque" backcolor="#FFDABF">
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
@@ -22,18 +22,22 @@
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
 	</style>
 	<style name="table 1">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
 		</box>
 	</style>
-	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+	<style name="table 1_TH" mode="Opaque" backcolor="#8FAFCC">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+	<style name="table 1_CH" mode="Opaque" backcolor="#CFDBE6">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
@@ -42,187 +46,212 @@
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
 	</style>
-	<style name="table 2">
-		<box>
-			<pen lineWidth="1.0" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table 2_TH" mode="Opaque" backcolor="#8B0000">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table 2_CH" mode="Opaque" backcolor="#FFBFBF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table 3">
-		<box>
-			<pen lineWidth="1.0" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<subDataset name="Tabla_Mesero" uuid="98699c65-7390-4eb7-91fa-24c0f4cf1c5c">
-		<queryString language="SQL">
-			<![CDATA[select mes,max(empleado) as id_empleado,max(vendido) as vendido,ano as año
-from(select id_empleado as empleado, extract(month from fecha) as mes, extract(year from fecha) as ano ,sum(valor_total) as vendido
-     from(select id_empleado, valor_total,fecha
-           from (select *
-                  from factura as m
-                   join pedido as e
-                    on m.id_pedido = e.id_pedido) as tabla) as l
-GROUP BY id_empleado, extract(month from fecha), extract(year from fecha) ) as ventas
-GROUP BY mes,ano;]]>
-		</queryString>
-		<field name="mes" class="java.lang.Double"/>
-		<field name="id_empleado" class="java.lang.Integer"/>
-		<field name="vendido" class="java.lang.Long"/>
-		<field name="año" class="java.lang.Double"/>
-	</subDataset>
-	<subDataset name="Mesero" uuid="a6c967ab-f17f-4f76-823c-e15eb6cb03af">
-		<queryString language="SQL">
+	<subDataset name="table_mesero" uuid="434100b6-2180-4978-9a24-745a5db59d80">
+		<parameter name="ano" class="java.lang.Integer"/>
+		<queryString>
 			<![CDATA[select empleado.nombres, empleado.apellidos, id_empleado, mes, vendido, año
 from(select mes,max(empleado) as id_empleado,max(vendido)as vendido,ano as año
-from(select id_empleado as empleado, extract(month from fecha) as mes, extract(year from fecha) as ano ,sum(valor_total) as vendido
-     from(select id_empleado, valor_total,fecha
+from(select id_empleado as empleado, extract(month from fecha_pedido) as mes, extract(year from fecha_pedido) as ano ,sum(valor_total) as vendido
+     from(select id_empleado, valor_total,fecha_pedido
            from (select *
                   from factura as m
                    join pedido as e
                     on m.id_pedido = e.id_pedido) as tabla) as l
-GROUP BY id_empleado, extract(month from fecha), extract(year from fecha) ) as ventas
+GROUP BY id_empleado, extract(month from fecha_pedido), extract(year from fecha_pedido) ) as ventas
 GROUP BY mes,ano) as mesero
-natural join empleado;]]>
+natural join empleado
+where año = $P{ano};]]>
 		</queryString>
 		<field name="nombres" class="java.lang.String"/>
 		<field name="apellidos" class="java.lang.String"/>
 		<field name="id_empleado" class="java.lang.Integer"/>
-		<field name="mes" class="java.lang.Double"/>
-		<field name="vendido" class="java.lang.Long"/>
-		<field name="año" class="java.lang.Double"/>
+		<field name="mes" class="java.lang.Integer"/>
+		<field name="vendido" class="java.lang.Integer"/>
+		<field name="año" class="java.lang.Integer"/>
 	</subDataset>
-	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="Ano" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[select empleado.nombres, empleado.apellidos, id_empleado, mes, vendido, año
 from(select mes,max(empleado) as id_empleado,max(vendido)as vendido,ano as año
-from(select id_empleado as empleado, extract(month from fecha) as mes, extract(year from fecha) as ano ,sum(valor_total) as vendido
-     from(select id_empleado, valor_total,fecha
+from(select id_empleado as empleado, extract(month from fecha_pedido) as mes, extract(year from fecha_pedido) as ano ,sum(valor_total) as vendido
+     from(select id_empleado, valor_total,fecha_pedido
            from (select *
                   from factura as m
                    join pedido as e
                     on m.id_pedido = e.id_pedido) as tabla) as l
-GROUP BY id_empleado, extract(month from fecha), extract(year from fecha) ) as ventas
+GROUP BY id_empleado, extract(month from fecha_pedido), extract(year from fecha_pedido) ) as ventas
 GROUP BY mes,ano) as mesero
 natural join empleado
-where año = $P{ano};]]>
+where año = $P{Ano};]]>
 	</queryString>
 	<field name="nombres" class="java.lang.String"/>
 	<field name="apellidos" class="java.lang.String"/>
 	<field name="id_empleado" class="java.lang.Integer"/>
 	<field name="mes" class="java.lang.Integer"/>
-	<field name="vendido" class="java.lang.Long"/>
+	<field name="vendido" class="java.lang.Integer"/>
 	<field name="año" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="95" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="17" y="29" width="517" height="56" uuid="620d2d18-d985-48d6-827c-636a113727a2"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="145" y="18" width="238" height="34" uuid="2a924434-4add-4f59-a9d7-0d20f7675c22"/>
+				<reportElement x="30" y="43" width="278" height="38" uuid="d51b58be-477b-4b43-a697-73d031e9a26f"/>
 				<textElement>
-					<font fontName="Arial" size="24"/>
+					<font size="24"/>
 				</textElement>
-				<text><![CDATA[Reporte Meseros Mes]]></text>
+				<text><![CDATA[Reportes]]></text>
 			</staticText>
+			<image>
+				<reportElement x="453" y="43" width="102" height="38" uuid="f1f65adf-3731-4c29-9d57-2a4e0bded6dd"/>
+				<imageExpression><![CDATA["C:\\Users\\Moni\\Documents\\NetBeansProjects\\ProyectoDesarrollo2\\LC\\src\\imagenes\\logoLC.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="17" y="0" width="100" height="20" uuid="6fe03748-fdf6-46b6-b33c-0ef110841f05"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="224" y="13" width="128" height="25" uuid="647ec08d-14b2-4267-9467-3bf4a5d10059"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Meseros Del Mes]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
 	<detail>
 		<band height="358" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table 3" style="table 3" x="74" y="45" width="360" height="80" uuid="6e352254-0eaf-4ad6-b02e-bd20b0fd070a"/>
+				<reportElement key="table 1" style="table 1" x="17" y="13" width="517" height="247" uuid="c14f1513-276e-49e2-ad7b-65de926e3e4f"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Tabla_Mesero" uuid="e657748d-aa11-4b99-b4c9-96d1a93c7e38">
+					<datasetRun subDataset="table_mesero" uuid="5c769fe0-b5dc-4dea-8a81-5f7819c7437f">
+						<datasetParameter name="ano">
+							<datasetParameterExpression><![CDATA[$P{Ano}]]></datasetParameterExpression>
+						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="600f7d60-3540-4ab2-a1df-cc27e4a530c8">
-						<jr:columnHeader style="table 3_CH" height="30">
+					<jr:column width="90" uuid="719b8413-220f-42a9-9c79-d8eb8f9e8da2">
+						<jr:columnHeader style="table 1_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="6a2c8283-5d78-41c2-bd75-19d4add88105"/>
-								<text><![CDATA[mes]]></text>
+								<reportElement x="0" y="0" width="90" height="30" uuid="1154dc8f-dcef-46cf-b896-ee46bfec2f94"/>
+								<textElement textAlignment="Center">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[NOMBRES]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 3_CH" height="30"/>
-						<jr:detailCell style="table 3_TD" height="20">
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="8a2974c3-70f2-4bd5-a71d-8c622cdf0a98"/>
-								<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+								<reportElement x="0" y="0" width="90" height="20" uuid="675b8cbc-6926-4e3f-b620-ba210e913a7e"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="9e071942-5ebb-4d05-8ae0-2edf5321cd14">
-						<jr:columnHeader style="table 3_CH" height="30">
+					<jr:column width="90" uuid="b5b88212-1837-4362-a327-c198100c57ae">
+						<jr:columnHeader style="table 1_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="bf273958-30af-4139-adc1-30f4f7eece5f"/>
-								<text><![CDATA[id_empleado]]></text>
+								<reportElement x="0" y="0" width="90" height="30" uuid="e6dd2dcb-984d-4061-950a-cb1ef0c6fd27"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[APELLIDOS]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 3_CH" height="30"/>
-						<jr:detailCell style="table 3_TD" height="20">
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="0dfe843d-66a0-490e-b1ab-911d68acbc9a"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="9bdeea3a-e852-4ffc-9bf5-dd0b1f44f7e4"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="72501071-ae36-46db-9625-ac1fb2feaff7">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="80dc1081-42f1-4ded-8fd8-3013761f6c89"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ID_EMPLEADO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="4edd9984-50b2-45ad-86ee-d80d816d2b05"/>
+								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{id_empleado}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="b14f29e7-0ab0-410e-8dd1-ce986fb6a4fd">
-						<jr:columnHeader style="table 3_CH" height="30">
+					<jr:column width="90" uuid="4ba73acd-f57e-44b2-8d78-936e6e4c9919">
+						<jr:columnHeader style="table 1_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="7977cb10-0fac-4ef4-9eeb-e248fa2c4d6e"/>
-								<text><![CDATA[vendido]]></text>
+								<reportElement x="0" y="0" width="90" height="30" uuid="7545142c-83f2-41c7-8ec0-6fd3aeba9e6f"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[MES]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 3_CH" height="30"/>
-						<jr:detailCell style="table 3_TD" height="20">
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="c1150597-23c7-4bfc-aabe-52000dfb2638"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="c30854e8-8b40-445c-89dd-8cd45210be93"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c03124db-0d6b-4d73-a5ff-ba6742e01ad8">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="691edb07-1118-47b2-b70e-d887614955c7"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[VENDIDO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="d2ef3d14-8f1b-4d91-8bc1-478a00cb134f"/>
+								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{vendido}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="367c038b-3313-46aa-bcaf-4f5fb87d2e2c">
-						<jr:columnHeader style="table 3_CH" height="30">
+					<jr:column width="90" uuid="c9f22414-cd02-47a6-a7b9-b07ea9a9851f">
+						<jr:columnHeader style="table 1_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="778035d9-579a-450f-940c-ef750ffd1d5d"/>
-								<text><![CDATA[año]]></text>
+								<reportElement x="0" y="0" width="90" height="30" uuid="77a85a9c-d8f1-467b-977b-3bb5faa3f565"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[AÑO]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 3_CH" height="30"/>
-						<jr:detailCell style="table 3_TD" height="20">
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="c9f8d1a0-86f4-4288-a58d-11727a9d6f31"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2b7c1cc4-44b4-489c-bf8a-9e49c32dac87"/>
+								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{año}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -231,13 +260,12 @@ where año = $P{ano};]]>
 			</componentElement>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="50">
+			<textField>
+				<reportElement x="224" y="13" width="100" height="20" uuid="b306cc95-bb29-452d-b08b-b961c44bf0c9"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
