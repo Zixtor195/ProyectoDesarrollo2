@@ -7,7 +7,7 @@ package VistasUsuario;
 
 import GuiModuloMenu.Menu;
 import GuiModuloPersonal.GerentePersonal;
-import GuiReportes.GuiReporte;
+import GuiReportes.GuiReporteGerente;
 
 /**
  *
@@ -69,6 +69,11 @@ public class GuiGerente extends javax.swing.JPanel {
         jbReportes.setBackground(new java.awt.Color(153, 51, 0));
         jbReportes.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jbReportes.setText("IR");
+        jbReportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbReportesMouseClicked(evt);
+            }
+        });
         jbReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbReportesActionPerformed(evt);
@@ -144,7 +149,7 @@ public class GuiGerente extends javax.swing.JPanel {
     }//GEN-LAST:event_jbPersonalMouseClicked
 
     private void jbReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReportesActionPerformed
-          GuiReporte r = new GuiReporte();
+          GuiReporteGerente r = new GuiReporteGerente();
           r.setVisible(true);
     }//GEN-LAST:event_jbReportesActionPerformed
 
@@ -155,6 +160,11 @@ public class GuiGerente extends javax.swing.JPanel {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jbReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbReportesMouseClicked
+       GuiReporteGerente c = new GuiReporteGerente();   
+      // TODO add your handling code here:
+    }//GEN-LAST:event_jbReportesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -7,7 +7,8 @@ package VistasUsuario;
 
 import GuiModuloPedidos.Pedidos;
 import GuiModuloPersonal.MeseroPersonal;
-import GuiReportes.GuiReporte;
+import GuiReportes.GuiReporteGerente;
+import GuiReportes.GuiReporteMesero;
 
 /**
  *
@@ -73,6 +74,11 @@ public class GuiMesero extends javax.swing.JPanel {
         jbReportes1.setBackground(new java.awt.Color(153, 51, 0));
         jbReportes1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jbReportes1.setText("IR");
+        jbReportes1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbReportes1MouseClicked(evt);
+            }
+        });
         jbReportes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbReportes1ActionPerformed(evt);
@@ -148,7 +154,7 @@ public class GuiMesero extends javax.swing.JPanel {
     }//GEN-LAST:event_jbPedidos1MouseClicked
 
     private void jbReportes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReportes1ActionPerformed
-        GuiReporte r = new GuiReporte();
+        GuiReporteMesero r = new GuiReporteMesero();
         r.setVisible(true);
     }//GEN-LAST:event_jbReportes1ActionPerformed
 
@@ -159,6 +165,11 @@ public class GuiMesero extends javax.swing.JPanel {
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
           
     }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jbReportes1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbReportes1MouseClicked
+         GuiReporteMesero c = new GuiReporteMesero(); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbReportes1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

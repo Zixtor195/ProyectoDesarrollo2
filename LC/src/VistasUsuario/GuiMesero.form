@@ -86,6 +86,7 @@
             <Property name="text" type="java.lang.String" value="IR"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbReportes1MouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbReportes1ActionPerformed"/>
           </Events>
           <Constraints>

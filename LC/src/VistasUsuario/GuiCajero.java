@@ -8,7 +8,8 @@ package VistasUsuario;
 import GuiFacturasPagos.FacturasPagos;
 import GuiModuloPersonal.CajeroPersonal;
 import GuiModuloPersonal.GerentePersonal;
-import GuiReportes.GuiReporte;
+import GuiReportes.GuiReporteCajero;
+import GuiReportes.GuiReporteGerente;
 
 /**
  *
@@ -64,6 +65,11 @@ public class GuiCajero extends javax.swing.JPanel {
         jbReportes.setBackground(new java.awt.Color(153, 51, 0));
         jbReportes.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jbReportes.setText("IR");
+        jbReportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbReportesMouseClicked(evt);
+            }
+        });
         jbReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbReportesActionPerformed(evt);
@@ -144,7 +150,7 @@ public class GuiCajero extends javax.swing.JPanel {
     }//GEN-LAST:event_jbPersonalMouseClicked
 
     private void jbReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReportesActionPerformed
-          GuiReporte r = new GuiReporte();
+          GuiReporteCajero r = new GuiReporteCajero();
           r.setVisible(true);
     }//GEN-LAST:event_jbReportesActionPerformed
 
@@ -160,6 +166,11 @@ public class GuiCajero extends javax.swing.JPanel {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
             
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jbReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbReportesMouseClicked
+          GuiReporteCajero c = new GuiReporteCajero(); 
+
+    }//GEN-LAST:event_jbReportesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
