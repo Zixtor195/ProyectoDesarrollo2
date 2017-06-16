@@ -65,41 +65,12 @@ public class FuncionesFacturasTest {
     /**
      * Test of ModificarFactura method, of class FuncionesFacturas.
      */
-    @Test
-    public void testModificarFactura() {
-        System.out.println("ModificarFactura");
-        int idPedido = 0;
-        String estadoPedido = "";
-        String estadoFactura = "";
-        String HoraPago = "";
-        int idFactura = 0;
-        Pedido pedido = null;
-        int total = 0;
-        EntityManagerFactory emf = null;
-        FuncionesFacturas instance = new FuncionesFacturas();
-        String expResult = "";
-        String result = instance.ModificarFactura(idPedido, estadoPedido, estadoFactura, HoraPago, idFactura, pedido, total, emf);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
+   
 
     /**
      * Test of EliminarFactura method, of class FuncionesFacturas.
      */
-    @Test
-    public void testEliminarFactura() {
-        System.out.println("EliminarFactura");
-        Factura factura = null;
-        EntityManagerFactory emf = null;
-        FuncionesFacturas instance = new FuncionesFacturas();
-        String expResult = "";
-        String result = instance.EliminarFactura(factura, emf);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of ConsultarFactura method, of class FuncionesFacturas.
      */

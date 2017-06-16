@@ -5,6 +5,7 @@
  */
 package VistasUsuario;
 
+import GuiMenu.MenuPane;
 import GuiModuloMenu.Menu;
 import GuiModuloPersonal.GerentePersonal;
 import GuiReportes.GuiReporteGerente;
@@ -39,9 +40,11 @@ public class GuiGerente extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jbSalir = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jPanelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -54,7 +57,7 @@ public class GuiGerente extends javax.swing.JPanel {
                 jbMenuMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 620, 90, -1));
+        jPanelPrincipal.add(jbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 660, 90, -1));
 
         jbPersonal.setBackground(new java.awt.Color(153, 51, 0));
         jbPersonal.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -64,7 +67,7 @@ public class GuiGerente extends javax.swing.JPanel {
                 jbPersonalMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 620, 90, -1));
+        jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 660, 90, -1));
 
         jbReportes.setBackground(new java.awt.Color(153, 51, 0));
         jbReportes.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -79,13 +82,13 @@ public class GuiGerente extends javax.swing.JPanel {
                 jbReportesActionPerformed(evt);
             }
         });
-        jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 620, 90, -1));
+        jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 660, 90, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.jpg"))); // NOI18N
-        jPanelPrincipal.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 500, -1, -1));
+        jPanelPrincipal.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 540, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/personal.jpg"))); // NOI18N
-        jPanelPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, -1, -1));
+        jPanelPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 540, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.jpg"))); // NOI18N
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,13 +96,10 @@ public class GuiGerente extends javax.swing.JPanel {
                 jLabel4MouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, -1, -1));
+        jPanelPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 540, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.jpg"))); // NOI18N
         jPanelPrincipal.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 120));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banner.jpg"))); // NOI18N
-        jPanelPrincipal.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, 400));
 
         jPanel1.setBackground(new java.awt.Color(92, 23, 23));
 
@@ -126,15 +126,35 @@ public class GuiGerente extends javax.swing.JPanel {
         });
         jPanelPrincipal.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 90, 30));
 
+        jButton2.setBackground(new java.awt.Color(153, 51, 0));
+        jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jButton2.setText("IR");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jPanelPrincipal.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 660, 90, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ver menu.jpg"))); // NOI18N
+        jPanelPrincipal.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banner.jpg"))); // NOI18N
+        jPanelPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,13 +186,21 @@ public class GuiGerente extends javax.swing.JPanel {
       // TODO add your handling code here:
     }//GEN-LAST:event_jbReportesMouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        
+        MenuPane m = new MenuPane();
+        m.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JButton jbMenu;

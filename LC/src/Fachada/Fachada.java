@@ -33,19 +33,7 @@ public class Fachada {
                                    HoraPago, idFactura, pedido, total, emf);
      return resultado;
     }
-    //Este Metodo Nos Direccionara a la Clase Funciones Facturas en la funcion ModificarFactura
-    public String ModificarFactura (int idPedido, String estadoPedido, String estadoFactura,
-                                String HoraPago, int idFactura, Pedido pedido, int total,
-                                EntityManagerFactory emf){
-     String resultado =funcionesFacturas.ModificarFactura(idPedido, estadoPedido, estadoFactura,
-                                       HoraPago, idFactura, pedido, total, emf);
-     return resultado;
-    }
-    //Este Metodo Nos Direccionara a la Clase Funciones Facturas en la funcion EliminarFactura
-    public String EliminarFactura (Factura factura, EntityManagerFactory emf){
-         String resultado = funcionesFacturas.EliminarFactura(factura, emf);
-         return resultado;
-    }
+  
     
     public Factura ConsultarFactura (int idFactura){        
         Factura factura = funcionesFacturas.ConsultarFactura(idFactura);         

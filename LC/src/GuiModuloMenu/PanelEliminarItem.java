@@ -12,7 +12,6 @@ import ControladorClasesTablas.ItemJpaController;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
 import Fachada.Fachada;
-import GuiFacturasPagos.FacturasEliminar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;

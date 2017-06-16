@@ -43,8 +43,6 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        labelModificar = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
@@ -68,20 +66,6 @@ public class FacturasPagos extends javax.swing.JFrame {
             }
         });
 
-        labelModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarFactura.jpg"))); // NOI18N
-        labelModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelModificarMouseClicked(evt);
-            }
-        });
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminarFactura.jpg"))); // NOI18N
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
-
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pagos.jpg"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,26 +81,20 @@ public class FacturasPagos extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(labelModificar)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(35, 35, 35)
-                .addComponent(labelModificar)
-                .addGap(52, 52, 52)
-                .addComponent(jLabel4)
-                .addGap(54, 54, 54)
+                .addGap(123, 123, 123)
                 .addComponent(jLabel5)
-                .addGap(25, 25, 25))
+                .addGap(88, 88, 88))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -223,74 +201,6 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel2.add(fc);
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void labelModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarMouseClicked
-        FacturasModificar fm = new FacturasModificar();
-        fm.setSize(752, 686);
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        FacturaJpaController dao = new FacturaJpaController(emf);
-        List<Factura> Facturas = dao.findFacturaEntities();
-        
-        for (int i = 0; i < Facturas.size(); i++) {
-            if (Facturas.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-                Facturas.remove(i);
-            }
-        }
-        
-        Object fila[][]=new Object[Facturas.size()][4];        
-        for (int i = 0; i < Facturas.size(); i++) {
-            fila[i][0]=Facturas.get(i).getIdFactura();
-            fila[i][1]=Facturas.get(i).getEstado();            
-            fila[i][2]=Facturas.get(i).getHoraPago();
-            fila[i][3]=Facturas.get(i).getValorTotal();
-        }
-        
-        String columna[]=new String[]{"N°Factura","Estado","Hora Pago","Total"};        
-        emf.close();
-        
-        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        fm.jTable1.setModel(Modelo);
-        
-        jPanel2.removeAll();
-        jPanel2.revalidate();
-        jPanel2.repaint();
-        jPanel2.add(fm);
-    }//GEN-LAST:event_labelModificarMouseClicked
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-         FacturasEliminar fe = new FacturasEliminar();
-        fe.setSize(752, 686);
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        FacturaJpaController dao = new FacturaJpaController(emf);
-        List<Factura> Facturas = dao.findFacturaEntities();
-        
-        for (int i = 0; i < Facturas.size(); i++) {
-            if (Facturas.get(i).getEstado().equalsIgnoreCase("Inactivo")){
-                Facturas.remove(i);
-            }
-        }
-        
-        Object fila[][]=new Object[Facturas.size()][4];        
-        for (int i = 0; i < Facturas.size(); i++) {
-            fila[i][0]=Facturas.get(i).getIdFactura();
-            fila[i][1]=Facturas.get(i).getEstado();            
-            fila[i][2]=Facturas.get(i).getHoraPago();
-            fila[i][3]=Facturas.get(i).getValorTotal();
-        }
-        
-        String columna[]=new String[]{"N°Factura","Estado","Hora Pago","Total"};        
-        emf.close();
-        
-        DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
-        fe.jTable1.setModel(Modelo);
-        
-        jPanel2.removeAll();
-        jPanel2.revalidate();
-        jPanel2.repaint();
-        jPanel2.add(fe);
-    }//GEN-LAST:event_jLabel4MouseClicked
-
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         FacturasAPagar fm = new FacturasAPagar();
         fm.setSize(752, 686);
@@ -330,10 +240,8 @@ public class FacturasPagos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelModificar;
     // End of variables declaration//GEN-END:variables
 }

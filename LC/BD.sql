@@ -1,4 +1,4 @@
-﻿/*
+/*
     Universidad del Valle
     Asignatura: Desarrollo de Software II 750092M
     Tema: Entrega 4 proyecto
@@ -504,25 +504,25 @@ INSERT INTO item (id_item, descripcion, nombre, categoria, precio, estado) VALUE
 
 ----- Pedidos
 
-INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (1, '10:25', '10:45', 'Llevar', '10', 1330651303, 'Activo', '2008-12-31');
+INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (1, '10:25', '10:45', 'Llevar', null, 1330651303, 'Activo', '2008-12-31');
 
-INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (2, '16:25', '16:45', 'Llevar', '6', 1330651303, 'Activo', '2008-12-31');
+INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (2, '16:25', '16:45', 'Llevar', null, 1330651303, 'Activo', '2008-12-31');
 
-INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (3, '14:25', '14:38', 'Mesa', null, 1330651303, 'Activo', '2008-12-31');
+INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (3, '14:25', '14:38', 'Mesa', '1',  1330651303, 'Activo', '2008-12-31');
 
-INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (4, '14:45:', '14:55', 'Llevar', '5', 1330651303, 'Activo', '2008-12-31');
+INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (4, '14:45:', '14:55', 'Llevar', null, 1330651303, 'Activo', '2008-12-31');
 
-INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (5, '15:20', '15:50', 'Llevar', '3', 1004155852, 'Activo', '2008-12-31');
+INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (5, '15:20', '15:50', 'Llevar', null, 1004155852, 'Activo', '2008-12-31');
 
-INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (6, '16:20', '16:40', 'Mesa', null, 1004155852, 'Activo', '2008-12-31');
+INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (6, '16:20', '16:40', 'Mesa', '2',  1004155852, 'Activo', '2008-12-31');
 
-INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (7, '17:20', '17:40', 'Mesa', null, 1224112458, 'Activo', '2008-11-11');
+INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (7, '17:20', '17:40', 'Mesa', '3',  1224112458, 'Activo', '2008-11-11');
 
-INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (8, '9:20', '9:40', 'Mesa', null, 1530526303, 'Activo', '2008-11-09');
+INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (8, '9:20', '9:40', 'Mesa', '4',  1530526303, 'Activo', '2008-11-09');
 
-INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (9, '12:20', '12:40', 'Mesa', null, 1530526303, 'Activo', '2008-11-08');
+INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (9, '12:20', '12:40', 'Mesa', '5', 1530526303, 'Activo', '2008-11-08');
 
-INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (10, '8:25', '8:40', 'Llevar', '1', 1330651303, 'Activo', '2008-12-31');
+INSERT INTO pedido (id_pedido, hora_inicio, hora_ultimo_item, tipo, num_mesa, id_empleado, estado, fecha_pedido) VALUES (10, '8:25', '8:40', 'Llevar', null, 1330651303, 'Activo', '2008-12-31');
 
 ---Facturas
 
