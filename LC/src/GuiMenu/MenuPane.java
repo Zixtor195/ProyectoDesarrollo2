@@ -26,12 +26,13 @@ public class MenuPane extends javax.swing.JFrame {
     
     public MenuPane() {
         // Asignar el Contenedor principal de la Clase externa para usar un fondo
-        contenedorPrincipalFondo = new ContenedorFondo("src/images/fondo.jpg");
+        contenedorPrincipalFondo = new ContenedorFondo("fondo.jpg");
         super.setContentPane(contenedorPrincipalFondo);
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
+        
     }
 
     /**
@@ -327,57 +328,57 @@ public class MenuPane extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbCerdoPolloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerdoPolloActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1. Cerdo y Pollo.jpg")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1. Cerdo y Pollo.jpg")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbCerdoPolloActionPerformed
 
     private void jbResLCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbResLCActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/2. Res y Especiales L&C.jpg")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/2. Res y Especiales L&C.jpg")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbResLCActionPerformed
 
     private void jbPlatosMarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPlatosMarActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3 Pescados, Mariscos.jpg")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/3 Pescados, Mariscos.jpg")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbPlatosMarActionPerformed
 
     private void jbEnsaladasSopasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEnsaladasSopasActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1. Ensaladas y Sopas.jpg")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1. Ensaladas y Sopas.jpg")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbEnsaladasSopasActionPerformed
 
     private void jbAdicionesPostresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdicionesPostresActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1. Adiciones y Postres.png")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1. Adiciones y Postres.png")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbAdicionesPostresActionPerformed
 
     private void jbEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntradasActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1. Entradas y Ceviches.jpg")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1. Entradas y Ceviches.jpg")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbEntradasActionPerformed
 
     private void jbBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBebidasActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1. Bebidas y Otras Bebidas.jpg")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1. Bebidas y Otras Bebidas.jpg")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbBebidasActionPerformed
 
     private void jbCervezasCoctelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCervezasCoctelesActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1. Cervezas, Cocteles y Sin Licor.jpg")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1. Cervezas, Cocteles y Sin Licor.jpg")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbCervezasCoctelesActionPerformed
 
     private void jbLicoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLicoresActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/2. Licores.jpg")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/2. Licores.jpg")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbLicoresActionPerformed
 
     private void jbVinosChilenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVinosChilenosActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1. Vinos.jpg")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1. Vinos.jpg")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbVinosChilenosActionPerformed
 
     private void jbVinosArgentinosLocalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVinosArgentinosLocalesActionPerformed
-        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/2. Vinos.jpg")));
+        jlImagesMenus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/2. Vinos.jpg")));
         jlImagesMenus.setVisible(true);
     }//GEN-LAST:event_jbVinosArgentinosLocalesActionPerformed
 

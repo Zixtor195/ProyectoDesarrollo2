@@ -35,10 +35,11 @@ import static sun.security.krb5.Confounder.bytes;
 public class PanelModificar extends javax.swing.JPanel {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-    
+    EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+    List<Empleado> listaempleado = ejc.findEmpleadoEntities();
     public PanelModificar() {
         initComponents();
-        table.setModel(new tabelModel());
+        tabla.setModel(new tabelModel());
         
     }
 
@@ -53,13 +54,13 @@ public class PanelModificar extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         jlContinuar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -114,7 +115,7 @@ public class PanelModificar extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(table);
+        jScrollPane1.setViewportView(tabla);
 
         jlContinuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
         jlContinuar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -127,12 +128,12 @@ public class PanelModificar extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(211, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addGap(179, 179, 179))
             .addGroup(layout.createSequentialGroup()
-                .addGap(283, 283, 283)
+                .addGap(457, 457, 457)
                 .addComponent(jlContinuar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -141,9 +142,9 @@ public class PanelModificar extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(57, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(jlContinuar)
-                .addGap(56, 56, 56))
+                .addGap(39, 39, 39))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -154,12 +155,11 @@ public class PanelModificar extends javax.swing.JPanel {
         List<Empleado> listEmpelado = ejc.findEmpleadoEntities();
         Empleado empleado = null;
         
-        if (table.getSelectedRow() != -1) {
-            empleado = listEmpelado.get(table.getSelectedRow());
+        if ((tabla.getSelectedRow() != -1) == true) {
+            empleado = listEmpelado.get(tabla.getSelectedRow());
             PanelRealizarModificacion rm = new PanelRealizarModificacion(empleado);
-            rm.setSize(900, 838);
+            rm.setSize(986,686);
 
-            this.setSize(1500, 1204);
             this.removeAll();
             this.revalidate();
             this.repaint();
@@ -173,19 +173,26 @@ public class PanelModificar extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JLabel jlContinuar;
-    public javax.swing.JTable table;
+    public javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 
 
     
     private class tabelModel extends AbstractTableModel{
         
-        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
-        List<Empleado> listaempleado = ejc.findEmpleadoEntities();
+       
         //List<Empleado> listaempleado = listaActivosEmpleado();
         
         @Override
         public int getRowCount() {
+             for (int i = 0; i < listaempleado.size(); i++) 
+                {
+                    if(!(listaempleado.get(i).getEstado().equalsIgnoreCase("Activo")))
+                    {
+                            listaempleado.remove(i);
+                    }   
+                }
+            
                 return listaempleado.size();
 
         }

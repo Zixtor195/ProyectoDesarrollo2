@@ -124,7 +124,7 @@ public class GuiGerente extends javax.swing.JPanel {
                 jbSalirActionPerformed(evt);
             }
         });
-        jPanelPrincipal.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 90, 30));
+        jPanelPrincipal.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 90, 30));
 
         jButton2.setBackground(new java.awt.Color(153, 51, 0));
         jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -132,6 +132,11 @@ public class GuiGerente extends javax.swing.JPanel {
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
         jPanelPrincipal.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 660, 90, -1));
@@ -146,9 +151,7 @@ public class GuiGerente extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,6 +194,11 @@ public class GuiGerente extends javax.swing.JPanel {
         MenuPane m = new MenuPane();
         m.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        MenuPane m = new MenuPane();
+        m.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
