@@ -49,14 +49,14 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Sebas
  */
-public final class PanelRegistrarPedido extends javax.swing.JPanel {
+public final class PanelRegistrarPedido extends javax.swing.JPanel implements ActionListener {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
     Pedido pedido = new Pedido();
     
     public PanelRegistrarPedido() throws ParseException {
         initComponents();
-        
+        cbo_tipo.addActionListener(this);
         listitemp.setModel(new listaItemsModel());
         cbo_mesero.setModel(listadoMeserosModel());
         cbo_tipo.setModel(listadoTipoPedidoModel());
@@ -390,6 +390,25 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
     private javax.swing.JTextField txtmesa;
     // End of variables declaration//GEN-END:variables
 
+       @Override
+    public void actionPerformed(ActionEvent ae) {
+       
+        if(ae.getSource() == cbo_tipo)
+        {
+            if(cbo_tipo.getSelectedIndex() == 1)
+            {
+               txtmesa.setEnabled(false);
+               txtmesa.setText(null);
+                   
+            }    
+        }    
+        if (cbo_tipo.getSelectedIndex() == 0)
+        {
+          txtmesa.setEnabled(true);
+        }    
+    }
+
+
     
     
     private class agregar implements ActionListener{
@@ -406,7 +425,12 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
             ItemPedido ip = new ItemPedido();
             List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
 
-            if(!txtcantidad.getText().trim().equals("")&&!listitemp.isSelectionEmpty()&&!txtmesa.getText().trim().equals("")){
+            if(!txtcantidad.getText().trim().equals("")&&!listitemp.isSelectionEmpty()){
+                if(cbo_tipo.getSelectedIndex() ==0)
+              {    
+                  
+               if(!txtmesa.getText().trim().equals("")) 
+               {          
                 ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
                 ip.setItem(listaitem.get(listitemp.getSelectedIndex()));
                 ip.setPedido(pedido);
@@ -416,9 +440,35 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
                 } catch (Exception ex) {
                     Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
+               }
+               
+               else
+               {
+                   JOptionPane.showMessageDialog(null, "Ingrese un numero de Mesa");
+               }    
+                
+              }  
+              
+              else
+              {
+                ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
+                ip.setItem(listaitem.get(listitemp.getSelectedIndex()));
+                ip.setPedido(pedido);
+                try {
+                    tjc.create(ip);
+                    table.setModel(new tableModel());
+                } catch (Exception ex) {
+                    Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+              
+              
+              }   
+                  
             }else{
                 JOptionPane.showMessageDialog(null, "Llene los campos requeridos");
             }
+        
         }
     }
     
@@ -544,15 +594,21 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel {
         
         pedido.setIdEmpleado(getEmpleadoPedido());
         pedido.setTipo(cbo_tipo.getSelectedItem().toString());
+        if(cbo_tipo.getSelectedIndex() == 0)
+        {    
         pedido.setNumMesa(Integer.parseInt(txtmesa.getText()));
-        
+        }
+        if(cbo_tipo.getSelectedIndex() == 1)
+        {    
+        pedido.setNumMesa(null);
+        }
     }
     
     public void crearPedidoBd() throws ParseException{
        
         PedidoJpaController pjc = new PedidoJpaController(emf);
         pedido.setIdPedidoAumentado();
-        //System.out.println(pedido.getIdPedido());
+        System.out.println(pedido.getIdPedido());
         pedido.setHoraInicio(getHora());
         pedido.setTipo(cbo_tipo.getSelectedItem().toString());
         pedido.setEstado("Activo");

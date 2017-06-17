@@ -114,13 +114,13 @@ public class Pedidos extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnregistrar)
-                .addGap(42, 42, 42)
+                .addGap(27, 27, 27)
                 .addComponent(btnmodificar)
-                .addGap(51, 51, 51)
+                .addGap(32, 32, 32)
                 .addComponent(btnconsultar)
-                .addGap(55, 55, 55)
+                .addGap(38, 38, 38)
                 .addComponent(btneliminar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -198,7 +198,7 @@ public class Pedidos extends javax.swing.JFrame {
                     prp.cbo_mesero.setSelectedItem(pjc.findEmpleado(id).getNombres());
                     prp.cbo_mesero.setEnabled(false);
                 }
-                prp.setSize(936, 739);
+                prp.setSize(950, 800);
                 
                 panel.removeAll();
                 panel.add(prp);
@@ -216,7 +216,7 @@ public class Pedidos extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
            PanelModificarPedido pmp = new PanelModificarPedido(id,cargo);
-            pmp.setSize(940,782);
+            pmp.setSize(950, 900);
             
             panel.removeAll();
             panel.add(pmp);
@@ -230,7 +230,7 @@ public class Pedidos extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             PanelEliminarPedido pep = new PanelEliminarPedido(id,cargo);
-            pep.setSize(940,686);
+            pep.setSize(950, 900);
             
             panel.removeAll();
             panel.add(pep);
@@ -244,7 +244,8 @@ public class Pedidos extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             PanelConsultarPedido pcp = new PanelConsultarPedido(id,cargo);
-            pcp.setSize(940,686);
+            pcp.setSize(950, 900);
+            
             
             panel.removeAll();
             panel.add(pcp);

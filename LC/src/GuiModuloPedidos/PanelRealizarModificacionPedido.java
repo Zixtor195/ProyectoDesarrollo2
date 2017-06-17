@@ -34,7 +34,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Sebas
  */
-public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
+public class PanelRealizarModificacionPedido extends javax.swing.JPanel implements ActionListener {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
     Pedido pedido = new Pedido();
@@ -43,7 +43,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
         initComponents();
         
         this.pedido = pedido;
-        
+        cbo_tipo.addActionListener(this);
         listaitemsp.setModel(new listaItemsModel());
         cbo_mesero.setModel(listadoMeserosModel());
         cbo_tipo.setModel(listadoTipoPedidoModel());
@@ -375,6 +375,25 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
     private javax.swing.JTextField txtmesa;
     // End of variables declaration//GEN-END:variables
 
+      @Override
+    public void actionPerformed(ActionEvent ae) {
+       
+        if(ae.getSource() == cbo_tipo)
+        {
+            if(cbo_tipo.getSelectedIndex() == 1)
+            {
+              txtmesa.setEnabled(false);
+              txtmesa.setText(null);
+                   
+            }    
+        }    
+        if (cbo_tipo.getSelectedIndex() == 0)
+        {
+          txtmesa.setEnabled(true);
+        }    
+    }
+
+
     
    private class agregar implements ActionListener{
 
@@ -390,8 +409,12 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
             ItemPedido ip = new ItemPedido();
             List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
             
-            if(!txtcantidad.getText().trim().equals("")&&!listaitemsp.isSelectionEmpty()&&!txtmesa.getText().trim().equals("") && Integer.parseInt(txtcantidad.getText())>0){
-               
+            if(!txtcantidad.getText().trim().equals("")&&!listaitemsp.isSelectionEmpty()&& Integer.parseInt(txtcantidad.getText())>0){
+               if(cbo_tipo.getSelectedIndex() ==0)
+              {    
+                  
+               if(!txtmesa.getText().trim().equals("")) 
+               {   
                 ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
                 ip.setItem(listaitem.get(listaitemsp.getSelectedIndex()));
                 ip.setPedido(pedido);
@@ -403,7 +426,29 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Ya realizo este pedido");
                 }
-            }else{
+               }
+               else
+               {
+                   JOptionPane.showMessageDialog(null, "Ingrese un numero de Mesa");
+               }
+              }  
+               
+              else
+               {
+                ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
+                ip.setItem(listaitem.get(listaitemsp.getSelectedIndex()));
+                ip.setPedido(pedido);
+                try {
+                    tjc.create(ip);
+                    pedido.getItemPedidoSet().add(ip);
+                    table.setModel(new tableModelPedido());
+                    
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Ya realizo este pedido");
+                }
+               }     
+            }
+            else{
                 JOptionPane.showMessageDialog(null, "Llene los campos requeridos");
             }
         }
@@ -495,7 +540,18 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel {
     
     private void asignacionCampos(){
         
-        txtmesa.setText(pedido.getNumMesa().toString());
+        if(cbo_tipo.getSelectedIndex() == 1)
+        {
+            txtmesa.setText(pedido.getNumMesa().toString());
+         
+        }    
+            
+        if (cbo_tipo.getSelectedIndex() == 0)
+        {
+            txtmesa.setText(null);
+        }    
+    
+       
         cbo_mesero.setSelectedIndex(meseroPedidoseleccionado());
         cbo_tipo.setSelectedIndex(tipoPedidoseleccionado());
         
