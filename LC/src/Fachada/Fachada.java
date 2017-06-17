@@ -20,49 +20,47 @@ public class Fachada {
     FuncionesItems funcionesItems;
     
     public Fachada(){        
-    funcionesFacturas = new FuncionesFacturas();
-    funcionesItems = new FuncionesItems();
+        funcionesFacturas = new FuncionesFacturas();
+        funcionesItems = new FuncionesItems();
     }
     
    //Este Metodo Nos Direccionara a la Clase Funciones Facturas en la funcion Crear Factura
     public String CrearFactura(int idPedido, String estadoPedido, String estadoFactura,
                                 String HoraPago, int idFactura, Pedido pedido, int total,
-                                EntityManagerFactory emf){ 
+                                EntityManagerFactory emf) { 
         
-     String resultado = funcionesFacturas.CrearFactura(idPedido, estadoPedido, estadoFactura,
+        String resultado = funcionesFacturas.CrearFactura(idPedido, estadoPedido, estadoFactura,
                                    HoraPago, idFactura, pedido, total, emf);
-     return resultado;
+        return resultado;
     }
   
     
-    public Factura ConsultarFactura (int idFactura){        
+    public Factura ConsultarFactura (int idFactura) {        
         Factura factura = funcionesFacturas.ConsultarFactura(idFactura);         
         return factura;
     }
     
     public String ModificarItem (int idItem, String nombre, int precio,
                                 String categoria,String descripcion,
-                                String Estado, String rut){
-       String resultado = funcionesItems.ModificarItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
-       return resultado;
+                                String Estado, String rut) {
+        String resultado = funcionesItems.ModificarItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
+        return resultado;
     }
     
     public String CrearItem (int idItem, String nombre, int precio,
                                 String categoria,String descripcion,
-                                String Estado, String rut){
-       String resultado = funcionesItems.CrearItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
-       return resultado;
+                                String Estado, String rut) {
+        String resultado = funcionesItems.CrearItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
+        return resultado;
     }
     
-    public Item ConsultarItem (int idFactura){        
+    public Item ConsultarItem (int idFactura) {
         Item item = funcionesItems.ConsultarItem(idFactura);         
         return item;
     }
     
-    public String EliminarItem (Item item, EntityManagerFactory emf){
+    public String EliminarItem (Item item, EntityManagerFactory emf) {
         String resultado = funcionesItems.EliminarItem(item, emf);
         return resultado;
     }
-    
-    
 }

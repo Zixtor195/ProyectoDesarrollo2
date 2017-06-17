@@ -28,22 +28,22 @@ public class FacturarResultadosConsulta extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jlNoFactura = new javax.swing.JLabel();
+        jtfNoFactura = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jlTablaPagos = new javax.swing.JLabel();
+        jtfValorTotal = new javax.swing.JTextField();
+        jbAceptar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
+        jlValorTotal = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setText("No. Factura:");
+        jlNoFactura.setText("No. Factura:");
 
-        jTextField2.setEditable(false);
+        jtfNoFactura.setEditable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,15 +107,14 @@ public class FacturarResultadosConsulta extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Tabla de Pagos:");
-        jLabel2.setToolTipText("");
+        jlTablaPagos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlTablaPagos.setText("Tabla de Pagos:");
+        jlTablaPagos.setToolTipText("");
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 255, 102));
-        jTextField1.setText("jTextField1");
+        jtfValorTotal.setEditable(false);
+        jtfValorTotal.setBackground(new java.awt.Color(255, 255, 102));
 
-        jButton1.setText("Aceptar");
+        jbAceptar.setText("Aceptar");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -178,9 +177,9 @@ public class FacturarResultadosConsulta extends javax.swing.JPanel {
             jTable2.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Valor Total:");
-        jLabel3.setToolTipText("");
+        jlValorTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlValorTotal.setText("Valor Total:");
+        jlValorTotal.setToolTipText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -194,24 +193,24 @@ public class FacturarResultadosConsulta extends javax.swing.JPanel {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(21, 21, 21)
-                            .addComponent(jLabel6)
+                            .addComponent(jlNoFactura)
                             .addGap(36, 36, 36)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfNoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(16, 16, 16)
-                                    .addComponent(jLabel3)
+                                    .addComponent(jlValorTotal)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jButton1)
+                                    .addComponent(jbAceptar)
                                     .addGap(0, 0, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel2)))
+                        .addComponent(jlTablaPagos)))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -219,18 +218,18 @@ public class FacturarResultadosConsulta extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlNoFactura)
+                    .addComponent(jtfNoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(jbAceptar)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
+                        .addComponent(jtfValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlValorTotal)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(jlTablaPagos)
                 .addGap(9, 9, 9)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(188, Short.MAX_VALUE))
@@ -252,16 +251,16 @@ public class FacturarResultadosConsulta extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable jTable1;
     public javax.swing.JTable jTable2;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
+    private javax.swing.JButton jbAceptar;
+    private javax.swing.JLabel jlNoFactura;
+    private javax.swing.JLabel jlTablaPagos;
+    private javax.swing.JLabel jlValorTotal;
+    public javax.swing.JTextField jtfNoFactura;
+    public javax.swing.JTextField jtfValorTotal;
     // End of variables declaration//GEN-END:variables
 }

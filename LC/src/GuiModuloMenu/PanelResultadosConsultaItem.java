@@ -34,53 +34,54 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jlNombre = new javax.swing.JLabel();
+        jlPrecio = new javax.swing.JLabel();
+        jlCategoria = new javax.swing.JLabel();
+        jlDescripcion = new javax.swing.JLabel();
         jtfID = new javax.swing.JTextField();
         jtfPrecio = new javax.swing.JTextField();
         jcbCategoria = new javax.swing.JComboBox();
         jspDescripcion = new javax.swing.JScrollPane();
         jtaDescripcion = new javax.swing.JTextArea();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jlNombreFoto = new javax.swing.JLabel();
+        jlID = new javax.swing.JLabel();
         jtfNombre = new javax.swing.JTextField();
         jlAceptar = new javax.swing.JLabel();
-        foto = new javax.swing.JLabel();
+        jlFoto = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(752, 662));
 
         jPanel1.setOpaque(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Nombre:");
+        jlNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlNombre.setText("Nombre:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Precio:");
+        jlPrecio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlPrecio.setText("Precio:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Categoria:");
+        jlCategoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlCategoria.setText("Categoria:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Descripcion:");
+        jlDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlDescripcion.setText("Descripcion:");
 
         jtfID.setEditable(false);
 
         jtfPrecio.setEditable(false);
 
-        jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "CARNE CERDO", "CARNE POLLO", "CARNE RES", "ESPECIAL L&C", "COMIDA MAR", "ENSALADAS", "SOPAS", "ADICIONES", "POSTRES", "ENTRADAS", "BEBIDAS", "BEBIDAS ALCOHOLICAS", "VINOS" }));
+        jcbCategoria.setEnabled(false);
 
         jtaDescripcion.setEditable(false);
         jtaDescripcion.setColumns(20);
         jtaDescripcion.setRows(5);
         jspDescripcion.setViewportView(jtaDescripcion);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Foto:");
+        jlNombreFoto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlNombreFoto.setText("Foto:");
 
-        jLabel6.setText("ID:");
+        jlID.setText("ID:");
 
         jtfNombre.setEditable(false);
 
@@ -91,8 +92,8 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
             }
         });
 
-        foto.setText("               Foto");
-        foto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jlFoto.setText("               Foto");
+        jlFoto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,11 +104,11 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
+                            .addComponent(jlPrecio)
+                            .addComponent(jlNombre)
+                            .addComponent(jlCategoria)
+                            .addComponent(jlDescripcion)
+                            .addComponent(jlID))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jspDescripcion)
@@ -116,9 +117,9 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
                             .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(jlNombreFoto)
                         .addGap(192, 192, 192)
-                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(244, 244, 244)
@@ -130,15 +131,15 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(jlNombreFoto)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(jlID)
                         .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -146,17 +147,17 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
                                 .addGap(42, 42, 42)
                                 .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(jlNombre)
                                 .addGap(58, 58, 58)
-                                .addComponent(jLabel2)))
+                                .addComponent(jlPrecio)))
                         .addGap(58, 58, 58)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
+                            .addComponent(jlCategoria)
                             .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jspDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
+                            .addComponent(jlDescripcion)))
                     .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jlAceptar)
@@ -190,16 +191,16 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel foto;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JComboBox jcbCategoria;
     private javax.swing.JLabel jlAceptar;
+    private javax.swing.JLabel jlCategoria;
+    private javax.swing.JLabel jlDescripcion;
+    public javax.swing.JLabel jlFoto;
+    private javax.swing.JLabel jlID;
+    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlNombreFoto;
+    private javax.swing.JLabel jlPrecio;
     private javax.swing.JScrollPane jspDescripcion;
     public javax.swing.JTextArea jtaDescripcion;
     public javax.swing.JTextField jtfID;

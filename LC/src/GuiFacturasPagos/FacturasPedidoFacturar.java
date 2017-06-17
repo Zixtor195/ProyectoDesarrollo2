@@ -39,7 +39,7 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jbFacturar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -100,10 +100,10 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Facturar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbFacturar.setText("Facturar");
+        jbFacturar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jbFacturarMouseClicked(evt);
             }
         });
 
@@ -118,7 +118,7 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jbFacturar)
                         .addGap(334, 334, 334))))
         );
         layout.setVerticalGroup(
@@ -127,16 +127,16 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
                 .addGap(121, 121, 121)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jbFacturar)
                 .addContainerGap(148, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jbFacturarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbFacturarMouseClicked
+        
         FacturarPedidos rm = new FacturarPedidos();
         rm.setSize(900, 1000); 
-        
-        
+           
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         PedidoJpaController dao = new PedidoJpaController(emf);
         ItemPedidoJpaController daoi = new ItemPedidoJpaController(emf);
@@ -162,32 +162,29 @@ public class FacturasPedidoFacturar extends javax.swing.JPanel {
             totalPrecio = totalPrecio + (PedidoItems.get(i).getCantidad() * 
                                          PedidoItems.get(i).getItem().getPrecio());
             }
-        
-       
-        
+
         int iva = (int) Math.round((totalPrecio*0.19));
         int total = iva + totalPrecio;
-        
         
         String columna[]=new String[]{"Cantidad","Producto","Precio"};        
         emf.close();
         
         DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
         rm.jTable1.setModel(Modelo);
-        rm.jTextField5.setText(String.valueOf(iva));
-        rm.jTextField1.setText(String.valueOf(totalPrecio));
-        rm.jTextField2.setText(String.valueOf(a));
+        rm.jtfIVA.setText(String.valueOf(iva));
+        rm.jtfTotal.setText(String.valueOf(totalPrecio));
+        rm.jtfIDPedido.setText(String.valueOf(a));
         
         this.removeAll();
         this.revalidate();
         this.repaint();                 
         this.add(rm);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jbFacturarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
+    private javax.swing.JButton jbFacturar;
     // End of variables declaration//GEN-END:variables
 }

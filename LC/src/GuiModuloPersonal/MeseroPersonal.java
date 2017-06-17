@@ -150,7 +150,7 @@ public class MeseroPersonal extends javax.swing.JFrame {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
         PanelRealizarModificacion rm = new PanelRealizarModificacion(dao.findEmpleado(id_mesero));
-        rm.setSize(1000,686);
+        rm.setSize(1100,720);
 
         jPanel2.removeAll();
         jPanel2.add(rm);
@@ -163,7 +163,7 @@ public class MeseroPersonal extends javax.swing.JFrame {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
         PanelResultadosConsulta rc = new PanelResultadosConsulta(dao.findEmpleado(id_mesero));
-        rc.setSize(1000,686); 
+        rc.setSize(1100,720);
 
         jPanel2.removeAll();
         jPanel2.add(rc);

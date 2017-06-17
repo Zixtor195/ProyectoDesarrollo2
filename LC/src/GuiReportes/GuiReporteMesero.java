@@ -19,6 +19,8 @@ public class GuiReporteMesero extends javax.swing.JFrame {
    
     public GuiReporteMesero() {
         initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
       Reporte r = new Reporte();

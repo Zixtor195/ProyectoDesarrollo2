@@ -36,64 +36,64 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        foto = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jtfID1 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jtfNombre1 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jtfPrecio1 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jcbCategoria1 = new javax.swing.JComboBox();
-        jspDescripcion1 = new javax.swing.JScrollPane();
+        jlFoto = new javax.swing.JLabel();
+        jbCambiarFoto = new javax.swing.JButton();
+        jlNombreFoto = new javax.swing.JLabel();
+        jlID = new javax.swing.JLabel();
+        jtfID = new javax.swing.JTextField();
+        jlNombre = new javax.swing.JLabel();
+        jtfNombre = new javax.swing.JTextField();
+        jlPrecio = new javax.swing.JLabel();
+        jtfPrecio = new javax.swing.JTextField();
+        jlCategoria = new javax.swing.JLabel();
+        jcbCategoria = new javax.swing.JComboBox();
+        jspDescripcion = new javax.swing.JScrollPane();
         jtaDescripcion1 = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
-        jlModificar1 = new javax.swing.JLabel();
+        jlDescripcion = new javax.swing.JLabel();
+        jlModificar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(752, 662));
 
-        foto.setText("               Foto");
-        foto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jlFoto.setText("               Foto");
+        jlFoto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setText("Cambiar foto");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbCambiarFoto.setText("Cambiar foto");
+        jbCambiarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jbCambiarFotoMouseClicked(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Foto:");
+        jlNombreFoto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlNombreFoto.setText("Foto:");
 
-        jLabel11.setText("ID:");
+        jlID.setText("ID:");
 
-        jtfID1.setEditable(false);
+        jtfID.setEditable(false);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Nombre:");
+        jlNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlNombre.setText("Nombre:");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Precio:");
+        jlPrecio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlPrecio.setText("Precio:");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Categoria:");
+        jlCategoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlCategoria.setText("Categoria:");
 
-        jcbCategoria1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "CARNE CERDO", "CARNE POLLO", "CARNE RES", "ESPECIAL L&C", "COMIDA MAR", "ENSALADAS", "SOPAS", "ADICIONES", "POSTRES", "ENTRADAS", "BEBIDAS", "BEBIDAS ALCOHOLICAS", "VINOS" }));
 
         jtaDescripcion1.setColumns(20);
         jtaDescripcion1.setRows(5);
-        jspDescripcion1.setViewportView(jtaDescripcion1);
+        jspDescripcion.setViewportView(jtaDescripcion1);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Descripcion:");
+        jlDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlDescripcion.setText("Descripcion:");
 
-        jlModificar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonmodificar.jpg"))); // NOI18N
-        jlModificar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonmodificar.jpg"))); // NOI18N
+        jlModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlModificar1MouseClicked(evt);
+                jlModificarMouseClicked(evt);
             }
         });
 
@@ -103,90 +103,89 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(132, 132, 132)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
-                .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jButton1)
+                .addComponent(jlNombreFoto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlModificar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jbCambiarFoto)))
                 .addGap(188, 188, 188))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlModificar1)
-                .addGap(314, 314, 314))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(133, 133, 133)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel10)
-                        .addComponent(jLabel11))
+                        .addComponent(jlPrecio)
+                        .addComponent(jlNombre)
+                        .addComponent(jlCategoria)
+                        .addComponent(jlDescripcion)
+                        .addComponent(jlID))
                     .addGap(36, 36, 36)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jspDescripcion1)
-                        .addComponent(jcbCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtfID1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtfNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtfPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jspDescripcion)
+                        .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(134, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 477, Short.MAX_VALUE)
-                .addComponent(jlModificar1)
-                .addGap(88, 88, 88))
+                    .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbCambiarFoto)
+                    .addComponent(jlNombreFoto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
+                .addComponent(jlModificar)
+                .addGap(59, 59, 59))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(121, 121, 121)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel11)
+                            .addComponent(jlID)
                             .addGap(67, 67, 67)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jtfNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(42, 42, 42)
-                                    .addComponent(jtfPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
+                                    .addComponent(jlNombre)
                                     .addGap(58, 58, 58)
-                                    .addComponent(jLabel8)))
+                                    .addComponent(jlPrecio)))
                             .addGap(58, 58, 58)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9)
-                                .addComponent(jcbCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jlCategoria)
+                                .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(36, 36, 36)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jspDescripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10)))
-                        .addComponent(jtfID1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jspDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jlDescripcion)))
+                        .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(165, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jbCambiarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbCambiarFotoMouseClicked
 
         JFileChooser myFileChooser = new JFileChooser();
         myFileChooser.showOpenDialog(this);
 
         ruta = myFileChooser.getSelectedFile().getAbsolutePath();
         ImageIcon fotografia = new ImageIcon(ruta);
-        foto.setIcon(fotografia);
+        jlFoto.setIcon(fotografia);
 
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jbCambiarFotoMouseClicked
 
-    private void jlModificar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModificar1MouseClicked
+    private void jlModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModificarMouseClicked
                     
-        int idItem = Integer.parseInt(jtfID1.getText());
-        String nombre = jtfNombre1.getText();
-        int precio = Integer.parseInt(jtfPrecio1.getText());
-        String categoria = jcbCategoria1.getSelectedItem().toString();
+        int idItem = Integer.parseInt(jtfID.getText());
+        String nombre = jtfNombre.getText();
+        int precio = Integer.parseInt(jtfPrecio.getText());
+        String categoria = jcbCategoria.getSelectedItem().toString();
         String descripcion = jtaDescripcion1.getText();
         String Estado = "Activo";
         String rut = ruta;   
@@ -196,30 +195,30 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         
         // res = "1" significa que se logro crear el item exitosamente
         if (res == "1"){
-        jtfID1.setText("");
-        jtfNombre1.setText("");
-        jtfPrecio1.setText("");
-        jcbCategoria1.setSelectedIndex(0);
+        jtfID.setText("");
+        jtfNombre.setText("");
+        jtfPrecio.setText("");
+        jcbCategoria.setSelectedIndex(0);
         jtaDescripcion1.setText("");
         }
-    }//GEN-LAST:event_jlModificar1MouseClicked
+    }//GEN-LAST:event_jlModificarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel foto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    public javax.swing.JComboBox jcbCategoria1;
-    private javax.swing.JLabel jlModificar1;
-    private javax.swing.JScrollPane jspDescripcion1;
+    private javax.swing.JButton jbCambiarFoto;
+    public javax.swing.JComboBox jcbCategoria;
+    private javax.swing.JLabel jlCategoria;
+    private javax.swing.JLabel jlDescripcion;
+    public javax.swing.JLabel jlFoto;
+    private javax.swing.JLabel jlID;
+    private javax.swing.JLabel jlModificar;
+    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlNombreFoto;
+    private javax.swing.JLabel jlPrecio;
+    private javax.swing.JScrollPane jspDescripcion;
     public javax.swing.JTextArea jtaDescripcion1;
-    public javax.swing.JTextField jtfID1;
-    public javax.swing.JTextField jtfNombre1;
-    public javax.swing.JTextField jtfPrecio1;
+    public javax.swing.JTextField jtfID;
+    public javax.swing.JTextField jtfNombre;
+    public javax.swing.JTextField jtfPrecio;
     // End of variables declaration//GEN-END:variables
 }

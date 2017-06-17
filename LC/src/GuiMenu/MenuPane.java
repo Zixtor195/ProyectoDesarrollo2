@@ -26,13 +26,12 @@ public class MenuPane extends javax.swing.JFrame {
     
     public MenuPane() {
         // Asignar el Contenedor principal de la Clase externa para usar un fondo
-        contenedorPrincipalFondo = new ContenedorFondo("fondo.jpg");
+        contenedorPrincipalFondo = new ContenedorFondo("/imagenes/fondo.jpg");
         super.setContentPane(contenedorPrincipalFondo);
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
-        
     }
 
     /**

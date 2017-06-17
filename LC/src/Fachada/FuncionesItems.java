@@ -27,7 +27,7 @@ public class FuncionesItems {
     
     public String ModificarItem (int idItem, String nombre, int precio,
                                 String categoria,String descripcion,
-                                String Estado, String rut){
+                                String Estado, String rut) {
         String resultado = "";
         if(!(idItem==0||nombre==""||precio==0||categoria==""||descripcion==""||Estado==""||rut=="")){
             
@@ -62,7 +62,7 @@ public class FuncionesItems {
     
     public String CrearItem (int idItem, String nombre, int precio,
                                 String categoria,String descripcion,
-                                String Estado, String rut){
+                                String Estado, String rut) {
         String resultado = "";
         if(!(idItem==0||nombre==""||precio==0||categoria==""||descripcion==""||Estado==""||rut=="")){        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
@@ -93,7 +93,7 @@ public class FuncionesItems {
         return resultado;
     }
     
-    public Item ConsultarItem (int idItem){
+    public Item ConsultarItem (int idItem) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         ItemJpaController dao = new ItemJpaController(emf);                        
         Item item = dao.findItem(idItem);
@@ -101,7 +101,7 @@ public class FuncionesItems {
         return item;
     }    
     
-    public String EliminarItem (Item item,EntityManagerFactory emf){
+    public String EliminarItem (Item item,EntityManagerFactory emf) {
         String resultado = "";
         if(!(item==null||emf==null)){
         ItemJpaController dao = new ItemJpaController(emf);

@@ -54,7 +54,6 @@ public class Menu extends javax.swing.JFrame {
         jlConsultarItem = new javax.swing.JLabel();
         jlEliminarItem = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(java.awt.Color.black);
@@ -131,35 +130,18 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 682, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -177,12 +159,11 @@ public class Menu extends javax.swing.JFrame {
         jPanel2.add(ri);
         jPanel2.revalidate();
         jPanel2.repaint();
-
     }//GEN-LAST:event_jlRegistrarItemMouseClicked
 
     private void jlModificarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModificarItemMouseClicked
         
-       PanelModificarItem mi = new PanelModificarItem();
+        PanelModificarItem mi = new PanelModificarItem();
         mi.setSize(752,686);
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
@@ -190,24 +171,21 @@ public class Menu extends javax.swing.JFrame {
         
         List<Item> items = dao.findItemEntities();
         
-          Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
+        Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
+         
         for (int i = 0; i < dao.findItemEntities().size(); i++) {
             
-            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
-            {
-                  dao.findItemEntities().remove(i);
-            
-            }
-            else
-            {    
-            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
-            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
-            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
-            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
-            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
+            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo")) {
+                dao.findItemEntities().remove(i);
+            }else {    
+                listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
+                listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
+                listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
+                listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
+                listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
             }
         }
-        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
+        String columna[] = new String[] {"ID", "Nombre", "Precio", "Descripcion", "Categoria"};
         emf.close();
         
         DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
@@ -227,42 +205,37 @@ public class Menu extends javax.swing.JFrame {
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         ItemJpaController dao = new ItemJpaController(emf);
-        
-    
+            
         Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
+        
         for (int i = 0; i < dao.findItemEntities().size(); i++) {
             
-            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
-            {
-                  dao.findItemEntities().remove(i);
-            
-            }
-            else
-            {    
-            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
-            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
-            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
-            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
-            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
+            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo")) {
+                dao.findItemEntities().remove(i);
+            }else {    
+                listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
+                listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
+                listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
+                listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
+                listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
             }
         }
         
-        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
+        String columna[] = new String[] {"ID", "Nombre", "Precio", "Descripcion", "Categoria"};
         emf.close();
         
         DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
         
         ci.jtConsultarItem.setModel(modelo);
-        
-        
+         
         jPanel2.removeAll();
         jPanel2.add(ci);
         jPanel2.revalidate();
-        jPanel2.repaint();
-                          
+        jPanel2.repaint();               
     }//GEN-LAST:event_jlConsultarItemMouseClicked
 
     private void jlEliminarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlEliminarItemMouseClicked
+        
         PanelEliminarItem Ei = new PanelEliminarItem();
         Ei.setSize(752,686);
         
@@ -272,23 +245,21 @@ public class Menu extends javax.swing.JFrame {
         List<Item> items = dao.findItemEntities();
         
         Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
+        
         for (int i = 0; i < dao.findItemEntities().size(); i++) {
             
-            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
-            {
-                  dao.findItemEntities().remove(i);
-            
-            }
-            else
-            {    
-            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
-            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
-            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
-            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
-            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
+            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo")) {
+                dao.findItemEntities().remove(i);
+            }else {    
+                listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
+                listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
+                listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
+                listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
+                listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
             }
         }
-        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
+        
+        String columna[] = new String[] {"ID", "Nombre", "Precio", "Descripcion", "Categoria"};
         emf.close();
         
         DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
@@ -306,7 +277,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel jlConsultarItem;
     private javax.swing.JLabel jlEliminarItem;
     private javax.swing.JLabel jlModificarItem;

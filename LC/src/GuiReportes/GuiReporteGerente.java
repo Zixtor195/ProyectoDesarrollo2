@@ -19,6 +19,8 @@ public class GuiReporteGerente extends javax.swing.JFrame {
    
     public GuiReporteGerente() {
         initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
       Reporte r = new Reporte();

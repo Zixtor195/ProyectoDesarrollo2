@@ -38,8 +38,8 @@ public class FacturasAPagar extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        jcbFormaPago = new javax.swing.JComboBox<>();
+        jlContinuar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -102,12 +102,12 @@ public class FacturasAPagar extends javax.swing.JPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forma de pago", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Mixto", "Tarjeta" }));
+        jcbFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Mixto", "Tarjeta" }));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlContinuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
+        jlContinuar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                jlContinuarMouseClicked(evt);
             }
         });
 
@@ -118,17 +118,17 @@ public class FacturasAPagar extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlContinuar)
+                    .addComponent(jcbFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcbFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(jlContinuar)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -156,13 +156,13 @@ public class FacturasAPagar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void jlContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContinuarMouseClicked
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         FacturaJpaController daof = new FacturaJpaController (emf);
         
         
-        if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Efectivo")
-            ||jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Tarjeta")) {
+        if (jcbFormaPago.getSelectedItem().toString().equalsIgnoreCase("Efectivo")
+            ||jcbFormaPago.getSelectedItem().toString().equalsIgnoreCase("Tarjeta")) {
             PanelPagoEfectivo rm = new PanelPagoEfectivo();
             rm.setSize(800, 1000);
             
@@ -184,9 +184,9 @@ public class FacturasAPagar extends javax.swing.JPanel {
         
             DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
             rm.jTable1.setModel(Modelo);            
-            rm.jTextField6.setText(String.valueOf(idFactura));
-            rm.jTextField5.setText(jComboBox1.getSelectedItem().toString());
-            rm.jTextField2.setText(String.valueOf(factura.getValorTotal()));
+            rm.jtfIDFactura.setText(String.valueOf(idFactura));
+            rm.jtfTipoPago.setText(jcbFormaPago.getSelectedItem().toString());
+            rm.jtfTotalPagar.setText(String.valueOf(factura.getValorTotal()));
             this.removeAll();
             this.revalidate();
             this.repaint();
@@ -215,24 +215,23 @@ public class FacturasAPagar extends javax.swing.JPanel {
         
             DefaultTableModel Modelo = new DefaultTableModel(fila,columna);
             rm.jTable1.setModel(Modelo); 
-            rm.jTextField3.setText(String.valueOf(factura.getValorTotal()));
-            rm.jTextField4.setText(String.valueOf(factura.getValorTotal()));
-            rm.jTextField6.setText(String.valueOf(idFactura));
+            rm.jtfTotalPagar.setText(String.valueOf(factura.getValorTotal()));
+            rm.jtfCantidadRestante.setText(String.valueOf(factura.getValorTotal()));
+            rm.jtfIDFactura.setText(String.valueOf(idFactura));
             this.removeAll();
             this.revalidate();
             this.repaint();
 
             this.add(rm);
-
         }
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_jlContinuarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<String> jcbFormaPago;
+    private javax.swing.JLabel jlContinuar;
     // End of variables declaration//GEN-END:variables
 }

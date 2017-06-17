@@ -29,6 +29,8 @@ public class FacturasPagos extends javax.swing.JFrame {
      */
     public FacturasPagos() {
         initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -41,9 +43,9 @@ public class FacturasPagos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jlRegistrarFactura = new javax.swing.JLabel();
+        jlConsultarFactura = new javax.swing.JLabel();
+        jlPagos = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,24 +54,24 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CrearFactura.jpg"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlRegistrarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CrearFactura.jpg"))); // NOI18N
+        jlRegistrarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jlRegistrarFacturaMouseClicked(evt);
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarFactura.jpg"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlConsultarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarFactura.jpg"))); // NOI18N
+        jlConsultarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                jlConsultarFacturaMouseClicked(evt);
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pagos.jpg"))); // NOI18N
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pagos.jpg"))); // NOI18N
+        jlPagos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                jlPagosMouseClicked(evt);
             }
         });
 
@@ -80,20 +82,20 @@ public class FacturasPagos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jlPagos)
+                    .addComponent(jlRegistrarFactura)
+                    .addComponent(jlConsultarFactura))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addComponent(jlRegistrarFactura)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(jlConsultarFactura)
                 .addGap(123, 123, 123)
-                .addComponent(jLabel5)
+                .addComponent(jlPagos)
                 .addGap(88, 88, 88))
         );
 
@@ -129,7 +131,8 @@ public class FacturasPagos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void jlRegistrarFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlRegistrarFacturaMouseClicked
+        
         FacturasPedidoFacturar rm = new FacturasPedidoFacturar();
         rm.setSize(752, 686);
         
@@ -162,11 +165,10 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel2.revalidate();
         jPanel2.repaint();
         jPanel2.add(rm);
-        
-        
-    }//GEN-LAST:event_jLabel1MouseClicked
+    
+    }//GEN-LAST:event_jlRegistrarFacturaMouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void jlConsultarFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarFacturaMouseClicked
         
         FacturasConsultar fc = new FacturasConsultar();
         fc.setSize(752, 686);
@@ -199,9 +201,9 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel2.revalidate();
         jPanel2.repaint();
         jPanel2.add(fc);
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_jlConsultarFacturaMouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void jlPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlPagosMouseClicked
         FacturasAPagar fm = new FacturasAPagar();
         fm.setSize(752, 686);
         
@@ -233,15 +235,15 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel2.revalidate();
         jPanel2.repaint();
         jPanel2.add(fm);
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_jlPagosMouseClicked
 
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jlConsultarFactura;
+    private javax.swing.JLabel jlPagos;
+    private javax.swing.JLabel jlRegistrarFactura;
     // End of variables declaration//GEN-END:variables
 }

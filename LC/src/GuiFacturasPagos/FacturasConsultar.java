@@ -41,7 +41,7 @@ public class FacturasConsultar extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jlConsultar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -109,10 +109,10 @@ public class FacturasConsultar extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
+        jlConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jlConsultarMouseClicked(evt);
             }
         });
 
@@ -124,7 +124,7 @@ public class FacturasConsultar extends javax.swing.JPanel {
                 .addContainerGap(65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jlConsultar)
                         .addGap(303, 303, 303))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,24 +136,20 @@ public class FacturasConsultar extends javax.swing.JPanel {
                 .addContainerGap(66, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(jLabel1)
+                .addComponent(jlConsultar)
                 .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-            
-       
+    private void jlConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarMouseClicked
+             
         FacturarResultadosConsulta rm = new FacturarResultadosConsulta();
         rm.setSize(752, 1000);  
-        
-              
+                    
         int idFactura = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
         
         Fachada fachada = new Fachada();
-        Factura factura = fachada.ConsultarFactura(idFactura); 
-        
-        
+        Factura factura = fachada.ConsultarFactura(idFactura);  
         
         Set<ItemsDeFactura> SetItems = factura.getItemsDeFacturaSet();  
         List<ItemsDeFactura> facturaDeItems = new ArrayList<>(SetItems);
@@ -177,36 +173,28 @@ public class FacturasConsultar extends javax.swing.JPanel {
             fila2[i][1]=PagosFactura.get(i).getTipo();           
             fila2[i][2]=PagosFactura.get(i).getValor();
             fila2[i][3]=PagosFactura.get(i).getCedulaCliente();
-            }
+        }
         
         String columna2[] = new String[]{"Id","Tipo","Valor","Cedula Cliente"};        
-               
-        
         
         DefaultTableModel ModeloItems = new DefaultTableModel(fila,columna);
         DefaultTableModel ModeloPagos = new DefaultTableModel(fila2,columna2);
         rm.jTable1.setModel(ModeloItems);
         rm.jTable2.setModel(ModeloPagos);
-        rm.jTextField1.setText(String.valueOf(factura.getValorTotal()));
-        rm.jTextField2.setText(factura.getIdFactura().toString());                         
-        
+        rm.jtfValorTotal.setText(String.valueOf(factura.getValorTotal()));
+        rm.jtfNoFactura.setText(factura.getIdFactura().toString());                         
         
         this.removeAll();
         this.revalidate();
         this.repaint();
         
-       
-            
-       
-        
         this.add(rm);
-        
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_jlConsultarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
+    private javax.swing.JLabel jlConsultar;
     // End of variables declaration//GEN-END:variables
 }

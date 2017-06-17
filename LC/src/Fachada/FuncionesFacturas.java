@@ -33,7 +33,7 @@ public class FuncionesFacturas {
     
     public String CrearFactura (int idPedido, String estadoPedido, String estadoFactura,
                                 String HoraPago, int idFactura, Pedido pedido, int total,
-                                EntityManagerFactory emf){  
+                                EntityManagerFactory emf) {  
         String resultado= "";
         if (!(emf==null||idPedido==0 || estadoPedido==""||estadoFactura==""||
                 HoraPago==""||idFactura==0||pedido==null||total==0)){

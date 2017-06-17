@@ -36,90 +36,80 @@ public class GuiMesero extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelPrincipal1 = new javax.swing.JPanel();
-        jbPersonal1 = new javax.swing.JButton();
-        jbPedidos1 = new javax.swing.JButton();
-        jbReportes1 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelPrincipal = new javax.swing.JPanel();
+        jbPersonal = new javax.swing.JButton();
+        jbPedidos = new javax.swing.JButton();
+        jbReportes = new javax.swing.JButton();
+        jlPersonal = new javax.swing.JLabel();
+        jlPedidos = new javax.swing.JLabel();
+        jlReportes = new javax.swing.JLabel();
+        jlTituloLenosCarbon = new javax.swing.JLabel();
+        jlFondoCentradoLenosCarbon = new javax.swing.JLabel();
+        jpFondoTituloLenosCarbon = new javax.swing.JPanel();
         jbSalir1 = new javax.swing.JButton();
 
-        jPanelPrincipal1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelPrincipal1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jbPersonal1.setBackground(new java.awt.Color(153, 51, 0));
-        jbPersonal1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jbPersonal1.setText("IR");
-        jbPersonal1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbPersonal.setBackground(new java.awt.Color(153, 51, 0));
+        jbPersonal.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbPersonal.setText("IR");
+        jbPersonal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbPersonal1MouseClicked(evt);
+                jbPersonalMouseClicked(evt);
             }
         });
-        jPanelPrincipal1.add(jbPersonal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 620, 90, -1));
+        jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 620, 90, -1));
 
-        jbPedidos1.setBackground(new java.awt.Color(153, 51, 0));
-        jbPedidos1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jbPedidos1.setText("IR");
-        jbPedidos1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbPedidos.setBackground(new java.awt.Color(153, 51, 0));
+        jbPedidos.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbPedidos.setText("IR");
+        jbPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbPedidos1MouseClicked(evt);
+                jbPedidosMouseClicked(evt);
             }
         });
-        jPanelPrincipal1.add(jbPedidos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 620, 90, -1));
+        jPanelPrincipal.add(jbPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 620, 90, -1));
 
-        jbReportes1.setBackground(new java.awt.Color(153, 51, 0));
-        jbReportes1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jbReportes1.setText("IR");
-        jbReportes1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbReportes.setBackground(new java.awt.Color(153, 51, 0));
+        jbReportes.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jbReportes.setText("IR");
+        jbReportes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbReportes1MouseClicked(evt);
+                jbReportesMouseClicked(evt);
             }
         });
-        jbReportes1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbReportes1ActionPerformed(evt);
-            }
-        });
-        jPanelPrincipal1.add(jbReportes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, 90, -1));
+        jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, 90, -1));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/personal.jpg"))); // NOI18N
-        jPanelPrincipal1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, -1, -1));
+        jlPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/personal.jpg"))); // NOI18N
+        jPanelPrincipal.add(jlPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, -1, -1));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedidos.jpg"))); // NOI18N
-        jPanelPrincipal1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
+        jlPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedidos.jpg"))); // NOI18N
+        jPanelPrincipal.add(jlPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.jpg"))); // NOI18N
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
-            }
-        });
-        jPanelPrincipal1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, -1, -1));
+        jlReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.jpg"))); // NOI18N
+        jPanelPrincipal.add(jlReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, -1, -1));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.jpg"))); // NOI18N
-        jPanelPrincipal1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 120));
+        jlTituloLenosCarbon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.jpg"))); // NOI18N
+        jPanelPrincipal.add(jlTituloLenosCarbon, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 120));
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banner.jpg"))); // NOI18N
-        jPanelPrincipal1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, 400));
+        jlFondoCentradoLenosCarbon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banner.jpg"))); // NOI18N
+        jPanelPrincipal.add(jlFondoCentradoLenosCarbon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, 400));
 
-        jPanel2.setBackground(new java.awt.Color(92, 23, 23));
+        jpFondoTituloLenosCarbon.setBackground(new java.awt.Color(92, 23, 23));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpFondoTituloLenosCarbonLayout = new javax.swing.GroupLayout(jpFondoTituloLenosCarbon);
+        jpFondoTituloLenosCarbon.setLayout(jpFondoTituloLenosCarbonLayout);
+        jpFondoTituloLenosCarbonLayout.setHorizontalGroup(
+            jpFondoTituloLenosCarbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 940, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpFondoTituloLenosCarbonLayout.setVerticalGroup(
+            jpFondoTituloLenosCarbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        jPanelPrincipal1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 30));
+        jPanelPrincipal.add(jpFondoTituloLenosCarbon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 30));
 
         jbSalir1.setBackground(new java.awt.Color(255, 102, 0));
         jbSalir1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -129,60 +119,51 @@ public class GuiMesero extends javax.swing.JPanel {
                 jbSalir1ActionPerformed(evt);
             }
         });
-        jPanelPrincipal1.add(jbSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 90, 30));
+        jPanelPrincipal.add(jbSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 90, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbPersonal1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPersonal1MouseClicked
+    private void jbPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPersonalMouseClicked
         MeseroPersonal mp = new MeseroPersonal(id);
         mp.setVisible(true);
-    }//GEN-LAST:event_jbPersonal1MouseClicked
+    }//GEN-LAST:event_jbPersonalMouseClicked
 
-    private void jbPedidos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPedidos1MouseClicked
-        Pedidos mp = new Pedidos(id, cargo);
-        mp.setVisible(true);
-    }//GEN-LAST:event_jbPedidos1MouseClicked
-
-    private void jbReportes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReportes1ActionPerformed
-        GuiReporteMesero r = new GuiReporteMesero();
-        r.setVisible(true);
-    }//GEN-LAST:event_jbReportes1ActionPerformed
+    private void jbPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPedidosMouseClicked
+        Pedidos pm = new Pedidos(id, cargo);
+        pm.setVisible(true);
+    }//GEN-LAST:event_jbPedidosMouseClicked
 
     private void jbSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalir1ActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jbSalir1ActionPerformed
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-          
-    }//GEN-LAST:event_jLabel11MouseClicked
-
-    private void jbReportes1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbReportes1MouseClicked
-         GuiReporteMesero c = new GuiReporteMesero(); 
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbReportes1MouseClicked
+    private void jbReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbReportesMouseClicked
+        GuiReporteMesero rm = new GuiReporteMesero();
+        rm.setVisible(true);
+    }//GEN-LAST:event_jbReportesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanelPrincipal1;
-    private javax.swing.JButton jbPedidos1;
-    private javax.swing.JButton jbPersonal1;
-    private javax.swing.JButton jbReportes1;
+    private javax.swing.JPanel jPanelPrincipal;
+    private javax.swing.JButton jbPedidos;
+    private javax.swing.JButton jbPersonal;
+    private javax.swing.JButton jbReportes;
     private javax.swing.JButton jbSalir1;
+    private javax.swing.JLabel jlFondoCentradoLenosCarbon;
+    private javax.swing.JLabel jlPedidos;
+    private javax.swing.JLabel jlPersonal;
+    private javax.swing.JLabel jlReportes;
+    private javax.swing.JLabel jlTituloLenosCarbon;
+    private javax.swing.JPanel jpFondoTituloLenosCarbon;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,41 +38,41 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
     private void initComponents() {
 
         jtfID = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jlID = new javax.swing.JLabel();
+        jlNombreFoto = new javax.swing.JLabel();
+        jlNombre = new javax.swing.JLabel();
         jtfNombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jlPrecio = new javax.swing.JLabel();
         jtfPrecio = new javax.swing.JTextField();
         jcbCategoria = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jlCategoria = new javax.swing.JLabel();
+        jlDescripcion = new javax.swing.JLabel();
         jspDescripcion = new javax.swing.JScrollPane();
         jtaDescripcion = new javax.swing.JTextArea();
         jlRegistrarItem = new javax.swing.JLabel();
-        foto = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jlFoto = new javax.swing.JLabel();
+        jbCargarFoto = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setText("ID:");
+        jlID.setText("ID:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Foto:");
+        jlNombreFoto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlNombreFoto.setText("Foto:");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Nombre:");
+        jlNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlNombre.setText("Nombre:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Precio:");
+        jlPrecio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlPrecio.setText("Precio:");
 
-        jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "CARNE CERDO", "CARNE POLLO", "CARNE RES", "ESPECIAL L&C", "COMIDA MAR", "ENSALADAS", "SOPAS", "ADICIONES", "POSTRES", "ENTRADAS", "BEBIDAS", "BEBIDAS ALCOHOLICAS", "VINOS", " " }));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Categoria:");
+        jlCategoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlCategoria.setText("Categoria:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Descripcion:");
+        jlDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlDescripcion.setText("Descripcion:");
 
         jtaDescripcion.setColumns(20);
         jtaDescripcion.setRows(5);
@@ -85,13 +85,13 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
             }
         });
 
-        foto.setText("               Foto");
-        foto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jlFoto.setText("               Foto");
+        jlFoto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setText("CargarFoto");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbCargarFoto.setText("CargarFoto");
+        jbCargarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jbCargarFotoMouseClicked(evt);
             }
         });
 
@@ -106,11 +106,11 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6))
+                                    .addComponent(jlPrecio)
+                                    .addComponent(jlNombre)
+                                    .addComponent(jlCategoria)
+                                    .addComponent(jlDescripcion)
+                                    .addComponent(jlID))
                                 .addGap(36, 36, 36)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jspDescripcion)
@@ -124,11 +124,11 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
                                 .addGap(182, 182, 182)))
                         .addContainerGap(73, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(jlNombreFoto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(jbCargarFoto)
                         .addGap(134, 134, 134))))
         );
         layout.setVerticalGroup(
@@ -137,17 +137,17 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
+                        .addComponent(jlNombreFoto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbCargarFoto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(jlID)
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -155,17 +155,17 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
                                 .addGap(42, 42, 42)
                                 .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(jlNombre)
                                 .addGap(58, 58, 58)
-                                .addComponent(jLabel2)))
+                                .addComponent(jlPrecio)))
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
+                            .addComponent(jlCategoria)
                             .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jspDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
+                            .addComponent(jlDescripcion)))
                     .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jlRegistrarItem)
@@ -176,8 +176,6 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
     private void jlRegistrarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlRegistrarItemMouseClicked
 
         //EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
-        
-        
         int idItem = Integer.parseInt(jtfID.getText());
         String nombre = jtfNombre.getText();
         int precio = Integer.parseInt(jtfPrecio.getText());
@@ -198,28 +196,27 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jlRegistrarItemMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jbCargarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbCargarFotoMouseClicked
 
         JFileChooser myFileChooser = new JFileChooser();
         myFileChooser.showOpenDialog(this);
 
         ruta = myFileChooser.getSelectedFile().getAbsolutePath();
         ImageIcon fotografia = new ImageIcon(ruta);
-        foto.setIcon(fotografia);
-
-    }//GEN-LAST:event_jButton1MouseClicked
+        jlFoto.setIcon(fotografia);
+    }//GEN-LAST:event_jbCargarFotoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel foto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton jbCargarFoto;
     private javax.swing.JComboBox jcbCategoria;
+    private javax.swing.JLabel jlCategoria;
+    private javax.swing.JLabel jlDescripcion;
+    private javax.swing.JLabel jlFoto;
+    private javax.swing.JLabel jlID;
+    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlNombreFoto;
+    private javax.swing.JLabel jlPrecio;
     private javax.swing.JLabel jlRegistrarItem;
     private javax.swing.JScrollPane jspDescripcion;
     private javax.swing.JTextArea jtaDescripcion;

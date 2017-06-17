@@ -145,11 +145,11 @@ public class PanelModificarItem extends javax.swing.JPanel {
         
         Item item = dao.findItem(idItem);
         ImageIcon fotografia = new ImageIcon(item.getFoto());
-        rm.foto.setIcon(fotografia);
-        rm.jtfID1.setText(item.getIdItem().toString());
-        rm.jtfNombre1.setText(item.getNombre());
-        rm.jtfPrecio1.setText(Integer.toString(item.getPrecio()));
-        rm.jcbCategoria1.setSelectedItem(item.getCategoria());
+        rm.jlFoto.setIcon(fotografia);
+        rm.jtfID.setText(item.getIdItem().toString());
+        rm.jtfNombre.setText(item.getNombre());
+        rm.jtfPrecio.setText(Integer.toString(item.getPrecio()));
+        rm.jcbCategoria.setSelectedItem(item.getCategoria());
         rm.jtaDescripcion1.setText(item.getDescripcion());
         
         rm.setSize(752, 686);

@@ -40,21 +40,20 @@ public class PanelPagoEfectivo extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jlDatosVenta = new javax.swing.JLabel();
+        jlIDPago = new javax.swing.JLabel();
+        jlCedulaCliente = new javax.swing.JLabel();
+        jtfIDPago = new javax.swing.JTextField();
+        jtfCedulaCliente = new javax.swing.JTextField();
+        jlTotal = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jlTotalPagar = new javax.swing.JLabel();
+        jtfTotalPagar = new javax.swing.JTextField();
+        jbPagar = new javax.swing.JButton();
+        jlTipoPago = new javax.swing.JLabel();
+        jtfTipoPago = new javax.swing.JTextField();
+        jlIDFactura = new javax.swing.JLabel();
+        jtfIDFactura = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,27 +105,27 @@ public class PanelPagoEfectivo extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Datos de la Venta");
+        jlDatosVenta.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlDatosVenta.setText("Datos de la Venta");
 
-        jLabel11.setText("Id Pago:");
+        jlIDPago.setText("Id Pago:");
 
-        jLabel10.setText("Cedula Cliente:");
+        jlCedulaCliente.setText("Cedula Cliente:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("TOTAL:");
-        jLabel2.setToolTipText("");
+        jlTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlTotal.setText("TOTAL:");
+        jlTotal.setToolTipText("");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jLabel3.setText("Total A Pagar");
+        jlTotalPagar.setText("Total A Pagar");
 
-        jTextField2.setEditable(false);
+        jtfTotalPagar.setEditable(false);
 
-        jButton1.setText("Pagar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbPagar.setText("Pagar");
+        jbPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbPagarActionPerformed(evt);
             }
         });
 
@@ -138,14 +137,12 @@ public class PanelPagoEfectivo extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
+                        .addComponent(jlTotalPagar)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtfTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addComponent(jButton1)))
+                        .addComponent(jbPagar)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,22 +150,20 @@ public class PanelPagoEfectivo extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jtfTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlTotalPagar))
                 .addGap(26, 26, 26)
-                .addComponent(jButton1)
-                .addGap(54, 54, 54)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jbPagar)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        jLabel12.setText("Tipo de Pago:");
+        jlTipoPago.setText("Tipo de Pago:");
 
-        jTextField5.setEditable(false);
+        jtfTipoPago.setEditable(false);
 
-        jLabel13.setText("Id Factura:");
+        jlIDFactura.setText("Id Factura:");
 
-        jTextField6.setEditable(false);
+        jtfIDFactura.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -180,32 +175,32 @@ public class PanelPagoEfectivo extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
+                            .addComponent(jlDatosVenta)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(67, 67, 67)
-                                .addComponent(jLabel2)
+                                .addComponent(jlTotal)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(25, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
+                            .addComponent(jlCedulaCliente)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
+                                    .addComponent(jlIDPago)
                                     .addGap(93, 93, 93)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jtfIDPago, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12)
+                                .addComponent(jlTipoPago)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jtfTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13)
+                                .addComponent(jlIDFactura)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jtfIDFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(134, 134, 134))))
         );
         layout.setVerticalGroup(
@@ -213,51 +208,51 @@ public class PanelPagoEfectivo extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addComponent(jlCedulaCliente)
+                    .addComponent(jtfCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlTipoPago))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfIDPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlIDPago)
+                    .addComponent(jlIDFactura)
+                    .addComponent(jtfIDFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(jlDatosVenta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(jLabel2)))
+                        .addComponent(jlTotal)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-       PagosJpaController dao = new PagosJpaController(emf);
-       FacturaJpaController daof = new FacturaJpaController (emf);
-       
-       int idFactura = Integer.parseInt(jTextField6.getText());
-       Factura factura = daof.findFactura(idFactura);       
-       Pagos pago = new Pagos();
-       PagosPK pagoPk = new PagosPK();
-       //dao.
-       factura.setEstado("Pagado");
-       pagoPk.setIdPago(Integer.parseInt(jTextField8.getText()));
-       pagoPk.setIdFactura(idFactura);
-       
-       pago.setPagosPK(pagoPk);       
-       pago.setCedulaCliente(Integer.parseInt(jTextField1.getText()));
-       pago.setTipo(jTextField5.getText());
-       pago.setValor(Integer.parseInt(jTextField2.getText()));
-       
-       
+    private void jbPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagarActionPerformed
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        PagosJpaController dao = new PagosJpaController(emf);
+        FacturaJpaController daof = new FacturaJpaController (emf);
+
+        int idFactura = Integer.parseInt(jtfIDFactura.getText());
+        Factura factura = daof.findFactura(idFactura);       
+        Pagos pago = new Pagos();
+        PagosPK pagoPk = new PagosPK();
+        //dao.
+        factura.setEstado("Pagado");
+        pagoPk.setIdPago(Integer.parseInt(jtfIDPago.getText()));
+        pagoPk.setIdFactura(idFactura);
+
+        pago.setPagosPK(pagoPk);       
+        pago.setCedulaCliente(Integer.parseInt(jtfCedulaCliente.getText()));
+        pago.setTipo(jtfTipoPago.getText());
+        pago.setValor(Integer.parseInt(jtfTotalPagar.getText()));
+          
         try {
             dao.create(pago);
             daof.edit(factura);
@@ -266,26 +261,25 @@ public class PanelPagoEfectivo extends javax.swing.JPanel {
             Logger.getLogger(PanelPagoEfectivo.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al realizar el Pago");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbPagarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
-    public javax.swing.JTextField jTextField5;
-    public javax.swing.JTextField jTextField6;
-    public javax.swing.JTextField jTextField8;
+    private javax.swing.JButton jbPagar;
+    private javax.swing.JLabel jlCedulaCliente;
+    private javax.swing.JLabel jlDatosVenta;
+    private javax.swing.JLabel jlIDFactura;
+    private javax.swing.JLabel jlIDPago;
+    private javax.swing.JLabel jlTipoPago;
+    private javax.swing.JLabel jlTotal;
+    private javax.swing.JLabel jlTotalPagar;
+    public javax.swing.JTextField jtfCedulaCliente;
+    public javax.swing.JTextField jtfIDFactura;
+    public javax.swing.JTextField jtfIDPago;
+    public javax.swing.JTextField jtfTipoPago;
+    public javax.swing.JTextField jtfTotalPagar;
     // End of variables declaration//GEN-END:variables
 }

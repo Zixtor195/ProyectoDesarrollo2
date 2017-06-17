@@ -147,8 +147,6 @@ public class PanelEliminarItem extends javax.swing.JPanel {
         item.setEstado("Inactivo");
         Fachada fachada = new Fachada();
         fachada.EliminarItem(item, emf);
-        
-
     }//GEN-LAST:event_jlEliminarItemMouseClicked
 
 
