@@ -27,11 +27,10 @@ public class Fachada {
     
    //Este Metodo Nos Direccionara a la Clase Funciones Facturas en la funcion Crear Factura
     public String CrearFactura(int idPedido, String estadoPedido, String estadoFactura,
-                                String HoraPago, int idFactura, Pedido pedido, int total,
-                                EntityManagerFactory emf) throws ParseException { 
+                                int idFactura, Pedido pedido, int total) throws ParseException{ 
         
         String resultado = funcionesFacturas.CrearFactura(idPedido, estadoPedido, estadoFactura,
-                                   idFactura, pedido, total, emf);
+                                   idFactura, pedido, total);
         return resultado;
     }
   
@@ -65,7 +64,5 @@ public class Fachada {
         return resultado;
     }
 
-    public void CrearFactura(int idPedido, String estadoPedido, String estadoFactura, int idFactura, Pedido pedido, int total, EntityManagerFactory emf) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

@@ -9,6 +9,9 @@ package GuiFacturasPagos;
 import ClasesTablas.Pedido;
 import ControladorClasesTablas.PedidoJpaController;
 import Fachada.Fachada;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -224,20 +227,25 @@ public class FacturarPedidos extends javax.swing.JPanel {
 
     private void jbAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAceptarActionPerformed
        
-       EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");//PruebaJPAPU es el nombre de nuestra unidad de persistencia
-       PedidoJpaController daop = new PedidoJpaController(emf);
-
-       int idPedido = Integer.parseInt(jtfIDPedido.getText()); 
-       String estadoPedido = "Facturado";
-       String estadoFactura = "Sin Pagar";       
-       int idFactura = Integer.parseInt(jtfNoFactura.getText());
-       Pedido pedido = daop.findPedido(idPedido);       
-       int total = (Integer.parseInt(jtfTotal.getText())) + 
-               (Integer.parseInt(jtfIVA.getText())) +
-               (Integer.parseInt(jtfPropina.getText()));   
-               
-     Fachada fachada = new Fachada();
-     fachada.CrearFactura(idPedido, estadoPedido, estadoFactura, idFactura, pedido, total, emf);        
+        try {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");//PruebaJPAPU es el nombre de nuestra unidad de persistencia
+            PedidoJpaController daop = new PedidoJpaController(emf);
+            
+            int idPedido = Integer.parseInt(jtfIDPedido.getText());
+            String estadoPedido = "Facturado";
+            String estadoFactura = "Sin Pagar";
+            int idFactura = Integer.parseInt(jtfNoFactura.getText());
+            Pedido pedido = daop.findPedido(idPedido);
+            int total = (Integer.parseInt(jtfTotal.getText())) +
+                    (Integer.parseInt(jtfIVA.getText())) +
+                    (Integer.parseInt(jtfPropina.getText()));
+            
+            Fachada fachada = new Fachada();
+            fachada.CrearFactura(idPedido, estadoPedido, estadoFactura, idFactura, pedido, total);
+        } catch (ParseException ex) {
+            Logger.getLogger(FacturarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jbAceptarActionPerformed
 
 

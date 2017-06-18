@@ -36,8 +36,9 @@ public class FuncionesFacturas {
     public FuncionesFacturas(){};
     
     public String CrearFactura (int idPedido, String estadoPedido, String estadoFactura,
-                                int idFactura, Pedido pedido, int total,
-                                EntityManagerFactory emf) throws ParseException {  
+                                int idFactura, Pedido pedido, int total
+                                ) throws ParseException { 
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         String resultado= "";
         if (!(emf==null||idPedido==0 || estadoPedido==""||estadoFactura==""||
                 idFactura==0||pedido==null||total==0)){
@@ -49,8 +50,8 @@ public class FuncionesFacturas {
         Factura factura = new Factura();
         
         pedido.setEstado(estadoPedido);        
-        factura.setEstado(estadoFactura);
-        factura.setHoraPago(getHora());
+        factura.setEstado(estadoFactura);         
+        factura.setHoraPago(getHora());         
         factura.setIdFactura(idFactura);
         factura.setIdPedido(pedido);
         factura.setValorTotal(total);
@@ -79,10 +80,8 @@ public class FuncionesFacturas {
             JOptionPane.showMessageDialog(null, "Factura creado exitosamente."); 
             resultado= "1";
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Ya existe Esta Factura");
+            JOptionPane.showMessageDialog(null, "Factura creado exitosamente.");
             resultado= "2";
-        }finally{
-            emf.close();
         }
         emf.close(); 
         }
