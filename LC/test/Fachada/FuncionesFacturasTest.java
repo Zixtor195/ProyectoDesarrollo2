@@ -7,6 +7,7 @@ package Fachada;
 
 import ClasesTablas.Factura;
 import ClasesTablas.Pedido;
+import java.text.ParseException;
 import javax.persistence.EntityManagerFactory;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -44,19 +45,18 @@ public class FuncionesFacturasTest {
      * Test of CrearFactura method, of class FuncionesFacturas.
      */
     @Test
-    public void testCrearFactura() {
+    public void testCrearFactura() throws ParseException {
         System.out.println("CrearFactura");
         int idPedido = 0;
         String estadoPedido = "";
-        String estadoFactura = "";
-        String HoraPago = "";
+        String estadoFactura = "";    
         int idFactura = 0;
         Pedido pedido = null;
         int total = 0;
         EntityManagerFactory emf = null;
         FuncionesFacturas instance = new FuncionesFacturas();
         String expResult = "";
-        String result = instance.CrearFactura(idPedido, estadoPedido, estadoFactura, HoraPago, idFactura, pedido, total, emf);
+        String result = instance.CrearFactura(idPedido, estadoPedido, estadoFactura,idFactura, pedido, total, emf);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

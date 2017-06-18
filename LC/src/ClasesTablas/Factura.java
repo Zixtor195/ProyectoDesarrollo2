@@ -6,6 +6,7 @@
 package ClasesTablas;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -18,6 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -42,10 +45,10 @@ public class Factura implements Serializable {
     private Integer idFactura;
     @Basic(optional = false)
     @Column(name = "estado", nullable = false, length = 100)
-    private String estado;
-    @Basic(optional = false)
-    @Column(name = "hora_pago", nullable = false, length = 100)
-    private String horaPago;
+    private String estado; 
+    @Column(name = "hora_pago")
+    @Temporal(TemporalType.TIME)
+    private Date horaPago;
     @Basic(optional = false)
     @Column(name = "valor_total", nullable = false)
     private int valorTotal;
@@ -64,7 +67,7 @@ public class Factura implements Serializable {
         this.idFactura = idFactura;
     }
 
-    public Factura(Integer idFactura, String estado, String horaPago, int valorTotal) {
+    public Factura(Integer idFactura, String estado, Date horaPago, int valorTotal) {
         this.idFactura = idFactura;
         this.estado = estado;
         this.horaPago = horaPago;
@@ -87,11 +90,11 @@ public class Factura implements Serializable {
         this.estado = estado;
     }
 
-    public String getHoraPago() {
+    public Date getHoraPago() {
         return horaPago;
     }
 
-    public void setHoraPago(String horaPago) {
+    public void setHoraPago(Date horaPago) {
         this.horaPago = horaPago;
     }
 

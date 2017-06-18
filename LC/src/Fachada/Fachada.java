@@ -8,6 +8,7 @@ package Fachada;
 import ClasesTablas.Factura;
 import ClasesTablas.Item;
 import ClasesTablas.Pedido;
+import java.text.ParseException;
 import javax.persistence.EntityManagerFactory;
 
 /**
@@ -27,10 +28,10 @@ public class Fachada {
    //Este Metodo Nos Direccionara a la Clase Funciones Facturas en la funcion Crear Factura
     public String CrearFactura(int idPedido, String estadoPedido, String estadoFactura,
                                 String HoraPago, int idFactura, Pedido pedido, int total,
-                                EntityManagerFactory emf) { 
+                                EntityManagerFactory emf) throws ParseException { 
         
         String resultado = funcionesFacturas.CrearFactura(idPedido, estadoPedido, estadoFactura,
-                                   HoraPago, idFactura, pedido, total, emf);
+                                   idFactura, pedido, total, emf);
         return resultado;
     }
   

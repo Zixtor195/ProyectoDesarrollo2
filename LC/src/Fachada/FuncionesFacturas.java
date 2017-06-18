@@ -15,6 +15,10 @@ import ControladorClasesTablas.ItemPedidoJpaController;
 import ControladorClasesTablas.ItemsDeFacturaJpaController;
 import ControladorClasesTablas.PedidoJpaController;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,11 +36,11 @@ public class FuncionesFacturas {
     public FuncionesFacturas(){};
     
     public String CrearFactura (int idPedido, String estadoPedido, String estadoFactura,
-                                String HoraPago, int idFactura, Pedido pedido, int total,
-                                EntityManagerFactory emf) {  
+                                int idFactura, Pedido pedido, int total,
+                                EntityManagerFactory emf) throws ParseException {  
         String resultado= "";
         if (!(emf==null||idPedido==0 || estadoPedido==""||estadoFactura==""||
-                HoraPago==""||idFactura==0||pedido==null||total==0)){
+                idFactura==0||pedido==null||total==0)){
         
         FacturaJpaController dao = new FacturaJpaController(emf);   
         PedidoJpaController daop = new PedidoJpaController(emf);          
@@ -46,7 +50,7 @@ public class FuncionesFacturas {
         
         pedido.setEstado(estadoPedido);        
         factura.setEstado(estadoFactura);
-        factura.setHoraPago(HoraPago);
+        factura.setHoraPago(getHora());
         factura.setIdFactura(idFactura);
         factura.setIdPedido(pedido);
         factura.setValorTotal(total);
@@ -97,5 +101,14 @@ public class FuncionesFacturas {
         emf.close(); 
         return factura;
         
+    }
+    
+     public Date getHora() throws ParseException {
+        
+        Date hora = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+        String actual = sdf.format(hora);
+        Date actual1 = sdf.parse(actual);
+        return actual1;
     }
 }
