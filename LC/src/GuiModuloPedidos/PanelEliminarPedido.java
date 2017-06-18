@@ -48,18 +48,14 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
         table.setModel(new tableModel());
         lbleliminar.addMouseListener(new Eliminar());
     }
-    
-    
+
     public void removerMeseros(int id, String cargo) {
         if (cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero")) {
             for (int i = 0; i < listapedido.size(); i++) {
                 if (listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) {
                     listapedido.remove(i);
-
                 }
-
             }
-
         }
     }
 
@@ -78,6 +74,7 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
+        setOpaque(false);
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,39 +134,30 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
         jScrollPane1.setViewportView(table);
 
         lbleliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botoneliminar.jpg"))); // NOI18N
-        lbleliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbleliminarMouseClicked(evt);
-            }
-        });
+        lbleliminar.setPreferredSize(new java.awt.Dimension(115, 38));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(163, Short.MAX_VALUE)
+                .addGap(130, 130, 130)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(129, 129, 129))
+                .addGap(146, 146, 146))
             .addGroup(layout.createSequentialGroup()
-                .addGap(391, 391, 391)
-                .addComponent(lbleliminar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(390, 390, 390)
+                .addComponent(lbleliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lbleliminar)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addComponent(lbleliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lbleliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbleliminarMouseClicked
-
-    }//GEN-LAST:event_lbleliminarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane jScrollPane1;
@@ -250,8 +238,6 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
     
     
      private class tableModel extends AbstractTableModel{
-         
-        
         
         @Override
         public int getRowCount() {
@@ -290,7 +276,5 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
             }
             return "";
         }
-        
     }
-    
 }

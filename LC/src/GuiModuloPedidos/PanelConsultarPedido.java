@@ -32,14 +32,11 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
     
     int id_empleado;
     String cargo;
-    public PanelConsultarPedido(int id, String cargo)
-            
-    {
+    public PanelConsultarPedido(int id, String cargo) {
         initComponents();
         this.id_empleado = id;
         this.cargo = cargo;
         table.setModel(new tableModel());
-        
     }
 
     /**
@@ -57,6 +54,7 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
+        setOpaque(false);
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,7 +113,7 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -129,21 +127,21 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
+                        .addGap(130, 130, 130)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(379, 379, 379)
+                        .addGap(390, 390, 390)
                         .addComponent(jLabel1)))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(80, 80, 80)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -162,21 +160,16 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un pedido primero, por favor");
         }
-        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     public void removerMeseros(int id, String cargo) {
-      if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
-      {    
-        for (int i = 0; i < listapedido.size(); i++) {
-            if (listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) {
-                listapedido.remove(i);
-
+        if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero")) {
+            for (int i = 0; i < listapedido.size(); i++) {
+                if (listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) {
+                    listapedido.remove(i);
+                }
             }
-
         }
-
-    }
     }
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -187,8 +180,6 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
 
     
     private class tableModel extends AbstractTableModel{
-         
-        
         
         @Override
         public int getRowCount() {
@@ -198,7 +189,6 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
             }else{
                 return listapedido.size();
             }
-            
         }
 
         @Override

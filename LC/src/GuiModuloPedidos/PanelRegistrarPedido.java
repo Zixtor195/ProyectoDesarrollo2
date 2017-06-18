@@ -99,6 +99,8 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         btnagregarapedido = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(933, 741));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -277,12 +279,6 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        txtcantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcantidadActionPerformed(evt);
-            }
-        });
-
         btnagregarapedido.setText("Adicionar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -292,7 +288,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1))
@@ -329,7 +325,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,13 +351,9 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnaceptarpedido)
                     .addComponent(btnanular))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcantidadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -391,27 +383,21 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
     public javax.swing.JTextField txtmesero;
     // End of variables declaration//GEN-END:variables
 
-       @Override
+    @Override
     public void actionPerformed(ActionEvent ae) {
        
-        if(ae.getSource() == cbo_tipo)
-        {
-            if(cbo_tipo.getSelectedIndex() == 1)
-            {
+        if(ae.getSource() == cbo_tipo) {
+            
+            if(cbo_tipo.getSelectedIndex() == 1) {
                txtmesa.setEnabled(false);
-               txtmesa.setText(null);
-                   
+               txtmesa.setText(null);    
             }    
-        }    
-        if (cbo_tipo.getSelectedIndex() == 0)
-        {
-          txtmesa.setEnabled(true);
+        }
+        if (cbo_tipo.getSelectedIndex() == 0) {
+            txtmesa.setEnabled(true);
         }    
     }
 
-
-    
-    
     private class agregar implements ActionListener{
 
         @Override
@@ -454,13 +440,10 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
                     } catch (Exception ex) {
                         Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
                 }
-
             }else{
                 JOptionPane.showMessageDialog(null, "Llene los campos requeridos");
             }
-        
         }
     }
     
@@ -470,7 +453,6 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         public void actionPerformed(ActionEvent e) {
             
             try {
-                
                 crearLocalPedido();
                 PedidoJpaController pjc = new PedidoJpaController(emf);
                 ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
@@ -493,8 +475,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
                 
             } catch (ParseException ex) {
                 Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE,null, ex);
-            }
-            
+            } 
         }
     }
     
@@ -561,7 +542,6 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
                         } catch (IllegalOrphanException ex) {
                             Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
                         }
- 
                     }
                 }
             try {
@@ -571,7 +551,6 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
             } catch (NonexistentEntityException ex) {
                 Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         }   
     }
     
@@ -586,13 +565,11 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         
         pedido.setIdEmpleado(getEmpleadoActual());
         pedido.setTipo(cbo_tipo.getSelectedItem().toString());
-        if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Mesa"))
-        {    
-        pedido.setNumMesa(Integer.parseInt(txtmesa.getText()));
+        if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Mesa")) {
+            pedido.setNumMesa(Integer.parseInt(txtmesa.getText()));
         }
-        if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Llevar"))
-        {    
-        pedido.setNumMesa(null);
+        if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Llevar")) {    
+            pedido.setNumMesa(null);
         }
     }
     
@@ -613,8 +590,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
             pjc.create(pedido);
         } catch (Exception ex) {
             Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }   
     }
     
     public LinkedList<ItemPedido> listaItempedido(){
@@ -647,12 +623,10 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         
 //        empleado = listaEmpleado.get(cbo_mesero.getSelectedIndex());
 //        System.out.println(cbo_mesero.getSelectedIndex());
-        
         return empleado;
     }
     
     public Date getHora() throws ParseException {
-        
         Date hora = Calendar.getInstance().getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
         String actual = sdf.format(hora);
@@ -712,9 +686,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
     private class tableModel extends AbstractTableModel{
         
         //ItemPedidoJpaController tjc = new ItemPedidoJpaController(emf);
-
         List<ItemPedido> listItems = listaItempedido();
-        
         
         @Override
         public int getRowCount() {
@@ -751,6 +723,5 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
             }
             return "";
         }
-        
     }
 }

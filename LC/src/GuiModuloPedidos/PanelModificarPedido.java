@@ -36,18 +36,14 @@ public class PanelModificarPedido extends javax.swing.JPanel {
         table.setModel(new tableModel());
     }
     
-      public void removerMeseros(int id, String cargo) {
-      if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
-      {    
-        for (int i = 0; i < listapedido.size(); i++) {
-            if ((listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) || (listapedido.get(i).getEstado().equalsIgnoreCase("Cancelado"))) {
-                listapedido.remove(i);
-
+    public void removerMeseros(int id, String cargo) {
+        if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero")) {
+            for (int i = 0; i < listapedido.size(); i++) {
+                if ((listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) || (listapedido.get(i).getEstado().equalsIgnoreCase("Cancelado"))) {
+                    listapedido.remove(i);
+                }
             }
-
         }
-
-    }
     }
     
    
@@ -61,6 +57,7 @@ public class PanelModificarPedido extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
+        setOpaque(false);
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,7 +116,7 @@ public class PanelModificarPedido extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonContinuar.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonmodificar.jpg"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -133,21 +130,21 @@ public class PanelModificarPedido extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
+                        .addGap(130, 130, 130)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(368, 368, 368)
+                        .addGap(390, 390, 390)
                         .addComponent(jLabel1)))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(80, 80, 80)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -165,10 +162,6 @@ public class PanelModificarPedido extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un pedido primero, por favor");
         }
-            
-        
-        
-        
     }//GEN-LAST:event_jLabel1MouseClicked
 
 
@@ -217,7 +210,5 @@ public class PanelModificarPedido extends javax.swing.JPanel {
             }
             return "";
         }
-        
     }
-
 }

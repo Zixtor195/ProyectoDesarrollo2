@@ -60,6 +60,7 @@ public class PanelResulConsultaPedido extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setOpaque(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -169,45 +170,20 @@ public class PanelResulConsultaPedido extends javax.swing.JPanel {
         jLabel7.setText("Hora Inicio:");
 
         txthorainicio.setEnabled(false);
-        txthorainicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txthorainicioActionPerformed(evt);
-            }
-        });
 
         jLabel8.setText("Hora Final:");
 
         txthorafinal.setEnabled(false);
-        txthorafinal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txthorafinalActionPerformed(evt);
-            }
-        });
 
         txttipo.setEnabled(false);
-        txttipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttipoActionPerformed(evt);
-            }
-        });
 
         jLabel9.setText("Tipo");
 
         txtmesa.setEnabled(false);
-        txtmesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtmesaActionPerformed(evt);
-            }
-        });
 
         jLabel10.setText("Número Mesa:");
 
         txtempleado.setEnabled(false);
-        txtempleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtempleadoActionPerformed(evt);
-            }
-        });
 
         jLabel11.setText("Empleado :");
 
@@ -297,26 +273,6 @@ public class PanelResulConsultaPedido extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txthorainicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthorainicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txthorainicioActionPerformed
-
-    private void txthorafinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthorafinalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txthorafinalActionPerformed
-
-    private void txttipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txttipoActionPerformed
-
-    private void txtmesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmesaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtmesaActionPerformed
-
-    private void txtempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtempleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtempleadoActionPerformed
-
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         this.removeAll();
     }//GEN-LAST:event_jLabel5MouseClicked
@@ -399,7 +355,5 @@ public class PanelResulConsultaPedido extends javax.swing.JPanel {
             }
             return "";
         }
-        
     }
-    
 }

@@ -21,6 +21,7 @@ package GuiModuloPedidos;
 
 import ControladorClasesTablas.EmpleadoJpaController;
 import ControladorClasesTablas.PedidoJpaController;
+import GuiMenu.ContenedorFondo;
 import GuiModuloPersonal.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ import javax.persistence.Persistence;
 
 public class Pedidos extends javax.swing.JFrame {
     
+    ContenedorFondo contenedorPrincipalFondo;
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
     EmpleadoJpaController pjc = new EmpleadoJpaController(emf);
     /**
@@ -41,18 +43,17 @@ public class Pedidos extends javax.swing.JFrame {
     int id;
     String cargo;        
     public Pedidos(int id, String cargo) {
-        
-        
+        contenedorPrincipalFondo = new ContenedorFondo("src/imagenes/fondoInterfaces.jpg");
+        super.setContentPane(contenedorPrincipalFondo);
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.id = id;
         this.cargo = cargo;
-        btnregistrar.addActionListener(new Crear());
-        btnmodificar.addActionListener(new Modificar());
-        btneliminar.addActionListener(new Eliminar());
-        btnconsultar.addActionListener(new Consultar());
-        
+        jbRegistrarPedido.addActionListener(new Crear());
+        jbModificarPedido.addActionListener(new Modificar());
+        jbEliminarPedido.addActionListener(new Eliminar());
+        jbConsultarPedido.addActionListener(new Consultar());
     }
 
     /**
@@ -65,75 +66,70 @@ public class Pedidos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        btnmodificar = new javax.swing.JButton();
-        btnregistrar = new javax.swing.JButton();
-        btnconsultar = new javax.swing.JButton();
-        btneliminar = new javax.swing.JButton();
-        panel = new javax.swing.JPanel();
+        jbModificarPedido = new javax.swing.JButton();
+        jbRegistrarPedido = new javax.swing.JButton();
+        jbConsultarPedido = new javax.swing.JButton();
+        jbEliminarPedido = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setOpaque(false);
 
-        btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarPedido.jpg"))); // NOI18N
+        jbModificarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarPedido.jpg"))); // NOI18N
+        jbModificarPedido.setPreferredSize(new java.awt.Dimension(150, 136));
 
-        btnregistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Crearpedido.jpg"))); // NOI18N
-        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnregistrarActionPerformed(evt);
-            }
-        });
+        jbRegistrarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Crearpedido.jpg"))); // NOI18N
+        jbRegistrarPedido.setPreferredSize(new java.awt.Dimension(150, 136));
 
-        btnconsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarPedido.jpg"))); // NOI18N
+        jbConsultarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarPedido.jpg"))); // NOI18N
+        jbConsultarPedido.setPreferredSize(new java.awt.Dimension(150, 136));
 
-        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarPedido.jpg"))); // NOI18N
+        jbEliminarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarPedido.jpg"))); // NOI18N
+        jbEliminarPedido.setPreferredSize(new java.awt.Dimension(150, 136));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jLabel6)
-                .addContainerGap(103, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnregistrar)
-                    .addComponent(btneliminar)
-                    .addComponent(btnconsultar)
-                    .addComponent(btnmodificar))
-                .addGap(18, 18, 18))
+                    .addComponent(jbRegistrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbEliminarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbConsultarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbModificarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnregistrar)
+                .addGap(33, 33, 33)
+                .addComponent(jbRegistrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(btnmodificar)
+                .addComponent(jbModificarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(btnconsultar)
+                .addComponent(jbConsultarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(btneliminar)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jbEliminarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
-        panel.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setOpaque(false);
+        jPanel2.setPreferredSize(new java.awt.Dimension(943, 734));
 
-        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(panelLayout);
-        panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 943, Short.MAX_VALUE)
         );
-        panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 734, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,48 +138,26 @@ public class Pedidos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-
-    }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-   
-    }//GEN-LAST:event_jLabel3MouseClicked
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
- 
-    }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnregistrarActionPerformed
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnconsultar;
-    private javax.swing.JButton btneliminar;
-    private javax.swing.JButton btnmodificar;
-    private javax.swing.JButton btnregistrar;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JPanel panel;
+    public javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jbConsultarPedido;
+    private javax.swing.JButton jbEliminarPedido;
+    private javax.swing.JButton jbModificarPedido;
+    private javax.swing.JButton jbRegistrarPedido;
     // End of variables declaration//GEN-END:variables
  
     
@@ -195,15 +169,15 @@ public class Pedidos extends javax.swing.JFrame {
                 PanelRegistrarPedido prp = new PanelRegistrarPedido();
                 if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
                 {
-//                    prp.cbo_mesero.setSelectedItem(pjc.findEmpleado(id).getNombres());
+                    //prp.cbo_mesero.setSelectedItem(pjc.findEmpleado(id).getNombres());
                     prp.txtmesero.setEnabled(false);
                 }
                 prp.setSize(950, 800);
                 
-                panel.removeAll();
-                panel.add(prp);
-                panel.revalidate();
-                panel.repaint();
+                jPanel2.removeAll();
+                jPanel2.add(prp);
+                jPanel2.revalidate();
+                jPanel2.repaint();
             } catch (ParseException ex) {
                 Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -212,16 +186,15 @@ public class Pedidos extends javax.swing.JFrame {
     
     private class Modificar implements ActionListener{
 
-  
         @Override
         public void actionPerformed(ActionEvent e) {
            PanelModificarPedido pmp = new PanelModificarPedido(id,cargo);
             pmp.setSize(950, 900);
             
-            panel.removeAll();
-            panel.add(pmp);
-            panel.revalidate();
-            panel.repaint();
+            jPanel2.removeAll();
+            jPanel2.add(pmp);
+            jPanel2.revalidate();
+            jPanel2.repaint();
         }
     }
     
@@ -232,10 +205,10 @@ public class Pedidos extends javax.swing.JFrame {
             PanelEliminarPedido pep = new PanelEliminarPedido(id,cargo);
             pep.setSize(950, 900);
             
-            panel.removeAll();
-            panel.add(pep);
-            panel.revalidate();
-            panel.repaint();
+            jPanel2.removeAll();
+            jPanel2.add(pep);
+            jPanel2.revalidate();
+            jPanel2.repaint();
         }
     }
     
@@ -246,13 +219,10 @@ public class Pedidos extends javax.swing.JFrame {
             PanelConsultarPedido pcp = new PanelConsultarPedido(id,cargo);
             pcp.setSize(950, 900);
             
-            
-            panel.removeAll();
-            panel.add(pcp);
-            panel.revalidate();
-            panel.repaint();
+            jPanel2.removeAll();
+            jPanel2.add(pcp);
+            jPanel2.revalidate();
+            jPanel2.repaint();
         }
     }
-
-
 }
