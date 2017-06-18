@@ -22,7 +22,10 @@ package GuiModuloPersonal;
 import ClasesTablas.Empleado;
 import ControladorClasesTablas.EmpleadoJpaController;
 import java.awt.Dimension;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JScrollPane;
@@ -106,7 +109,7 @@ public class MeseroPersonal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(189, 189, 189)
                 .addComponent(jLabel3)
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -137,10 +140,7 @@ public class MeseroPersonal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
         );
 
         pack();
@@ -162,7 +162,12 @@ public class MeseroPersonal extends javax.swing.JFrame {
        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-        PanelResultadosConsulta rc = new PanelResultadosConsulta(dao.findEmpleado(id_mesero));
+        PanelResultadosConsulta rc = null;
+          try {
+              rc = new PanelResultadosConsulta(dao.findEmpleado(id_mesero));
+          } catch (IOException ex) {
+              Logger.getLogger(MeseroPersonal.class.getName()).log(Level.SEVERE, null, ex);
+          }
         rc.setSize(1100,720);
 
         jPanel2.removeAll();

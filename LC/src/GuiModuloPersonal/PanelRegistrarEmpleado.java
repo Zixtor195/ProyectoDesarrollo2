@@ -42,13 +42,14 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
     
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
     Empleado empleado = null;
+    String ruta = ""; 
     
     public PanelRegistrarEmpleado() {
         initComponents();
         btn_agregar.addActionListener(new agregar());
         btn_borrar.addActionListener(new quitar());
         btn_crear.addActionListener(new actualizar());
-       JScrollPane jScrollPane = new JScrollPane(this);
+        JScrollPane jScrollPane = new JScrollPane(this);
       
                 
     }
@@ -161,6 +162,11 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
@@ -315,8 +321,42 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtapellidosActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+          JFileChooser myFileChooser = new JFileChooser();
+        myFileChooser.showOpenDialog(this);
+
+        ruta = myFileChooser.getSelectedFile().getAbsolutePath();
+        if(!(ruta.equalsIgnoreCase("")))
+        {  
+
+        ImageIcon fotografia = new ImageIcon(ruta);
+        foto1.setIcon(fotografia);
+        ruta = ruta.replace("\\", "/");
+        ruta = ruta.substring(67,ruta.length());
+        }
+        else 
+        {
+          ruta = null;
+        }    
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
+           JFileChooser myFileChooser = new JFileChooser();
+        myFileChooser.showOpenDialog(this);
+
+        ruta = myFileChooser.getSelectedFile().getAbsolutePath();
+        if(!(ruta.equalsIgnoreCase("")))
+        {  
+
+        ImageIcon fotografia = new ImageIcon(ruta);
+        foto1.setIcon(fotografia);
+        ruta = ruta.replace("\\", "/");
+        ruta = ruta.substring(67,ruta.length());
+        }
+        else
+        {
+            ruta = null;
+        }    
     }//GEN-LAST:event_jButton3MouseClicked
 
     
@@ -378,13 +418,13 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
               && !txtcelular.getText().trim().equals("") && !txtusuario.getText().trim().equals("") && !txtcontrasena.getText().trim().equals("")){
                
                 try {
-                    //Integer idEmpleado, String nombres, String apellidos, String cargo,
-                    //String telFijo, String telCel, String email, String direccion,
-                    //String tipoDocumento,String usuario, String contrase, String estado
-                    if(empleado == null){
+                   
+                    if(empleado == null)
+                    {
+                        
                         empleado = new Empleado(Integer.parseInt(txtnoidentidad.getText()),txtnombre.getText(),txtapellidos.getText(),
                             cb_cargo.getSelectedItem().toString(),txttel.getText(),txtcelular.getText(),txtemail.getText(),
-                            txtdireccion.getText(),cb_tipodocumento.getSelectedItem().toString(), txtusuario.getText(), txtcontrasena.getText(),"Activo"
+                            txtdireccion.getText(),cb_tipodocumento.getSelectedItem().toString(), txtusuario.getText(), txtcontrasena.getText(),"Activo",ruta
                             );
                             ejc.create(empleado);
 
@@ -476,6 +516,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                     empleado.setUsuario(txtusuario.getText());
                     empleado.setContrase(txtcontrasena.getText());
                     empleado.setEstado("Activo");
+                    empleado.setArchivo(ruta);
                     
                     ejc.edit(empleado);
                     
@@ -494,6 +535,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                     empleado.setUsuario(txtusuario.getText());
                     empleado.setContrase(txtcontrasena.getText());
                     empleado.setEstado("Activo");
+                    empleado.setArchivo(ruta);
                     
                     ejc.create(empleado);
                     

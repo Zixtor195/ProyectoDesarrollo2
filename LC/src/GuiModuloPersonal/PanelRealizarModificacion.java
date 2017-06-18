@@ -40,6 +40,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
     private Empleado empleado = new Empleado();
+    String ruta = "";
     
     public PanelRealizarModificacion(Empleado empleado) {
         initComponents();
@@ -146,6 +147,11 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -258,16 +264,16 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(548, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(663, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spinner_hora_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spinner_hora_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(251, 251, 251))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(175, 175, 175)
+                .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -345,9 +351,9 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                 .addComponent(spinner_hora_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(spinner_hora_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169)
+                .addGap(172, 172, 172)
                 .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(144, 144, 144))
+                .addGap(141, 141, 141))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -464,6 +470,22 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpassActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         JFileChooser myFileChooser = new JFileChooser();
+        myFileChooser.showOpenDialog(this);
+
+        ruta = myFileChooser.getSelectedFile().getAbsolutePath();
+        if(!(ruta.equalsIgnoreCase("")))
+        {  
+
+        ImageIcon fotografia = new ImageIcon(ruta);
+        foto1.setIcon(fotografia);
+        ruta = ruta.replace("\\", "/");
+        ruta = ruta.substring(67,ruta.length());
+        System.out.print(ruta + "holita");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -529,7 +551,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                         empleado = new Empleado(Integer.parseInt(txtnodocumento.getText()),txtnombre.getText(),txtapellidos.getText(),
                             cb_cargo.getSelectedItem().toString(),txttel.getText(),txtcelular.getText(),txtemail.getText(),
                             txtdireccion.getText(),cb_tipodocumento.getSelectedItem().toString(), txtusuario.getText(), txtpass.getText(),
-                            "Activo");
+                            "Activo", ruta.toString());
                             //ejc.create(empleado);
                     }
                     
@@ -611,6 +633,8 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                     empleado.setUsuario(txtusuario.getText());
                     empleado.setContrase(txtpass.getText());
                     empleado.setEstado("Activo");
+                    empleado.setArchivo(ruta);
+                    System.out.printf(ruta + "este");
                     
                     ejc.edit(empleado);
                     
@@ -640,6 +664,10 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         cb_tipodocumento.setSelectedItem(empleado.getTipoDocumento());
         cb_cargo.setSelectedItem(empleado.getCargo()); 
         txtnodocumento.setEnabled(false);
+        if(!(empleado.getArchivo() == null))
+        {    
+        foto1.setIcon(new javax.swing.ImageIcon(getClass().getResource(empleado.getArchivo().toString())));
+        }
     }
     
     private LinkedList<TurnosSemanales> getListaTurno(){

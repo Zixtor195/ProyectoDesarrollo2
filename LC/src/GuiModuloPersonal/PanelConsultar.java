@@ -4,8 +4,11 @@ package GuiModuloPersonal;
 
 import ClasesTablas.Empleado;
 import ControladorClasesTablas.EmpleadoJpaController;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
@@ -136,7 +139,12 @@ public class PanelConsultar extends javax.swing.JPanel {
         
         empleado = listEmpleado.get(table.getSelectedRow());
         
-        PanelResultadosConsulta rc = new PanelResultadosConsulta(empleado);
+        PanelResultadosConsulta rc = null;
+        try {
+            rc = new PanelResultadosConsulta(empleado);
+        } catch (IOException ex) {
+            Logger.getLogger(PanelConsultar.class.getName()).log(Level.SEVERE, null, ex);
+        }
         rc.setSize(986,686);
         
         this.setSize(1000, 1000);

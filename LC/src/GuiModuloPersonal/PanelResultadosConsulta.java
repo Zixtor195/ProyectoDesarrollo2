@@ -8,8 +8,13 @@ package GuiModuloPersonal;
 
 import ClasesTablas.Empleado;
 import ClasesTablas.TurnosSemanales;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Set;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
 
@@ -20,11 +25,13 @@ import javax.swing.table.AbstractTableModel;
 public final class PanelResultadosConsulta extends javax.swing.JPanel {
     
     Empleado empleado = new Empleado();
+
     
-    public PanelResultadosConsulta(Empleado empleado) {
+    public PanelResultadosConsulta(Empleado empleado) throws IOException {
         initComponents();
         
         this.empleado = empleado;
+        System.out.print(empleado.getArchivo());
         desactivarCampos();
         cargardatos();
         table.setModel(new tabelModel());
@@ -53,7 +60,6 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         jLabel21 = new javax.swing.JLabel();
         foto1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         txtnombre = new javax.swing.JTextField();
         txtapellidos = new javax.swing.JTextField();
         cb_tipodocumento = new javax.swing.JComboBox();
@@ -126,13 +132,6 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Empleado");
-
-        jButton3.setText("CargarFoto");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
 
         txtapellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,6 +238,10 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                 .addContainerGap(695, Short.MAX_VALUE)
                 .addComponent(jlCrearEmpleado1)
                 .addGap(202, 202, 202))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(246, 246, 246)
+                .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 18, Short.MAX_VALUE)
@@ -250,11 +253,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                             .addComponent(jLabel1))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel17)
-                            .addGap(147, 147, 147)
-                            .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(19, 19, 19)
-                            .addComponent(jButton3)
-                            .addGap(83, 83, 83)
+                            .addGap(447, 447, 447)
                             .addComponent(jLabel2)
                             .addGap(41, 41, 41)
                             .addComponent(cb_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -315,7 +314,9 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(641, Short.MAX_VALUE)
+                .addGap(70, 70, 70)
+                .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 461, Short.MAX_VALUE)
                 .addComponent(jlCrearEmpleado1)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,22 +325,17 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel3)
                         .addComponent(jLabel1))
-                    .addGap(21, 21, 21)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(50, 50, 50)
+                            .addGap(71, 71, 71)
                             .addComponent(jLabel17))
-                        .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(40, 40, 40)
-                            .addComponent(jButton3))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
+                            .addGap(51, 51, 51)
                             .addComponent(jLabel2))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(60, 60, 60)
+                            .addGap(81, 81, 81)
                             .addComponent(cb_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(10, 10, 10)
+                    .addGap(30, 30, 30)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(20, 20, 20)
@@ -422,10 +418,6 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jlCrearEmpleado1MouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseClicked
-
     private void txtapellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtapellidosActionPerformed
@@ -454,7 +446,6 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
     private javax.swing.JComboBox cb_dia;
     private javax.swing.JComboBox cb_tipodocumento;
     private javax.swing.JLabel foto1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -502,7 +493,10 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         txtpass.setText(empleado.getContrase());
         cb_tipodocumento.setSelectedItem(empleado.getTipoDocumento());
         cb_cargo.setSelectedItem(empleado.getCargo());
-        
+        if(!(empleado.getArchivo() == null))
+        {    
+        foto1.setIcon(new javax.swing.ImageIcon(getClass().getResource(empleado.getArchivo().toString())));
+        }
     }
     
     public void desactivarCampos(){

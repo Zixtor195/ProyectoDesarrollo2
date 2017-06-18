@@ -49,7 +49,7 @@ public class EmpleadoJpaControllerTest {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         Empleado empleado = null;
         EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
-        empleado = new Empleado(132456, "Juanito", "Casas", "Gerete", "6594875", "3164857948", "juanito4@corral.com", "Carrera 58 #26-59", "Cedula", "Juanito123", "123", "Activo");
+        empleado = new Empleado(132456, "Juanito", "Casas", "Gerete", "6594875", "3164857948", "juanito4@corral.com", "Carrera 58 #26-59", "Cedula", "Juanito123", "123", "Activo", null);
         ejc.create(empleado);
         String expResult = ejc.create(empleado);
         String result = "creado exitosamente";

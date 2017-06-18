@@ -95,7 +95,7 @@ public class Empleado implements Serializable {
         this.idEmpleado = idEmpleado;
     }
 
-    public Empleado(Integer idEmpleado, String nombres, String apellidos, String cargo, String telFijo, String telCel, String email, String direccion, String tipoDocumento,String usuario, String contrase, String estado) {
+    public Empleado(Integer idEmpleado, String nombres, String apellidos, String cargo, String telFijo, String telCel, String email, String direccion, String tipoDocumento,String usuario, String contrase, String estado, String archivo) {
         this.idEmpleado = idEmpleado;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -108,6 +108,7 @@ public class Empleado implements Serializable {
         this.usuario = usuario;
         this.contrase = contrase;
         this.estado = estado;
+        this.archivo = archivo;
     }
 
     public Integer getIdEmpleado() {
