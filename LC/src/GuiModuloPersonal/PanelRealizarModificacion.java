@@ -28,6 +28,7 @@ import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.table.AbstractTableModel;
 
 
@@ -89,9 +90,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         cb_dia = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
-        txthorainicio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txthorafin = new javax.swing.JTextField();
         btn_borrar = new javax.swing.JButton();
         btn_agregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -99,6 +98,8 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         btnmodificar = new javax.swing.JButton();
         txtpass = new javax.swing.JPasswordField();
+        spinner_hora_inicio = new javax.swing.JSpinner();
+        spinner_hora_fin = new javax.swing.JSpinner();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -247,6 +248,12 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
             }
         });
 
+        spinner_hora_inicio.setModel(new javax.swing.SpinnerDateModel());
+        spinner_hora_inicio.setEditor(new javax.swing.JSpinner.DateEditor(spinner_hora_inicio, "HH:mm"));
+
+        spinner_hora_fin.setModel(new javax.swing.SpinnerDateModel());
+        spinner_hora_fin.setEditor(new javax.swing.JSpinner.DateEditor(spinner_hora_fin, "HH:mm"));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,6 +262,12 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                 .addGap(176, 176, 176)
                 .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(548, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(spinner_hora_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spinner_hora_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(251, 251, 251))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -283,9 +296,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                                 .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(50, 50, 50)
-                            .addComponent(jLabel4)
-                            .addGap(71, 71, 71)
-                            .addComponent(txthorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel15)
@@ -295,9 +306,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                                 .addComponent(cb_tipodocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtnodocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(49, 49, 49)
-                            .addComponent(jLabel5)
-                            .addGap(91, 91, 91)
-                            .addComponent(txthorafin, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel23)
                             .addGap(118, 118, 118)
@@ -332,7 +341,11 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(507, Short.MAX_VALUE)
+                .addContainerGap(228, Short.MAX_VALUE)
+                .addComponent(spinner_hora_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(spinner_hora_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(169, 169, 169)
                 .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(144, 144, 144))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,10 +381,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                             .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(10, 10, 10)
                             .addComponent(txtapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel4)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
-                            .addComponent(txthorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel4))
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -384,10 +394,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                             .addComponent(cb_tipodocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(10, 10, 10)
                             .addComponent(txtnodocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel5)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(19, 19, 19)
-                            .addComponent(txthorafin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel5))
                     .addGap(7, 7, 7)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -486,13 +493,13 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner spinner_hora_fin;
+    private javax.swing.JSpinner spinner_hora_inicio;
     public javax.swing.JTable table;
     private javax.swing.JTextField txtapellidos;
     private javax.swing.JTextField txtcelular;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtemail;
-    private javax.swing.JTextField txthorafin;
-    private javax.swing.JTextField txthorainicio;
     public javax.swing.JTextField txtnodocumento;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JPasswordField txtpass;
@@ -526,7 +533,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                             //ejc.create(empleado);
                     }
                     
-                    turno = new TurnosSemanales(getNumListaTurno(),cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText(),empleado);
+                    turno = new TurnosSemanales(getNumListaTurno(),cb_dia.getSelectedItem().toString(),getSpinner_Hora_Inicio(),getSpinner_Hora_Fin(),empleado);
                     tsc.create(turno);
                     empleado.getTurnosSemanalesSet().add(turno);
                     
@@ -658,6 +665,19 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         a = listaturnos.get(listaturnos.size()-1).getId();
         return a+1;
     }
+    
+    private String getSpinner_Hora_Inicio(){
+        
+        JSpinner.DateEditor de = new JSpinner.DateEditor(spinner_hora_inicio, "HH:mm");
+        return de.getFormat().format(spinner_hora_inicio.getValue());
+    }
+    
+    private String getSpinner_Hora_Fin(){
+        
+        JSpinner.DateEditor def = new JSpinner.DateEditor(spinner_hora_fin, "HH:mm");
+        return def.getFormat().format(spinner_hora_fin.getValue());
+    }
+
     
      private class tabelModelHorario extends AbstractTableModel{
         

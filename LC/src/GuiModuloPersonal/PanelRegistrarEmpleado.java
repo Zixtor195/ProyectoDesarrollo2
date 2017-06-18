@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
@@ -89,9 +90,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         cb_dia = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
-        txthorainicio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txthorafin = new javax.swing.JTextField();
         btn_borrar = new javax.swing.JButton();
         btn_agregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -99,6 +98,8 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         btn_crear = new javax.swing.JButton();
         txtcontrasena = new javax.swing.JPasswordField();
+        spinner_hora_inicio = new javax.swing.JSpinner();
+        spinner_hora_fin = new javax.swing.JSpinner();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -210,12 +211,10 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Hora Inicio:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, -1, -1));
-        add(txthorainicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 219, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Hora Fin:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 288, -1, -1));
-        add(txthorafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 307, 219, 30));
 
         btn_borrar.setText("Borrar");
         add(btn_borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(821, 367, -1, -1));
@@ -286,6 +285,14 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
             }
         });
         add(txtcontrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, 280, 33));
+
+        spinner_hora_inicio.setModel(new javax.swing.SpinnerDateModel());
+        spinner_hora_inicio.setEditor(new javax.swing.JSpinner.DateEditor(spinner_hora_inicio, "HH:mm"));
+        add(spinner_hora_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 90, 30));
+
+        spinner_hora_fin.setModel(new javax.swing.SpinnerDateModel());
+        spinner_hora_fin.setEditor(new javax.swing.JSpinner.DateEditor(spinner_hora_fin, "HH:mm"));
+        add(spinner_hora_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 90, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtcontrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontrasenaActionPerformed
@@ -341,14 +348,14 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner spinner_hora_fin;
+    private javax.swing.JSpinner spinner_hora_inicio;
     public javax.swing.JTable tablemodel;
     private javax.swing.JTextField txtapellidos;
     private javax.swing.JTextField txtcelular;
     private javax.swing.JPasswordField txtcontrasena;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtemail;
-    private javax.swing.JTextField txthorafin;
-    private javax.swing.JTextField txthorainicio;
     public javax.swing.JTextField txtnoidentidad;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txttel;
@@ -383,7 +390,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
 
                     }
                     
-                    turno = new TurnosSemanales(getNumListaTurno(),cb_dia.getSelectedItem().toString(),txthorainicio.getText(),txthorafin.getText(),empleado);
+                    turno = new TurnosSemanales(getNumListaTurno(),cb_dia.getSelectedItem().toString(),getSpinner_Hora_Inicio(),getSpinner_Hora_Fin(),empleado);
                     tsc.create(turno);
                     empleado.getTurnosSemanalesSet().add(turno);
                     
@@ -535,6 +542,19 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         a = listaturnos.get(listaturnos.size()-1).getId();
         return a+1;
     }
+    
+    private String getSpinner_Hora_Inicio(){
+        
+        JSpinner.DateEditor de = new JSpinner.DateEditor(spinner_hora_inicio, "HH:mm");
+        return de.getFormat().format(spinner_hora_inicio.getValue());
+    }
+    
+    private String getSpinner_Hora_Fin(){
+        
+        JSpinner.DateEditor def = new JSpinner.DateEditor(spinner_hora_fin, "HH:mm");
+        return def.getFormat().format(spinner_hora_fin.getValue());
+    }
+
     
      private class tabelModelHorario extends AbstractTableModel{
         

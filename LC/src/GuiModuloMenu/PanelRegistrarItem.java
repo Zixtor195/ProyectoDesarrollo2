@@ -10,6 +10,7 @@ import ControladorClasesTablas.ItemJpaController;
 import Fachada.Fachada;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
      */
     public PanelRegistrarItem() {
         initComponents();
+        this.jcbCategoria.setModel(defaultComboModel());
     }
     
     String ruta = ""; 
@@ -187,7 +189,7 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
         Fachada fachada = new Fachada();
         String res = fachada.CrearItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
         
-        if (res == "1"||res =="2"){
+        if (res.equals("1")||res.equals("2")){
             jtfID.setText("");
             jtfNombre.setText("");
             jtfPrecio.setText("");
@@ -224,4 +226,18 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
     private javax.swing.JTextField jtfNombre;
     private javax.swing.JTextField jtfPrecio;
     // End of variables declaration//GEN-END:variables
+
+    private DefaultComboBoxModel defaultComboModel(){
+        
+        DefaultComboBoxModel dcm = new DefaultComboBoxModel();
+        String[] lista = {"Adiciones y Postres","Bebiddas, Otras bebidas", "Cerdo y Pollo",
+        "Cervezas, Conteles, Sin licor", "Ensalada, Sopas", "Entradas, Ceviches",
+        "Vinos", "Res, Especiales L&C", "Pescado, Mariscos"};
+        for (String i : lista) {
+            dcm.addElement(i);
+        }
+        return dcm;
+    }
+    
+
 }

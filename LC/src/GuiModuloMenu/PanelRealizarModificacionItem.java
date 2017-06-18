@@ -9,6 +9,7 @@ package GuiModuloMenu;
 import Fachada.Fachada;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -24,6 +25,7 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
      */
     public PanelRealizarModificacionItem() {
         initComponents();
+        this.jcbCategoria.setModel(defaultComboModel());
     }
         
     String ruta = "";
@@ -194,7 +196,7 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         String res = fachada.ModificarItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
         
         // res = "1" significa que se logro crear el item exitosamente
-        if (res == "1"){
+        if (res.equals("1")){
         jtfID.setText("");
         jtfNombre.setText("");
         jtfPrecio.setText("");
@@ -221,4 +223,18 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
     public javax.swing.JTextField jtfNombre;
     public javax.swing.JTextField jtfPrecio;
     // End of variables declaration//GEN-END:variables
+
+    private DefaultComboBoxModel defaultComboModel(){
+        
+        DefaultComboBoxModel dcm = new DefaultComboBoxModel();
+        String[] lista = {"Adiciones y Postres","Bebiddas, Otras bebidas", "Cerdo y Pollo",
+        "Cervezas, Conteles, Sin licor", "Ensalada, Sopas", "Entradas, Ceviches",
+        "Vinos", "Res, Especiales L&C", "Pescado, Mariscos"};
+        for (String i : lista) {
+            dcm.addElement(i);
+        }
+        return dcm;
+    }
+    
+    
 }

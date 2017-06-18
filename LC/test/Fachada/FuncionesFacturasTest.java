@@ -56,7 +56,7 @@ public class FuncionesFacturasTest {
         EntityManagerFactory emf = null;
         FuncionesFacturas instance = new FuncionesFacturas();
         String expResult = "";
-        String result = instance.CrearFactura(idPedido, estadoPedido, estadoFactura,idFactura, pedido, total, emf);
+        String result = instance.CrearFactura(idPedido, estadoPedido, estadoFactura,idFactura, pedido, total);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

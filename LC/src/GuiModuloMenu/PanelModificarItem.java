@@ -7,9 +7,12 @@ package GuiModuloMenu;
 
 import ClasesTablas.Item;
 import ControladorClasesTablas.ItemJpaController;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
@@ -23,6 +26,7 @@ public class PanelModificarItem extends javax.swing.JPanel {
      */
     public PanelModificarItem() {
         initComponents();
+        this.jtTablaModificarItem.setModel(new defaultModelItem());
     }
 
     /**
@@ -163,4 +167,68 @@ public class PanelModificarItem extends javax.swing.JPanel {
     private javax.swing.JLabel jlContinuarModificarItem;
     public javax.swing.JTable jtTablaModificarItem;
     // End of variables declaration//GEN-END:variables
+
+    public LinkedList<Item> listaItems(){
+        LinkedList<Item> listaItems = new LinkedList<>();
+        ItemJpaController ijc = new ItemJpaController(emf);
+        List<Item> lista = ijc.findItemEntities();
+        
+        for (Item item : lista) {
+            if(item.getEstado().equals("Activo")){
+                listaItems.add(item);
+            }
+        }
+        return listaItems;
+    }
+    
+    public class defaultModelItem extends AbstractTableModel{
+        
+        
+        List<Item> listaitem = listaItems();
+        
+        
+        @Override
+        public int getRowCount() {
+            return listaitem.size();
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 5;
+        }
+
+        @Override
+        public String getColumnName(int column) {
+            switch(column){
+                case 0: 
+                    return "Id"; 
+                case 1: 
+                    return "Nombre";
+                case 2: 
+                    return "Precio";
+                case 3: 
+                    return "Categoria";
+                case 4: 
+                    return "Descripcion"; 
+            }
+            return "";
+        }
+        
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            
+            Item item = listaitem.get(rowIndex);
+            
+            switch(columnIndex){
+                case 0: return item.getIdItem();
+                case 1: return item.getNombre();
+                case 2: return item.getPrecio();
+                case 3: return item.getCategoria();
+                case 4: return item.getDescripcion();
+            }
+            return "";
+        }
+    }
+    
+
 }

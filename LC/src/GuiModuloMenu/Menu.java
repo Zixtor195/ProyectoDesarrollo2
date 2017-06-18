@@ -21,6 +21,7 @@ package GuiModuloMenu;
 
 import ClasesTablas.Item;
 import ControladorClasesTablas.ItemJpaController;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -29,9 +30,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Personal
-     */
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    
     public Menu() {
         initComponents();
         setLocationRelativeTo(null);
@@ -169,23 +169,27 @@ public class Menu extends javax.swing.JFrame {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         ItemJpaController dao = new ItemJpaController(emf);
         
-        List<Item> items = dao.findItemEntities();
+        List<Item> items = listaItems();
         
-        Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
-         
-        for (int i = 0; i < dao.findItemEntities().size(); i++) {
+        
+        Object listaItems[][]  = new Object[items.size()][5];
+        for (int i = 0; i < items.size(); i++) {
             
-            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo")) {
-                dao.findItemEntities().remove(i);
-            }else {    
-                listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
-                listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
-                listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
-                listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
-                listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
+            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
+            {
+                  dao.findItemEntities().remove(i);
+            
+            }
+            else
+            {    
+            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
+            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
+            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
+            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
+            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
             }
         }
-        String columna[] = new String[] {"ID", "Nombre", "Precio", "Descripcion", "Categoria"};
+        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
         emf.close();
         
         DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
@@ -203,30 +207,34 @@ public class Menu extends javax.swing.JFrame {
         PanelConsultarItem ci = new PanelConsultarItem();
         ci.setSize(752,686);
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        ItemJpaController dao = new ItemJpaController(emf);
-            
-        Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
-        
-        for (int i = 0; i < dao.findItemEntities().size(); i++) {
-            
-            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo")) {
-                dao.findItemEntities().remove(i);
-            }else {    
-                listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
-                listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
-                listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
-                listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
-                listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
-            }
-        }
-        
-        String columna[] = new String[] {"ID", "Nombre", "Precio", "Descripcion", "Categoria"};
-        emf.close();
-        
-        DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
-        
-        ci.jtConsultarItem.setModel(modelo);
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+//        ItemJpaController dao = new ItemJpaController(emf);
+//        
+//    
+//        Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
+//        for (int i = 0; i < dao.findItemEntities().size(); i++) {
+//            
+//            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
+//            {
+//                  dao.findItemEntities().remove(i);
+//            
+//            }
+//            else
+//            {    
+//            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
+//            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
+//            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
+//            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
+//            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
+//            }
+//        }
+//        
+//        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
+//        emf.close();
+//        
+//        DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
+//        
+//        ci.jtConsultarItem.setModel(modelo);
          
         jPanel2.removeAll();
         jPanel2.add(ci);
@@ -239,32 +247,34 @@ public class Menu extends javax.swing.JFrame {
         PanelEliminarItem Ei = new PanelEliminarItem();
         Ei.setSize(752,686);
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        ItemJpaController dao = new ItemJpaController(emf);
+//        ItemJpaController dao = new ItemJpaController(emf);
+//        
+//        List<Item> items = dao.findItemEntities();
+//        
+//        Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
+//        for (int i = 0; i < dao.findItemEntities().size(); i++) {
+//            
+//            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
+//            {
+//                  dao.findItemEntities().remove(i);
+//            
+//            }
+//            else
+//            {    
+//            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
+//            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
+//            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
+//            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
+//            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
+//            }
+//        }
+//        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
+//        emf.close();
+//        
+//        DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
         
-        List<Item> items = dao.findItemEntities();
+//        Ei.jtEliminarItem.setModel(modelo);
         
-        Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
-        
-        for (int i = 0; i < dao.findItemEntities().size(); i++) {
-            
-            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo")) {
-                dao.findItemEntities().remove(i);
-            }else {    
-                listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
-                listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
-                listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
-                listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
-                listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
-            }
-        }
-        
-        String columna[] = new String[] {"ID", "Nombre", "Precio", "Descripcion", "Categoria"};
-        emf.close();
-        
-        DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
-        
-        Ei.jtEliminarItem.setModel(modelo);
         
         jPanel2.removeAll();
         jPanel2.add(Ei);
@@ -282,4 +292,18 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jlModificarItem;
     private javax.swing.JLabel jlRegistrarItem;
     // End of variables declaration//GEN-END:variables
+
+    public LinkedList<Item> listaItems(){
+        LinkedList<Item> listaItems = new LinkedList<>();
+        ItemJpaController ijc = new ItemJpaController(emf);
+        List<Item> lista = ijc.findItemEntities();
+        
+        for (Item item : lista) {
+            if(item.getEstado().equals("Activo")){
+                listaItems.add(item);
+            }
+        }
+        return listaItems;
+    }
+    
 }

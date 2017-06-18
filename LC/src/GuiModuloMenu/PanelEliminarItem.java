@@ -12,23 +12,26 @@ import ControladorClasesTablas.ItemJpaController;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
 import Fachada.Fachada;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Moni
+ *
  */
 public class PanelEliminarItem extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanellModificar
-     */
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    
     public PanelEliminarItem() {
         initComponents();
+        this.jtEliminarItem.setModel(new defaultModelItem());
     }
 
     /**
@@ -147,6 +150,7 @@ public class PanelEliminarItem extends javax.swing.JPanel {
         item.setEstado("Inactivo");
         Fachada fachada = new Fachada();
         fachada.EliminarItem(item, emf);
+        this.jtEliminarItem.setModel(new defaultModelItem());
     }//GEN-LAST:event_jlEliminarItemMouseClicked
 
 
@@ -155,4 +159,67 @@ public class PanelEliminarItem extends javax.swing.JPanel {
     private javax.swing.JLabel jlEliminarItem;
     public javax.swing.JTable jtEliminarItem;
     // End of variables declaration//GEN-END:variables
+
+    public LinkedList<Item> listaItems(){
+        LinkedList<Item> listaItems = new LinkedList<>();
+        ItemJpaController ijc = new ItemJpaController(emf);
+        List<Item> lista = ijc.findItemEntities();
+        
+        for (Item item : lista) {
+            if(item.getEstado().equals("Activo")){
+                listaItems.add(item);
+            }
+        }
+        return listaItems;
+    }
+    
+    public class defaultModelItem extends AbstractTableModel{
+        
+        
+        List<Item> listaitem = listaItems();
+        
+        
+        @Override
+        public int getRowCount() {
+            return listaitem.size();
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 5;
+        }
+
+        @Override
+        public String getColumnName(int column) {
+            switch(column){
+                case 0: 
+                    return "Id"; 
+                case 1: 
+                    return "Nombre";
+                case 2: 
+                    return "Precio";
+                case 3: 
+                    return "Categoria";
+                case 4: 
+                    return "Descripcion"; 
+            }
+            return "";
+        }
+        
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            
+            Item item = listaitem.get(rowIndex);
+            
+            switch(columnIndex){
+                case 0: return item.getIdItem();
+                case 1: return item.getNombre();
+                case 2: return item.getPrecio();
+                case 3: return item.getCategoria();
+                case 4: return item.getDescripcion();
+            }
+            return "";
+        }
+    }
+
 }
