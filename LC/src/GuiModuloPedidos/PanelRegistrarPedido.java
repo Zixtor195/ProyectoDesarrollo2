@@ -426,10 +426,10 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
             List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
 
             if(!txtcantidad.getText().trim().equals("")&&!listitemp.isSelectionEmpty()){
-                if(cbo_tipo.getSelectedIndex() ==0)
+                if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Mesa"))
               {    
                   
-               if(!txtmesa.getText().trim().equals("")) 
+               if(!(txtmesa.getText().trim().equalsIgnoreCase(""))) 
                {          
                 ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
                 ip.setItem(listaitem.get(listitemp.getSelectedIndex()));
@@ -450,7 +450,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
                 
               }  
               
-              else
+                else if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Llevar")) 
               {
                 ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
                 ip.setItem(listaitem.get(listitemp.getSelectedIndex()));
@@ -594,11 +594,11 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         
         pedido.setIdEmpleado(getEmpleadoPedido());
         pedido.setTipo(cbo_tipo.getSelectedItem().toString());
-        if(cbo_tipo.getSelectedIndex() == 0)
+        if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Mesa"))
         {    
         pedido.setNumMesa(Integer.parseInt(txtmesa.getText()));
         }
-        if(cbo_tipo.getSelectedIndex() == 1)
+        if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Llevar"))
         {    
         pedido.setNumMesa(null);
         }

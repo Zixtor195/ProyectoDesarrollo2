@@ -45,7 +45,6 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
         this.pedido = pedido;
         cbo_tipo.addActionListener(this);
         listaitemsp.setModel(new listaItemsModel());
-        cbo_mesero.setModel(listadoMeserosModel());
         cbo_tipo.setModel(listadoTipoPedidoModel());
         table.setModel(new tableModelPedido());
         btnagregarapedido.addActionListener(new agregar());
@@ -62,9 +61,6 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        cbo_mesero = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
         btnactualizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaitemsp = new javax.swing.JList();
@@ -115,33 +111,6 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-        );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        cbo_mesero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel4.setText("Mesero:");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(cbo_mesero, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbo_mesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         btnactualizar.setBackground(new java.awt.Color(153, 153, 255));
@@ -246,7 +215,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(cbo_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -286,9 +255,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6)
@@ -309,14 +276,15 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
@@ -353,18 +321,15 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
     private javax.swing.JButton btnactualizar;
     private javax.swing.JButton btnagregarapedido;
     private javax.swing.JButton btnquitarpedido;
-    private javax.swing.JComboBox cbo_mesero;
     private javax.swing.JComboBox cbo_tipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
@@ -390,6 +355,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
         if (cbo_tipo.getSelectedIndex() == 0)
         {
           txtmesa.setEnabled(true);
+          txtmesa.setText(pedido.getNumMesa().toString());
         }    
     }
 
@@ -491,19 +457,19 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
             PedidoJpaController pjc = new PedidoJpaController(emf);
             ItemPedido ip = new ItemPedido();
             
-            if(!txtmesa.getText().trim().equals("")){
+           
                 
                 pedido.setIdEmpleado(getEmpleadoPedido());
                 pedido.setTipo(cbo_tipo.getSelectedItem().toString());
                 
                 
-                if(cbo_tipo.getSelectedIndex() == 1)
+                if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Llevar"))
                 {
                     
                     pedido.setNumMesa(null);
                 }    
                 
-                if(cbo_tipo.getSelectedIndex() == 0)
+                if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Mesa"))
                 {
                     pedido.setNumMesa(Integer.parseInt(txtmesa.getText()));
                 }                 
@@ -518,9 +484,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
                     Logger.getLogger(PanelRealizarModificacionPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-            }else{
-                JOptionPane.showMessageDialog(null, "Llene los campos requeridos");
-            }
+           
         }
     }
     
@@ -543,7 +507,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
         EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
         List<Empleado> listaEmpleado = ejc.findEmpleadoEntities();
 
-        empleado = listaEmpleado.get(cbo_mesero.getSelectedIndex());
+        empleado = pedido.getIdEmpleado();
         //System.out.println(cbo_mesero.getSelectedIndex());
 
         return empleado;
@@ -564,8 +528,6 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
         }    
     
        
-        cbo_mesero.setSelectedIndex(meseroPedidoseleccionado());
-        cbo_mesero.setEnabled(false);
         cbo_tipo.setSelectedIndex(tipoPedidoseleccionado());
         
     }
