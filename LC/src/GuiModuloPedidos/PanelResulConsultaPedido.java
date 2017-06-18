@@ -408,10 +408,10 @@ public class PanelResulConsultaPedido extends javax.swing.JPanel {
         txthorafinal.setText(pedido.getHoraUltimoItem().toString());
         if(pedido.getNumMesa()==1)
         {
-            txtmesa.setText(" ");
+            txtmesa.setText("0");
         }   
         if(pedido.getNumMesa()==0){
-            txtmesa.setText("0");
+            txtmesa.setText(" ");
         }
         txtmesa.setText(pedido.getNumMesa().toString());
         txttipo.setText(pedido.getTipo());

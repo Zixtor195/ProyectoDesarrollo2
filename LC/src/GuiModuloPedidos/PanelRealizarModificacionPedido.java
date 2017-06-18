@@ -495,8 +495,19 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
                 
                 pedido.setIdEmpleado(getEmpleadoPedido());
                 pedido.setTipo(cbo_tipo.getSelectedItem().toString());
-                pedido.setNumMesa(Integer.parseInt(txtmesa.getText()));
-                //pedido.setItemPedidoSet();
+                
+                
+                if(cbo_tipo.getSelectedIndex() == 1)
+                {
+                    
+                    pedido.setNumMesa(null);
+                }    
+                
+                if(cbo_tipo.getSelectedIndex() == 0)
+                {
+                    pedido.setNumMesa(Integer.parseInt(txtmesa.getText()));
+                }                 
+                
                 
                 try {
                     pjc.edit(pedido);
@@ -541,14 +552,15 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
     private void asignacionCampos(){
         
         if(cbo_tipo.getSelectedIndex() == 1)
+            
         {
-            txtmesa.setText(pedido.getNumMesa().toString());
-         
+            
+             txtmesa.setText(null);
         }    
             
         if (cbo_tipo.getSelectedIndex() == 0)
         {
-            txtmesa.setText(null);
+           txtmesa.setText(pedido.getNumMesa().toString());
         }    
     
        

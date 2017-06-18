@@ -38,7 +38,7 @@ public class PanelModificarPedido extends javax.swing.JPanel {
       if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
       {    
         for (int i = 0; i < listapedido.size(); i++) {
-            if (listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) {
+            if ((listapedido.get(i).getIdEmpleado().getIdEmpleado() != id) || (listapedido.get(i).getEstado().equalsIgnoreCase("Cancelado"))) {
                 listapedido.remove(i);
 
             }
