@@ -23,7 +23,7 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
      */
     public PanelResultadosConsultaItem() {
         initComponents();
-        this.jcbCategoria.setModel(defaultComboModel());
+        //this.jcbCategoria.setModel(defaultComboModel());
     }
 
     /**
@@ -52,20 +52,21 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
         jlFoto = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(752, 662));
 
         jPanel1.setOpaque(false);
 
-        jlNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlNombre.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlNombre.setText("Nombre:");
 
-        jlPrecio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlPrecio.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlPrecio.setText("Precio:");
 
-        jlCategoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlCategoria.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlCategoria.setText("Categoria:");
 
-        jlDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlDescripcion.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlDescripcion.setText("Descripcion:");
 
         jtfID.setEditable(false);
@@ -80,9 +81,10 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
         jtaDescripcion.setRows(5);
         jspDescripcion.setViewportView(jtaDescripcion);
 
-        jlNombreFoto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlNombreFoto.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlNombreFoto.setText("Foto:");
 
+        jlID.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlID.setText("ID:");
 
         jtfNombre.setEditable(false);
@@ -122,7 +124,7 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
                         .addComponent(jlNombreFoto)
                         .addGap(192, 192, 192)
                         .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(244, 244, 244)
                 .addComponent(jlAceptar)
@@ -170,17 +172,17 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGap(19, 19, 19))
         );
     }// </editor-fold>//GEN-END:initComponents
 

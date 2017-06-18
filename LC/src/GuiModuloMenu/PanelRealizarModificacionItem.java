@@ -25,7 +25,7 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
      */
     public PanelRealizarModificacionItem() {
         initComponents();
-        this.jcbCategoria.setModel(defaultComboModel());
+        //this.jcbCategoria.setModel(defaultComboModel());
     }
         
     String ruta = "";
@@ -55,7 +55,8 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         jlModificar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(752, 662));
+        setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(650, 666));
 
         jlFoto.setText("               Foto");
         jlFoto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -67,20 +68,21 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
             }
         });
 
-        jlNombreFoto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlNombreFoto.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlNombreFoto.setText("Foto:");
 
+        jlID.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlID.setText("ID:");
 
         jtfID.setEditable(false);
 
-        jlNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlNombre.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlNombre.setText("Nombre:");
 
-        jlPrecio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlPrecio.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlPrecio.setText("Precio:");
 
-        jlCategoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlCategoria.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlCategoria.setText("Categoria:");
 
         jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "CARNE CERDO", "CARNE POLLO", "CARNE RES", "ESPECIAL L&C", "COMIDA MAR", "ENSALADAS", "SOPAS", "ADICIONES", "POSTRES", "ENTRADAS", "BEBIDAS", "BEBIDAS ALCOHOLICAS", "VINOS" }));
@@ -89,7 +91,7 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         jtaDescripcion1.setRows(5);
         jspDescripcion.setViewportView(jtaDescripcion1);
 
-        jlDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlDescripcion.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlDescripcion.setText("Descripcion:");
 
         jlModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonmodificar.jpg"))); // NOI18N
@@ -103,71 +105,75 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(jlNombreFoto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlModificar)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jbCambiarFoto)))
-                .addGap(188, 188, 188))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(133, 133, 133)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jlPrecio)
-                        .addComponent(jlNombre)
-                        .addComponent(jlCategoria)
-                        .addComponent(jlDescripcion)
-                        .addComponent(jlID))
-                    .addGap(36, 36, 36)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jspDescripcion)
-                        .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(134, Short.MAX_VALUE)))
+                        .addComponent(jlNombreFoto)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jbCambiarFoto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(187, 187, 187)
+                                .addComponent(jlModificar)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlPrecio)
+                            .addComponent(jlNombre)
+                            .addComponent(jlCategoria)
+                            .addComponent(jlDescripcion)
+                            .addComponent(jlID))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jspDescripcion)
+                            .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbCambiarFoto)
-                    .addComponent(jlNombreFoto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jlNombreFoto)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlID)
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlNombre)
+                                .addGap(58, 58, 58)
+                                .addComponent(jlPrecio)))
+                        .addGap(58, 58, 58)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlCategoria)
+                            .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jspDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlDescripcion)))
+                    .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlModificar)
-                .addGap(59, 59, 59))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(121, 121, 121)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jlID)
-                            .addGap(67, 67, 67)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(42, 42, 42)
-                                    .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jlNombre)
-                                    .addGap(58, 58, 58)
-                                    .addComponent(jlPrecio)))
-                            .addGap(58, 58, 58)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jlCategoria)
-                                .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(36, 36, 36)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jspDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jlDescripcion)))
-                        .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(165, Short.MAX_VALUE)))
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 

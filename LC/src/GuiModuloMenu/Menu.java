@@ -21,6 +21,7 @@ package GuiModuloMenu;
 
 import ClasesTablas.Item;
 import ControladorClasesTablas.ItemJpaController;
+import GuiMenu.ContenedorFondo;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -31,8 +32,11 @@ import javax.swing.table.DefaultTableModel;
 public class Menu extends javax.swing.JFrame {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+    ContenedorFondo contenedorPrincipalFondo;
     
     public Menu() {
+        contenedorPrincipalFondo = new ContenedorFondo("src/imagenes/fondoInterfaces.jpg");
+        super.setContentPane(contenedorPrincipalFondo);
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -49,10 +53,10 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jlRegistrarItem = new javax.swing.JLabel();
-        jlModificarItem = new javax.swing.JLabel();
-        jlConsultarItem = new javax.swing.JLabel();
-        jlEliminarItem = new javax.swing.JLabel();
+        jbRegistrarItem = new javax.swing.JButton();
+        jbModificarItem = new javax.swing.JButton();
+        jbConsultarItem = new javax.swing.JButton();
+        jbEliminarItem = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,32 +64,37 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setOpaque(false);
 
-        jlRegistrarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/crearItem.jpg"))); // NOI18N
-        jlRegistrarItem.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbRegistrarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/crearItem.jpg"))); // NOI18N
+        jbRegistrarItem.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbRegistrarItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlRegistrarItemMouseClicked(evt);
+                jbRegistrarItemMouseClicked(evt);
             }
         });
 
-        jlModificarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarItem.jpg"))); // NOI18N
-        jlModificarItem.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbModificarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarItem.jpg"))); // NOI18N
+        jbModificarItem.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbModificarItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlModificarItemMouseClicked(evt);
+                jbModificarItemMouseClicked(evt);
             }
         });
 
-        jlConsultarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarItem.jpg"))); // NOI18N
-        jlConsultarItem.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbConsultarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarItem.jpg"))); // NOI18N
+        jbConsultarItem.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbConsultarItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlConsultarItemMouseClicked(evt);
+                jbConsultarItemMouseClicked(evt);
             }
         });
 
-        jlEliminarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminarItem.jpg"))); // NOI18N
-        jlEliminarItem.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbEliminarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminarItem.jpg"))); // NOI18N
+        jbEliminarItem.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbEliminarItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlEliminarItemMouseClicked(evt);
+                jbEliminarItemMouseClicked(evt);
             }
         });
 
@@ -96,38 +105,39 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlConsultarItem)
-                    .addComponent(jlEliminarItem)
-                    .addComponent(jlModificarItem)
-                    .addComponent(jlRegistrarItem))
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addComponent(jbEliminarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbConsultarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbModificarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbRegistrarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jlRegistrarItem)
-                .addGap(24, 24, 24)
-                .addComponent(jlModificarItem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlConsultarItem)
-                .addGap(27, 27, 27)
-                .addComponent(jlEliminarItem)
-                .addGap(60, 60, 60))
+                .addGap(33, 33, 33)
+                .addComponent(jbRegistrarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jbModificarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbConsultarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbEliminarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setOpaque(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 781, Short.MAX_VALUE)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,21 +146,19 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jlRegistrarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlRegistrarItemMouseClicked
+    private void jbRegistrarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRegistrarItemMouseClicked
 
         PanelRegistrarItem ri = new PanelRegistrarItem();
         ri.setSize(752,686);
@@ -159,138 +167,45 @@ public class Menu extends javax.swing.JFrame {
         jPanel2.add(ri);
         jPanel2.revalidate();
         jPanel2.repaint();
-    }//GEN-LAST:event_jlRegistrarItemMouseClicked
+    }//GEN-LAST:event_jbRegistrarItemMouseClicked
 
-    private void jlModificarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModificarItemMouseClicked
-        
+    private void jbModificarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbModificarItemMouseClicked
+
         PanelModificarItem mi = new PanelModificarItem();
         mi.setSize(752,686);
-        
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-//        ItemJpaController dao = new ItemJpaController(emf);
-//        
-//        List<Item> items = listaItems();
-//        
-//        
-//        Object listaItems[][]  = new Object[items.size()][5];
-//        for (int i = 0; i < items.size(); i++) {
-//            
-//            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
-//            {
-//                  dao.findItemEntities().remove(i);
-//            
-//            }
-//            else
-//            {    
-//            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
-//            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
-//            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
-//            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
-//            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
-//            }
-//        }
-//        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
-//        emf.close();
-//        
-//        DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
-//        
-//        mi.jtTablaModificarItem.setModel(modelo);
-        
         jPanel2.removeAll();
         jPanel2.add(mi);
         jPanel2.revalidate();
         jPanel2.repaint();
-    }//GEN-LAST:event_jlModificarItemMouseClicked
+    }//GEN-LAST:event_jbModificarItemMouseClicked
 
-    private void jlConsultarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarItemMouseClicked
-        
+    private void jbConsultarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbConsultarItemMouseClicked
+
         PanelConsultarItem ci = new PanelConsultarItem();
         ci.setSize(752,686);
-        
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-//        ItemJpaController dao = new ItemJpaController(emf);
-//        
-//    
-//        Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
-//        for (int i = 0; i < dao.findItemEntities().size(); i++) {
-//            
-//            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
-//            {
-//                  dao.findItemEntities().remove(i);
-//            
-//            }
-//            else
-//            {    
-//            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
-//            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
-//            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
-//            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
-//            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
-//            }
-//        }
-//        
-//        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
-//        emf.close();
-//        
-//        DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
-//        
-//        ci.jtConsultarItem.setModel(modelo);
-         
         jPanel2.removeAll();
         jPanel2.add(ci);
         jPanel2.revalidate();
-        jPanel2.repaint();               
-    }//GEN-LAST:event_jlConsultarItemMouseClicked
+        jPanel2.repaint();
+    }//GEN-LAST:event_jbConsultarItemMouseClicked
 
-    private void jlEliminarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlEliminarItemMouseClicked
-        
+    private void jbEliminarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbEliminarItemMouseClicked
+
         PanelEliminarItem Ei = new PanelEliminarItem();
         Ei.setSize(752,686);
-        
-//        ItemJpaController dao = new ItemJpaController(emf);
-//        
-//        List<Item> items = dao.findItemEntities();
-//        
-//        Object listaItems[][]  = new Object[dao.findItemEntities().size()][5];
-//        for (int i = 0; i < dao.findItemEntities().size(); i++) {
-//            
-//            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
-//            {
-//                  dao.findItemEntities().remove(i);
-//            
-//            }
-//            else
-//            {    
-//            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
-//            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
-//            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
-//            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
-//            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
-//            }
-//        }
-//        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
-//        emf.close();
-//        
-//        DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
-        
-//        Ei.jtEliminarItem.setModel(modelo);
-        
-        
         jPanel2.removeAll();
         jPanel2.add(Ei);
         jPanel2.revalidate();
         jPanel2.repaint();
-    }//GEN-LAST:event_jlEliminarItemMouseClicked
-
-
+    }//GEN-LAST:event_jbEliminarItemMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel jlConsultarItem;
-    private javax.swing.JLabel jlEliminarItem;
-    private javax.swing.JLabel jlModificarItem;
-    private javax.swing.JLabel jlRegistrarItem;
+    private javax.swing.JButton jbConsultarItem;
+    private javax.swing.JButton jbEliminarItem;
+    private javax.swing.JButton jbModificarItem;
+    private javax.swing.JButton jbRegistrarItem;
     // End of variables declaration//GEN-END:variables
 
     public LinkedList<Item> listaItems(){
@@ -305,5 +220,4 @@ public class Menu extends javax.swing.JFrame {
         }
         return listaItems;
     }
-    
 }

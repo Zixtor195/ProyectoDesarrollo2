@@ -44,6 +44,7 @@ public class PanelConsultarItem extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(752, 662));
 
         jtConsultarItem.setModel(new javax.swing.table.DefaultTableModel(

@@ -145,7 +145,7 @@ public class GuiLogin extends javax.swing.JFrame {
     private void jbIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIngresarActionPerformed
         ArrayList log = null;
         login consultas = new login();
-
+        
         try {
             log = consultas.ValidarLogin(jtfUsuario.getText(), String.valueOf(jpfContrasena.getPassword()));
         } catch (NullPointerException e) {
@@ -160,7 +160,7 @@ public class GuiLogin extends javax.swing.JFrame {
             jpfContrasena.setText("");
 
         } else {
-
+        
             JOptionPane.showMessageDialog(null, "  Bienvenido " + log.get(1).toString(), "LOGIN LC", JOptionPane.INFORMATION_MESSAGE);
             FabricaPanelesUsuario factoria = new FabricaPanelesUsuario();
             GuiPrincipal gp = new GuiPrincipal();

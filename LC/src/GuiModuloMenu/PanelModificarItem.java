@@ -45,6 +45,7 @@ public class PanelModificarItem extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(752, 662));
 
         jtTablaModificarItem.setModel(new javax.swing.table.DefaultTableModel(
@@ -116,12 +117,13 @@ public class PanelModificarItem extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(298, 298, 298)
-                .addComponent(jlContinuarModificarItem)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(298, 298, 298)
+                        .addComponent(jlContinuarModificarItem)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

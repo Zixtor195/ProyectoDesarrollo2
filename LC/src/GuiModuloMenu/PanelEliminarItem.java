@@ -49,8 +49,10 @@ public class PanelEliminarItem extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
+        setOpaque(false);
 
         jlEliminarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botoneliminar.jpg"))); // NOI18N
+        jlEliminarItem.setPreferredSize(new java.awt.Dimension(110, 38));
         jlEliminarItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlEliminarItemMouseClicked(evt);
@@ -122,7 +124,7 @@ public class PanelEliminarItem extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(298, 298, 298)
-                        .addComponent(jlEliminarItem))
+                        .addComponent(jlEliminarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -131,10 +133,10 @@ public class PanelEliminarItem extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jlEliminarItem)
+                .addComponent(jlEliminarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents

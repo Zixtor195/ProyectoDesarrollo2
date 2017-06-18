@@ -26,7 +26,7 @@ public class MenuPane extends javax.swing.JFrame {
     
     public MenuPane() {
         // Asignar el Contenedor principal de la Clase externa para usar un fondo
-        contenedorPrincipalFondo = new ContenedorFondo("/imagenes/fondo.jpg");
+        contenedorPrincipalFondo = new ContenedorFondo("src/imagenes/fondoInterfaces.jpg");
         super.setContentPane(contenedorPrincipalFondo);
         initComponents();
         setLocationRelativeTo(null);
@@ -80,11 +80,11 @@ public class MenuPane extends javax.swing.JFrame {
         });
 
         jlCarnes.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 13)); // NOI18N
-        jlCarnes.setForeground(new java.awt.Color(255, 255, 255));
+        jlCarnes.setForeground(new java.awt.Color(69, 32, 5));
         jlCarnes.setText("Carnes:");
 
         jlMenuTitulo.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
-        jlMenuTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jlMenuTitulo.setForeground(new java.awt.Color(69, 32, 5));
         jlMenuTitulo.setText("MENU");
 
         jbResLC.setForeground(new java.awt.Color(69, 32, 5));
@@ -104,7 +104,7 @@ public class MenuPane extends javax.swing.JFrame {
         });
 
         jlEnsaladasSopas.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 13)); // NOI18N
-        jlEnsaladasSopas.setForeground(new java.awt.Color(255, 255, 255));
+        jlEnsaladasSopas.setForeground(new java.awt.Color(69, 32, 5));
         jlEnsaladasSopas.setText("Ensaladas y Sopas:");
 
         jbEnsaladasSopas.setForeground(new java.awt.Color(69, 32, 5));
@@ -116,7 +116,7 @@ public class MenuPane extends javax.swing.JFrame {
         });
 
         jlAdicionesPostres.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 13)); // NOI18N
-        jlAdicionesPostres.setForeground(new java.awt.Color(255, 255, 255));
+        jlAdicionesPostres.setForeground(new java.awt.Color(69, 32, 5));
         jlAdicionesPostres.setText("Adiciones y Postres:");
 
         jbAdicionesPostres.setForeground(new java.awt.Color(69, 32, 5));
@@ -128,7 +128,7 @@ public class MenuPane extends javax.swing.JFrame {
         });
 
         jlEntradas.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 13)); // NOI18N
-        jlEntradas.setForeground(new java.awt.Color(255, 255, 255));
+        jlEntradas.setForeground(new java.awt.Color(69, 32, 5));
         jlEntradas.setText("Entradas:");
 
         jbEntradas.setForeground(new java.awt.Color(69, 32, 5));
@@ -140,7 +140,7 @@ public class MenuPane extends javax.swing.JFrame {
         });
 
         jlBebidas.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 13)); // NOI18N
-        jlBebidas.setForeground(new java.awt.Color(255, 255, 255));
+        jlBebidas.setForeground(new java.awt.Color(69, 32, 5));
         jlBebidas.setText("Bebidas:");
 
         jbBebidas.setForeground(new java.awt.Color(69, 32, 5));
@@ -152,7 +152,7 @@ public class MenuPane extends javax.swing.JFrame {
         });
 
         jlBebidasAlcoholicas.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 13)); // NOI18N
-        jlBebidasAlcoholicas.setForeground(new java.awt.Color(255, 255, 255));
+        jlBebidasAlcoholicas.setForeground(new java.awt.Color(69, 32, 5));
         jlBebidasAlcoholicas.setText("Bebidas Alcoholicas:");
 
         jbCervezasCocteles.setForeground(new java.awt.Color(69, 32, 5));
@@ -172,7 +172,7 @@ public class MenuPane extends javax.swing.JFrame {
         });
 
         jlVinos.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 13)); // NOI18N
-        jlVinos.setForeground(new java.awt.Color(255, 255, 255));
+        jlVinos.setForeground(new java.awt.Color(69, 32, 5));
         jlVinos.setText("Vinos:");
 
         jbVinosChilenos.setForeground(new java.awt.Color(69, 32, 5));
@@ -191,6 +191,7 @@ public class MenuPane extends javax.swing.JFrame {
             }
         });
 
+        jbSalir.setBackground(new java.awt.Color(255, 102, 0));
         jbSalir.setForeground(new java.awt.Color(69, 32, 5));
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -297,10 +298,10 @@ public class MenuPane extends javax.swing.JFrame {
         );
         jpMenusLayout.setVerticalGroup(
             jpMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMenusLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMenusLayout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jlImagesMenus, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
