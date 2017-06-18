@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 
@@ -148,17 +149,19 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         
-       
-        pedido = listapedido.get(table.getSelectedRow());
-        
-        PanelResulConsultaPedido rm = new PanelResulConsultaPedido(pedido);
-        rm.setSize(936, 749);
-         
-        this.removeAll();
-        this.revalidate();
-        this.repaint();
-        this.add(rm);
-        
+        if (this.table.getSelectedRow() != -1) {
+            pedido = listapedido.get(table.getSelectedRow());
+
+            PanelResulConsultaPedido rm = new PanelResulConsultaPedido(pedido);
+            rm.setSize(936, 749);
+
+            this.removeAll();
+            this.revalidate();
+            this.repaint();
+            this.add(rm);
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un pedido primero, por favor");
+        }
         
     }//GEN-LAST:event_jLabel1MouseClicked
 

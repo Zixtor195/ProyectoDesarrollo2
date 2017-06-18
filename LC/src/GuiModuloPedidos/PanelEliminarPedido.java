@@ -18,6 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -280,7 +282,10 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
             switch(columnIndex){
                 case 0: return pedid.getIdPedido();
                 case 1: return pedid.getIdEmpleado().getNombres();
-                case 2: return pedid.getHoraInicio();
+                case 2: 
+                    Date date = pedid.getHoraInicio();
+                    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+                    return sdf.format(date);
                 case 3: return pedid.getNumMesa();
             }
             return "";

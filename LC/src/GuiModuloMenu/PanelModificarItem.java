@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -136,6 +137,8 @@ public class PanelModificarItem extends javax.swing.JPanel {
 
     private void jlContinuarModificarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContinuarModificarItemMouseClicked
         
+        if(this.jtTablaModificarItem.getSelectedRow() != -1){
+        
         this.removeAll();
         this.revalidate();
         this.repaint();
@@ -159,6 +162,9 @@ public class PanelModificarItem extends javax.swing.JPanel {
         rm.setSize(752, 686);
         this.add(rm);
         emf.close();
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un item primero por favor");
+        }
     }//GEN-LAST:event_jlContinuarModificarItemMouseClicked
 
 

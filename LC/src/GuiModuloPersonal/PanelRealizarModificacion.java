@@ -633,7 +633,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         txtnodocumento.setText(empleado.getIdEmpleado().toString());
         txtemail.setText(empleado.getEmail());
         txtdireccion.setText(empleado.getDireccion());
-        txttel.setText(empleado.getTelCel());
+        txttel.setText(empleado.getTelFijo());
         txtcelular.setText(empleado.getTelCel());
         txtusuario.setText(empleado.getUsuario());
         txtpass.setText(empleado.getContrase());
@@ -651,7 +651,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         
         for (TurnosSemanales listaturno1 : listaturnos) {
             
-            if(listaturno1.getIdEmpleado().getIdEmpleado() == empleado.getIdEmpleado()){
+            if(listaturno1.getIdEmpleado().getIdEmpleado().equals(empleado.getIdEmpleado())){
                 listaturno.add(listaturno1);
             } 
         }
@@ -662,7 +662,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         int a = 0;
         TurnosSemanalesJpaController tsj = new TurnosSemanalesJpaController(emf);
         List<TurnosSemanales> listaturnos = tsj.findTurnosSemanalesEntities();
-        a = listaturnos.get(listaturnos.size()-1).getId();
+        a = listaturnos.get(listaturnos.size()).getId();
         return a+1;
     }
     

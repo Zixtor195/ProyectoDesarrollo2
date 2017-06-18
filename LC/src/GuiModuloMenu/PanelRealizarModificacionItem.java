@@ -183,7 +183,7 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
     }//GEN-LAST:event_jbCambiarFotoMouseClicked
 
     private void jlModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModificarMouseClicked
-                    
+         
         int idItem = Integer.parseInt(jtfID.getText());
         String nombre = jtfNombre.getText();
         int precio = Integer.parseInt(jtfPrecio.getText());

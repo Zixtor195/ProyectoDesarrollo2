@@ -496,7 +496,7 @@ public final class PanelResultadosConsulta extends javax.swing.JPanel {
         txtidentificacion.setText(empleado.getIdEmpleado().toString());
         txtemail.setText(empleado.getEmail());
         txtdireccion.setText(empleado.getDireccion());
-        txttel.setText(empleado.getTelCel());
+        txttel.setText(empleado.getTelFijo());
         txtcelular.setText(empleado.getTelCel());
         txtusuario.setText(empleado.getUsuario());
         txtpass.setText(empleado.getContrase());

@@ -9,6 +9,7 @@ import ClasesTablas.Item;
 import ControladorClasesTablas.ItemJpaController;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +23,7 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
      */
     public PanelResultadosConsultaItem() {
         initComponents();
+        this.jcbCategoria.setModel(defaultComboModel());
     }
 
     /**
@@ -207,4 +209,19 @@ public class PanelResultadosConsultaItem extends javax.swing.JPanel {
     public javax.swing.JTextField jtfNombre;
     public javax.swing.JTextField jtfPrecio;
     // End of variables declaration//GEN-END:variables
+
+    private DefaultComboBoxModel defaultComboModel(){
+        
+        DefaultComboBoxModel dcm = new DefaultComboBoxModel();
+        String[] lista = {"Adiciones y Postres","Bebiddas, Otras bebidas", "Cerdo y Pollo",
+        "Cervezas, Conteles, Sin licor", "Ensalada, Sopas", "Entradas, Ceviches",
+        "Vinos", "Res, Especiales L&C", "Pescado, Mariscos"};
+        for (String i : lista) {
+            dcm.addElement(i);
+        }
+        return dcm;
+    }
+    
+
 }
+

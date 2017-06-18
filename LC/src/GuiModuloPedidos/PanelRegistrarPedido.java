@@ -17,6 +17,7 @@ import ControladorClasesTablas.ItemPedidoJpaController;
 import ControladorClasesTablas.PedidoJpaController;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
+import Login.login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -58,7 +59,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         initComponents();
         cbo_tipo.addActionListener(this);
         listitemp.setModel(new listaItemsModel());
-        cbo_mesero.setModel(listadoMeserosModel());
+//        cbo_mesero.setModel(listadoMeserosModel());
         cbo_tipo.setModel(listadoTipoPedidoModel());
         btnagregarapedido.addActionListener(new agregar());
         btnaceptarpedido.addActionListener(new aceptarPedido());
@@ -77,8 +78,8 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        cbo_mesero = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
+        txtmesero = new javax.swing.JTextField();
         btnaceptarpedido = new javax.swing.JButton();
         btnanular = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -134,8 +135,6 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        cbo_mesero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel4.setText("Mesero:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -145,18 +144,20 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(cbo_mesero, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(txtmesero, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbo_mesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addComponent(txtmesero, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
         btnaceptarpedido.setBackground(new java.awt.Color(153, 153, 255));
@@ -262,7 +263,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(cbo_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -368,7 +369,6 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
     private javax.swing.JButton btnagregarapedido;
     private javax.swing.JButton btnanular;
     private javax.swing.JButton btncancelar;
-    public javax.swing.JComboBox cbo_mesero;
     private javax.swing.JComboBox cbo_tipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -388,6 +388,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
     private javax.swing.JTable table;
     private javax.swing.JTextField txtcantidad;
     private javax.swing.JTextField txtmesa;
+    public javax.swing.JTextField txtmesero;
     // End of variables declaration//GEN-END:variables
 
        @Override
@@ -425,46 +426,37 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
             ItemPedido ip = new ItemPedido();
             List<ItemPedido> listaitempedido = tjc.findItemPedidoEntities();
 
-            if(!txtcantidad.getText().trim().equals("")&&!listitemp.isSelectionEmpty()){
-                if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Mesa"))
-              {    
-                  
-               if(!(txtmesa.getText().trim().equalsIgnoreCase(""))) 
-               {          
-                ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
-                ip.setItem(listaitem.get(listitemp.getSelectedIndex()));
-                ip.setPedido(pedido);
-                try {
-                    tjc.create(ip);
-                    table.setModel(new tableModel());
-                } catch (Exception ex) {
-                    Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
+            if (!txtcantidad.getText().trim().equals("") && !listitemp.isSelectionEmpty()) {
+                if (cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Mesa")) {
+
+                    if (!(txtmesa.getText().trim().equalsIgnoreCase(""))) {
+                        ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
+                        ip.setItem(listaitem.get(listitemp.getSelectedIndex()));
+                        ip.setPedido(pedido);
+                        try {
+                            tjc.create(ip);
+                            table.setModel(new tableModel());
+                        } catch (Exception ex) {
+                            Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ingrese un numero de Mesa");
+                    }
+
+                } else if (cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Llevar")) {
+                    ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
+                    ip.setItem(listaitem.get(listitemp.getSelectedIndex()));
+                    ip.setPedido(pedido);
+                    try {
+                        tjc.create(ip);
+                        table.setModel(new tableModel());
+                    } catch (Exception ex) {
+                        Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                 }
-                
-               }
-               
-               else
-               {
-                   JOptionPane.showMessageDialog(null, "Ingrese un numero de Mesa");
-               }    
-                
-              }  
-              
-                else if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Llevar")) 
-              {
-                ip.setCantidad(Integer.parseInt(txtcantidad.getText()));
-                ip.setItem(listaitem.get(listitemp.getSelectedIndex()));
-                ip.setPedido(pedido);
-                try {
-                    tjc.create(ip);
-                    table.setModel(new tableModel());
-                } catch (Exception ex) {
-                    Logger.getLogger(PanelRegistrarPedido.class.getName()).log(Level.SEVERE, null, ex);
-                }
-              
-              
-              }   
-                  
+
             }else{
                 JOptionPane.showMessageDialog(null, "Llene los campos requeridos");
             }
@@ -537,7 +529,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            cbo_mesero.setSelectedIndex(0);
+//            cbo_mesero.setSelectedIndex(0);
             cbo_tipo.setSelectedIndex(0);
             txtcantidad.setText("");
             txtmesa.setText("");
@@ -592,7 +584,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
     
     public void crearLocalPedido(){
         
-        pedido.setIdEmpleado(getEmpleadoPedido());
+        pedido.setIdEmpleado(getEmpleadoActual());
         pedido.setTipo(cbo_tipo.getSelectedItem().toString());
         if(cbo_tipo.getSelectedItem().toString().equalsIgnoreCase("Pedido Mesa"))
         {    
@@ -605,6 +597,9 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
     }
     
     public void crearPedidoBd() throws ParseException{
+        
+        Empleado empleado = getEmpleadoActual();
+        txtmesero.setText(empleado.getNombres());
        
         PedidoJpaController pjc = new PedidoJpaController(emf);
         pedido.setIdPedidoAumentado();
@@ -612,7 +607,7 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         pedido.setHoraInicio(getHora());
         pedido.setTipo(cbo_tipo.getSelectedItem().toString());
         pedido.setEstado("Activo");
-        pedido.setIdEmpleado(getEmpleadoPedido());
+        pedido.setIdEmpleado(getEmpleadoActual());
         pedido.setFechaPedido(getfecha());
         try {
             pjc.create(pedido);
@@ -637,13 +632,21 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
         return lista;
     }
     
+    public Empleado getEmpleadoActual(){
+        Empleado empleado = null;
+        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+        empleado = ejc.findEmpleado(login.getInstace());
+        
+        return empleado;
+    }
+    
     public Empleado getEmpleadoPedido(){
         Empleado empleado = null;
         EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
         List<Empleado> listaEmpleado = ejc.findEmpleadoEntities();
         
-        empleado = listaEmpleado.get(cbo_mesero.getSelectedIndex());
-        System.out.println(cbo_mesero.getSelectedIndex());
+//        empleado = listaEmpleado.get(cbo_mesero.getSelectedIndex());
+//        System.out.println(cbo_mesero.getSelectedIndex());
         
         return empleado;
     }
@@ -685,12 +688,14 @@ public final class PanelRegistrarPedido extends javax.swing.JPanel implements Ac
     private DefaultComboBoxModel listadoMeserosModel(){
 
         DefaultComboBoxModel combo = new DefaultComboBoxModel();
-        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
-        List<Empleado> listaEmpleados = ejc.findEmpleadoEntities();       
+//        EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
+//        List<Empleado> listaEmpleados = ejc.findEmpleadoEntities();       
+//        
+//        for(Empleado emp : listaEmpleados){
+//          combo.addElement(emp.getNombres());
+//        }
         
-        for(Empleado emp : listaEmpleados){
-          combo.addElement(emp.getNombres());
-        }
+        combo.addElement(getEmpleadoActual());
         return combo;
     }
     

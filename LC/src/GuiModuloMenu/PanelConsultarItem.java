@@ -13,6 +13,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -136,6 +137,8 @@ public class PanelConsultarItem extends javax.swing.JPanel {
 
     private void jlConsultarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarItemMouseClicked
         
+        if(this.jtConsultarItem.getSelectedRow() != -1){
+        
         this.removeAll();
         this.revalidate();
         this.repaint();
@@ -156,6 +159,10 @@ public class PanelConsultarItem extends javax.swing.JPanel {
         
         rc.setSize(752, 686);
         this.add(rc);
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un item primero por favor");
+        }
         
     }//GEN-LAST:event_jlConsultarItemMouseClicked
 

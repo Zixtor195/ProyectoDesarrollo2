@@ -141,16 +141,21 @@ public class PanelEliminarItem extends javax.swing.JPanel {
 
     private void jlEliminarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlEliminarItemMouseClicked
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        ItemJpaController dao = new ItemJpaController(emf);
-        
-        int idItem = Integer.parseInt(String.valueOf(jtEliminarItem.getValueAt(jtEliminarItem.getSelectedRow(),0)));
-        
-        Item item = dao.findItem(idItem);  
-        item.setEstado("Inactivo");
-        Fachada fachada = new Fachada();
-        fachada.EliminarItem(item, emf);
-        this.jtEliminarItem.setModel(new defaultModelItem());
+        if (this.jtEliminarItem.getSelectedRow() != -1) {
+
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+            ItemJpaController dao = new ItemJpaController(emf);
+
+            int idItem = Integer.parseInt(String.valueOf(jtEliminarItem.getValueAt(jtEliminarItem.getSelectedRow(), 0)));
+
+            Item item = dao.findItem(idItem);
+            item.setEstado("Inactivo");
+            Fachada fachada = new Fachada();
+            fachada.EliminarItem(item, emf);
+            this.jtEliminarItem.setModel(new defaultModelItem());
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un item primero por favor");
+        }
     }//GEN-LAST:event_jlEliminarItemMouseClicked
 
 

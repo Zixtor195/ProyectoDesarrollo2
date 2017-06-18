@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,41 +28,47 @@ public class login
     private String usuario, contrasena, baseDatos;
     private ResultSet resultado;
     private Statement sentencia;
+    private static int id_Empleado = 0;
     
- public ArrayList ValidarLogin(String usuario, String contrasena) throws SQLException {
+    public ArrayList ValidarLogin(String usuario, String contrasena) throws SQLException {
 
-        EntityManagerFactory emf = Persistence 
-                .createEntityManagerFactory("LCPU"); 
-        EntityManager em = emf.createEntityManager(); 
-        
-      String jpql = "SELECT id_empleado,nombres,cargo FROM empleado WHERE usuario = '" + usuario + "' AND contrase = '" + contrasena + "' AND estado = 'Activo';";
-      Query query = em.createNativeQuery(jpql);
-      List<Object[]> results = query.getResultList();
-      ArrayList resulConsulta = new ArrayList<>();
-         
+        EntityManagerFactory emf = Persistence
+                .createEntityManagerFactory("LCPU");
+        EntityManager em = emf.createEntityManager();
+
+        String jpql = "SELECT id_empleado,nombres,cargo FROM empleado WHERE usuario = '" + usuario + "' AND contrase = '" + contrasena + "' AND estado = 'Activo';";
+        Query query = em.createNativeQuery(jpql);
+        List<Object[]> results = query.getResultList();
+        ArrayList resulConsulta = new ArrayList<>();
+
         String criptedpass = new Encriptar().EncriptarMd5(contrasena);
-        
-        
-            if (results.size() == 0) {
-                resulConsulta = null;
 
-            } else {
-                    
-                for (Object[] result : results) {
+        if (results.size() == 0) {
+            resulConsulta = null;
+
+        } else {
+            
+            for (Object[] result : results) {
                 resulConsulta.add(result[0]);
                 resulConsulta.add(result[1]);
-                resulConsulta.add(result[2]);        
-  }
-               
+                resulConsulta.add(result[2]);
             }
+            
+            id_Empleado = Integer.parseInt(resulConsulta.get(0).toString());
+            
+        }
 
-       
 
         emf.close();
         return resulConsulta;
     }
 
+    
+    public static int getInstace(){
+        return id_Empleado;
+    }
 
+    
 
 
 

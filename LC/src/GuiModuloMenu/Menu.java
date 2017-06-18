@@ -166,35 +166,35 @@ public class Menu extends javax.swing.JFrame {
         PanelModificarItem mi = new PanelModificarItem();
         mi.setSize(752,686);
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        ItemJpaController dao = new ItemJpaController(emf);
-        
-        List<Item> items = listaItems();
-        
-        
-        Object listaItems[][]  = new Object[items.size()][5];
-        for (int i = 0; i < items.size(); i++) {
-            
-            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
-            {
-                  dao.findItemEntities().remove(i);
-            
-            }
-            else
-            {    
-            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
-            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
-            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
-            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
-            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
-            }
-        }
-        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
-        emf.close();
-        
-        DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
-        
-        mi.jtTablaModificarItem.setModel(modelo);
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+//        ItemJpaController dao = new ItemJpaController(emf);
+//        
+//        List<Item> items = listaItems();
+//        
+//        
+//        Object listaItems[][]  = new Object[items.size()][5];
+//        for (int i = 0; i < items.size(); i++) {
+//            
+//            if(dao.findItemEntities().get(i).getEstado().equalsIgnoreCase("Inactivo"))
+//            {
+//                  dao.findItemEntities().remove(i);
+//            
+//            }
+//            else
+//            {    
+//            listaItems[i][0] = dao.findItemEntities().get(i).getIdItem();
+//            listaItems[i][1] = dao.findItemEntities().get(i).getNombre();
+//            listaItems[i][2] = dao.findItemEntities().get(i).getPrecio();
+//            listaItems[i][4] = dao.findItemEntities().get(i).getCategoria();
+//            listaItems[i][3] = dao.findItemEntities().get(i).getDescripcion();
+//            }
+//        }
+//        String columna[] = new String[] {"ID", "Nombre", "Precio", "Categoria", "Descripcion"};
+//        emf.close();
+//        
+//        DefaultTableModel modelo = new DefaultTableModel(listaItems, columna);
+//        
+//        mi.jtTablaModificarItem.setModel(modelo);
         
         jPanel2.removeAll();
         jPanel2.add(mi);

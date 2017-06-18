@@ -195,8 +195,8 @@ public class Pedidos extends javax.swing.JFrame {
                 PanelRegistrarPedido prp = new PanelRegistrarPedido();
                 if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero"))
                 {
-                    prp.cbo_mesero.setSelectedItem(pjc.findEmpleado(id).getNombres());
-                    prp.cbo_mesero.setEnabled(false);
+//                    prp.cbo_mesero.setSelectedItem(pjc.findEmpleado(id).getNombres());
+                    prp.txtmesero.setEnabled(false);
                 }
                 prp.setSize(950, 800);
                 

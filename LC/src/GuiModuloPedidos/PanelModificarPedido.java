@@ -8,6 +8,8 @@ package GuiModuloPedidos;
 
 import ClasesTablas.Pedido;
 import ControladorClasesTablas.PedidoJpaController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -151,15 +153,20 @@ public class PanelModificarPedido extends javax.swing.JPanel {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
      
+        if (this.table.getSelectedRow() != -1){
+            pedido = listapedido.get(table.getSelectedRow());
+            PanelRealizarModificacionPedido rm = new PanelRealizarModificacionPedido(pedido);
+            rm.setSize(948, 818);
+            this.removeAll();
+            this.revalidate();
+            this.repaint();
+
+            this.add(rm);
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un pedido primero, por favor");
+        }
+            
         
-        pedido = listapedido.get(table.getSelectedRow());
-        PanelRealizarModificacionPedido rm = new PanelRealizarModificacionPedido(pedido);
-        rm.setSize(948, 818);
-        this.removeAll();
-        this.revalidate();
-        this.repaint();
-        
-        this.add(rm);
         
         
     }//GEN-LAST:event_jLabel1MouseClicked
@@ -202,7 +209,10 @@ public class PanelModificarPedido extends javax.swing.JPanel {
             switch(columnIndex){
                 case 0: return pedid.getIdPedido();
                 case 1: return pedid.getIdEmpleado().getNombres();
-                case 2: return pedid.getHoraInicio();
+                case 2: 
+                    Date date = pedid.getHoraInicio();
+                    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+                    return sdf.format(date);
                 case 3: return pedid.getNumMesa();
             }
             return "";
