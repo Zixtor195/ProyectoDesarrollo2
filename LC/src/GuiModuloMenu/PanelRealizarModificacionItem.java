@@ -142,12 +142,13 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbCambiarFoto)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
-                        .addComponent(jlNombreFoto)))
+                        .addComponent(jlNombreFoto))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbCambiarFoto)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -183,8 +184,18 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         myFileChooser.showOpenDialog(this);
 
         ruta = myFileChooser.getSelectedFile().getAbsolutePath();
+        if(!(ruta == null))
+        {  
+
         ImageIcon fotografia = new ImageIcon(ruta);
         jlFoto.setIcon(fotografia);
+        ruta = ruta.replace("\\", "/");
+        ruta = ruta.substring(67,ruta.length());
+        }
+        else 
+        {
+          ruta = null;
+        } 
 
     }//GEN-LAST:event_jbCambiarFotoMouseClicked
 
@@ -208,6 +219,7 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         jtfPrecio.setText("");
         jcbCategoria.setSelectedIndex(0);
         jtaDescripcion1.setText("");
+        jlFoto.setIcon(null);
         }
     }//GEN-LAST:event_jlModificarMouseClicked
 

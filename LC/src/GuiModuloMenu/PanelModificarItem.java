@@ -153,8 +153,14 @@ public class PanelModificarItem extends javax.swing.JPanel {
         int idItem = Integer.parseInt(String.valueOf(jtTablaModificarItem.getValueAt(jtTablaModificarItem.getSelectedRow(), 0)));
         
         Item item = dao.findItem(idItem);
-        ImageIcon fotografia = new ImageIcon(item.getFoto());
-        rm.jlFoto.setIcon(fotografia);
+        if(!(item.getFoto() == null))
+        {    
+        rm.jlFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getFoto())));
+        }
+        else
+        {
+         rm.jlFoto.setIcon(null);
+        }    
         rm.jtfID.setText(item.getIdItem().toString());
         rm.jtfNombre.setText(item.getNombre());
         rm.jtfPrecio.setText(Integer.toString(item.getPrecio()));

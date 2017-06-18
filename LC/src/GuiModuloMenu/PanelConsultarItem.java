@@ -150,8 +150,11 @@ public class PanelConsultarItem extends javax.swing.JPanel {
         Fachada fachada = new Fachada();
         Item item = fachada.ConsultarItem(idItem);
         
-        ImageIcon fotografia = new ImageIcon(item.getFoto());
-        rc.jlFoto.setIcon(fotografia);
+        if(!(item.getFoto() == null))
+        {    
+        rc.jlFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getFoto())));
+        }
+ 
         rc.jtfID.setText(item.getIdItem().toString());
         rc.jtfNombre.setText(item.getNombre());
         rc.jtfPrecio.setText(Integer.toString(item.getPrecio()));

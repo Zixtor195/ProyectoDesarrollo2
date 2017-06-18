@@ -189,6 +189,7 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
             jtfPrecio.setText("");
             jcbCategoria.setSelectedIndex(0);
             jtaDescripcion.setText("");
+            jlFoto.removeAll();
         }
     }//GEN-LAST:event_jlRegistrarItemMouseClicked
 
@@ -198,8 +199,18 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
         myFileChooser.showOpenDialog(this);
 
         ruta = myFileChooser.getSelectedFile().getAbsolutePath();
+        if(!(ruta == null))
+        {  
+
         ImageIcon fotografia = new ImageIcon(ruta);
         jlFoto.setIcon(fotografia);
+        ruta = ruta.replace("\\", "/");
+        ruta = ruta.substring(67,ruta.length());
+        }
+        else 
+        {
+          ruta = null;
+        } 
     }//GEN-LAST:event_jbCargarFotoMouseClicked
 
 
