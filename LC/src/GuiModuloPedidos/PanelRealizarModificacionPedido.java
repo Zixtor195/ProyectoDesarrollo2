@@ -551,16 +551,16 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
     
     private void asignacionCampos(){
         
-        if(cbo_tipo.getSelectedIndex() == 1)
+        if(pedido.getTipo().equalsIgnoreCase("Pedido Mesa"))
             
         {
-            
-             txtmesa.setText(null);
+            txtmesa.setText(pedido.getNumMesa().toString());
+             
         }    
             
-        if (cbo_tipo.getSelectedIndex() == 0)
+        if (pedido.getTipo().toString().equalsIgnoreCase("Pedido Llevar"))
         {
-           txtmesa.setText(pedido.getNumMesa().toString());
+           txtmesa.setText("");
         }    
     
        
