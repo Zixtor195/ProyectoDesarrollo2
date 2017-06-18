@@ -60,7 +60,7 @@ public class GuiCajero extends javax.swing.JPanel {
                 jbPersonalMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 630, 90, -1));
+        jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 650, 90, -1));
 
         jbReportes.setBackground(new java.awt.Color(153, 51, 0));
         jbReportes.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -70,7 +70,7 @@ public class GuiCajero extends javax.swing.JPanel {
                 jbReportesMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 630, 90, -1));
+        jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 650, 90, -1));
 
         jbFacturasPagos.setBackground(new java.awt.Color(153, 51, 0));
         jbFacturasPagos.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -80,16 +80,16 @@ public class GuiCajero extends javax.swing.JPanel {
                 jbFacturasPagosActionPerformed(evt);
             }
         });
-        jPanelPrincipal.add(jbFacturasPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 630, 90, -1));
+        jPanelPrincipal.add(jbFacturasPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 650, 90, -1));
 
         jlPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/personal.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
+        jPanelPrincipal.add(jlPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 530, -1, -1));
 
         jlReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, -1, -1));
+        jPanelPrincipal.add(jlReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 530, -1, -1));
 
         jlFacturasPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/facuras y pagos.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlFacturasPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, -1, -1));
+        jPanelPrincipal.add(jlFacturasPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 530, -1, -1));
 
         jlTituloLenosCarbon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.jpg"))); // NOI18N
         jPanelPrincipal.add(jlTituloLenosCarbon, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 120));
@@ -130,7 +130,7 @@ public class GuiCajero extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -6,6 +6,7 @@
 package GuiReportes;
 
 
+import GuiMenu.ContenedorFondo;
 import Reportes.Reporte;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,14 +17,17 @@ import java.util.logging.Logger;
  */
 public class GuiReporteCajero extends javax.swing.JFrame {
 
-   
+    ContenedorFondo contenedorPrincipalFondo;
+    
     public GuiReporteCajero() {
+        contenedorPrincipalFondo = new ContenedorFondo("src/imagenes/fondoInterfaces.jpg");
+        super.setContentPane(contenedorPrincipalFondo);
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
-      Reporte r = new Reporte();
+    Reporte r = new Reporte();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,6 +44,7 @@ public class GuiReporteCajero extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel2.setText("Reportes");
@@ -128,15 +133,12 @@ public class GuiReporteCajero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        
         try {
             r.reporteIngresosDiarios();
         } catch (SQLException ex) {
             Logger.getLogger(GuiReporteCajero.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel6MouseClicked
 
  

@@ -46,7 +46,10 @@ public class GuiGerente extends javax.swing.JPanel {
         jlConsultarMenu = new javax.swing.JLabel();
         jlFondoCentradoLenosCarbon = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(940, 699));
+
         jPanelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelPrincipal.setPreferredSize(new java.awt.Dimension(940, 719));
         jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbMenu.setBackground(new java.awt.Color(153, 51, 0));
@@ -57,7 +60,7 @@ public class GuiGerente extends javax.swing.JPanel {
                 jbMenuMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 660, 90, -1));
+        jPanelPrincipal.add(jbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 650, 90, -1));
 
         jbPersonal.setBackground(new java.awt.Color(153, 51, 0));
         jbPersonal.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -67,7 +70,7 @@ public class GuiGerente extends javax.swing.JPanel {
                 jbPersonalMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 660, 90, -1));
+        jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 650, 90, -1));
 
         jbReportes.setBackground(new java.awt.Color(153, 51, 0));
         jbReportes.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -77,16 +80,16 @@ public class GuiGerente extends javax.swing.JPanel {
                 jbReportesMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 660, 90, -1));
+        jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 650, 90, -1));
 
         jlMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 540, -1, -1));
+        jPanelPrincipal.add(jlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, -1, 180));
 
         jlPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/personal.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 540, -1, -1));
+        jPanelPrincipal.add(jlPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 530, -1, -1));
 
         jlReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 540, -1, -1));
+        jPanelPrincipal.add(jlReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 530, -1, -1));
 
         jlTituloLenosCarbon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.jpg"))); // NOI18N
         jPanelPrincipal.add(jlTituloLenosCarbon, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 120));
@@ -124,25 +127,25 @@ public class GuiGerente extends javax.swing.JPanel {
                 jbConsultarMenuMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbConsultarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 660, 90, -1));
+        jPanelPrincipal.add(jbConsultarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 650, 90, -1));
 
         jlConsultarMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ver menu.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlConsultarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, -1, -1));
+        jPanelPrincipal.add(jlConsultarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, -1, 180));
 
         jlFondoCentradoLenosCarbon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banner.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlFondoCentradoLenosCarbon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
+        jPanelPrincipal.add(jlFondoCentradoLenosCarbon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -161,8 +164,8 @@ public class GuiGerente extends javax.swing.JPanel {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbReportesMouseClicked
-       GuiReporteGerente r = new GuiReporteGerente();   
-       r.setVisible(true);
+        GuiReporteGerente r = new GuiReporteGerente();   
+        r.setVisible(true);
     }//GEN-LAST:event_jbReportesMouseClicked
 
     private void jbConsultarMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbConsultarMenuMouseClicked

@@ -48,7 +48,10 @@ public class GuiMesero extends javax.swing.JPanel {
         jpFondoTituloLenosCarbon = new javax.swing.JPanel();
         jbSalir1 = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(940, 699));
+
         jPanelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelPrincipal.setPreferredSize(new java.awt.Dimension(940, 719));
         jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbPersonal.setBackground(new java.awt.Color(153, 51, 0));
@@ -59,7 +62,7 @@ public class GuiMesero extends javax.swing.JPanel {
                 jbPersonalMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 620, 90, -1));
+        jPanelPrincipal.add(jbPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, 90, -1));
 
         jbPedidos.setBackground(new java.awt.Color(153, 51, 0));
         jbPedidos.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -69,7 +72,7 @@ public class GuiMesero extends javax.swing.JPanel {
                 jbPedidosMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 620, 90, -1));
+        jPanelPrincipal.add(jbPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 650, 90, -1));
 
         jbReportes.setBackground(new java.awt.Color(153, 51, 0));
         jbReportes.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
@@ -79,16 +82,16 @@ public class GuiMesero extends javax.swing.JPanel {
                 jbReportesMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, 90, -1));
+        jPanelPrincipal.add(jbReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 650, 90, -1));
 
         jlPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/personal.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, -1, -1));
+        jPanelPrincipal.add(jlPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, -1, -1));
 
         jlPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedidos.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
+        jPanelPrincipal.add(jlPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 530, -1, -1));
 
         jlReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reportes.jpg"))); // NOI18N
-        jPanelPrincipal.add(jlReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, -1, -1));
+        jPanelPrincipal.add(jlReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 530, -1, -1));
 
         jlTituloLenosCarbon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.jpg"))); // NOI18N
         jPanelPrincipal.add(jlTituloLenosCarbon, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 120));
@@ -125,11 +128,11 @@ public class GuiMesero extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
