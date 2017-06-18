@@ -13,10 +13,10 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="mes" class="java.lang.String">
+	<parameter name="mes" class="java.lang.Short">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="ano" class="java.lang.String">
+	<parameter name="ano" class="java.lang.Short">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -30,6 +30,7 @@ order by sum(cantidad) Desc Limit 10]]>
 	<field name="id_item" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="cantidad_total" class="java.lang.Long"/>
+	<filterExpression><![CDATA[$P{mes}$P{mes}.toString( short )]]></filterExpression>
 	<group name="nombre">
 		<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
 		<groupHeader>
