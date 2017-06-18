@@ -30,7 +30,7 @@ public class Reporte {
   
     public void  reporteMeseroMes() throws SQLException
     {
-        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "mmllano");
+        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "");
         try
         {  
            
@@ -63,7 +63,7 @@ public class Reporte {
     
      public void  reporteIngresosDiarios() throws SQLException
     {
-        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "mmllano");
+        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "");
         try
         {  
            
@@ -98,7 +98,41 @@ public class Reporte {
     }
     
     
-    
+     public void  reporteTop10MasVendidosMes() throws SQLException
+    {
+        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "");
+        try
+        {  
+           
+            try
+            {
+               report = (JasperReport) JRLoader.loadObject(getClass().getResource("ReporteTop10MasVendidosMew.jasper"));
+            }
+            catch(JRException e)
+            {
+               System.out.print("Error Generando Reporte" + e.getMessage());
+            }
+            
+            Map<String, Object> parametros = new HashMap();
+            
+            
+            parametros.put("Año", Integer.parseInt(JOptionPane.showInputDialog(null,"Por Favor ingrese un año " )));
+            parametros.put("Mes", Integer.parseInt(JOptionPane.showInputDialog(null,"Por Favor ingrese un mes: " )));
+            
+            
+            reportFilled = JasperFillManager.fillReport(report,parametros , con);
+            JasperViewer jViewer = new JasperViewer(reportFilled, false);
+            jViewer.setVisible(true);
+            con.close();
+        }
+        catch(JRException e)
+        {
+            System.out.print("Error Generando Reporte" + e.getMessage());
+        
+        }
+        
+        
+    }
     
     
     

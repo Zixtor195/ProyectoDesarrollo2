@@ -225,7 +225,7 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
                 } catch (IllegalOrphanException ex) {
                     Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+                table.setModel(new tableModel());
             }else{
                 JOptionPane.showMessageDialog(null,"Por favor seleccione un pedido para eliminarlo");
             }
