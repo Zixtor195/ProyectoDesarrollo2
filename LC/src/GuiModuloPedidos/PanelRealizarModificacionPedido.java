@@ -565,6 +565,7 @@ public class PanelRealizarModificacionPedido extends javax.swing.JPanel implemen
     
        
         cbo_mesero.setSelectedIndex(meseroPedidoseleccionado());
+        cbo_mesero.setEnabled(false);
         cbo_tipo.setSelectedIndex(tipoPedidoseleccionado());
         
     }
