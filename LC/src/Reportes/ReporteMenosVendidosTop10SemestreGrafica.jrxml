@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ddb353d6-3311-40c7-843e-ddc2c41fe65f">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="742" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1e20cb78-4171-42ef-961f-1e514b6363f7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="10"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -14,12 +14,13 @@
 		</conditionalStyle>
 	</style>
 	<queryString language="SQL">
-		<![CDATA[SELECT p.id_item, i.nombre, Sum(p.cantidad) as Cantidad_Total FROM item_pedido p, item i 
+		<![CDATA[SELECT i.id_item, a.nombre, Sum(i.cantidad) as Cantidad_Total FROM item_pedido i, pedido p, item a
 where 
-p.id_item = i.id_item
-group by p.id_item, i.nombre
-order by sum(p.cantidad) Desc Limit 10]]>
+p.id_pedido = i.id_pedido AND i.id_item = a.id_item AND p.fecha_pedido Between '01/02/2016' AND '30/06/2016'
+group by i.id_item, a.nombre
+order by sum(i.cantidad) Asc Limit 10]]>
 	</queryString>
+	<field name="id_item" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="cantidad_total" class="java.lang.Long"/>
 	<background>
@@ -28,26 +29,26 @@ order by sum(p.cantidad) Desc Limit 10]]>
 	<title>
 		<band height="132" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="7e6f8861-b983-413e-8450-f2356f863362"/>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="100" backcolor="#000000" uuid="cbea8d91-dbe8-4f0c-a8ff-5ea433f5f46e"/>
 				<staticText>
-					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="382eb435-df48-4391-9a7b-673cc062ecb5"/>
+					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="f326bf30-99b0-47e9-acf5-de5d757f1813"/>
 					<textElement>
 						<font isBold="false"/>
 					</textElement>
 					<text><![CDATA[Top 10 Del Mes]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SubTitle" x="199" y="66" width="249" height="29" uuid="15f6031c-6c5d-4b8e-ab0f-64bd7f49a863"/>
+					<reportElement style="SubTitle" x="199" y="66" width="249" height="29" uuid="a4a2be30-b1c2-4243-9bca-26eac341c49e"/>
 					<textElement>
 						<font size="22" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Más Vendidos Gráfica]]></text>
+					<text><![CDATA[Menos Vendidos Gráfica]]></text>
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="aa42ed86-cb03-40af-8440-0cc411027da6"/>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="2c1bd882-38d0-4d76-93a3-a2d7b0ef41d3"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="ca8d55d1-269e-432b-ba7c-a9d9c9553c53"/>
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="72964869-bdae-4f2b-b9af-16b15d87f883"/>
 					<textElement textAlignment="Right">
 						<font size="12"/>
 					</textElement>
@@ -55,11 +56,11 @@ order by sum(p.cantidad) Desc Limit 10]]>
 				</textField>
 			</frame>
 			<image>
-				<reportElement x="451" y="0" width="102" height="132" uuid="7a0fb316-fc7a-4fd4-9377-7e3edd308003"/>
+				<reportElement x="451" y="2" width="102" height="130" uuid="9aef2d1e-9f21-4353-af72-c5aa32ea6352"/>
 				<imageExpression><![CDATA["C:\\Users\\familia BS\\Documents\\NetBeansProjects\\ProyectoDesarrollo2\\LC\\src\\imagenes\\13310489_1156585371050776_8622802783764543703_n.jpg"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="451" y="55" width="104" height="77" uuid="5b337678-ba83-485b-9faf-71cd4be2f536"/>
+				<reportElement x="451" y="57" width="104" height="75" uuid="b82a1b69-3193-42ca-8d89-bded91c71589"/>
 				<imageExpression><![CDATA["C:\\Users\\familia BS\\Documents\\NetBeansProjects\\ProyectoDesarrollo2\\LC\\src\\imagenes\\1506606_665570536818931_154838972_n.jpg"]]></imageExpression>
 			</image>
 		</band>
@@ -67,17 +68,20 @@ order by sum(p.cantidad) Desc Limit 10]]>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
-	<columnHeader>
-		<band height="26" splitType="Stretch"/>
-	</columnHeader>
 	<detail>
-		<band height="502" splitType="Stretch">
-			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="94c79118-a1df-498a-ac94-9e634a0308a2"/>
-			</frame>
+		<band height="27" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="440" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="5400d768-1356-49a2-a923-d05a7eda5b8e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
 			<bar3DChart>
 				<chart>
-					<reportElement x="45" y="48" width="465" height="406" uuid="c7154d87-1959-459b-8c7f-580f4ce80569"/>
+					<reportElement x="51" y="18" width="441" height="389" uuid="1dd2ed9c-61b7-4a7a-a46f-d6202918ce56"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -101,37 +105,27 @@ order by sum(p.cantidad) Desc Limit 10]]>
 				</bar3DPlot>
 			</bar3DChart>
 		</band>
-	</detail>
-	<columnFooter>
-		<band height="12" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="bf3eef0d-e53e-4ca7-9960-aa4e6336e0da"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="25" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="34dc4192-8606-4fc2-8c56-dfd2e5f9039a"/>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="67219b36-46c7-467b-ab34-263f71f4fee8"/>
 				<textField evaluationTime="Report">
-					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="dfd9a84d-53b2-44ec-b312-fd26f3252e32"/>
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="fbfa7df1-3c55-40c3-ab96-96ab4901f211"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="2424b452-babf-492d-8138-79367cc67048"/>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="ab198c96-de8b-46b0-92a5-8a42a26c9e9f"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 				</textField>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="9d23011c-a11a-42b8-8ec6-96431153103f"/>
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="2e79378b-22ee-42a0-9eab-4f011637c1d8"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>

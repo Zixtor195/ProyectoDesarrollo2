@@ -115,8 +115,7 @@ public class Reporte {
             
             Map<String, Object> parametros = new HashMap();
             
-            
-            parametros.put("Año", Integer.parseInt(JOptionPane.showInputDialog(null,"Por Favor ingrese un año " )));
+            parametros.put("Ano", Integer.parseInt(JOptionPane.showInputDialog(null,"Por Favor ingrese un año " )));
             parametros.put("Mes", Integer.parseInt(JOptionPane.showInputDialog(null,"Por Favor ingrese un mes: " )));
             
             
