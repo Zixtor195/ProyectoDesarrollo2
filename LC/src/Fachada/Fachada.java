@@ -64,4 +64,8 @@ public class Fachada {
         String resultado = funcionesItems.EliminarItem(item, emf);
         return resultado;
     }
+
+    public void CrearFactura(int idPedido, String estadoPedido, String estadoFactura, int idFactura, Pedido pedido, int total, EntityManagerFactory emf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -38,7 +38,6 @@ public class FacturarPedidos extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jlNoFactura = new javax.swing.JLabel();
         jtfIDPedido = new javax.swing.JTextField();
-        jlHoraPago = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jlTotal = new javax.swing.JLabel();
@@ -50,13 +49,10 @@ public class FacturarPedidos extends javax.swing.JPanel {
         jbAceptar = new javax.swing.JButton();
         jlIDPedido = new javax.swing.JLabel();
         jtfNoFactura = new javax.swing.JTextField();
-        jtfHoraPago = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jlNoFactura.setText("No. Factura:");
-
-        jlHoraPago.setText("Hora de Pago:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,13 +142,9 @@ public class FacturarPedidos extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlNoFactura)
-                            .addComponent(jlHoraPago))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfNoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfHoraPago, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jlNoFactura)
+                        .addGap(36, 36, 36)
+                        .addComponent(jtfNoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)
                         .addComponent(jlIDPedido)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -193,11 +185,7 @@ public class FacturarPedidos extends javax.swing.JPanel {
                     .addComponent(jtfIDPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlIDPedido)
                     .addComponent(jtfNoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlHoraPago)
-                    .addComponent(jtfHoraPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(72, 72, 72)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -241,8 +229,7 @@ public class FacturarPedidos extends javax.swing.JPanel {
 
        int idPedido = Integer.parseInt(jtfIDPedido.getText()); 
        String estadoPedido = "Facturado";
-       String estadoFactura = "Sin Pagar";
-       String HoraPago = jtfHoraPago.getText();
+       String estadoFactura = "Sin Pagar";       
        int idFactura = Integer.parseInt(jtfNoFactura.getText());
        Pedido pedido = daop.findPedido(idPedido);       
        int total = (Integer.parseInt(jtfTotal.getText())) + 
@@ -250,7 +237,7 @@ public class FacturarPedidos extends javax.swing.JPanel {
                (Integer.parseInt(jtfPropina.getText()));   
                
      Fachada fachada = new Fachada();
-     fachada.CrearFactura(idPedido, estadoPedido, estadoFactura, HoraPago, idFactura, pedido, total, emf);        
+     fachada.CrearFactura(idPedido, estadoPedido, estadoFactura, idFactura, pedido, total, emf);        
     }//GEN-LAST:event_jbAceptarActionPerformed
 
 
@@ -259,13 +246,11 @@ public class FacturarPedidos extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
     private javax.swing.JButton jbAceptar;
-    private javax.swing.JLabel jlHoraPago;
     private javax.swing.JLabel jlIDPedido;
     private javax.swing.JLabel jlIVA;
     private javax.swing.JLabel jlNoFactura;
     private javax.swing.JLabel jlPropina;
     private javax.swing.JLabel jlTotal;
-    public javax.swing.JTextField jtfHoraPago;
     public javax.swing.JTextField jtfIDPedido;
     public javax.swing.JTextField jtfIVA;
     private javax.swing.JTextField jtfNoFactura;
