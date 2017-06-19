@@ -13,17 +13,17 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="mes" class="java.lang.Short">
+	<parameter name="mes" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="ano" class="java.lang.Short">
+	<parameter name="ano" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT p.id_item, i.nombre, Sum(p.cantidad) as Cantidad_Total 
 FROM item_pedido p, item i , pedido a
 where p.id_item = i.id_item AND p.id_pedido = a.id_pedido 
-AND a.fecha_pedido BETWEEN '01/$P{mes}/$P{ano}' AND '28/$P{mes}/$P{ano}'
+AND a.fecha_pedido BETWEEN $P{mes} AND $P{ano}
 group by p.id_item, i.nombre
 order by sum(cantidad) Desc Limit 10]]>
 	</queryString>

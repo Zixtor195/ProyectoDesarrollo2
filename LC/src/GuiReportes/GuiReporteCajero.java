@@ -9,6 +9,9 @@ package GuiReportes;
 import GuiMenu.ContenedorFondo;
 import Reportes.IngresosDia;
 import Reportes.Reporte;
+import Reportes.ReporteMasVendidos;
+import Reportes.ReporteMenosVendidos;
+import Reportes.ReporteSemanal;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,10 +67,25 @@ public class GuiReporteCajero extends javax.swing.JFrame {
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mas vendidos.jpg"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menos vendidos.jpg"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ingresos semana.jpg"))); // NOI18N
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,6 +160,33 @@ public class GuiReporteCajero extends javax.swing.JFrame {
             Logger.getLogger(GuiReporteCajero.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        try {
+            ReporteMasVendidos r = new ReporteMasVendidos();
+            r.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(GuiReporteGerente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        try {
+            ReporteMenosVendidos r = new ReporteMenosVendidos();
+            r.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(GuiReporteGerente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        try {
+            ReporteSemanal rs = new ReporteSemanal();
+            rs.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(GuiReporteGerente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel9MouseClicked
 
  
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -82,7 +82,7 @@ public class IngresosDia extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione un mes:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---------", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", " " }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---------", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

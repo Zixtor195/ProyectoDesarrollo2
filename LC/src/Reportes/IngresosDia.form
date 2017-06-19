@@ -145,7 +145,7 @@
                 <StringItem index="10" value="Octubre"/>
                 <StringItem index="11" value="Noviembre"/>
                 <StringItem index="12" value="Diciembre"/>
-                <StringItem index="13" value=" "/>
+                <StringItem index="13" value=""/>
               </StringArray>
             </Property>
           </Properties>
