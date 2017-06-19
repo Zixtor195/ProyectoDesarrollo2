@@ -21,6 +21,7 @@ package GuiModuloPersonal;
 
 import ClasesTablas.Empleado;
 import ControladorClasesTablas.EmpleadoJpaController;
+import GuiMenu.ContenedorFondo;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.util.List;
@@ -35,12 +36,15 @@ import javax.swing.table.DefaultTableModel;
 
 public class CajeroPersonal extends javax.swing.JFrame {
 
+    ContenedorFondo contenedorPrincipalFondo;
     /**
      * Creates new form Personal
      */
     
       int id_cajero = 0;
     public CajeroPersonal(int id) {
+        contenedorPrincipalFondo = new ContenedorFondo("src/imagenes/fondoInterfaces.jpg");
+        super.setContentPane(contenedorPrincipalFondo);
         initComponents();
         this.id_cajero = id;
         setLocationRelativeTo(null);
@@ -62,26 +66,32 @@ public class CajeroPersonal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jlModificarEmpleado = new javax.swing.JLabel();
-        jlConsultarEmpleado = new javax.swing.JLabel();
+        jbConsultarEmpleado = new javax.swing.JButton();
+        jbModificarEmpleado = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 750));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(236, 834));
 
-        jlModificarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarEmpleado.jpg"))); // NOI18N
-        jlModificarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbConsultarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarPersonal.jpg"))); // NOI18N
+        jbConsultarEmpleado.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbConsultarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlModificarEmpleadoMouseClicked(evt);
+                jbConsultarEmpleadoMouseClicked(evt);
             }
         });
 
-        jlConsultarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarPersonal.jpg"))); // NOI18N
-        jlConsultarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbModificarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarEmpleado.jpg"))); // NOI18N
+        jbModificarEmpleado.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbModificarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlConsultarEmpleadoMouseClicked(evt);
+                jbModificarEmpleadoMouseClicked(evt);
             }
         });
 
@@ -92,29 +102,30 @@ public class CajeroPersonal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlConsultarEmpleado)
-                    .addComponent(jlModificarEmpleado))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(jbModificarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbConsultarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addComponent(jlConsultarEmpleado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
-                .addComponent(jlModificarEmpleado)
-                .addGap(179, 179, 179))
+                .addGap(123, 123, 123)
+                .addComponent(jbConsultarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(jbModificarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setAutoscrolls(true);
+        jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(974, 850));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1061, Short.MAX_VALUE)
+            .addGap(0, 1083, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,54 +138,54 @@ public class CajeroPersonal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1061, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1083, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jlModificarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModificarEmpleadoMouseClicked
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
-        
-         PanelRealizarModificacion rm = new PanelRealizarModificacion(dao.findEmpleado(id_cajero));
-         rm.setSize(1100,720);
+    private void jbConsultarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbConsultarEmpleadoMouseClicked
 
-        jPanel2.removeAll();
-        jPanel2.add(rm);
-        jPanel2.revalidate();
-        jPanel2.repaint();
-    }//GEN-LAST:event_jlModificarEmpleadoMouseClicked
-
-    private void jlConsultarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarEmpleadoMouseClicked
-       
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
         PanelResultadosConsulta rc = null;
-          try {
-              rc = new PanelResultadosConsulta(dao.findEmpleado(id_cajero));
-          } catch (IOException ex) {
+        try {
+            rc = new PanelResultadosConsulta(dao.findEmpleado(id_cajero));
+        } catch (IOException ex) {
               Logger.getLogger(CajeroPersonal.class.getName()).log(Level.SEVERE, null, ex);
-          }
+        }
         rc.setSize(1100,720);
 
         jPanel2.removeAll();
         jPanel2.add(rc);
         jPanel2.revalidate();
-        jPanel2.repaint();                 
-    }//GEN-LAST:event_jlConsultarEmpleadoMouseClicked
+        jPanel2.repaint();
+    }//GEN-LAST:event_jbConsultarEmpleadoMouseClicked
+
+    private void jbModificarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbModificarEmpleadoMouseClicked
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+        EmpleadoJpaController dao = new EmpleadoJpaController(emf);
+        
+        PanelRealizarModificacion rm = new PanelRealizarModificacion(dao.findEmpleado(id_cajero));
+        rm.setSize(1100,720);
+
+        jPanel2.removeAll();
+        jPanel2.add(rm);
+        jPanel2.revalidate();
+        jPanel2.repaint();
+    }//GEN-LAST:event_jbModificarEmpleadoMouseClicked
 
   
   
@@ -182,7 +193,7 @@ public class CajeroPersonal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel jlConsultarEmpleado;
-    private javax.swing.JLabel jlModificarEmpleado;
+    private javax.swing.JButton jbConsultarEmpleado;
+    private javax.swing.JButton jbModificarEmpleado;
     // End of variables declaration//GEN-END:variables
 }

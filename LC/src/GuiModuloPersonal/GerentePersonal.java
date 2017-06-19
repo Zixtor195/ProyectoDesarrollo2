@@ -21,6 +21,7 @@ package GuiModuloPersonal;
 
 import ClasesTablas.Empleado;
 import ControladorClasesTablas.EmpleadoJpaController;
+import GuiMenu.ContenedorFondo;
 import java.awt.Dimension;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -33,15 +34,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class GerentePersonal extends javax.swing.JFrame {
 
+    ContenedorFondo contenedorPrincipalFondo;
     /**
      * Creates new form Personal
      */
     
     public GerentePersonal() {
+        contenedorPrincipalFondo = new ContenedorFondo("src/imagenes/fondoInterfaces.jpg");
+        super.setContentPane(contenedorPrincipalFondo);
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
     }
 
     /**
@@ -54,43 +57,47 @@ public class GerentePersonal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jbRegistrarEmpleado = new javax.swing.JButton();
+        jbModificarEmpleado = new javax.swing.JButton();
+        jbConsultarEmpleado = new javax.swing.JButton();
+        jbEliminarEmpleado = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setOpaque(false);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Crearpersonal.jpg"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbRegistrarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Crearpersonal.jpg"))); // NOI18N
+        jbRegistrarEmpleado.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbRegistrarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                jbRegistrarEmpleadoMouseClicked(evt);
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarEmpleado.jpg"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbModificarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarEmpleado.jpg"))); // NOI18N
+        jbModificarEmpleado.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbModificarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                jbModificarEmpleadoMouseClicked(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarPersonal.jpg"))); // NOI18N
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbConsultarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarPersonal.jpg"))); // NOI18N
+        jbConsultarEmpleado.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbConsultarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                jbConsultarEmpleadoMouseClicked(evt);
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminarEmpleado.jpg"))); // NOI18N
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbEliminarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminarEmpleado.jpg"))); // NOI18N
+        jbEliminarEmpleado.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbEliminarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                jbEliminarEmpleadoMouseClicked(evt);
             }
         });
 
@@ -101,30 +108,27 @@ public class GerentePersonal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel6)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(jbEliminarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbConsultarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbModificarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbRegistrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel3)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel4)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel5)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jbRegistrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbModificarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbConsultarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbEliminarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel2.setOpaque(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -134,7 +138,7 @@ public class GerentePersonal extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 676, Short.MAX_VALUE)
+            .addGap(0, 679, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,34 +159,30 @@ public class GerentePersonal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void jbRegistrarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRegistrarEmpleadoMouseClicked
 
         PanelRegistrarEmpleado re = new PanelRegistrarEmpleado();
         re.setSize(1302,986);
-       
 
         jPanel2.removeAll();
         jPanel2.add(re);
         jPanel2.revalidate();
         jPanel2.repaint();
-        
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_jbRegistrarEmpleadoMouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        
+    private void jbModificarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbModificarEmpleadoMouseClicked
+
         PanelModificar me = new PanelModificar();
-        me.setSize(1009,686);
-      
-  
+        me.setSize(1009,686); 
 
         jPanel2.removeAll();
         jPanel2.add(me);
         jPanel2.revalidate();
         jPanel2.repaint();
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_jbModificarEmpleadoMouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        
+    private void jbConsultarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbConsultarEmpleadoMouseClicked
+
         PanelConsultar ce = new PanelConsultar();
         ce.setSize(1009,686);
         
@@ -190,33 +190,29 @@ public class GerentePersonal extends javax.swing.JFrame {
         jPanel2.add(ce);
         jPanel2.revalidate();
         jPanel2.repaint();
-                          
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_jbConsultarEmpleadoMouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        
+    private void jbEliminarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbEliminarEmpleadoMouseClicked
+
         PanelEliminar Eemp = new PanelEliminar();
         Eemp.setSize(1009,686);
      
-        
-        
         jPanel2.removeAll();
         jPanel2.add(Eemp);
         jPanel2.revalidate();
         jPanel2.repaint();
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_jbEliminarEmpleadoMouseClicked
 
    
     
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jbConsultarEmpleado;
+    private javax.swing.JButton jbEliminarEmpleado;
+    private javax.swing.JButton jbModificarEmpleado;
+    private javax.swing.JButton jbRegistrarEmpleado;
     // End of variables declaration//GEN-END:variables
 }
