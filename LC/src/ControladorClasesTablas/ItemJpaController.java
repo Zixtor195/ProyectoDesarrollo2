@@ -15,12 +15,14 @@ import ClasesTablas.ItemPedido;
 import ControladorClasesTablas.exceptions.IllegalOrphanException;
 import ControladorClasesTablas.exceptions.NonexistentEntityException;
 import ControladorClasesTablas.exceptions.PreexistingEntityException;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -214,5 +216,41 @@ public class ItemJpaController implements Serializable {
             em.close();
         }
     }
+    
+    public ArrayList AnosMeseros( ) throws SQLException {
+
+        EntityManagerFactory emf = Persistence
+                .createEntityManagerFactory("LCPU");
+        EntityManager em = emf.createEntityManager();
+
+        String jpql = "select extract(year from fecha_pedido) as fecha from pedido group by fecha;";
+        Query query = em.createNativeQuery(jpql);
+        List<Double> results = query.getResultList();
+        ArrayList<Integer> resulConsulta = new ArrayList<>();
+
+
+        if (results.size() == 0) {
+            resulConsulta = null;
+
+        } else {
+            
+       
+            for (Double result : results) {
+                
+                Integer x = result.intValue();
+                resulConsulta.add(x);
+                
+            }
+        }
+
+
+        emf.close();
+        return resulConsulta;
+    }
+    
+    
+    
+    
+    
     
 }

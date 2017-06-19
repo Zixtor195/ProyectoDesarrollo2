@@ -7,6 +7,7 @@ package GuiReportes;
 
 
 import GuiMenu.ContenedorFondo;
+import Reportes.IngresosDia;
 import Reportes.Reporte;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -135,7 +136,8 @@ public class GuiReporteCajero extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         
         try {
-            r.reporteIngresosDiarios();
+           IngresosDia d = new IngresosDia();
+           d.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(GuiReporteCajero.class.getName()).log(Level.SEVERE, null, ex);
         }

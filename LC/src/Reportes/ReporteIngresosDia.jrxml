@@ -75,10 +75,6 @@ where Mes = $P{Mes} and año = $P{Ano};]]>
 				<reportElement x="39" y="48" width="208" height="36" uuid="67beb4f4-124c-46d9-b50f-60d2f0f09976"/>
 				<text><![CDATA[Reportes]]></text>
 			</staticText>
-			<image>
-				<reportElement x="440" y="48" width="135" height="47" uuid="01c0ec8a-1c4f-48a1-8fe9-8117ff24f6a9"/>
-				<imageExpression><![CDATA["C:\\Users\\Moni\\Documents\\NetBeansProjects\\ProyectoDesarrollo2\\LC\\src\\imagenes\\logoLC.jpg"]]></imageExpression>
-			</image>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="17" y="0" width="100" height="20" uuid="599bb081-f84e-4de7-8b14-39bc0b062090"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>

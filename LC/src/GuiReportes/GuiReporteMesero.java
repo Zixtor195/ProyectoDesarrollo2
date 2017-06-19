@@ -7,6 +7,7 @@ package GuiReportes;
 
 
 import GuiMenu.ContenedorFondo;
+import Reportes.MeserosMes;
 import Reportes.Reporte;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -23,6 +24,7 @@ public class GuiReporteMesero extends javax.swing.JFrame {
         contenedorPrincipalFondo = new ContenedorFondo("src/imagenes/fondoInterfaces.jpg");
         super.setContentPane(contenedorPrincipalFondo);
         initComponents();
+        this.setLocationRelativeTo(null);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -42,6 +44,7 @@ public class GuiReporteMesero extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(7, 7));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setOpaque(false);
@@ -137,7 +140,8 @@ public class GuiReporteMesero extends javax.swing.JFrame {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
       
         try {
-            r.reporteMeseroMes();
+            MeserosMes m = new MeserosMes();
+            m.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(GuiReporteMesero.class.getName()).log(Level.SEVERE, null, ex);
         }
