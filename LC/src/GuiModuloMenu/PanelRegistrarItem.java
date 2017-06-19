@@ -171,25 +171,30 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
 
     private void jlRegistrarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlRegistrarItemMouseClicked
 
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
-        int idItem = Integer.parseInt(jtfID.getText());
-        String nombre = jtfNombre.getText();
-        int precio = Integer.parseInt(jtfPrecio.getText());
-        String categoria = jcbCategoria.getSelectedItem().toString();
-        String descripcion = jtaDescripcion.getText();
-        String Estado = "Activo";
-        String rut = ruta;
-        
-        Fachada fachada = new Fachada();
-        String res = fachada.CrearItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
-        
-        if (res.equals("1")||res.equals("2")){
-            jtfID.setText("");
-            jtfNombre.setText("");
-            jtfPrecio.setText("");
-            jcbCategoria.setSelectedIndex(0);
-            jtaDescripcion.setText("");
-            jlFoto.removeAll();
+        if(jtfID.getText().isEmpty() || jtfNombre.getText().isEmpty() || jtfPrecio.getText().isEmpty() || jcbCategoria.getSelectedItem().toString().equalsIgnoreCase("Selecciona")
+                || jtaDescripcion.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(null, "Campos mal ingresados");
+        }else{
+            int idItem = Integer.parseInt(jtfID.getText());
+            String nombre = jtfNombre.getText();
+            int precio = Integer.parseInt(jtfPrecio.getText());
+            String categoria = jcbCategoria.getSelectedItem().toString();
+            String descripcion = jtaDescripcion.getText();
+            String Estado = "Activo";
+            String rut = ruta;
+
+            Fachada fachada = new Fachada();
+            String res = fachada.CrearItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
+            //JOptionPane.showMessageDialog(null, "Item creado exitosamente");
+
+            if (res.equals("1")||res.equals("2")) {
+                jtfID.setText("");
+                jtfNombre.setText("");
+                jtfPrecio.setText("");
+                jcbCategoria.setSelectedIndex(0);
+                jtaDescripcion.setText("");
+                jlFoto.removeAll();
+            }
         }
     }//GEN-LAST:event_jlRegistrarItemMouseClicked
 

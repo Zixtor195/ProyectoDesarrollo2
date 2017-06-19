@@ -25,7 +25,8 @@ public class GuiReporteGerente extends javax.swing.JFrame {
         contenedorPrincipalFondo = new ContenedorFondo("src/imagenes/fondoInterfaces.jpg");
         super.setContentPane(contenedorPrincipalFondo);
         initComponents();
-        
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     Reporte r = new Reporte();

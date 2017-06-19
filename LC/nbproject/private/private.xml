@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/Reportes/IngresosDia.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/Reportes/Reporte.java</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/Moni/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/Reportes/MeserosMes.java</file>
+            <file>file:/C:/Users/Juan%20Felipe/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloMenu/Menu.java</file>
+            <file>file:/C:/Users/Juan%20Felipe/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloMenu/PanelEliminarItem.java</file>
+            <file>file:/C:/Users/Juan%20Felipe/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloMenu/PanelRegistrarItem.java</file>
+            <file>file:/C:/Users/Juan%20Felipe/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/GerentePersonal.java</file>
+            <file>file:/C:/Users/Juan%20Felipe/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelConsultar.java</file>
+            <file>file:/C:/Users/Juan%20Felipe/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloPersonal/PanelModificar.java</file>
+            <file>file:/C:/Users/Juan%20Felipe/Documents/NetBeansProjects/ProyectoDesarrollo2/LC/src/GuiModuloMenu/PanelRealizarModificacionItem.java</file>
         </group>
     </open-files>
 </project-private>

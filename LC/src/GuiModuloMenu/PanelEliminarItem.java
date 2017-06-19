@@ -155,6 +155,7 @@ public class PanelEliminarItem extends javax.swing.JPanel {
             Fachada fachada = new Fachada();
             fachada.EliminarItem(item, emf);
             this.jtEliminarItem.setModel(new defaultModelItem());
+            JOptionPane.showMessageDialog(null, "Item eliminado exitosamente");
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un item primero por favor");
         }

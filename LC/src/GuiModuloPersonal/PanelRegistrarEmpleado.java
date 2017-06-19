@@ -159,35 +159,18 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jLabel3.setText("Empleado");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
-        jButton3.setText("CargarFoto");
+        jButton3.setText("Cargar foto");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
             }
         });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
         add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 280, 30));
-
-        txtapellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtapellidosActionPerformed(evt);
-            }
-        });
         add(txtapellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 280, 30));
 
         cb_tipodocumento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cedula", "Cedula Extranjera", "Tarjeta de Identidad" }));
         add(cb_tipodocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 280, 30));
-
-        txtnoidentidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnoidentidadActionPerformed(evt);
-            }
-        });
         add(txtnoidentidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 280, 30));
 
         cb_cargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gerente", "Secretaria", "Cajero", "Mesero" }));
@@ -196,12 +179,6 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 560, 280, 32));
         add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 280, 32));
         add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 280, 32));
-
-        txtusuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtusuarioActionPerformed(evt);
-            }
-        });
         add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 600, 280, 32));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -213,7 +190,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, -1, -1));
 
         cb_dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
-        add(cb_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 219, 30));
+        add(cb_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 219, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Hora Inicio:");
@@ -224,15 +201,10 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 288, -1, -1));
 
         btn_borrar.setText("Borrar");
-        add(btn_borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(821, 367, -1, -1));
+        add(btn_borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 370, -1, -1));
 
         btn_agregar.setText("Agregar");
-        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_agregarActionPerformed(evt);
-            }
-        });
-        add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(629, 367, -1, -1));
+        add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 370, -1, -1));
 
         tablemodel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -277,85 +249,38 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablemodel);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 412, 482, 220));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 482, 220));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Usuario");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, -1, -1));
 
         btn_crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/button crear.png"))); // NOI18N
-        add(btn_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 640, 87, 33));
-
-        txtcontrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcontrasenaActionPerformed(evt);
-            }
-        });
+        add(btn_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 640, 87, 33));
         add(txtcontrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, 280, 33));
 
         spinner_hora_inicio.setModel(new javax.swing.SpinnerDateModel());
         spinner_hora_inicio.setEditor(new javax.swing.JSpinner.DateEditor(spinner_hora_inicio, "HH:mm"));
-        add(spinner_hora_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 90, 30));
+        add(spinner_hora_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, 90, 30));
 
         spinner_hora_fin.setModel(new javax.swing.SpinnerDateModel());
         spinner_hora_fin.setEditor(new javax.swing.JSpinner.DateEditor(spinner_hora_fin, "HH:mm"));
-        add(spinner_hora_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 90, 30));
+        add(spinner_hora_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 90, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtcontrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontrasenaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcontrasenaActionPerformed
-
-    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-
-    }//GEN-LAST:event_btn_agregarActionPerformed
-
-    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtusuarioActionPerformed
-
-    private void txtnoidentidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnoidentidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnoidentidadActionPerformed
-
-    private void txtapellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtapellidosActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-          JFileChooser myFileChooser = new JFileChooser();
-        myFileChooser.showOpenDialog(this);
-
-        ruta = myFileChooser.getSelectedFile().getAbsolutePath();
-        if(!(ruta.equalsIgnoreCase("")))
-        {  
-
-        ImageIcon fotografia = new ImageIcon(ruta);
-        foto1.setIcon(fotografia);
-        ruta = ruta.replace("\\", "/");
-        ruta = ruta.substring(67,ruta.length());
-        }
-        else 
-        {
-          ruta = null;
-        }    
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-           JFileChooser myFileChooser = new JFileChooser();
+        
+        JFileChooser myFileChooser = new JFileChooser();
         myFileChooser.showOpenDialog(this);
 
         ruta = myFileChooser.getSelectedFile().getAbsolutePath();
-        if(!(ruta.equalsIgnoreCase("")))
-        {  
+        if(!(ruta.equalsIgnoreCase(""))) {  
 
-        ImageIcon fotografia = new ImageIcon(ruta);
-        foto1.setIcon(fotografia);
-        ruta = ruta.replace("\\", "/");
-        ruta = ruta.substring(67,ruta.length());
-        }
-        else
-        {
+            ImageIcon fotografia = new ImageIcon(ruta);
+            foto1.setIcon(fotografia);
+            ruta = ruta.replace("\\", "/");
+            ruta = ruta.substring(67,ruta.length());
+        } else {
             ruta = null;
         }    
     }//GEN-LAST:event_jButton3MouseClicked
