@@ -94,6 +94,10 @@ public class PanelPagoMixto extends javax.swing.JPanel {
         jTextField11 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
 
+        setOpaque(false);
+
+        jPanel1.setOpaque(false);
+
         jlDatosVenta.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlDatosVenta.setText("Datos de la Venta");
 
@@ -366,6 +370,8 @@ public class PanelPagoMixto extends javax.swing.JPanel {
                 .addComponent(jbPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
         );
+
+        jPanel2.setOpaque(false);
 
         jlDatosVenta1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlDatosVenta1.setText("Datos de la Venta");

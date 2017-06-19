@@ -9,6 +9,7 @@ import ClasesTablas.Factura;
 import ClasesTablas.Pedido;
 import ControladorClasesTablas.FacturaJpaController;
 import ControladorClasesTablas.PedidoJpaController;
+import GuiMenu.ContenedorFondo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -24,10 +25,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FacturasPagos extends javax.swing.JFrame {
 
+    ContenedorFondo contenedorPrincipalFondo;
     /**
      * Creates new form Personal
      */
     public FacturasPagos() {
+        // Asignar el Contenedor principal de la Clase externa para usar un fondo
+        contenedorPrincipalFondo = new ContenedorFondo("src/imagenes/fondoInterfaces.jpg");
+        super.setContentPane(contenedorPrincipalFondo);
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -43,9 +48,9 @@ public class FacturasPagos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jlRegistrarFactura = new javax.swing.JLabel();
-        jlConsultarFactura = new javax.swing.JLabel();
-        jlPagos = new javax.swing.JLabel();
+        jbRegistrarFactura = new javax.swing.JButton();
+        jbConsultarFactura = new javax.swing.JButton();
+        jbPagos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,25 +58,29 @@ public class FacturasPagos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setOpaque(false);
 
-        jlRegistrarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CrearFactura.jpg"))); // NOI18N
-        jlRegistrarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbRegistrarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CrearFactura.jpg"))); // NOI18N
+        jbRegistrarFactura.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbRegistrarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlRegistrarFacturaMouseClicked(evt);
+                jbRegistrarFacturaMouseClicked(evt);
             }
         });
 
-        jlConsultarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarFactura.jpg"))); // NOI18N
-        jlConsultarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbConsultarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarFactura.jpg"))); // NOI18N
+        jbConsultarFactura.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbConsultarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlConsultarFacturaMouseClicked(evt);
+                jbConsultarFacturaMouseClicked(evt);
             }
         });
 
-        jlPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pagos.jpg"))); // NOI18N
-        jlPagos.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pagos.jpg"))); // NOI18N
+        jbPagos.setPreferredSize(new java.awt.Dimension(150, 136));
+        jbPagos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlPagosMouseClicked(evt);
+                jbPagosMouseClicked(evt);
             }
         });
 
@@ -80,37 +89,38 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlPagos)
-                    .addComponent(jlRegistrarFactura)
-                    .addComponent(jlConsultarFactura))
-                .addContainerGap(60, Short.MAX_VALUE))
+                    .addComponent(jbPagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbConsultarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbRegistrarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jlRegistrarFactura)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
-                .addComponent(jlConsultarFactura)
-                .addGap(123, 123, 123)
-                .addComponent(jlPagos)
-                .addGap(88, 88, 88))
+                .addGap(120, 120, 120)
+                .addComponent(jbRegistrarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jbConsultarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jbPagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setOpaque(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 968, Short.MAX_VALUE)
+            .addGap(0, 1013, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 845, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,7 +129,7 @@ public class FacturasPagos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -131,7 +141,7 @@ public class FacturasPagos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jlRegistrarFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlRegistrarFacturaMouseClicked
+    private void jbRegistrarFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRegistrarFacturaMouseClicked
         
         FacturasPedidoFacturar rm = new FacturasPedidoFacturar();
         rm.setSize(752, 686);
@@ -165,10 +175,9 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel2.revalidate();
         jPanel2.repaint();
         jPanel2.add(rm);
-    
-    }//GEN-LAST:event_jlRegistrarFacturaMouseClicked
+    }//GEN-LAST:event_jbRegistrarFacturaMouseClicked
 
-    private void jlConsultarFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarFacturaMouseClicked
+    private void jbConsultarFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbConsultarFacturaMouseClicked
         
         FacturasConsultar fc = new FacturasConsultar();
         fc.setSize(752, 686);
@@ -201,9 +210,10 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel2.revalidate();
         jPanel2.repaint();
         jPanel2.add(fc);
-    }//GEN-LAST:event_jlConsultarFacturaMouseClicked
+    }//GEN-LAST:event_jbConsultarFacturaMouseClicked
 
-    private void jlPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlPagosMouseClicked
+    private void jbPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPagosMouseClicked
+        
         FacturasAPagar fm = new FacturasAPagar();
         fm.setSize(752, 686);
         
@@ -235,15 +245,15 @@ public class FacturasPagos extends javax.swing.JFrame {
         jPanel2.revalidate();
         jPanel2.repaint();
         jPanel2.add(fm);
-    }//GEN-LAST:event_jlPagosMouseClicked
+    }//GEN-LAST:event_jbPagosMouseClicked
 
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel jlConsultarFactura;
-    private javax.swing.JLabel jlPagos;
-    private javax.swing.JLabel jlRegistrarFactura;
+    private javax.swing.JButton jbConsultarFactura;
+    private javax.swing.JButton jbPagos;
+    private javax.swing.JButton jbRegistrarFactura;
     // End of variables declaration//GEN-END:variables
 }
