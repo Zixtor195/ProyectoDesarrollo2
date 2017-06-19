@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -184,42 +185,43 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         myFileChooser.showOpenDialog(this);
 
         ruta = myFileChooser.getSelectedFile().getAbsolutePath();
-        if(!(ruta == null))
-        {  
+            if(!(ruta == null)) {
 
-        ImageIcon fotografia = new ImageIcon(ruta);
-        jlFoto.setIcon(fotografia);
-        ruta = ruta.replace("\\", "/");
-        ruta = ruta.substring(67,ruta.length());
+            ImageIcon fotografia = new ImageIcon(ruta);
+            jlFoto.setIcon(fotografia);
+            ruta = ruta.replace("\\", "/");
+            ruta = ruta.substring(67,ruta.length());
+        } else {
+            ruta = null;
         }
-        else 
-        {
-          ruta = null;
-        } 
-
     }//GEN-LAST:event_jbCambiarFotoMouseClicked
 
     private void jlModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModificarMouseClicked
          
-        int idItem = Integer.parseInt(jtfID.getText());
-        String nombre = jtfNombre.getText();
-        int precio = Integer.parseInt(jtfPrecio.getText());
-        String categoria = jcbCategoria.getSelectedItem().toString();
-        String descripcion = jtaDescripcion1.getText();
-        String Estado = "Activo";
-        String rut = ruta;   
-        
-        Fachada fachada = new Fachada();
-        String res = fachada.ModificarItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
-        
-        // res = "1" significa que se logro crear el item exitosamente
-        if (res.equals("1")){
-        jtfID.setText("");
-        jtfNombre.setText("");
-        jtfPrecio.setText("");
-        jcbCategoria.setSelectedIndex(0);
-        jtaDescripcion1.setText("");
-        jlFoto.setIcon(null);
+        if(jtfNombre.getText().isEmpty() || jtfPrecio.getText().isEmpty() || jcbCategoria.getSelectedItem().toString().equalsIgnoreCase("Selecciona") 
+                || jtaDescripcion1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campos mal ingresados");
+        }else{
+            int idItem = Integer.parseInt(jtfID.getText());
+            String nombre = jtfNombre.getText();
+            int precio = Integer.parseInt(jtfPrecio.getText());
+            String categoria = jcbCategoria.getSelectedItem().toString();
+            String descripcion = jtaDescripcion1.getText();
+            String Estado = "Activo";
+            String rut = ruta;   
+
+            Fachada fachada = new Fachada();
+            String res = fachada.ModificarItem(idItem, nombre, precio, categoria, descripcion, Estado, rut);
+            
+            // res = "1" significa que se logro crear el item exitosamente
+            if (res.equals("1")){
+                jtfID.setText("");
+                jtfNombre.setText("");
+                jtfPrecio.setText("");
+                jcbCategoria.setSelectedIndex(0);
+                jtaDescripcion1.setText("");
+                jlFoto.setIcon(null);
+            }
         }
     }//GEN-LAST:event_jlModificarMouseClicked
 

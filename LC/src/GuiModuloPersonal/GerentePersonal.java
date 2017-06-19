@@ -203,9 +203,6 @@ public class GerentePersonal extends javax.swing.JFrame {
         jPanel2.repaint();
     }//GEN-LAST:event_jbEliminarEmpleadoMouseClicked
 
-   
-    
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
