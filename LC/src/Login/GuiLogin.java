@@ -167,6 +167,7 @@ public class GuiLogin extends javax.swing.JFrame {
             JPanel panel = factoria.createProduct((String) log.get(2), (Integer)log.get(0));
             //JPanel panel = factoria.createProduct("gerente", 333);
             //JPanel panel = factoria.createProduct("cajero", 222);
+            //JPanel panel = factoria.createProduct("mesero", 111);
             panel.setSize(950,700);
             gp.setVisible(true);
             gp.jpPrincipal.removeAll();

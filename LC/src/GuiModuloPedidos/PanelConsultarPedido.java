@@ -50,7 +50,7 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jlConsultar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -113,10 +113,10 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.png"))); // NOI18N
+        jlConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jlConsultarMouseClicked(evt);
             }
         });
 
@@ -131,7 +131,7 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(390, 390, 390)
-                        .addComponent(jLabel1)))
+                        .addComponent(jlConsultar)))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -140,12 +140,12 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
                 .addGap(80, 80, 80)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addComponent(jlConsultar)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void jlConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarMouseClicked
         
         if (this.table.getSelectedRow() != -1) {
             pedido = listapedido.get(table.getSelectedRow());
@@ -160,7 +160,7 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un pedido primero, por favor");
         }
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_jlConsultarMouseClicked
 
     public void removerMeseros(int id, String cargo) {
         if(cargo.equalsIgnoreCase("Mesero") || cargo.equalsIgnoreCase("mesero")) {
@@ -173,8 +173,8 @@ public class PanelConsultarPedido extends javax.swing.JPanel {
     }
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel jLabel1;
     public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JLabel jlConsultar;
     public javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 

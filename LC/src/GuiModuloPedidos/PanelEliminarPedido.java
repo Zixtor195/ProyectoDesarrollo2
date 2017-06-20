@@ -46,7 +46,7 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
         initComponents();
         
         table.setModel(new tableModel());
-        lbleliminar.addMouseListener(new Eliminar());
+        jlEliminar.addMouseListener(new Eliminar());
     }
 
     public void removerMeseros(int id, String cargo) {
@@ -70,7 +70,7 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        lbleliminar = new javax.swing.JLabel();
+        jlEliminar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -133,8 +133,7 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table);
 
-        lbleliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botoneliminar.jpg"))); // NOI18N
-        lbleliminar.setPreferredSize(new java.awt.Dimension(115, 38));
+        jlEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonEliminar.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -143,10 +142,10 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(130, 130, 130)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(146, 146, 146))
+                .addContainerGap(146, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(390, 390, 390)
-                .addComponent(lbleliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlEliminar))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,14 +153,14 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
                 .addGap(80, 80, 80)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lbleliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addComponent(jlEliminar)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JLabel lbleliminar;
+    public javax.swing.JLabel jlEliminar;
     public javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 
