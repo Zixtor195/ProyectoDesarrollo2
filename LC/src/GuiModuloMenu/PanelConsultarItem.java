@@ -104,7 +104,7 @@ public class PanelConsultarItem extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jtConsultarItem);
 
-        jlConsultarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
+        jlConsultarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.png"))); // NOI18N
         jlConsultarItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlConsultarItemMouseClicked(evt);
@@ -118,19 +118,19 @@ public class PanelConsultarItem extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addGap(90, 90, 90)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
+                        .addGap(340, 340, 340)
                         .addComponent(jlConsultarItem)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jlConsultarItem)
                 .addGap(26, 26, 26))
         );
@@ -140,30 +140,29 @@ public class PanelConsultarItem extends javax.swing.JPanel {
         
         if(this.jtConsultarItem.getSelectedRow() != -1){
         
-        this.removeAll();
-        this.revalidate();
-        this.repaint();
-        PanelResultadosConsultaItem rc = new PanelResultadosConsultaItem();
-        
-        int idItem = Integer.parseInt(String.valueOf(jtConsultarItem.getValueAt(jtConsultarItem.getSelectedRow(), 0)));       
-        
-        Fachada fachada = new Fachada();
-        Item item = fachada.ConsultarItem(idItem);
-        
-        if(!(item.getFoto() == null))
-        {    
-        rc.jlFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getFoto())));
-        }
- 
-        rc.jtfID.setText(item.getIdItem().toString());
-        rc.jtfNombre.setText(item.getNombre());
-        rc.jtfPrecio.setText(Integer.toString(item.getPrecio()));
-        rc.jcbCategoria.setSelectedItem(item.getCategoria());
-        rc.jtaDescripcion.setText(item.getDescripcion());
-        
-        rc.setSize(752, 686);
-        this.add(rc);
-        
+            this.removeAll();
+            this.revalidate();
+            this.repaint();
+            PanelResultadosConsultaItem rc = new PanelResultadosConsultaItem();
+
+            int idItem = Integer.parseInt(String.valueOf(jtConsultarItem.getValueAt(jtConsultarItem.getSelectedRow(), 0)));       
+
+            Fachada fachada = new Fachada();
+            Item item = fachada.ConsultarItem(idItem);
+
+            if(!(item.getFoto() == null)) {
+            //rc.jlFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getFoto())));
+                rc.jlFoto.setIcon(new javax.swing.ImageIcon(item.getFoto()));
+            }
+
+            rc.jtfID.setText(item.getIdItem().toString());
+            rc.jtfNombre.setText(item.getNombre());
+            rc.jtfPrecio.setText(Integer.toString(item.getPrecio()));
+            rc.jcbCategoria.setSelectedItem(item.getCategoria());
+            rc.jtaDescripcion.setText(item.getDescripcion());
+
+            rc.setSize(752, 686);
+            this.add(rc);
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un item primero por favor");
         }

@@ -12,6 +12,8 @@ import ControladorClasesTablas.EmpleadoJpaController;
 import ControladorClasesTablas.TurnosSemanalesJpaController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
@@ -44,14 +46,13 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
     
     public PanelRealizarModificacion(Empleado empleado) {
         initComponents();
-        
         this.empleado = empleado;
         cargardatos();
-        btn_agregar.addActionListener(new agregar());
-        btn_borrar.addActionListener(new quitar());
-        btnmodificar.addActionListener(new actualizar());
+        jbAgregar.addActionListener(new agregar());
+        jbBorrar.addActionListener(new quitar());
+        //jbModificar.addActionListener(new actualizar());
+        jlModificar.addMouseListener(new actualizar());
         table.setModel(new tabelModelHorario());
-        
     }
 
     /**
@@ -65,9 +66,9 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        foto1 = new javax.swing.JLabel();
+        jlFoto = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jbCargarFoto = new javax.swing.JButton();
         txtnombre = new javax.swing.JTextField();
         txtapellidos = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
@@ -98,11 +99,11 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         spinner_hora_inicio = new javax.swing.JSpinner();
         spinner_hora_fin = new javax.swing.JSpinner();
-        btn_borrar = new javax.swing.JButton();
-        btn_agregar = new javax.swing.JButton();
+        jbBorrar = new javax.swing.JButton();
+        jbAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        btnmodificar = new javax.swing.JButton();
+        jlModificar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setOpaque(false);
@@ -112,27 +113,16 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Empleado");
 
-        foto1.setText("               Foto");
-        foto1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jlFoto.setText("               Foto");
+        jlFoto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Foto:");
 
-        jButton3.setText("Cargar foto");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbCargarFoto.setText("Cargar foto");
+        jbCargarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        txtapellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtapellidosActionPerformed(evt);
+                jbCargarFotoMouseClicked(evt);
             }
         });
 
@@ -145,7 +135,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("Cargo:");
 
-        cb_cargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gerente", "Secretaria", "Cajero", "Mesero" }));
+        cb_cargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gerente", "Cajero", "Mesero" }));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Email:");
@@ -155,12 +145,6 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel19.setText("Tel:");
-
-        txtnodocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnodocumentoActionPerformed(evt);
-            }
-        });
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setText("No. Identificacion:");
@@ -173,18 +157,6 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Contraseña:");
-
-        txtpass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpassActionPerformed(evt);
-            }
-        });
-
-        txtusuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtusuarioActionPerformed(evt);
-            }
-        });
 
         cb_tipodocumento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cedula", "Cedula Extranjera", "Tarjeta de Identidad" }));
 
@@ -250,9 +222,9 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                                 .addGap(104, 104, 104)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(31, 31, 31)
-                                        .addComponent(jButton3))
+                                        .addComponent(jbCargarFoto))
                                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -270,8 +242,8 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3))))
+                            .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbCargarFoto))))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -350,14 +322,9 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         spinner_hora_fin.setModel(new javax.swing.SpinnerDateModel());
         spinner_hora_fin.setEditor(new javax.swing.JSpinner.DateEditor(spinner_hora_fin, "HH:mm"));
 
-        btn_borrar.setText("Borrar");
+        jbBorrar.setText("Borrar");
 
-        btn_agregar.setText("Agregar");
-        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_agregarActionPerformed(evt);
-            }
-        });
+        jbAgregar.setText("Agregar");
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -402,7 +369,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table);
 
-        btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonmodificar.jpg"))); // NOI18N
+        jlModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonModificar.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -425,21 +392,21 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                         .addGap(130, 130, 130)
                         .addComponent(jLabel1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addComponent(btnmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
-                        .addComponent(btn_agregar)
+                        .addComponent(jbAgregar)
                         .addGap(85, 85, 85)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
                                 .addComponent(spinner_hora_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btn_borrar))))
+                            .addComponent(jbBorrar)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(jlModificar)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -459,12 +426,12 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                     .addComponent(spinner_hora_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(77, 77, 77)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_borrar)
-                    .addComponent(btn_agregar))
+                    .addComponent(jbBorrar)
+                    .addComponent(jbAgregar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jlModificar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -489,57 +456,26 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseClicked
-
-    private void txtapellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtapellidosActionPerformed
-
-    private void txtnodocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnodocumentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnodocumentoActionPerformed
-
-    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtusuarioActionPerformed
-
-    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-
-    }//GEN-LAST:event_btn_agregarActionPerformed
-
-    private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpassActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         JFileChooser myFileChooser = new JFileChooser();
+    private void jbCargarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbCargarFotoMouseClicked
+        JFileChooser myFileChooser = new JFileChooser();
         myFileChooser.showOpenDialog(this);
 
         ruta = myFileChooser.getSelectedFile().getAbsolutePath();
-        if(!(ruta.equalsIgnoreCase("")))
-        {  
-
-        ImageIcon fotografia = new ImageIcon(ruta);
-        foto1.setIcon(fotografia);
-        ruta = ruta.replace("\\", "/");
-        ruta = ruta.substring(67,ruta.length());
-        System.out.print(ruta + "holita");
+        
+        //if(!(ruta.equalsIgnoreCase(""))) {
+        if(!(ruta == null)) {
+            ImageIcon fotografia = new ImageIcon(ruta);
+            jlFoto.setIcon(fotografia);
+            //ruta = ruta.replace("\\", "/");
+            //ruta = ruta.substring(67,ruta.length());
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jbCargarFotoMouseClicked
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_agregar;
-    private javax.swing.JButton btn_borrar;
-    private javax.swing.JButton btnmodificar;
     private javax.swing.JComboBox cb_cargo;
     private javax.swing.JComboBox cb_dia;
     private javax.swing.JComboBox cb_tipodocumento;
-    private javax.swing.JLabel foto1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -560,6 +496,11 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAgregar;
+    private javax.swing.JButton jbBorrar;
+    private javax.swing.JButton jbCargarFoto;
+    private javax.swing.JLabel jlFoto;
+    private javax.swing.JLabel jlModificar;
     private javax.swing.JSpinner spinner_hora_fin;
     private javax.swing.JSpinner spinner_hora_inicio;
     public javax.swing.JTable table;
@@ -578,8 +519,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
     private class agregar implements ActionListener{
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            
+        public void actionPerformed(ActionEvent ae) {
             EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
             TurnosSemanalesJpaController tsc = new TurnosSemanalesJpaController(emf);
             TurnosSemanales turno = new TurnosSemanales(); 
@@ -612,8 +552,7 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
             }else{
                  JOptionPane.showMessageDialog(null,"Por favor, complete los campos requeridos");
             }
-            
-        } 
+        }
     }
     
     private class quitar implements ActionListener{
@@ -652,10 +591,10 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         } 
     }
     
-    private class actualizar implements ActionListener{
+    private class actualizar implements MouseListener{
+        
         @Override
-        public void actionPerformed(ActionEvent e) {
-            
+        public void mouseClicked(MouseEvent me) {
             EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
            
             if(!txtnombre.getText().trim().equals("") && !txtapellidos.getText().trim().equals("") && !txtnodocumento.getText().trim().equals("") 
@@ -684,15 +623,34 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
                     ejc.edit(empleado);
                     
                     JOptionPane.showMessageDialog(null,"El empleado ha sido modificado");
-                    
+                    limpiarCampos();                    
                 } catch (Exception ex) {
                     Logger.getLogger(PanelRegistrarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else{
                  JOptionPane.showMessageDialog(null,"Por favor, complete los campos requeridos");
             }
-            
-        } 
+        }
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent me) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void mouseExited(MouseEvent me) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
     }
     
     private void cargardatos(){
@@ -709,9 +667,10 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         cb_tipodocumento.setSelectedItem(empleado.getTipoDocumento());
         cb_cargo.setSelectedItem(empleado.getCargo()); 
         txtnodocumento.setEnabled(false);
-        if(!(empleado.getArchivo() == null))
-        {    
-        foto1.setIcon(new javax.swing.ImageIcon(getClass().getResource(empleado.getArchivo().toString())));
+        
+        if(!(empleado.getArchivo() == null)) {
+            //jlFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(empleado.getArchivo().toString())));
+            jlFoto.setIcon(new javax.swing.ImageIcon(empleado.getArchivo()));
         }
     }
     
@@ -721,7 +680,6 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         TurnosSemanalesJpaController tsj = new TurnosSemanalesJpaController(emf);
         List<TurnosSemanales> listaturnos = tsj.findTurnosSemanalesEntities();
        
-        
         for (TurnosSemanales listaturno1 : listaturnos) {
             
             if(listaturno1.getIdEmpleado().getIdEmpleado().equals(empleado.getIdEmpleado())){
@@ -795,5 +753,11 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         }
     }
     
-
+    public void limpiarCampos(){
+        txtnombre.setText("");      txtapellidos.setText("");
+        txtnodocumento.setText(""); txtemail.setText("");
+        txtdireccion.setText("");   txttel.setText("");
+        txtcelular.setText("");     txtusuario.setText("");
+        txtpass.setText("");
+    }
 }

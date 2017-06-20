@@ -68,6 +68,7 @@ public class MenuPane extends javax.swing.JFrame {
         jlImagesMenus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jpOpciones.setOpaque(false);
 

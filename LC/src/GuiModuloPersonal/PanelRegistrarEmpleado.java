@@ -12,6 +12,8 @@ import ControladorClasesTablas.EmpleadoJpaController;
 import ControladorClasesTablas.TurnosSemanalesJpaController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
@@ -46,12 +48,11 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
     
     public PanelRegistrarEmpleado() {
         initComponents();
-        btn_agregar.addActionListener(new agregar());
-        btn_borrar.addActionListener(new quitar());
-        btn_crear.addActionListener(new actualizar());
-        JScrollPane jScrollPane = new JScrollPane(this);
-      
-                
+        jbAgregar.addActionListener(new agregar());
+        jbBorrar.addActionListener(new quitar());
+        //jbCrear.addActionListener(new actualizar());
+        jlCrearEmpleado.addMouseListener(new actualizar());
+        JScrollPane jScrollPane = new JScrollPane(this);        
     }
 
     /**
@@ -74,9 +75,9 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jLabel20 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        foto1 = new javax.swing.JLabel();
+        jlFoto = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jbCargarFoto = new javax.swing.JButton();
         txtnombre = new javax.swing.JTextField();
         txtapellidos = new javax.swing.JTextField();
         cb_tipodocumento = new javax.swing.JComboBox();
@@ -92,15 +93,15 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         cb_dia = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btn_borrar = new javax.swing.JButton();
-        btn_agregar = new javax.swing.JButton();
+        jbBorrar = new javax.swing.JButton();
+        jbAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablemodel = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        btn_crear = new javax.swing.JButton();
         txtcontrasena = new javax.swing.JPasswordField();
         spinner_hora_inicio = new javax.swing.JSpinner();
         spinner_hora_fin = new javax.swing.JSpinner();
+        jlCrearEmpleado = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -151,21 +152,21 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jLabel21.setText("Email:");
         add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
-        foto1.setText("               Foto");
-        foto1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        add(foto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 111, 110));
+        jlFoto.setText("               Foto");
+        jlFoto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        add(jlFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 111, 110));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Empleado");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
-        jButton3.setText("Cargar foto");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbCargarFoto.setText("Cargar foto");
+        jbCargarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                jbCargarFotoMouseClicked(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
+        add(jbCargarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
         add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 280, 30));
         add(txtapellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 280, 30));
 
@@ -173,7 +174,7 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         add(cb_tipodocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 280, 30));
         add(txtnoidentidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 280, 30));
 
-        cb_cargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gerente", "Secretaria", "Cajero", "Mesero" }));
+        cb_cargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gerente", "Cajero", "Mesero" }));
         add(cb_cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 280, 33));
         add(txttel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 520, 280, 32));
         add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 560, 280, 32));
@@ -200,11 +201,11 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jLabel5.setText("Hora Fin:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 288, -1, -1));
 
-        btn_borrar.setText("Borrar");
-        add(btn_borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 370, -1, -1));
+        jbBorrar.setText("Borrar");
+        add(jbBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 370, -1, -1));
 
-        btn_agregar.setText("Agregar");
-        add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 370, -1, -1));
+        jbAgregar.setText("Agregar");
+        add(jbAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 370, -1, -1));
 
         tablemodel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -254,9 +255,6 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Usuario");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, -1, -1));
-
-        btn_crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/button crear.png"))); // NOI18N
-        add(btn_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 640, 87, 33));
         add(txtcontrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, 280, 33));
 
         spinner_hora_inicio.setModel(new javax.swing.SpinnerDateModel());
@@ -266,36 +264,33 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         spinner_hora_fin.setModel(new javax.swing.SpinnerDateModel());
         spinner_hora_fin.setEditor(new javax.swing.JSpinner.DateEditor(spinner_hora_fin, "HH:mm"));
         add(spinner_hora_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 90, 30));
+
+        jlCrearEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonCrear.png"))); // NOI18N
+        add(jlCrearEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 640, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void jbCargarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbCargarFotoMouseClicked
         
         JFileChooser myFileChooser = new JFileChooser();
         myFileChooser.showOpenDialog(this);
 
         ruta = myFileChooser.getSelectedFile().getAbsolutePath();
-        if(!(ruta.equalsIgnoreCase(""))) {  
-
+        //if(!(ruta.equalsIgnoreCase(""))) {
+        if(!(ruta == null)) {
             ImageIcon fotografia = new ImageIcon(ruta);
-            foto1.setIcon(fotografia);
-            ruta = ruta.replace("\\", "/");
-            ruta = ruta.substring(67,ruta.length());
+            jlFoto.setIcon(fotografia);
+            //ruta = ruta.replace("\\", "/");
+            //ruta = ruta.substring(67,ruta.length());
         } else {
             ruta = null;
-        }    
-    }//GEN-LAST:event_jButton3MouseClicked
-
-    
+        }
+    }//GEN-LAST:event_jbCargarFotoMouseClicked
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_agregar;
-    private javax.swing.JButton btn_borrar;
-    private javax.swing.JButton btn_crear;
     private javax.swing.JComboBox cb_cargo;
     private javax.swing.JComboBox cb_dia;
     private javax.swing.JComboBox cb_tipodocumento;
-    private javax.swing.JLabel foto1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -314,6 +309,11 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAgregar;
+    private javax.swing.JButton jbBorrar;
+    private javax.swing.JButton jbCargarFoto;
+    private javax.swing.JLabel jlCrearEmpleado;
+    private javax.swing.JLabel jlFoto;
     private javax.swing.JSpinner spinner_hora_fin;
     private javax.swing.JSpinner spinner_hora_inicio;
     public javax.swing.JTable tablemodel;
@@ -410,11 +410,10 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         } 
     }
     
-    private class actualizar implements ActionListener{
+    private class actualizar implements MouseListener{
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            
+        public void mouseClicked(MouseEvent me) {
             EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
            
             if(!txtnombre.getText().trim().equals("") && !txtapellidos.getText().trim().equals("") && !txtnoidentidad.getText().trim().equals("") 
@@ -427,45 +426,47 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
                     //String tipoDocumento,String usuario, String contrase, String estado
                     
                     Empleado empleado1 = ejc.findEmpleado(empleado.getIdEmpleado());
+                    
                     if(empleado1!=null){
+
+                        empleado.setIdEmpleado(Integer.parseInt(txtnoidentidad.getText()));
+                        empleado.setNombres(txtnombre.getText());
+                        empleado.setApellidos(txtapellidos.getText());
+                        empleado.setCargo(cb_cargo.getSelectedItem().toString());
+                        empleado.setTelFijo(txttel.getText());
+                        empleado.setTelCel(txtcelular.getText());
+                        empleado.setEmail(txtemail.getText());
+                        empleado.setDireccion(txtdireccion.getText());
+                        empleado.setTipoDocumento(cb_tipodocumento.getSelectedItem().toString());
+                        empleado.setUsuario(txtusuario.getText());
+                        empleado.setContrase(txtcontrasena.getText());
+                        empleado.setEstado("Activo");
+                        empleado.setArchivo(ruta);
+
+                        ejc.edit(empleado);
                         
-                    
-                    empleado.setIdEmpleado(Integer.parseInt(txtnoidentidad.getText()));
-                    empleado.setNombres(txtnombre.getText());
-                    empleado.setApellidos(txtapellidos.getText());
-                    empleado.setCargo(cb_cargo.getSelectedItem().toString());
-                    empleado.setTelFijo(txttel.getText());
-                    empleado.setTelCel(txtcelular.getText());
-                    empleado.setEmail(txtemail.getText());
-                    empleado.setDireccion(txtdireccion.getText());
-                    empleado.setTipoDocumento(cb_tipodocumento.getSelectedItem().toString());
-                    empleado.setUsuario(txtusuario.getText());
-                    empleado.setContrase(txtcontrasena.getText());
-                    empleado.setEstado("Activo");
-                    empleado.setArchivo(ruta);
-                    
-                    ejc.edit(empleado);
-                    
-                    JOptionPane.showMessageDialog(null,"El empleado ha sido creado");
+                        JOptionPane.showMessageDialog(null,"El empleado ha sido creado");
+                        limpiarCampos();
                     }else{
                         
-                    empleado.setIdEmpleado(Integer.parseInt(txtnoidentidad.getText()));
-                    empleado.setNombres(txtnombre.getText());
-                    empleado.setApellidos(txtapellidos.getText());
-                    empleado.setCargo(cb_cargo.getSelectedItem().toString());
-                    empleado.setTelFijo(txttel.getText());
-                    empleado.setTelCel(txtcelular.getText());
-                    empleado.setEmail(txtemail.getText());
-                    empleado.setDireccion(txtdireccion.getText());
-                    empleado.setTipoDocumento(cb_tipodocumento.getSelectedItem().toString());
-                    empleado.setUsuario(txtusuario.getText());
-                    empleado.setContrase(txtcontrasena.getText());
-                    empleado.setEstado("Activo");
-                    empleado.setArchivo(ruta);
-                    
-                    ejc.create(empleado);
-                    
-                    JOptionPane.showMessageDialog(null,"El empleado ha sido creado");
+                        empleado.setIdEmpleado(Integer.parseInt(txtnoidentidad.getText()));
+                        empleado.setNombres(txtnombre.getText());
+                        empleado.setApellidos(txtapellidos.getText());
+                        empleado.setCargo(cb_cargo.getSelectedItem().toString());
+                        empleado.setTelFijo(txttel.getText());
+                        empleado.setTelCel(txtcelular.getText());
+                        empleado.setEmail(txtemail.getText());
+                        empleado.setDireccion(txtdireccion.getText());
+                        empleado.setTipoDocumento(cb_tipodocumento.getSelectedItem().toString());
+                        empleado.setUsuario(txtusuario.getText());
+                        empleado.setContrase(txtcontrasena.getText());
+                        empleado.setEstado("Activo");
+                        empleado.setArchivo(ruta);
+
+                        ejc.create(empleado);
+
+                        JOptionPane.showMessageDialog(null,"El empleado ha sido creado");
+                        limpiarCampos();
                     }
                     
                 } catch (Exception ex) {
@@ -474,8 +475,27 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
             }else{
                  JOptionPane.showMessageDialog(null,"Por favor, complete los campos requeridos");
             }
-            
-        } 
+        }
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent me) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void mouseExited(MouseEvent me) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
     }
     
     private int getIdTurno(){
@@ -570,4 +590,11 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         }
     }
     
+    public void limpiarCampos(){
+        txtnombre.setText("");      txtapellidos.setText("");
+        txtnoidentidad.setText(""); txtemail.setText("");
+        txtdireccion.setText("");   txttel.setText("");
+        txtcelular.setText("");     txtusuario.setText("");
+        txtcontrasena.setText("");
+    }
 }

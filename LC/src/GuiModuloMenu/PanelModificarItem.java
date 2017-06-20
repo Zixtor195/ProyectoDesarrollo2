@@ -119,19 +119,19 @@ public class PanelModificarItem extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addGap(90, 90, 90)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
+                        .addGap(340, 340, 340)
                         .addComponent(jlContinuarModificarItem)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jlContinuarModificarItem)
                 .addGap(26, 26, 26))
         );
@@ -141,35 +141,35 @@ public class PanelModificarItem extends javax.swing.JPanel {
         
         if(this.jtTablaModificarItem.getSelectedRow() != -1){
         
-        this.removeAll();
-        this.revalidate();
-        this.repaint();
-        
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
-        ItemJpaController dao = new ItemJpaController(emf);
-        
-        PanelRealizarModificacionItem rm = new PanelRealizarModificacionItem();
-        
-        int idItem = Integer.parseInt(String.valueOf(jtTablaModificarItem.getValueAt(jtTablaModificarItem.getSelectedRow(), 0)));
-        
-        Item item = dao.findItem(idItem);
-        if(!(item.getFoto() == null))
-        {    
-        rm.jlFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getFoto())));
-        }
-        else
-        {
-         rm.jlFoto.setIcon(null);
-        }    
-        rm.jtfID.setText(item.getIdItem().toString());
-        rm.jtfNombre.setText(item.getNombre());
-        rm.jtfPrecio.setText(Integer.toString(item.getPrecio()));
-        rm.jcbCategoria.setSelectedItem(item.getCategoria());
-        rm.jtaDescripcion1.setText(item.getDescripcion());
-        
-        rm.setSize(752, 686);
-        this.add(rm);
-        emf.close();
+            this.removeAll();
+            this.revalidate();
+            this.repaint();
+
+            //EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU"); // LCPU es el nombre de nuestra unidad de persistencia
+            ItemJpaController dao = new ItemJpaController(emf);
+
+            PanelRealizarModificacionItem rm = new PanelRealizarModificacionItem();
+
+            int idItem = Integer.parseInt(String.valueOf(jtTablaModificarItem.getValueAt(jtTablaModificarItem.getSelectedRow(), 0)));
+
+            Item item = dao.findItem(idItem);
+            if(!(item.getFoto() == null)) {
+            //rm.jlFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getFoto())));
+                rm.jlFoto.setIcon(new javax.swing.ImageIcon(item.getFoto()));
+            }
+            else {
+                rm.jlFoto.setIcon(null);
+            }
+
+            rm.jtfID.setText(item.getIdItem().toString());
+            rm.jtfNombre.setText(item.getNombre());
+            rm.jtfPrecio.setText(Integer.toString(item.getPrecio()));
+            rm.jcbCategoria.setSelectedItem(item.getCategoria());
+            rm.jtaDescripcion1.setText(item.getDescripcion());
+
+            rm.setSize(752, 686);
+            this.add(rm);
+            emf.close();
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un item primero por favor");
         }

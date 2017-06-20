@@ -51,8 +51,8 @@ public class PanelEliminarItem extends javax.swing.JPanel {
         setAutoscrolls(true);
         setOpaque(false);
 
-        jlEliminarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botoneliminar.jpg"))); // NOI18N
-        jlEliminarItem.setPreferredSize(new java.awt.Dimension(110, 38));
+        jlEliminarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonEliminar.png"))); // NOI18N
+        jlEliminarItem.setPreferredSize(new java.awt.Dimension(108, 28));
         jlEliminarItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlEliminarItemMouseClicked(evt);
@@ -123,19 +123,19 @@ public class PanelEliminarItem extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
+                        .addGap(340, 340, 340)
                         .addComponent(jlEliminarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addGap(90, 90, 90)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jlEliminarItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -155,7 +155,6 @@ public class PanelEliminarItem extends javax.swing.JPanel {
             Fachada fachada = new Fachada();
             fachada.EliminarItem(item, emf);
             this.jtEliminarItem.setModel(new defaultModelItem());
-            JOptionPane.showMessageDialog(null, "Item eliminado exitosamente");
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un item primero por favor");
         }

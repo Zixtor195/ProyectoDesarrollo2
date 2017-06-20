@@ -145,7 +145,7 @@ public class GuiLogin extends javax.swing.JFrame {
     private void jbIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIngresarActionPerformed
         ArrayList log = null;
         login consultas = new login();
-        
+        /*
         try {
             log = consultas.ValidarLogin(jtfUsuario.getText(), String.valueOf(jpfContrasena.getPassword()));
         } catch (NullPointerException e) {
@@ -160,11 +160,12 @@ public class GuiLogin extends javax.swing.JFrame {
             jpfContrasena.setText("");
 
         } else {
-        
-            JOptionPane.showMessageDialog(null, "  Bienvenido " + log.get(1).toString(), "LOGIN LC", JOptionPane.INFORMATION_MESSAGE);
+        */
+            //JOptionPane.showMessageDialog(null, "  Bienvenido " + log.get(1).toString(), "LOGIN LC", JOptionPane.INFORMATION_MESSAGE);
             FabricaPanelesUsuario factoria = new FabricaPanelesUsuario();
             GuiPrincipal gp = new GuiPrincipal();
-            JPanel panel = factoria.createProduct((String) log.get(2), (Integer)log.get(0));
+            //JPanel panel = factoria.createProduct((String) log.get(2), (Integer)log.get(0));
+            JPanel panel = factoria.createProduct("gerente", 333);
             panel.setSize(950,700);
             gp.setVisible(true);
             gp.jpPrincipal.removeAll();
@@ -173,7 +174,7 @@ public class GuiLogin extends javax.swing.JFrame {
             gp.jpPrincipal.repaint();
             this.dispose();
             System.gc();
-        }
+        //}
     }//GEN-LAST:event_jbIngresarActionPerformed
 
     /**

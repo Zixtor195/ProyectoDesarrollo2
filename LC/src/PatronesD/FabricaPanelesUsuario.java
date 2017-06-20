@@ -18,7 +18,7 @@ public class FabricaPanelesUsuario implements FactoryIF
 {
 
     public JPanel createProduct(String discriminador, int id) {
-        System.out.print(id);
+        //System.out.print(id);
         
         if(discriminador.equalsIgnoreCase("Gerente"))
         {

@@ -82,7 +82,7 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
         jtaDescripcion.setRows(5);
         jspDescripcion.setViewportView(jtaDescripcion);
 
-        jlRegistrarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/button crear.png"))); // NOI18N
+        jlRegistrarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonCrear.png"))); // NOI18N
         jlRegistrarItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlRegistrarItemMouseClicked(evt);
@@ -92,7 +92,7 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
         jlFoto.setText("               Foto");
         jlFoto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jbCargarFoto.setText("CargarFoto");
+        jbCargarFoto.setText("Cargar foto");
         jbCargarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbCargarFotoMouseClicked(evt);
@@ -204,18 +204,30 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
         myFileChooser.showOpenDialog(this);
 
         ruta = myFileChooser.getSelectedFile().getAbsolutePath();
-        if(!(ruta == null))
-        {  
-
-        ImageIcon fotografia = new ImageIcon(ruta);
-        jlFoto.setIcon(fotografia);
-        ruta = ruta.replace("\\", "/");
-        ruta = ruta.substring(67,ruta.length());
+        System.out.println(ruta);
+        if(!(ruta == null)) {
+            ImageIcon fotografia = new ImageIcon(ruta);
+            jlFoto.setIcon(fotografia);
+            //ruta = ruta.replace("\", "/");
+            //ruta = ruta.substring(67,ruta.length());
         }
-        else 
-        {
+        else {
           ruta = null;
         } 
+        /*
+        JFileChooser myFileChooser = new JFileChooser();
+        myFileChooser.showOpenDialog(this);
+
+        ruta = myFileChooser.getSelectedFile().getAbsolutePath();
+        if(!(ruta.equalsIgnoreCase(""))) {
+            ImageIcon fotografia = new ImageIcon(ruta);
+            jlFoto.setIcon(fotografia);
+            ruta = ruta.replace("\\", "/");
+            ruta = ruta.substring(67,ruta.length());
+        } else {
+            ruta = null;
+        }
+        */
     }//GEN-LAST:event_jbCargarFotoMouseClicked
 
 

@@ -95,7 +95,7 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
         jlDescripcion.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jlDescripcion.setText("Descripcion:");
 
-        jlModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonmodificar.jpg"))); // NOI18N
+        jlModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonModificar.png"))); // NOI18N
         jlModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlModificarMouseClicked(evt);
@@ -150,7 +150,7 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbCambiarFoto)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlID)
@@ -189,8 +189,8 @@ public class PanelRealizarModificacionItem extends javax.swing.JPanel {
 
             ImageIcon fotografia = new ImageIcon(ruta);
             jlFoto.setIcon(fotografia);
-            ruta = ruta.replace("\\", "/");
-            ruta = ruta.substring(67,ruta.length());
+            //ruta = ruta.replace("\\", "/");
+            //ruta = ruta.substring(67,ruta.length());
         } else {
             ruta = null;
         }

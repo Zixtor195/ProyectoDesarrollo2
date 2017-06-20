@@ -82,7 +82,7 @@
                       <Component id="jbCambiarFoto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jlID" min="-2" max="-2" attributes="0"/>
@@ -253,7 +253,7 @@
     <Component class="javax.swing.JLabel" name="jlModificar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagenes/botonmodificar.jpg"/>
+          <Image iconType="3" name="/imagenes/botonModificar.png"/>
         </Property>
       </Properties>
       <Events>

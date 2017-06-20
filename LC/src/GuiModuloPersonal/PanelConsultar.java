@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 package GuiModuloPersonal;
 
@@ -14,17 +18,13 @@ import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * 
- */
+
 public class PanelConsultar extends javax.swing.JPanel {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
     EmpleadoJpaController ejc = new EmpleadoJpaController(emf);
     List<Empleado> listEmpleado = ejc.findEmpleadoEntities();
-    
-    
+        
     public PanelConsultar() {
         initComponents();
         table.setModel(new tabelModelc());
@@ -100,7 +100,7 @@ public class PanelConsultar extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table);
 
-        jlConsultarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
+        jlConsultarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.png"))); // NOI18N
         jlConsultarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlConsultarBotonMouseClicked(evt);
@@ -114,10 +114,10 @@ public class PanelConsultar extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(120, 120, 120)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
+                        .addGap(375, 375, 375)
                         .addComponent(jlConsultarBoton)))
                 .addGap(54, 54, 54))
         );
@@ -134,8 +134,6 @@ public class PanelConsultar extends javax.swing.JPanel {
 
     private void jlConsultarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlConsultarBotonMouseClicked
         
-        
-       
         Empleado empleado = new Empleado();
         
         empleado = listEmpleado.get(table.getSelectedRow());
@@ -165,19 +163,16 @@ public class PanelConsultar extends javax.swing.JPanel {
     
     private class tabelModelc extends AbstractTableModel{
         
-  
-        
         @Override
         public int getRowCount() {
                 
-                for (int i = 0; i < listEmpleado.size(); i++) 
-                {
-                    if(!(listEmpleado.get(i).getEstado().equalsIgnoreCase("Activo")))
-                    {
-                            listEmpleado.remove(i);
-                    }   
+            for (int i = 0; i < listEmpleado.size(); i++) {
+                
+                if(!(listEmpleado.get(i).getEstado().equalsIgnoreCase("Activo"))) {
+                    listEmpleado.remove(i);
                 }
-            return listEmpleado.size();    
+            }
+            return listEmpleado.size();
         }
 
         @Override
@@ -187,6 +182,7 @@ public class PanelConsultar extends javax.swing.JPanel {
 
         @Override
         public String getColumnName(int column) {
+            
             switch(column){
                 case 0: return "Nombre"; 
                 case 1: return "Apellido";
@@ -209,8 +205,5 @@ public class PanelConsultar extends javax.swing.JPanel {
             }
             return "";
         }
-        
     }
-    
-
 }
