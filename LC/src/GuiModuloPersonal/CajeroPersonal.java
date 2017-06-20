@@ -72,12 +72,13 @@ public class CajeroPersonal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1253, 679));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setOpaque(false);
-        jPanel1.setPreferredSize(new java.awt.Dimension(236, 834));
+        jPanel1.setPreferredSize(new java.awt.Dimension(236, 679));
 
         jbConsultarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultarPersonal.jpg"))); // NOI18N
         jbConsultarEmpleado.setPreferredSize(new java.awt.Dimension(150, 136));
@@ -127,23 +128,22 @@ public class CajeroPersonal extends javax.swing.JFrame {
                 .addComponent(jbModificarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbSalir)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setAutoscrolls(true);
         jPanel2.setOpaque(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(974, 850));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1017, 0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1083, Short.MAX_VALUE)
+            .addGap(0, 1011, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 679, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,18 +152,14 @@ public class CajeroPersonal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1083, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1011, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -179,7 +175,8 @@ public class CajeroPersonal extends javax.swing.JFrame {
         } catch (IOException ex) {
               Logger.getLogger(CajeroPersonal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        rc.setSize(1100,720);
+        //rc.setSize(1100,720);
+        rc.setSize(986,686);
 
         jPanel2.removeAll();
         jPanel2.add(rc);
@@ -193,7 +190,8 @@ public class CajeroPersonal extends javax.swing.JFrame {
         EmpleadoJpaController dao = new EmpleadoJpaController(emf);
         
         PanelRealizarModificacion rm = new PanelRealizarModificacion(dao.findEmpleado(id_cajero));
-        rm.setSize(1100,720);
+        //rm.setSize(1100,720);
+        rm.setSize(986,686);
 
         jPanel2.removeAll();
         jPanel2.add(rm);
