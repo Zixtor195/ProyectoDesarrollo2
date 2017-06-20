@@ -191,8 +191,8 @@ public class MenuPane extends javax.swing.JFrame {
             }
         });
 
-        jbSalir.setBackground(new java.awt.Color(255, 102, 0));
-        jbSalir.setForeground(new java.awt.Color(69, 32, 5));
+        jbSalir.setBackground(new java.awt.Color(153, 51, 0));
+        jbSalir.setForeground(new java.awt.Color(255, 255, 255));
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
