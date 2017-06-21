@@ -176,43 +176,47 @@ public class PanelEliminarPedido extends javax.swing.JPanel {
             
             if(table.getSelectedRow()!=-1){
                 
-                Pedido pedido = listapedido.get(table.getSelectedRow());
-                List<ItemPedido> listapedidos = ijc.findItemPedidoEntities();
-                List<Factura> listafactura = fjc.findFacturaEntities();
-                
-                for(ItemPedido item : listapedidos){
-                    if(item.getPedido().getIdPedido().intValue() == pedido.getIdPedido().intValue()){
-                        try {
-                            ijc.destroy(item.getItemPedidoPK());
-                        } catch (NonexistentEntityException ex) {
-                            Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                int dialogResult = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar este pedido?", "Confirmar eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if(dialogResult == JOptionPane.YES_OPTION){
+                    
+                    Pedido pedido = listapedido.get(table.getSelectedRow());
+                    List<ItemPedido> listapedidos = ijc.findItemPedidoEntities();
+                    List<Factura> listafactura = fjc.findFacturaEntities();
+
+                    for(ItemPedido item : listapedidos){
+                        if(item.getPedido().getIdPedido().intValue() == pedido.getIdPedido().intValue()){
+                            try {
+                                ijc.destroy(item.getItemPedidoPK());
+                            } catch (NonexistentEntityException ex) {
+                                Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
-                }
-                
-                for(Factura fact : listafactura){
-                    if(fact.getIdPedido().equals(pedido)){
-                        try {
-                            fjc.destroy(fact.getIdFactura());
-                        } catch (NonexistentEntityException ex) {
-                            Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IllegalOrphanException ex) {
-                            Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+
+                    for(Factura fact : listafactura){
+                        if(fact.getIdPedido().equals(pedido)){
+                            try {
+                                fjc.destroy(fact.getIdFactura());
+                            } catch (NonexistentEntityException ex) {
+                                Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (IllegalOrphanException ex) {
+                                Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
                         }
- 
                     }
-                }
-                
-                //pedido.getItemPedidoSet().r;
-                try {
-                    pjc.destroy(pedido.getIdPedido());
+
+                    //pedido.getItemPedidoSet().r;
+                    try {
+                        pjc.destroy(pedido.getIdPedido());
+                        table.setModel(new tableModel());
+                    } catch (NonexistentEntityException ex) {
+                        Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalOrphanException ex) {
+                        Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     table.setModel(new tableModel());
-                } catch (NonexistentEntityException ex) {
-                    Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalOrphanException ex) {
-                    Logger.getLogger(PanelEliminarPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                table.setModel(new tableModel());
             }else{
                 JOptionPane.showMessageDialog(null,"Por favor seleccione un pedido para eliminarlo");
             }

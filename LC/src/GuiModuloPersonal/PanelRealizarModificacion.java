@@ -747,6 +747,6 @@ public final class PanelRealizarModificacion extends javax.swing.JPanel {
         txtnodocumento.setText(""); txtemail.setText("");
         txtdireccion.setText("");   txttel.setText("");
         txtcelular.setText("");     txtusuario.setText("");
-        txtpass.setText("");
+        txtpass.setText("");        jlFoto.setIcon(null);
     }
 }

@@ -148,17 +148,22 @@ public class PanelEliminar extends javax.swing.JPanel {
         List<Empleado> listaempleado = ejc.findEmpleadoEntities();
         
         if (table.getSelectedRow() != 1) {
-            Empleado persona = ejc.findEmpleado( Integer.parseInt(table.getValueAt(table.getSelectedRow(),3).toString()) );
-            persona.setEstado("Inactivo");
+            
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar este empleado?", "Confirmar eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(dialogResult == JOptionPane.YES_OPTION){
 
-            try {
-                ejc.edit(persona);
-                table.setModel(new tabelModel());
-                JOptionPane.showMessageDialog(null, "Empleado eliminado exitosamente.");
-            } catch (NonexistentEntityException ex) {
-                Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception ex) {
-                Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
+                Empleado persona = ejc.findEmpleado( Integer.parseInt(table.getValueAt(table.getSelectedRow(),3).toString()) );
+                persona.setEstado("Inactivo");
+
+                try {
+                    ejc.edit(persona);
+                    table.setModel(new tabelModel());
+                    JOptionPane.showMessageDialog(null, "Empleado eliminado exitosamente.");
+                } catch (NonexistentEntityException ex) {
+                    Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(PanelEliminar.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un empleado, por favor.");

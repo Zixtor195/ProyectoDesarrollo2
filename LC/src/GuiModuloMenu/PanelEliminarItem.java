@@ -19,6 +19,8 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -144,17 +146,19 @@ public class PanelEliminarItem extends javax.swing.JPanel {
     private void jlEliminarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlEliminarItemMouseClicked
         
         if (this.jtEliminarItem.getSelectedRow() != -1) {
-
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
-            ItemJpaController dao = new ItemJpaController(emf);
-
-            int idItem = Integer.parseInt(String.valueOf(jtEliminarItem.getValueAt(jtEliminarItem.getSelectedRow(), 0)));
-
-            Item item = dao.findItem(idItem);
-            item.setEstado("Inactivo");
-            Fachada fachada = new Fachada();
-            fachada.EliminarItem(item, emf);
-            this.jtEliminarItem.setModel(new defaultModelItem());
+            
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar este item?", "Confirmar eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(dialogResult == JOptionPane.YES_OPTION){
+                
+                EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCPU");
+                ItemJpaController dao = new ItemJpaController(emf);
+                int idItem = Integer.parseInt(String.valueOf(jtEliminarItem.getValueAt(jtEliminarItem.getSelectedRow(), 0)));
+                Item item = dao.findItem(idItem);
+                item.setEstado("Inactivo");
+                Fachada fachada = new Fachada();
+                fachada.EliminarItem(item, emf);
+                this.jtEliminarItem.setModel(new defaultModelItem());
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un item primero por favor");
         }

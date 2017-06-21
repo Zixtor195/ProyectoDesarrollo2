@@ -193,7 +193,7 @@ public class PanelRegistrarItem extends javax.swing.JPanel {
                 jtfPrecio.setText("");
                 jcbCategoria.setSelectedIndex(0);
                 jtaDescripcion.setText("");
-                jlFoto.removeAll();
+                jlFoto.setIcon(null);
             }
         }
     }//GEN-LAST:event_jlRegistrarItemMouseClicked

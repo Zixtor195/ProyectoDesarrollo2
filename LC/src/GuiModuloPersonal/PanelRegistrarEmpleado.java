@@ -595,6 +595,6 @@ public class PanelRegistrarEmpleado extends javax.swing.JPanel {
         txtnoidentidad.setText(""); txtemail.setText("");
         txtdireccion.setText("");   txttel.setText("");
         txtcelular.setText("");     txtusuario.setText("");
-        txtcontrasena.setText("");
+        txtcontrasena.setText("");  jlFoto.setIcon(null);
     }
 }
