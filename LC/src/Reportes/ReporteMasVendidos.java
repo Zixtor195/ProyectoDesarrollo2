@@ -106,7 +106,7 @@ public class ReporteMasVendidos extends javax.swing.JFrame {
       this.setVisible(false);
       
       String ano = (String) jComboBox1.getSelectedItem();
-      Integer mes = (Integer) jComboBox2.getSelectedIndex();
+      Integer mes = (Integer) jComboBox2.getSelectedIndex()+1;
       
         try {
             r.reporteTop10MasVendidosMes(mes ,Integer.parseInt(ano));

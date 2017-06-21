@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.EntityManagerFactory;
@@ -35,7 +36,7 @@ public class Reporte {
     public void  reporteMeseroMes(Integer entrada) throws SQLException
     {
         
-        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "mmllano");
+        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "");
         try
         {  
            
@@ -105,7 +106,7 @@ public class Reporte {
     
      public void  reporteTop10MasVendidosMes(Integer ano, Integer mes) throws SQLException
     {
-        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "");
+        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/project_ds" , "postgres" , "");
         try
         {  
            
@@ -115,15 +116,16 @@ public class Reporte {
             }
             catch(JRException e)
             {
-               System.out.print("Error Generando Reporte" + e.getMessage());
+               System.out.print("Error Generando Reporte " + e.getMessage() + e.getLocalizedMessage());
             }
             
             Map<String, Object> parametros = new HashMap();
             
-            parametros.put("Ano", ano);
-            parametros.put("Mes", mes);
+            parametros.put("ano", ano);
+            parametros.put("mes", mes);
             
-            
+            System.out.print(" asd " + parametros.get("mes"));
+            System.out.print(" asd " + parametros.get("ano"));
             reportFilled = JasperFillManager.fillReport(report,parametros , con);
             JasperViewer jViewer = new JasperViewer(reportFilled, false);
             jViewer.setVisible(true);
@@ -156,13 +158,14 @@ public class Reporte {
             Map<String, Object> parametros = new HashMap();
             
             if(semestre == 1){
-                parametros.put("Semestre_inicio", "01/01"+ano);
-                parametros.put("Semestre_fin", "30/06"+ano);
+                parametros.put("fecha", "01/01/"+ano);
+                parametros.put("fecah1", "30/06/"+ano);
             }else{
-                parametros.put("Semestre_inicio", "01/07"+ano);
-                parametros.put("Semestre_fin", "31/12"+ano);
+                parametros.put("fecha", "01/07/"+ano);
+                parametros.put("fecha1", "31/12/"+ano);
             }
-            
+            System.out.println("sad" + parametros.get("fecha"));
+            System.out.println("sad" + parametros.get("fecha1"));
             reportFilled = JasperFillManager.fillReport(report,parametros , con);
             JasperViewer jViewer = new JasperViewer(reportFilled, false);
             jViewer.setVisible(true);
@@ -216,15 +219,15 @@ public class Reporte {
     }
     
     
-    public void  reporteSemana(Integer ano, Integer semestre, Integer semana) throws SQLException
+    public void  reporteSemana(Date dia_inicio, Date dia_fin) throws SQLException
     {
-        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres" , "");
+        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/project_ds" , "postgres" , "");
         try
         {  
            
             try
             {
-               report = (JasperReport) JRLoader.loadObject(getClass().getResource("ReporteSemana.jasper"));
+               report = (JasperReport) JRLoader.loadObject(getClass().getResource("ReporteSemanal.jasper"));
             }
             catch(JRException e)
             {
@@ -233,15 +236,8 @@ public class Reporte {
             
             Map<String, Object> parametros = new HashMap();
             
-            if(semestre == 1){
-                parametros.put("Semestre_inicio", "01/01"+ano);
-                parametros.put("Semestre_fin", "30/06"+ano);
-                parametros.put("Semana", semana);
-            }else{
-                parametros.put("Semestre_inicio", "01/07"+ano);
-                parametros.put("Semestre_fin", "31/12"+ano);
-                parametros.put("Semana", semana);
-            }
+            parametros.put("fecha_inicio", dia_inicio);
+            parametros.put("fecha_fin", dia_fin);
             
             reportFilled = JasperFillManager.fillReport(report,parametros , con);
             JasperViewer jViewer = new JasperViewer(reportFilled, false);

@@ -13,24 +13,24 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="mes" class="java.util.Date">
+	<parameter name="mes" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="ano" class="java.util.Date">
+	<parameter name="ano" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT p.id_item, i.nombre, Sum(p.cantidad) as Cantidad_Total 
 FROM item_pedido p, item i , pedido a
 where p.id_item = i.id_item AND p.id_pedido = a.id_pedido 
-AND a.fecha_pedido BETWEEN $P{mes} AND $P{ano}
+AND extract(month from a.fecha_pedido)=$P{mes} and extract(year from a.fecha_pedido) = $P{ano}
 group by p.id_item, i.nombre
 order by sum(cantidad) Desc Limit 10]]>
 	</queryString>
 	<field name="id_item" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="cantidad_total" class="java.lang.Long"/>
-	<filterExpression><![CDATA[$P{mes}$P{mes}.toString( short )]]></filterExpression>
+	<filterExpression><![CDATA[$F{nombre}]]></filterExpression>
 	<group name="nombre">
 		<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
 		<groupHeader>
@@ -125,7 +125,7 @@ order by sum(cantidad) Desc Limit 10]]>
 		<band height="18" splitType="Stretch">
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="020c0372-1c09-4969-902b-11daa0bc723e"/>
-				<textField isStretchWithOverflow="true">
+				<textField isStretchWithOverflow="true" pattern="###0">
 					<reportElement style="Detail" positionType="Float" x="0" y="0" width="398" height="18" uuid="fa13cf64-84a9-4882-b4e8-fc8643cea21d"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="14"/>

@@ -57,7 +57,7 @@ public class ReporteMenosVendidos extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
 
-        jLabel2.setText("Seleccione Mes :");
+        jLabel2.setText("Seleccione Semestre :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
