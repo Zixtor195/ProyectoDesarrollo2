@@ -110,7 +110,7 @@ public class FacturasConsultar extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jlConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.jpg"))); // NOI18N
+        jlConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonConsultar.png"))); // NOI18N
         jlConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlConsultarMouseClicked(evt);
@@ -136,7 +136,7 @@ public class FacturasConsultar extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(121, 121, 121)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlConsultar)
                 .addGap(24, 24, 24))
         );
