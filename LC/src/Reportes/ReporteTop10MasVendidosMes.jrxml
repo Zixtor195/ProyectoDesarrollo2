@@ -13,17 +13,17 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="mes" class="java.lang.Integer">
+	<parameter name="mes" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="ano" class="java.lang.Integer">
+	<parameter name="ano" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT p.id_item, i.nombre, Sum(p.cantidad) as Cantidad_Total 
 FROM item_pedido p, item i , pedido a
 where p.id_item = i.id_item AND p.id_pedido = a.id_pedido 
-AND extract(month from a.fecha_pedido)=$P{mes} and extract(year from a.fecha_pedido) = $P{ano}
+AND extract(month from a.fecha_pedido)= $P{mes} and extract(year from a.fecha_pedido) = $P{ano}
 group by p.id_item, i.nombre
 order by sum(cantidad) Desc Limit 10]]>
 	</queryString>
@@ -95,7 +95,7 @@ order by sum(cantidad) Desc Limit 10]]>
 				<imageExpression><![CDATA["C:\\Users\\familia BS\\Documents\\NetBeansProjects\\ProyectoDesarrollo2\\LC\\src\\imagenes\\1506606_665570536818931_154838972_n.jpg"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="721" y="0" width="81" height="102" uuid="78c3393e-5b0e-4256-997d-a42259cbc604"/>
+				<reportElement x="716" y="0" width="81" height="102" uuid="78c3393e-5b0e-4256-997d-a42259cbc604"/>
 				<imageExpression><![CDATA["C:\\Users\\familia BS\\Documents\\NetBeansProjects\\ProyectoDesarrollo2\\LC\\src\\imagenes\\13310489_1156585371050776_8622802783764543703_n.jpg"]]></imageExpression>
 			</image>
 		</band>

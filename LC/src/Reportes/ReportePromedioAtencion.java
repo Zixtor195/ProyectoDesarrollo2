@@ -7,6 +7,7 @@ package Reportes;
 
 import ControladorClasesTablas.ItemJpaController;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -109,9 +110,11 @@ public class ReportePromedioAtencion extends javax.swing.JFrame {
       Integer semestre = (Integer) jComboBox2.getSelectedIndex();
       
         try {
-            r.reporteTop10MenosVendidos(Integer.parseInt(ano) , semestre);
+            r.reporteTiempoPromedioAtencion(Integer.parseInt(ano) , semestre);
         } catch (SQLException ex) {
             Logger.getLogger(IngresosDia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(ReportePromedioAtencion.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jToggleButton1ActionPerformed

@@ -7,6 +7,7 @@ package Reportes;
 
 import ControladorClasesTablas.ItemJpaController;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -106,12 +107,14 @@ public class ReporteMenosVendidos extends javax.swing.JFrame {
       this.setVisible(false);
       
       String ano = (String) jComboBox1.getSelectedItem();
-      Integer semestre = (Integer) jComboBox2.getSelectedIndex();
+      Integer semestre = (Integer) jComboBox2.getSelectedIndex()+1;
       
         try {
             r.reporteTop10MenosVendidos(Integer.parseInt(ano) , semestre);
         } catch (SQLException ex) {
             Logger.getLogger(IngresosDia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(ReporteMenosVendidos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jToggleButton1ActionPerformed

@@ -13,10 +13,10 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="fecha" class="java.lang.String">
+	<parameter name="fecha" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="fecha1" class="java.lang.String">
+	<parameter name="fecha1" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -25,7 +25,7 @@ FROM item_pedido p, item i , pedido a
 where p.id_item = i.id_item AND p.id_pedido = a.id_pedido 
 AND a.fecha_pedido BETWEEN $P{fecha} AND $P{fecha1}
 group by p.id_item, i.nombre
-order by sum(cantidad) Desc Limit 10]]>
+order by sum(p.cantidad) Desc Limit 10]]>
 	</queryString>
 	<field name="id_item" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>

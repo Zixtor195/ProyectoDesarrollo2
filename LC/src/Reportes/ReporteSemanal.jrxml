@@ -53,7 +53,7 @@ order by extract(day from a.fecha_pedido) Asc Limit 10]]>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="95" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="d1ca13c0-cbe2-4f33-b696-23e7ae8bfd8d"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" />
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="afbfecba-e9f1-4c4f-94a7-d083f6e58466"/>
 					<textElement textAlignment="Right">
 						<font size="12"/>
 					</textElement>
@@ -61,7 +61,7 @@ order by extract(day from a.fecha_pedido) Asc Limit 10]]>
 				</textField>
 			</frame>
 			<image>
-				<reportElement x="451" y="0" width="104" height="132" uuid="7ff1a20b-c47e-4c78-be70-d104d57acc10"/>
+				<reportElement x="452" y="-5" width="104" height="132" uuid="7ff1a20b-c47e-4c78-be70-d104d57acc10"/>
 				<imageExpression><![CDATA["C:\\Users\\familia BS\\Documents\\NetBeansProjects\\ProyectoDesarrollo2\\LC\\src\\imagenes\\13310489_1156585371050776_8622802783764543703_n.jpg"]]></imageExpression>
 			</image>
 			<image>
@@ -76,35 +76,35 @@ order by extract(day from a.fecha_pedido) Asc Limit 10]]>
 	<columnHeader>
 		<band height="26" splitType="Stretch">
 			<staticText>
-				<reportElement style="Column header" x="0" y="7" width="277" height="18" forecolor="#000000" />
-				<textElement>
-					<font isBold="false"/>
+				<reportElement style="Column header" x="0" y="7" width="277" height="18" forecolor="#000000" uuid="25a072be-e578-41de-abda-a07465c8553d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[dia]]></text>
+				<text><![CDATA[Día]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="277" y="7" width="277" height="18" forecolor="#000000" />
-				<textElement>
-					<font isBold="false"/>
+				<reportElement style="Column header" x="277" y="7" width="277" height="18" forecolor="#000000" uuid="ae80871f-f2ab-4e07-bffc-9ccdcef64863"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[cantidad_total]]></text>
+				<text><![CDATA[Cantidad Total]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="18" splitType="Stretch">
 			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" />
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="96adaa6e-9d42-47f8-8117-59261b6a66fb"/>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="0" y="0" width="277" height="18" />
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="277" height="18" uuid="b3e5544b-1834-4931-9f68-f23c3657da1d"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{dia}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="277" y="0" width="277" height="18" />
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="277" y="0" width="277" height="18" uuid="ee2d799d-a68c-473f-9e75-f000e7a87de0"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{cantidad_total}]]></textFieldExpression>
@@ -115,7 +115,7 @@ order by extract(day from a.fecha_pedido) Asc Limit 10]]>
 	<columnFooter>
 		<band height="7" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" />
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="50205e93-8aef-4477-9f70-e0d27431ccdd"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
@@ -125,7 +125,7 @@ order by extract(day from a.fecha_pedido) Asc Limit 10]]>
 	<pageFooter>
 		<band height="25" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" />
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="134d57d2-3137-46f2-a30f-01be1721dcfd"/>
 				<textField evaluationTime="Report">
 					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="2e07caae-7e3d-4579-85ae-fe675781a039"/>
 					<textElement verticalAlignment="Middle">

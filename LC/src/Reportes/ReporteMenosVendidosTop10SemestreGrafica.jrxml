@@ -13,12 +13,19 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<queryString language="SQL">
-		<![CDATA[SELECT i.id_item, a.nombre, Sum(i.cantidad) as Cantidad_Total FROM item_pedido i, pedido p, item a
-where 
-p.id_pedido = i.id_pedido AND i.id_item = a.id_item AND p.fecha_pedido Between '01/02/2016' AND '30/06/2016'
-group by i.id_item, a.nombre
-order by sum(i.cantidad) Asc Limit 10]]>
+	<parameter name="fecha" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha1" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT p.id_item, i.nombre, Sum(p.cantidad) as Cantidad_Total 
+FROM item_pedido p, item i , pedido a
+where p.id_item = i.id_item AND p.id_pedido = a.id_pedido 
+AND a.fecha_pedido BETWEEN $P{fecha} AND $P{fecha1}
+group by p.id_item, i.nombre
+order by sum(p.cantidad) Desc Limit 10]]>
 	</queryString>
 	<field name="id_item" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>

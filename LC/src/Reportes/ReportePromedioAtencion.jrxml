@@ -13,13 +13,18 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
+	<parameter name="fecha" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha1" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT p.id_empleado, e.nombres, AVG(p.hora_ultimo_item - p.hora_inicio) as Promedio 
 FROM item_pedido i, pedido p, empleado e, item a
 where 
 p.id_empleado = e.id_empleado AND i.id_item = a.id_item AND p.id_pedido = i.id_pedido
-AND p.fecha_pedido Between '01/01/2016' AND 
-'30/06/2016'
+AND p.fecha_pedido Between $P{fecha} AND $P{fecha1}
 group by p.id_empleado, e.nombres
 order by AVG(p.hora_ultimo_item - p.hora_inicio) Asc]]>
 	</queryString>
@@ -41,7 +46,7 @@ order by AVG(p.hora_ultimo_item - p.hora_inicio) Asc]]>
 					<text><![CDATA[Reporte Promedio]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SubTitle" x="157" y="66" width="249" height="29" uuid="8d32552a-c391-47c2-82b0-722f50b3460d"/>
+					<reportElement style="SubTitle" x="199" y="66" width="249" height="29" uuid="8d32552a-c391-47c2-82b0-722f50b3460d"/>
 					<textElement>
 						<font size="22" isBold="false"/>
 					</textElement>
@@ -49,7 +54,7 @@ order by AVG(p.hora_ultimo_item - p.hora_inicio) Asc]]>
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="a80cd040-5ca3-420b-af24-577885777351"/>
+				<reportElement mode="Opaque" x="0" y="95" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="a80cd040-5ca3-420b-af24-577885777351"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
 					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="ca0cd46f-decb-4873-8de5-2be8773fd828"/>
 					<textElement textAlignment="Right">
@@ -59,11 +64,11 @@ order by AVG(p.hora_ultimo_item - p.hora_inicio) Asc]]>
 				</textField>
 			</frame>
 			<image>
-				<reportElement x="451" y="0" width="87" height="100" uuid="de470468-1538-4da2-a78e-4f0b87a1044c"/>
+				<reportElement x="451" y="0" width="102" height="112" uuid="de470468-1538-4da2-a78e-4f0b87a1044c"/>
 				<imageExpression><![CDATA["C:\\Users\\familia BS\\Documents\\NetBeansProjects\\ProyectoDesarrollo2\\LC\\src\\imagenes\\13310489_1156585371050776_8622802783764543703_n.jpg"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="451" y="66" width="102" height="66" uuid="b8d4cf7c-53f4-4d1a-8c63-160e6ba29977"/>
+				<reportElement x="451" y="46" width="104" height="86" uuid="b8d4cf7c-53f4-4d1a-8c63-160e6ba29977"/>
 				<imageExpression><![CDATA["C:\\Users\\familia BS\\Documents\\NetBeansProjects\\ProyectoDesarrollo2\\LC\\src\\imagenes\\1506606_665570536818931_154838972_n.jpg"]]></imageExpression>
 			</image>
 		</band>
@@ -75,22 +80,22 @@ order by AVG(p.hora_ultimo_item - p.hora_inicio) Asc]]>
 		<band height="26" splitType="Stretch">
 			<staticText>
 				<reportElement style="Column header" x="0" y="7" width="185" height="18" forecolor="#000000" uuid="2f330bae-74bc-4b56-aaa6-6b1a993fbcd1"/>
-				<textElement>
-					<font isBold="false"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="185" y="7" width="185" height="18" forecolor="#000000" uuid="48ce12c4-7498-4d4d-949b-00081b6f6f7e"/>
-				<textElement>
-					<font isBold="false"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="370" y="7" width="185" height="18" forecolor="#000000" uuid="2622120c-1a82-455a-967b-b302d2cbe4fb"/>
-				<textElement>
-					<font isBold="false"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Promedio]]></text>
 			</staticText>
@@ -102,24 +107,24 @@ order by AVG(p.hora_ultimo_item - p.hora_inicio) Asc]]>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="71db3ecc-013f-4101-889b-54b78ba1713a"/>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="0" y="0" width="185" height="18" uuid="86bd4ddc-1573-4792-8f9f-8b4af984b170"/>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{id_empleado}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="185" y="0" width="185" height="18" uuid="22532882-3115-4414-be18-ad73413fae87"/>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="370" y="0" width="185" height="18" uuid="9f294f85-c909-42fa-8ea5-0f0188d8f603"/>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[""+$F{cantidad_total}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{cantidad_total}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
